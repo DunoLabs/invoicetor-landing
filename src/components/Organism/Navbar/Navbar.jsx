@@ -27,7 +27,7 @@ import {
 
 const NAV_ITEMS = [
   {
-    label: 'Inspiration',
+    label: 'Work',
     children: [
       {
         label: 'Explore Design Work',
@@ -35,21 +35,21 @@ const NAV_ITEMS = [
         href: '#',
       },
       {
-        label: 'New & Noteworthy',
-        subLabel: 'Up-and-coming Designers',
+        label: 'New Templates and features',
+        subLabel: "some of the best invoice designs we've seen",
         href: '#',
       },
     ],
   },
   {
-    label: 'Find Work',
+    label: 'Open Source',
   },
   {
-    label: 'Learn Design',
+    label: 'Contact',
     href: '#',
   },
   {
-    label: 'Hire Designers',
+    label: 'Try One-Time Editor',
     href: '#',
   },
 ];
@@ -110,7 +110,7 @@ export default function WithSubnavigation() {
             textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
             fontFamily={'heading'}
             fontSize="2xl"
-            mx={5}
+            mx={10}
             fontWeight={600}
           >
             Invoicetor
@@ -126,6 +126,7 @@ export default function WithSubnavigation() {
           flex={{ base: 1, md: 0 }}
           justify={'flex-end'}
           direction={'row'}
+          align={'center'}
           spacing={6}
           mx={12}
         >
@@ -148,6 +149,8 @@ export default function WithSubnavigation() {
             fontWeight={600}
             color={'white'}
             bg={'purple.400'}
+            borderRadius={'lg'}
+            size={'sm'}
             href={'#'}
             _hover={{
               bg: 'purple.700',
@@ -170,7 +173,6 @@ export default function WithSubnavigation() {
 const DesktopNav = () => {
   const linkColor = useColorModeValue('gray.600', 'gray.200');
   const linkHoverColor = useColorModeValue('gray.800', 'white');
-  const popoverContentBgColor = useColorModeValue('white', 'gray.800');
 
   return (
     <Stack direction={'row'} spacing={4}>
@@ -195,9 +197,9 @@ const DesktopNav = () => {
 
             {navItem.children && (
               <PopoverContent
-                border={0}
+                border={1}
+                borderColor="dark"
                 boxShadow={'xl'}
-                bg={popoverContentBgColor}
                 p={4}
                 rounded={'xl'}
                 minW={'sm'}
@@ -225,15 +227,11 @@ const DesktopSubNav = ({ label, href, subLabel }) => {
       display={'block'}
       p={2}
       rounded={'md'}
-      _hover={{ bg: useColorModeValue('pink.50', 'gray.900') }}
+      _hover={{ textDecoration: 'none' }}
     >
       <Stack direction={'row'} align={'center'}>
-        <Box>
-          <Text
-            transition={'all .3s ease'}
-            _groupHover={{ color: 'pink.400' }}
-            fontWeight={500}
-          >
+        <Box align={'start'}>
+          <Text transition={'all .3s ease'} fontWeight={500}>
             {label}
           </Text>
           <Text fontSize={'sm'}>{subLabel}</Text>
@@ -244,10 +242,10 @@ const DesktopSubNav = ({ label, href, subLabel }) => {
           opacity={0}
           _groupHover={{ opacity: '100%', transform: 'translateX(0)' }}
           justify={'flex-end'}
-          align={'center'}
+          align={'start'}
           flex={1}
         >
-          <Icon color={'pink.400'} w={5} h={5} as={ChevronRightIcon} />
+          <Icon w={5} h={5} as={ChevronRightIcon} />
         </Flex>
       </Stack>
     </Link>
