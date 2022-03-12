@@ -63,7 +63,12 @@ export default function CallToActionWithAnnotation() {
             <Button variant={'link'} colorScheme={'blue'} size={'sm'}>
               It's completely free and open source.
             </Button>
-            <Box>
+            <Box
+              display={{
+                base: 'none',
+                md: 'block',
+              }}
+            >
               <Icon
                 as={Arrow}
                 color={useColorModeValue('gray.800', 'gray.300')}

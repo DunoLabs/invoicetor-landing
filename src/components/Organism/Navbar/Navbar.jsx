@@ -128,7 +128,10 @@ export default function WithSubnavigation() {
           direction={'row'}
           align={'center'}
           spacing={6}
-          mx={12}
+          mx={{
+            base: 0,
+            md: 12,
+          }}
         >
           <ColorModeSwitcher
             justifySelf="flex-end"
