@@ -8,7 +8,6 @@ import {
   Button,
   Text,
   Image,
-  useColorModeValue,
 } from '@chakra-ui/react';
 
 import { ArrowForwardIcon } from '@chakra-ui/icons';
@@ -95,7 +94,11 @@ export default function CallToActionWithVideo() {
               fontSize={{ base: '3xl', sm: '4xl', lg: '4xl' }}
               align="start"
             >
-              <Text as={'span'} color={'purple.400'}>
+              <Text
+                as={'span'}
+                bgGradient="linear(to-l, yellow.400,purple.400)"
+                bgClip="text"
+              >
                 {feature.Title}
               </Text>
             </Heading>

@@ -1,3 +1,5 @@
+import { NavLink } from 'react-router-dom';
+
 import {
   Box,
   Flex,
@@ -6,8 +8,8 @@ import {
   Button,
   Stack,
   Collapse,
-  Icon,
   Link,
+  Icon,
   Popover,
   PopoverTrigger,
   PopoverContent,
@@ -28,6 +30,7 @@ import {
 const NAV_ITEMS = [
   {
     label: 'Work',
+    to: '/work',
     children: [
       {
         label: 'Explore Design Work',
@@ -42,13 +45,16 @@ const NAV_ITEMS = [
     ],
   },
   {
+    to: '/opensource',
     label: 'Open Source',
   },
   {
+    to: '/contact',
     label: 'Contact',
     href: '#',
   },
   {
+    to: '/about',
     label: 'Try One-Time Editor',
     href: '#',
   },
@@ -113,7 +119,16 @@ export default function WithSubnavigation() {
             mx={10}
             fontWeight={600}
           >
-            Invoicetor
+            <Link
+              href="/"
+              _hover={{
+                textDecoration: 'none',
+                color: useColorModeValue('purple.400', 'purple.400'),
+              }}
+              className="navbar-brand"
+            >
+              Invoicetor
+            </Link>
           </Text>
           <Center>
             <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
@@ -174,28 +189,37 @@ export default function WithSubnavigation() {
 // Desktop Navbar Item
 
 const DesktopNav = () => {
-  const linkColor = useColorModeValue('gray.600', 'gray.200');
   const linkHoverColor = useColorModeValue('gray.800', 'white');
+  const ActiveLinkColor = useColorModeValue('purple.700', 'purple.100');
 
   return (
     <Stack direction={'row'} spacing={4}>
-      {NAV_ITEMS.map(navItem => (
+      {NAV_ITEMS.map((navItem, index) => (
         <Box key={navItem.label}>
           <Popover trigger={'hover'} placement={'bottom-start'}>
             <PopoverTrigger>
-              <Link
-                p={2}
-                href={navItem.href ?? '#'}
-                fontSize={'sm'}
-                fontWeight={500}
-                color={linkColor}
-                _hover={{
-                  textDecoration: 'none',
-                  color: linkHoverColor,
-                }}
-              >
-                {navItem.label}
-              </Link>
+              {navItem.children ? (
+                <Link>{navItem.label}</Link>
+              ) : (
+                <Link
+                  as={NavLink}
+                  end
+                  style={{
+                    padding: '0.5rem',
+                  }}
+                  to={navItem.to}
+                  _activeLink={{
+                    color: ActiveLinkColor,
+                    fontWeight: 600,
+                  }}
+                  _hover={{
+                    color: linkHoverColor,
+                    textDecoration: 'none',
+                  }}
+                >
+                  {navItem.label}
+                </Link>
+              )}
             </PopoverTrigger>
 
             {navItem.children && (

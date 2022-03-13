@@ -1,0 +1,11 @@
+.navbar-brand {
+  animation: brandAnimation 2s linear infinite alternate both;
+}
+@keyframes brandAnimation {
+  0% {
+    color: #ecc94b;
+  }
+  100% {
+    color: #9f7aea;
+  }
+}
