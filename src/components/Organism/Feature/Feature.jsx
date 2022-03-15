@@ -22,7 +22,7 @@ const Features = [
   },
   {
     imageUrl: 'http://via.placeholder.com/640x360',
-    Title: 'More & Better Desgin Control',
+    Title: 'More & Better Design Control',
     Description:
       "Your invoices will be completely customizable using the design panel. Choose a color that matches your company's style. Modify the spacing to accommodate the amount of information you want.",
     visit: '#',

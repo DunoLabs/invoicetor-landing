@@ -40,9 +40,7 @@ export default function CallToActionWithVideo() {
         <Heading fontWeight={700} fontSize="4xl" id="connect">
           Reach out to us 💜
         </Heading>
-        <Text fontSize={{ base: 'md', md: '16' }}>
-          Meet the team behind Invoicetor and get in touch with us.
-        </Text>
+        <Text>Meet the team behind Invoicetor and get in touch with us.</Text>
       </Stack>
       <Center>
         <Stack as={Box} textAlign={'center'} spacing={{ base: 3, md: 10 }}>

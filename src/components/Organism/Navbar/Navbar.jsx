@@ -49,13 +49,13 @@ const NAV_ITEMS = [
     label: 'Open Source',
   },
   {
-    to: '/contact',
-    label: 'Contact',
+    to: '/about',
+    label: 'About Us',
     href: '#',
   },
   {
-    to: '/about',
-    label: 'Try One-Time Editor',
+    to: '/onetimeeditor',
+    label: 'One-Time Editor',
     href: '#',
   },
 ];
