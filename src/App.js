@@ -8,6 +8,7 @@ import Navbar from './components/Organism/Navbar/Navbar';
 import Footer from './components/Organism/Footer/Footer';
 import { Route, Routes } from 'react-router-dom';
 import OneTimeEditor from './components/Pages/OneTimeEditor/OneTimeEditor';
+import About from './components/Pages/About';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/opensource" element={<OpenSource />} />
         <Route path="/onetimeeditor" element={<OneTimeEditor />} />
+        <Route path="/about" element={<About />} />
       </Routes>
 
       <Footer />
