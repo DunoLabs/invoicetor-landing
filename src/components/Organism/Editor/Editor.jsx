@@ -3,6 +3,7 @@ import {
   FormControl,
   FormLabel,
   Input,
+  Image,
   Stack,
   Button,
   useColorModeValue,
@@ -14,11 +15,26 @@ import {
   Tr,
   Th,
   Td,
+  Menu,
+  MenuItem,
+  MenuButton,
+  MenuList,
+  IconButton,
+  useDisclosure,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  Center,
 } from '@chakra-ui/react';
 import './Editor.scss';
 
 import { useState } from 'react';
 import * as FaIcons from 'react-icons/fa';
+import * as RiIcons from 'react-icons/ri';
 export default function Editor() {
   const invoiceData = JSON.parse(localStorage.getItem('invoice'))
     ? JSON.parse(localStorage.getItem('invoice'))
@@ -49,9 +65,17 @@ export default function Editor() {
     dueDate: invoiceData.dueDate,
   });
 
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const [items, setItems] = useState(
     JSON.parse(localStorage.getItem('items')) || []
   );
+
+  const [editItem, setEditItem] = useState({
+    editIndex: null,
+    editName: '',
+    editQuantity: '',
+    editPrice: '',
+  });
 
   const [invoiceItems, setInvoiceItems] = useState({
     itemName: items.itemName,
@@ -104,8 +128,8 @@ export default function Editor() {
     }
   };
 
-  // get upload image
-  const [image, setImage] = useState('');
+  // Upload Image in localstorage starts
+  const [image, setImage] = useState(localStorage.getItem('image'));
   const imageUpload = e => {
     const file = e.target.files[0];
     getBase64(file).then(base64 => {
@@ -123,6 +147,49 @@ export default function Editor() {
       reader.readAsDataURL(file);
     });
   };
+  // Upload Image in localstorage ends
+
+  /* Edit Invoice Item Starts */
+  const EditInvoiceItem = index => {
+    onOpen();
+    setEditItem({
+      editIndex: index,
+      editName: items[index].itemName,
+      editQuantity: items[index].itemQuantity,
+      editPrice: items[index].itemPrice,
+    });
+  };
+
+  // save edit items to localstorage
+  const saveEditItem = () => {
+    const newItems = items.map((item, index) => {
+      if (index === editItem.editIndex) {
+        return {
+          itemName: editItem.editName,
+          itemQuantity: editItem.editQuantity,
+          itemPrice: editItem.editPrice,
+          itemTotal: editItem.editPrice * editItem.editQuantity,
+        };
+      }
+      return item;
+    });
+    localStorage.setItem('items', JSON.stringify(newItems));
+    setItems(newItems);
+    onClose();
+  };
+
+  /* Edit Invoice Item Ends */
+
+  /*Delete invoice items from local storage starts */
+
+  const removeInvoiceItem = index => {
+    const item = [...items];
+    item.splice(index, 1);
+    localStorage.setItem('items', JSON.stringify(item));
+    setItems(item);
+  };
+
+  /* Delete invoice items from local storage ends */
 
   return (
     <>
@@ -130,33 +197,30 @@ export default function Editor() {
       <Stack spacing={4}>
         <Box>
           {image ? (
-            <img
+            <Image
               src={image}
               alt="company logo"
               style={{
-                width: '200px',
-                height: '200px',
-                borderRadius: '15px',
-                margin: '10px',
-                padding: '10px',
-                border: '4px dotted #fff',
+                borderRadius: '10px',
+                marginBottom: '10px',
               }}
+              w="200px"
+              h="200px"
             />
           ) : (
-            <img
-              src={localStorage.getItem('image')}
-              alt="company logo"
+            <Center
+              w="200px"
+              h="200px"
               style={{
-                width: '200px',
-                height: '200px',
-                borderRadius: '15px',
-                margin: '10px',
-                padding: '10px',
-                border: '4px dotted #fff',
+                borderRadius: '10px',
+                marginBottom: '10px',
+                border: '4px dotted #eaeaea',
               }}
-            />
+              class="upload-btn-wrapper"
+            >
+              Add Logo
+            </Center>
           )}
-
           <div class="upload-btn-wrapper">
             <button class="btn">{image ? 'Change Logo' : 'Upload Logo'}</button>
             <input
@@ -613,42 +677,122 @@ export default function Editor() {
               <Th>Item Quantity</Th>
               <Th>Item Price</Th>
               <Th>Item Total</Th>
-              <Th isNumeric>Edit & Remove </Th>
             </Tr>
           </Thead>
           <Tbody>
             {items.map((item, index) => (
               <Tr key={index}>
                 <Td>{item.itemName}</Td>
-                <Td>{item.itemQuantity}</Td>
+                <Td>{item.itemQuantity} </Td>
                 <Td>{item.itemPrice}</Td>
                 <Td>{item.itemTotal}</Td>
-                <Td isNumeric>
-                  <Box spacing={10}>
-                    <Button
-                      size={'sm'}
-                      colorScheme="teal"
-                      variant="outline"
-                      mx={2}
+                <Menu>
+                  <MenuButton
+                    m={2}
+                    as={IconButton}
+                    aria-label="Options"
+                    icon={<RiIcons.RiMenu3Fill />}
+                    variant="outline"
+                  />
+                  <MenuList>
+                    <MenuItem
+                      icon={<FaIcons.FaRegEdit />}
+                      onClick={() => EditInvoiceItem(index)}
                     >
-                      <FaIcons.FaEdit />
-                    </Button>
-                    <Button
-                      size={'sm'}
-                      colorScheme="red"
-                      variant="outline"
-                      mx={2}
+                      Edit
+                    </MenuItem>{' '}
+                    <MenuItem
+                      icon={<RiIcons.RiDeleteBin3Line />}
+                      onClick={() => removeInvoiceItem(index)}
                     >
-                      <FaIcons.FaTrash />
-                    </Button>
-                  </Box>
-                </Td>
+                      Delete
+                    </MenuItem>
+                  </MenuList>
+                </Menu>
               </Tr>
             ))}
           </Tbody>
         </Table>
       </Stack>
-
+      <Modal onClose={onClose} isOpen={isOpen} isCentered>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Edit Invoice</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            {' '}
+            <Box>
+              <FormControl id="editName">
+                <FormLabel>Edit Item Name</FormLabel>
+                <Input
+                  type="text"
+                  size={'lg'}
+                  htmlSize={30}
+                  placeholder="Edit Item Name"
+                  bg={useColorModeValue('gray.100', 'gray.700') || 'gray.200'}
+                  color={
+                    useColorModeValue('gray.800', 'gray.300') || 'gray.800'
+                  }
+                  value={editItem.editName}
+                  onChange={e =>
+                    setEditItem({ ...editItem, editName: e.target.value })
+                  }
+                />
+              </FormControl>
+            </Box>{' '}
+            <Box>
+              <FormControl id="editQuantity">
+                <FormLabel>Edit Item Quantity</FormLabel>
+                <Input
+                  type="number"
+                  size={'lg'}
+                  htmlSize={30}
+                  placeholder="Edit Item Quantity"
+                  bg={useColorModeValue('gray.100', 'gray.700') || 'gray.200'}
+                  color={
+                    useColorModeValue('gray.800', 'gray.300') || 'gray.800'
+                  }
+                  value={editItem.editQuantity}
+                  onChange={e =>
+                    setEditItem({ ...editItem, editQuantity: e.target.value })
+                  }
+                />
+              </FormControl>
+            </Box>{' '}
+            <Box>
+              <FormControl id="editPrice">
+                <FormLabel>Edit Item Price</FormLabel>
+                <Input
+                  type="number"
+                  size={'lg'}
+                  htmlSize={30}
+                  placeholder="Edit Item Price"
+                  bg={useColorModeValue('gray.100', 'gray.700') || 'gray.200'}
+                  color={
+                    useColorModeValue('gray.800', 'gray.300') || 'gray.800'
+                  }
+                  value={editItem.editPrice}
+                  onChange={e =>
+                    setEditItem({ ...editItem, editPrice: e.target.value })
+                  }
+                />
+              </FormControl>
+            </Box>
+          </ModalBody>
+          <ModalFooter>
+            <Button
+              colorScheme="primary"
+              variant="outline"
+              mr={3}
+              onClick={saveEditItem}
+            >
+              {' '}
+              Save
+            </Button>
+            <Button onClick={onClose}>Close</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
       {/* Invoice Items List End */}
 
       {/* Invoice Total Starts */}
@@ -670,7 +814,7 @@ export default function Editor() {
       <Box mt={8}>
         <Button
           display={{ base: 'none', md: 'inline-flex' }}
-          fontSize={'sm'}
+          size={'lg'}
           fontWeight={600}
           color={'white'}
           bg={'purple.400'}
@@ -681,7 +825,7 @@ export default function Editor() {
           }}
           onClick={addInvoice}
         >
-          Save
+          Save <RiIcons.RiSaveLine />
         </Button>
       </Box>
     </>
