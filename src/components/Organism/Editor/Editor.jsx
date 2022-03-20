@@ -6,11 +6,20 @@ import {
   Stack,
   Button,
   useColorModeValue,
+  Table,
+  Thead,
+  Tbody,
+  Text,
+  Textarea,
+  Tr,
+  Th,
+  Td,
 } from '@chakra-ui/react';
+import './Editor.scss';
 
 import { useState } from 'react';
-
-export default function OpenSource() {
+import * as FaIcons from 'react-icons/fa';
+export default function Editor() {
   const invoiceData = JSON.parse(localStorage.getItem('invoice'))
     ? JSON.parse(localStorage.getItem('invoice'))
     : {};
@@ -34,6 +43,21 @@ export default function OpenSource() {
     clientAddress: invoiceData.clientAddress,
     clientCity: invoiceData.clientCity,
     clientWebsite: invoiceData.clientWebsite,
+
+    invoiceNumber: invoiceData.invoiceNumber,
+    invoiceDate: invoiceData.invoiceDate,
+    dueDate: invoiceData.dueDate,
+  });
+
+  const [items, setItems] = useState(
+    JSON.parse(localStorage.getItem('items')) || []
+  );
+
+  const [invoiceItems, setInvoiceItems] = useState({
+    itemName: items.itemName,
+    itemQuantity: items.itemQuantity,
+    itemUnitPrice: items.itemUnitPrice,
+    itemTotal: items.itemTotal,
   });
 
   // add invoice function is used to add invoice to local storage
@@ -43,8 +67,107 @@ export default function OpenSource() {
     localStorage.setItem('invoice', JSON.stringify(invoice));
   };
 
+  // add invoice items
+  const addInvoiceItem = e => {
+    e.preventDefault();
+    if (localStorage.getItem('items')) {
+      if (
+        invoiceItems.itemName &&
+        invoiceItems.itemPrice &&
+        invoiceItems.itemQuantity !== ''
+      ) {
+        const item = [
+          ...items, // spread operator
+          {
+            itemName: invoiceItems.itemName,
+            itemQuantity: invoiceItems.itemQuantity,
+            itemPrice: invoiceItems.itemPrice,
+            itemTotal: invoiceItems.itemPrice * invoiceItems.itemQuantity,
+          },
+        ];
+        localStorage.setItem('items', JSON.stringify(item));
+        setItems(item);
+      } else {
+        alert('Please fill all fields');
+      }
+    } else {
+      const item = [
+        {
+          itemName: invoiceItems.itemName,
+          itemQuantity: invoiceItems.itemQuantity,
+          itemPrice: invoiceItems.itemPrice,
+          itemTotal: invoiceItems.itemPrice * invoiceItems.itemQuantity,
+        },
+      ];
+      localStorage.setItem('items', JSON.stringify(item));
+      setItems(item);
+    }
+  };
+
+  // get upload image
+  const [image, setImage] = useState('');
+  const imageUpload = e => {
+    const file = e.target.files[0];
+    getBase64(file).then(base64 => {
+      localStorage['fileBase64'] = base64;
+      console.debug('file stored', base64);
+      setImage(base64);
+      localStorage.setItem('image', base64);
+    });
+  };
+  const getBase64 = file => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = error => reject(error);
+      reader.readAsDataURL(file);
+    });
+  };
+
   return (
     <>
+      {/* Upload Company Logo Starts */}
+      <Stack spacing={4}>
+        <Box>
+          {image ? (
+            <img
+              src={image}
+              alt="company logo"
+              style={{
+                width: '200px',
+                height: '200px',
+                borderRadius: '15px',
+                margin: '10px',
+                padding: '10px',
+                border: '4px dotted #fff',
+              }}
+            />
+          ) : (
+            <img
+              src={localStorage.getItem('image')}
+              alt="company logo"
+              style={{
+                width: '200px',
+                height: '200px',
+                borderRadius: '15px',
+                margin: '10px',
+                padding: '10px',
+                border: '4px dotted #fff',
+              }}
+            />
+          )}
+
+          <div class="upload-btn-wrapper">
+            <button class="btn">{image ? 'Change Logo' : 'Upload Logo'}</button>
+            <input
+              type="file"
+              name="myfile"
+              id="uploadimage"
+              onChange={e => imageUpload(e)}
+            />
+          </div>
+        </Box>
+      </Stack>
       {/* User Details Starts  */}
       <Stack direction={{ base: 'column', md: 'row' }} spacing={8} my="5">
         <Box>
@@ -352,6 +475,196 @@ export default function OpenSource() {
       </Stack>
 
       {/* Clinet Details End */}
+
+      {/* Invoice Number And Dates Starts */}
+      <Stack direction={{ base: 'column', md: 'row' }} spacing={8} my="20">
+        <Box>
+          <FormControl id="invoiceNumber">
+            <FormLabel>Invoice Number</FormLabel>
+            <Input
+              type="text"
+              size={'lg'}
+              htmlSize={30}
+              placeholder="Invoice Number"
+              bg={useColorModeValue('gray.100', 'gray.700') || 'gray.200'}
+              color={useColorModeValue('gray.800', 'gray.300') || 'gray.800'}
+              value={invoice.invoiceNumber}
+              onChange={e =>
+                setInvoice({ ...invoice, invoiceNumber: e.target.value })
+              }
+            />
+          </FormControl>
+        </Box>
+        <Box>
+          <FormControl id="invoiceDate">
+            <FormLabel>Invoice Date</FormLabel>
+            <Input
+              type="date"
+              size={'lg'}
+              htmlSize={30}
+              bg={useColorModeValue('gray.100', 'gray.700') || 'gray.200'}
+              color={useColorModeValue('gray.800', 'gray.300') || 'gray.800'}
+              value={invoice.invoiceDate}
+              onChange={e =>
+                setInvoice({ ...invoice, invoiceDate: e.target.value })
+              }
+            />
+          </FormControl>
+        </Box>
+        <Box>
+          <FormControl id="dueDate">
+            <FormLabel>Due Date</FormLabel>
+            <Input
+              type="date"
+              size={'lg'}
+              bg={useColorModeValue('gray.100', 'gray.700') || 'gray.200'}
+              color={useColorModeValue('gray.800', 'gray.300') || 'gray.800'}
+              value={invoice.dueDate}
+              onChange={e =>
+                setInvoice({ ...invoice, dueDate: e.target.value })
+              }
+            />
+          </FormControl>
+        </Box>
+      </Stack>
+      {/* Invoice Number And Dates End */}
+
+      {/* Invoice Items Starts */}
+      <Stack direction={{ base: 'column', md: 'row' }} spacing={8} my="20">
+        <Box>
+          <FormControl id="itemName">
+            <FormLabel>Item Name</FormLabel>
+            <Input
+              type="text"
+              size={'lg'}
+              htmlSize={30}
+              placeholder="Item Name"
+              bg={useColorModeValue('gray.100', 'gray.700') || 'gray.200'}
+              color={useColorModeValue('gray.800', 'gray.300') || 'gray.800'}
+              value={invoiceItems.itemName}
+              onChange={e =>
+                setInvoiceItems({ ...invoiceItems, itemName: e.target.value })
+              }
+            />
+          </FormControl>
+        </Box>
+
+        <Box>
+          <FormControl id="itemQuantity">
+            <FormLabel>Item Quantity</FormLabel>
+            <Input
+              type="number"
+              size={'lg'}
+              width="100%"
+              placeholder="Item Quantity"
+              bg={useColorModeValue('gray.100', 'gray.700') || 'gray.200'}
+              color={useColorModeValue('gray.800', 'gray.300') || 'gray.800'}
+              value={invoiceItems.itemQuantity}
+              onChange={e =>
+                setInvoiceItems({
+                  ...invoiceItems,
+                  itemQuantity: e.target.value,
+                })
+              }
+            />
+          </FormControl>
+        </Box>
+        <Box>
+          <FormControl id="itemPrice">
+            <FormLabel>Item Price</FormLabel>
+            <Input
+              type="number"
+              size={'lg'}
+              width="100%"
+              placeholder="Item Price"
+              bg={useColorModeValue('gray.100', 'gray.700') || 'gray.200'}
+              color={useColorModeValue('gray.800', 'gray.300') || 'gray.800'}
+              value={invoiceItems.itemPrice}
+              onChange={e =>
+                setInvoiceItems({ ...invoiceItems, itemPrice: e.target.value })
+              }
+            />
+          </FormControl>
+        </Box>
+        <Box pt={8}>
+          <Button
+            size={'lg'}
+            variant="outline"
+            bg={useColorModeValue('gray.100', 'gray.100')}
+            color={useColorModeValue('gray.800', 'gray.800')}
+            borderColor={useColorModeValue('gray.800', 'gray.800')}
+            _hover={{
+              bg: useColorModeValue('gray.100', 'gray.100'),
+            }}
+            onClick={addInvoiceItem}
+          >
+            Add Item
+          </Button>
+        </Box>
+      </Stack>
+      {/* Invoice Items End */}
+
+      {/* Invoice Items List Starts */}
+      <Stack direction={{ base: 'column', md: 'row' }} spacing={8} my="20">
+        <Table variant="striped">
+          <Thead>
+            <Tr>
+              <Th>Item Name</Th>
+              <Th>Item Quantity</Th>
+              <Th>Item Price</Th>
+              <Th>Item Total</Th>
+              <Th isNumeric>Edit & Remove </Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            {items.map((item, index) => (
+              <Tr key={index}>
+                <Td>{item.itemName}</Td>
+                <Td>{item.itemQuantity}</Td>
+                <Td>{item.itemPrice}</Td>
+                <Td>{item.itemTotal}</Td>
+                <Td isNumeric>
+                  <Box spacing={10}>
+                    <Button
+                      size={'sm'}
+                      colorScheme="teal"
+                      variant="outline"
+                      mx={2}
+                    >
+                      <FaIcons.FaEdit />
+                    </Button>
+                    <Button
+                      size={'sm'}
+                      colorScheme="red"
+                      variant="outline"
+                      mx={2}
+                    >
+                      <FaIcons.FaTrash />
+                    </Button>
+                  </Box>
+                </Td>
+              </Tr>
+            ))}
+          </Tbody>
+        </Table>
+      </Stack>
+
+      {/* Invoice Items List End */}
+
+      {/* Invoice Total Starts */}
+      <Stack>
+        <Box>
+          <Text mb="8px">Add a Note : </Text>
+          <Textarea
+            size={'lg'}
+            placeholder="Notes"
+            bg={useColorModeValue('gray.100', 'gray.700') || 'gray.200'}
+            color={useColorModeValue('gray.800', 'gray.300') || 'gray.800'}
+            value={invoice.notes}
+            onChange={e => setInvoice({ ...invoice, notes: e.target.value })}
+          />
+        </Box>
+      </Stack>
 
       {/* Save Button */}
       <Box mt={8}>
