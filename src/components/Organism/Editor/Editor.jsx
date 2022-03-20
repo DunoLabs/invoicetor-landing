@@ -5,6 +5,7 @@ import {
   Input,
   Image,
   Stack,
+  Flex,
   Button,
   useColorModeValue,
   Table,
@@ -29,13 +30,20 @@ import {
   ModalBody,
   ModalCloseButton,
   Center,
+  Slider,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
+  SliderMark,
 } from '@chakra-ui/react';
 import './Editor.scss';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as FaIcons from 'react-icons/fa';
 import * as RiIcons from 'react-icons/ri';
+import * as MdIcons from 'react-icons/md';
 export default function Editor() {
+  // getting invoice data from localstorage
   const invoiceData = JSON.parse(localStorage.getItem('invoice'))
     ? JSON.parse(localStorage.getItem('invoice'))
     : {};
@@ -191,22 +199,124 @@ export default function Editor() {
 
   /* Delete invoice items from local storage ends */
 
+  /* Edit Image Size */
+  const [imageSize, setImageSize] = useState(localStorage.getItem('imageSize'));
+  const [toggleSlider, setToggleSlider] = useState(false);
+  const [sliderValue, setSliderValue] = useState(50);
+  console.log(sliderValue);
+  const handleImageSize = () => {
+    setToggleSlider(true);
+  };
+
+  useEffect(() => {
+    if (!image) {
+      setToggleSlider(false);
+    }
+  });
+
   return (
     <>
       {/* Upload Company Logo Starts */}
       <Stack spacing={4}>
         <Box>
-          {image ? (
-            <Image
-              src={image}
-              alt="company logo"
-              style={{
-                borderRadius: '10px',
-                marginBottom: '10px',
+          {/* Image Size Slider  */}
+          {toggleSlider ? (
+            <Slider
+              aria-label="slider-ex-3"
+              defaultValue={localStorage.getItem('imageSize')}
+              orientation="horizontal"
+              colorScheme={'purple'}
+              maxW="250"
+              my={10}
+              min={100}
+              max={250}
+              onChange={v => {
+                setSliderValue(v);
+                localStorage.setItem('imageSize', v);
+                setImageSize(v);
               }}
-              w="200px"
-              h="200px"
-            />
+              _hover={{
+                cursor: 'grab',
+              }}
+            >
+              <SliderMark value={100} mt="1" ml="-2.5" fontSize="sm">
+                100px
+              </SliderMark>{' '}
+              <SliderMark value={150} mt="1" ml="-2.5" fontSize="sm">
+                150px
+              </SliderMark>{' '}
+              <SliderMark value={200} mt="1" ml="-2.5" fontSize="sm">
+                200px
+              </SliderMark>{' '}
+              <SliderMark value={250} mt="1" ml="-2.5" fontSize="sm">
+                250px
+              </SliderMark>
+              <SliderTrack>
+                <SliderFilledTrack />
+              </SliderTrack>
+              <SliderThumb
+                boxSize={6}
+                _hover={{
+                  cursor: 'grab',
+                }}
+              >
+                <FaIcons.FaPaperPlane color="black" fontSize={10} />
+              </SliderThumb>
+            </Slider>
+          ) : null}
+
+          {/* Image Upload */}
+          {image ? (
+            <Flex>
+              <Image
+                src={image}
+                alt="company logo"
+                className="company-logo"
+                style={{
+                  borderRadius: '10px',
+                  marginBottom: '10px',
+                }}
+                w={imageSize}
+                h={imageSize}
+                onClick={() => {
+                  document.getElementById('uploadFile').click();
+                }}
+              />{' '}
+              <Menu>
+                <MenuButton
+                  m={2}
+                  as={IconButton}
+                  aria-label="Options"
+                  icon={<RiIcons.RiMenu3Fill />}
+                  variant="outline"
+                />
+                <MenuList>
+                  <MenuItem
+                    onClick={() => {
+                      document.getElementById('uploadFile').click();
+                    }}
+                    icon={<RiIcons.RiUpload2Fill />}
+                  >
+                    Upload Image
+                  </MenuItem>
+                  <MenuItem
+                    icon={<MdIcons.MdPhotoSizeSelectLarge />}
+                    onClick={handleImageSize}
+                  >
+                    Resize Logo
+                  </MenuItem>{' '}
+                  <MenuItem
+                    icon={<RiIcons.RiDeleteBin3Line />}
+                    onClick={() => {
+                      localStorage.removeItem('image');
+                      setImage('');
+                    }}
+                  >
+                    Delete
+                  </MenuItem>
+                </MenuList>
+              </Menu>
+            </Flex>
           ) : (
             <Center
               w="200px"
@@ -216,20 +326,21 @@ export default function Editor() {
                 marginBottom: '10px',
                 border: '4px dotted #eaeaea',
               }}
-              class="upload-btn-wrapper"
+              onClick={() => {
+                document.getElementById('uploadFile').click();
+              }}
             >
               Add Logo
             </Center>
           )}
-          <div class="upload-btn-wrapper">
-            <button class="btn">{image ? 'Change Logo' : 'Upload Logo'}</button>
-            <input
-              type="file"
-              name="myfile"
-              id="uploadimage"
-              onChange={e => imageUpload(e)}
-            />
-          </div>
+
+          <input
+            id="uploadFile"
+            type="file"
+            name="image"
+            class="img"
+            onChange={e => imageUpload(e)}
+          />
         </Box>
       </Stack>
       {/* User Details Starts  */}
@@ -814,7 +925,6 @@ export default function Editor() {
       <Box mt={8}>
         <Button
           display={{ base: 'none', md: 'inline-flex' }}
-          size={'lg'}
           fontWeight={600}
           color={'white'}
           bg={'purple.400'}
@@ -824,8 +934,9 @@ export default function Editor() {
             bg: 'purple.700',
           }}
           onClick={addInvoice}
+          rightIcon={<RiIcons.RiSaveLine />}
         >
-          Save <RiIcons.RiSaveLine />
+          Save
         </Button>
       </Box>
     </>

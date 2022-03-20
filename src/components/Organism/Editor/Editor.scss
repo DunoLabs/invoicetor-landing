@@ -1,20 +1,20 @@
-.upload-btn-wrapper {
-  position: relative;
-  overflow: hidden;
+#imagePreview {
+  width: 180px;
+  height: 180px;
+  background-position: center center;
+  background-size: cover;
+  -webkit-box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.3);
   display: inline-block;
+  content: 'click Here';
+  color: black;
 }
 
-.btn {
-  border: 2px solid gray;
-  color: gray;
-  background-color: white;
-  padding: 8px 20px;
-  border-radius: 8px;
+input[type='file'] {
+  display: none;
 }
 
-.upload-btn-wrapper input[type='file'] {
-  position: absolute;
-  left: 0;
-  top: 0;
-  opacity: 0;
+.company-logo {
+  &:hover {
+    cursor: pointer;
+  }
 }
