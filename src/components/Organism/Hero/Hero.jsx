@@ -9,6 +9,7 @@ import {
   Center,
   useColorModeValue,
   createIcon,
+  Flex,
 } from '@chakra-ui/react';
 
 export default function Home() {
@@ -49,17 +50,32 @@ export default function Home() {
             alignSelf={'center'}
             position={'relative'}
           >
-            <Button
-              color={'white'}
-              bg={'purple.400'}
-              rounded={'full'}
-              px={6}
-              _hover={{
-                bg: 'purple.500',
-              }}
-            >
-              Create Invoice
-            </Button>
+            <Flex>
+              <Button
+                color={'white'}
+                rounded={'full'}
+                px={6}
+                mx={2}
+                bgGradient="linear(to-l,purple.400, yellow.400)"
+                _hover={{
+                  bg: 'linear(to-l,purple.400, yellow.400)',
+                }}
+              >
+                Try One-Time Editor
+              </Button>{' '}
+              <Button
+                color={'white'}
+                bg={'purple.400'}
+                rounded={'full'}
+                px={6}
+                mx={2}
+                _hover={{
+                  bg: 'purple.500',
+                }}
+              >
+                Create Invoice
+              </Button>
+            </Flex>
             <Button variant={'link'} colorScheme={'blue'} size={'sm'}>
               It's completely free and open source.
             </Button>

@@ -1,5 +1,5 @@
 import './SideButton.scss';
-import { Text, useColorModeValue } from '@chakra-ui/react';
+import { Text } from '@chakra-ui/react';
 
 export default function SideButton() {
   return (

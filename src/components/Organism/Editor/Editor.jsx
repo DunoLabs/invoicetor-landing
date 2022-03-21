@@ -38,58 +38,34 @@ import {
 } from '@chakra-ui/react';
 import './Editor.scss';
 
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { InvoiceContext } from '../../../core/InvoiceContext';
 import * as FaIcons from 'react-icons/fa';
 import * as RiIcons from 'react-icons/ri';
 import * as MdIcons from 'react-icons/md';
 export default function Editor() {
+  const {
+    invoice,
+    setInvoice,
+    items,
+    setItems,
+    invoiceItems,
+    setInvoiceItems,
+    image,
+    setImage,
+    imageSize,
+    setImageSize,
+  } = useContext(InvoiceContext);
+  console.log(invoice);
   // getting invoice data from localstorage
-  const invoiceData = JSON.parse(localStorage.getItem('invoice'))
-    ? JSON.parse(localStorage.getItem('invoice'))
-    : {};
-
-  const [invoice, setInvoice] = useState({
-    yourName: invoiceData.yourName,
-    yourEmail: invoiceData.yourEmail,
-    yourPhone: invoiceData.yourPhone,
-    yourCompany: invoiceData.yourCompany,
-    yourAddress: invoiceData.yourAddress,
-    yourCity: invoiceData.yourCity,
-    yourWebsite: invoiceData.yourWebsite,
-    yourAccountNumber: invoiceData.yourAccountNumber,
-    yourBank: invoiceData.yourBank,
-    yourBankBranch: invoiceData.yourBankBranch,
-
-    clientName: invoiceData.clientName,
-    clientEmail: invoiceData.clientEmail,
-    clientPhone: invoiceData.clientPhone,
-    clientCompany: invoiceData.clientCompany,
-    clientAddress: invoiceData.clientAddress,
-    clientCity: invoiceData.clientCity,
-    clientWebsite: invoiceData.clientWebsite,
-
-    invoiceNumber: invoiceData.invoiceNumber,
-    invoiceDate: invoiceData.invoiceDate,
-    dueDate: invoiceData.dueDate,
-  });
 
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [items, setItems] = useState(
-    JSON.parse(localStorage.getItem('items')) || []
-  );
 
   const [editItem, setEditItem] = useState({
     editIndex: null,
     editName: '',
     editQuantity: '',
     editPrice: '',
-  });
-
-  const [invoiceItems, setInvoiceItems] = useState({
-    itemName: items.itemName,
-    itemQuantity: items.itemQuantity,
-    itemUnitPrice: items.itemUnitPrice,
-    itemTotal: items.itemTotal,
   });
 
   // add invoice function is used to add invoice to local storage
@@ -137,7 +113,7 @@ export default function Editor() {
   };
 
   // Upload Image in localstorage starts
-  const [image, setImage] = useState(localStorage.getItem('image'));
+
   const imageUpload = e => {
     const file = e.target.files[0];
     getBase64(file).then(base64 => {
@@ -200,19 +176,19 @@ export default function Editor() {
   /* Delete invoice items from local storage ends */
 
   /* Edit Image Size */
-  const [imageSize, setImageSize] = useState(localStorage.getItem('imageSize'));
+
   const [toggleSlider, setToggleSlider] = useState(false);
   const [sliderValue, setSliderValue] = useState(50);
   console.log(sliderValue);
   const handleImageSize = () => {
-    setToggleSlider(true);
+    setToggleSlider(!toggleSlider);
   };
 
   useEffect(() => {
     if (!image) {
       setToggleSlider(false);
     }
-  });
+  }, [image]);
 
   return (
     <>
@@ -452,6 +428,7 @@ export default function Editor() {
         <Box>
           <FormControl id="yourwebsite">
             <FormLabel>Your Website</FormLabel>
+
             <Input
               type="text"
               size={'lg'}
@@ -787,7 +764,7 @@ export default function Editor() {
               <Th>Item Name</Th>
               <Th>Item Quantity</Th>
               <Th>Item Price</Th>
-              <Th>Item Total</Th>
+              <Th>Item Amount</Th>
             </Tr>
           </Thead>
           <Tbody>
@@ -828,7 +805,7 @@ export default function Editor() {
       <Modal onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Edit Invoice</ModalHeader>
+          <ModalHeader>Edit Item #{editItem.editIndex} </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             {' '}
