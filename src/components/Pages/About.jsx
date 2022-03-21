@@ -5,7 +5,7 @@ import Connect from '../Organism/Connect/Connect';
 export default function OpenSource() {
   return (
     <>
-      <Container maxW={'6xl'} mt={5}>
+      <Container maxW={'4xl'} mt={5}>
         <Stack
           as={Box}
           textAlign={'center'}

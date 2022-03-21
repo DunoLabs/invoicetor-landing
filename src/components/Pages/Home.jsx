@@ -7,7 +7,7 @@ import { Box, Grid } from '@chakra-ui/react';
 
 export default function Home() {
   return (
-    <Box textAlign="center" fontSize="xl">
+    <Box textAlign="center" >
       <Grid minH="100vh">
         <Hero />
         <Feature />
