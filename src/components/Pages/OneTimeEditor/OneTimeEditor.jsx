@@ -67,6 +67,10 @@ export default function OneTimeEditor() {
                 fontSize={'lg'}
                 bg={useColorModeValue('gray.100', 'gray.700')}
                 color={useColorModeValue('gray.800', 'gray.200')}
+                _selected={{
+                  bg: useColorModeValue('purple.100', 'purple.400'),
+                  color: useColorModeValue('gray.800', 'gray.100'),
+                }}
               >
                 Editor
                 <FaIcons.FaEdit
@@ -85,6 +89,10 @@ export default function OneTimeEditor() {
                 fontSize={'lg'}
                 bg={useColorModeValue('gray.100', 'gray.700')}
                 color={useColorModeValue('gray.800', 'gray.200')}
+                _selected={{
+                  bg: useColorModeValue('purple.100', 'purple.400'),
+                  color: useColorModeValue('gray.800', 'gray.100'),
+                }}
               >
                 Preview
                 <FaIcons.FaEye
@@ -103,6 +111,10 @@ export default function OneTimeEditor() {
                 fontSize={'lg'}
                 bg={useColorModeValue('gray.100', 'gray.700')}
                 color={useColorModeValue('gray.800', 'gray.200')}
+                _selected={{
+                  bg: useColorModeValue('purple.100', 'purple.400'),
+                  color: useColorModeValue('gray.800', 'gray.100'),
+                }}
               >
                 Share
                 <FaIcons.FaShare

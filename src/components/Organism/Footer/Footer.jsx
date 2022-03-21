@@ -8,7 +8,7 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
-
+import { NavLink } from 'react-router-dom';
 import * as FaIcons from 'react-icons/fa';
 const ListHeader = ({ children }) => {
   return (
@@ -48,11 +48,14 @@ export default function Footer() {
             }}
           >
             <ListHeader align={'start'}>Product</ListHeader>
-            <Link href={'#'}>About Us</Link>
-            <Link href={'#'}>Overview</Link>
-            <Link href={'#'}>Features</Link>
-            <Link href={'#'}>Releases</Link>
-            <Link href={'#'}>Sponsor</Link>
+            <Link as={NavLink} to="about">
+              About Us
+            </Link>
+            <Link as={NavLink} to="features">
+              Features
+            </Link>
+            <Link href={'releases'}>Releases</Link>
+            <Link href={'sponsor'}>Sponsor</Link>
           </Stack>
 
           <Stack

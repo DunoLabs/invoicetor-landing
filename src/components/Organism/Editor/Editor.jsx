@@ -16,6 +16,7 @@ import {
   Tr,
   Th,
   Td,
+  Tooltip,
   Menu,
   MenuItem,
   MenuButton,
@@ -259,13 +260,15 @@ export default function Editor() {
                 }}
               />{' '}
               <Menu>
-                <MenuButton
-                  m={2}
-                  as={IconButton}
-                  aria-label="Options"
-                  icon={<RiIcons.RiMenu3Fill />}
-                  variant="outline"
-                />
+                <Tooltip label="Hover me">
+                  <MenuButton
+                    m={2}
+                    as={IconButton}
+                    aria-label="Options"
+                    icon={<RiIcons.RiMenu3Fill />}
+                    variant="outline"
+                  />
+                </Tooltip>
                 <MenuList>
                   <MenuItem
                     onClick={() => {

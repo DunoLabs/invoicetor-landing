@@ -25,7 +25,7 @@ export default function Preview() {
   return (
     <>
       <Stack
-        bg={useColorModeValue('gray.100', '#1A202C')}
+        bg={useColorModeValue('#fff', '#1A202C')}
         color={useColorModeValue('gray.800', 'gray.200')}
       >
         <Stack spacing={10}>
@@ -121,7 +121,7 @@ export default function Preview() {
               ))}
             </Tbody>
           </Table>
-          <Box align="end" pt={5}>
+          <Box align="end" pt={5} spacing={10}>
             <Text
               fontWeight={'bold'}
               as="span"
@@ -132,7 +132,7 @@ export default function Preview() {
             </Text>
           </Box>
         </Stack>
-        <Stack mt={10} spacing={3}>
+        <Stack mt={20} spacing={3}>
           <Box>
             <Text as="h3" fontWeight={'bold'} align="start">
               Notes :
