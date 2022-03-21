@@ -185,18 +185,11 @@ export default function Editor() {
 
   /* Edit Image Size */
 
-  const [toggleSlider, setToggleSlider] = useState(false);
   const [sliderValue, setSliderValue] = useState(50);
   const [isOpenPop, setIsOpenPop] = useState(false);
   const open = () => setIsOpenPop(!isOpen);
   const close = () => setIsOpenPop(false);
   console.log(sliderValue);
-
-  useEffect(() => {
-    if (!image) {
-      setToggleSlider(false);
-    }
-  }, [image]);
 
   return (
     <>
