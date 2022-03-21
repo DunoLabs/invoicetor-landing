@@ -1,5 +1,5 @@
 import { Box, Heading, Container, Text, Stack } from '@chakra-ui/react';
-import { Helmet } from 'react-helmet';
+
 import Connect from '../Organism/Connect/Connect';
 
 export default function OpenSource() {
