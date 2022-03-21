@@ -1,9 +1,10 @@
 import { Box, Heading, Container, Text, Stack } from '@chakra-ui/react';
+import Connect from '../Organism/Connect/Connect';
 
 export default function OpenSource() {
   return (
     <>
-      <Container maxW={'4xl'} mt={5}>
+      <Container maxW={'6xl'} mt={5}>
         <Stack
           as={Box}
           textAlign={'center'}
@@ -29,8 +30,9 @@ export default function OpenSource() {
           </Heading>
           <Text fontSize={'1.5rem'} align="start">
             Invoicetor is a platform that helps businesses to digitize their
-            finances in an easy manner and create invoices. Aim of this website
-            is to avail a service that helps them to simplify their finances.
+            finances in an easy manner and create invoices in a simple way. Aim
+            of this website is to avail a service that helps them to simplify
+            their finances.
           </Text>{' '}
           <Text
             fontSize={'1.5rem'}
@@ -40,12 +42,23 @@ export default function OpenSource() {
               md: 15,
             }}
           >
-            It is a major part of DunoLabs which is an organisation that is
-            created to empower companies to grow their businesses with its smart
-            marketing technology. It builds trusted, useful and insightful
-            platforms for the clients to reach the right people. 💜
+            So, this is the idea behind Invoicetor, we are here to help you in
+            your business. We're a team of developers who are passionate about
+            creating software that helps businesses to do more with less effort.
+          </Text>{' '}
+          <Text
+            fontSize={'1.5rem'}
+            align="start"
+            mb={{
+              base: 0,
+              md: 15,
+            }}
+          >
+            we're currently working on a new features, and we're soon going to
+            release first public version, so stay tuned!
           </Text>
         </Stack>
+        <Connect />
       </Container>
     </>
   );

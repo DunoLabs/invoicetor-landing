@@ -260,7 +260,7 @@ export default function Editor() {
                 }}
               />{' '}
               <Menu>
-                <Tooltip label="Hover me">
+                <Tooltip label="Edit Image">
                   <MenuButton
                     m={2}
                     as={IconButton}
@@ -778,13 +778,15 @@ export default function Editor() {
                 <Td>{item.itemPrice}</Td>
                 <Td>{item.itemTotal}</Td>
                 <Menu>
-                  <MenuButton
-                    m={2}
-                    as={IconButton}
-                    aria-label="Options"
-                    icon={<RiIcons.RiMenu3Fill />}
-                    variant="outline"
-                  />
+                  <Tooltip label="Edit Item">
+                    <MenuButton
+                      m={2}
+                      as={IconButton}
+                      aria-label="Options"
+                      icon={<RiIcons.RiMenu3Fill />}
+                      variant="outline"
+                    />
+                  </Tooltip>
                   <MenuList>
                     <MenuItem
                       icon={<FaIcons.FaRegEdit />}

@@ -20,7 +20,7 @@ export default function OneTimeEditor() {
   return (
     <>
       <InvoiceProvider>
-        <Container maxW={'4xl'} mt={5}>
+        <Container maxW={'6xl'} mt={5}>
           <Stack
             as={Box}
             textAlign={'center'}
@@ -80,6 +80,7 @@ export default function OneTimeEditor() {
                   }}
                 />
               </Tab>
+
               <Tab
                 p={{
                   base: 0,

@@ -18,27 +18,28 @@ const Developers = [
   },
   {
     name: 'Riya Nachwani',
-    image: `https://avatars.githubusercontent.com/u/76095902?v=4`,
+    image: ``,
     post: 'Developer & Desginer',
   },
 ];
 
-export default function CallToActionWithVideo() {
+export default function Connect() {
   return (
     <Container
       maxW={'6xl'}
       my={{
         base: '10',
-        md: '20',
+        md: '10',
       }}
       p={{ base: '1rem', md: '2rem' }}
-      borderWidth={'2px'}
+      border={'1px solid'}
+      borderWidth={'4px'}
+      borderColor="gray.200"
       borderRadius={'3xl'}
-      textAlign={'center'}
     >
       <Stack as={Box} textAlign={'center'} spacing={{ base: 3, md: 2 }}>
         <Heading fontWeight={700} fontSize="4xl" id="connect">
-          Reach out to us 💜
+          Team Behind Invoicetor ✨
         </Heading>
         <Text>Meet the team behind Invoicetor and get in touch with us.</Text>
       </Stack>
