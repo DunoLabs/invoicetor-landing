@@ -24,11 +24,12 @@ export default function OpenSource() {
                             bgGradient="linear(to-l,purple.400, yellow.400)"
                             bgClip="text"
                         >
-                            About Us
+                            Features
                         </Text>
                     </Heading>
-                    <Text fontSize={'1.5rem'} align="start">
-                    Invoicetor is a platform that helps businesses to digitize their finances in an easy manner and create invoices. Aim of this website is to avail a service that helps them to simplify their finances.</Text>{' '}
+                    <Text fontSize={'1.9rem'} fontWeight={600} align="start">
+                        One Time Editor
+                    </Text>{' '}
                     <Text
                         fontSize={'1.5rem'}
                         align="start"
@@ -37,9 +38,23 @@ export default function OpenSource() {
                             md: 15,
                         }}
                     >
-                        It is a major part of DunoLabs which is an organisation that is created to empower companies to grow their businesses with its smart marketing technology. It builds trusted, useful and insightful platforms for the clients to reach the right people. 💜
+                         Invoices plays an important part in the day to day operations of any business and is generally termed as bills. This feature can assist companies to create them in not only correct format but also with all the essential elements.
                     </Text>
-                                   </Stack>
+                    
+                    <Text fontSize={'1.9rem'} fontWeight={600} align="start">
+                        Invoice Format In PDF
+                    </Text>{' '}
+                    <Text
+                        fontSize={'1.5rem'}
+                        align="start"
+                        mb={{
+                            base: 0,
+                            md: 15,
+                        }}
+                    >
+                        In form of pdf invoices can be generated which will help in documenting the details of every transaction and make tax filing easier.
+                    </Text>
+                </Stack>
             </Container>
         </>
     );

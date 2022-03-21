@@ -49,11 +49,10 @@ export default function Footer() {
             }}
           >
             <ListHeader align={'start'}>Product</ListHeader>
-            <Link href={'#'}>About Us</Link>
-            <Link href={'#'}>Overview</Link>
-            <Link href={'#'}>Features</Link>
-            <Link href={'#'}>Releases</Link>
-            <Link href={'#'}>Sponsor</Link>
+            <Link href={'about'}>About Us</Link>
+            <Link href={'features'}>Features</Link>
+            <Link href={'releases'}>Releases</Link>
+            <Link href={'sponsor'}>Sponsor</Link>
           </Stack>
 
           <Stack

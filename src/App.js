@@ -9,6 +9,9 @@ import Footer from './components/Organism/Footer/Footer';
 import { Route, Routes } from 'react-router-dom';
 import OneTimeEditor from './components/Pages/OneTimeEditor/OneTimeEditor';
 import About from './components/Pages/About';
+import Features from './components/Pages/Features';
+import Sponsor from './components/Pages/Sponsor';
+import Releases from './components/Pages/Release/Release';
 
 function App() {
   return (
@@ -20,6 +23,9 @@ function App() {
         <Route path="/opensource" element={<OpenSource />} />
         <Route path="/onetimeeditor" element={<OneTimeEditor />} />
         <Route path="/about" element={<About />} />
+        <Route path="/features" element={<Features />} />
+        <Route path="/sponsor" element={<Sponsor />} />
+        <Route path="/releases" element={<Releases />} />
       </Routes>
 
       <Footer />
