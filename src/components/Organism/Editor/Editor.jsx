@@ -36,6 +36,15 @@ import {
   SliderFilledTrack,
   SliderThumb,
   SliderMark,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverFooter,
+  PopoverArrow,
+  PopoverCloseButton,
+  PopoverAnchor,
 } from '@chakra-ui/react';
 import './Editor.scss';
 
@@ -180,10 +189,10 @@ export default function Editor() {
 
   const [toggleSlider, setToggleSlider] = useState(false);
   const [sliderValue, setSliderValue] = useState(50);
+  const [isOpenPop, setIsOpenPop] = useState(false);
+  const open = () => setIsOpenPop(!isOpen);
+  const close = () => setIsOpenPop(false);
   console.log(sliderValue);
-  const handleImageSize = () => {
-    setToggleSlider(!toggleSlider);
-  };
 
   useEffect(() => {
     if (!image) {
@@ -196,122 +205,132 @@ export default function Editor() {
       {/* Upload Company Logo Starts */}
       <Stack spacing={4}>
         <Box>
-          {/* Image Size Slider  */}
-          {toggleSlider ? (
-            <Slider
-              aria-label="slider-ex-3"
-              defaultValue={localStorage.getItem('imageSize')}
-              orientation="horizontal"
-              colorScheme={'purple'}
-              maxW="250"
-              my={10}
-              min={100}
-              max={250}
-              onChange={v => {
-                setSliderValue(v);
-                localStorage.setItem('imageSize', v);
-                setImageSize(v);
-              }}
-              _hover={{
-                cursor: 'grab',
-              }}
-            >
-              <SliderMark value={100} mt="1" ml="-2.5" fontSize="sm">
-                100px
-              </SliderMark>{' '}
-              <SliderMark value={150} mt="1" ml="-2.5" fontSize="sm">
-                150px
-              </SliderMark>{' '}
-              <SliderMark value={200} mt="1" ml="-2.5" fontSize="sm">
-                200px
-              </SliderMark>{' '}
-              <SliderMark value={250} mt="1" ml="-2.5" fontSize="sm">
-                250px
-              </SliderMark>
-              <SliderTrack>
-                <SliderFilledTrack />
-              </SliderTrack>
-              <SliderThumb
-                boxSize={6}
-                _hover={{
-                  cursor: 'grab',
-                }}
-              >
-                <FaIcons.FaPaperPlane color="black" fontSize={10} />
-              </SliderThumb>
-            </Slider>
-          ) : null}
-
-          {/* Image Upload */}
-          {image ? (
-            <Flex>
-              <Image
-                src={image}
-                alt="company logo"
-                className="company-logo"
-                style={{
-                  borderRadius: '10px',
-                  marginBottom: '10px',
-                }}
-                w={imageSize}
-                h={imageSize}
-                onClick={() => {
-                  document.getElementById('uploadFile').click();
-                }}
-              />{' '}
-              <Menu>
-                <Tooltip label="Edit Image">
-                  <MenuButton
-                    m={2}
-                    as={IconButton}
-                    aria-label="Options"
-                    icon={<RiIcons.RiMenu3Fill />}
-                    variant="outline"
-                  />
-                </Tooltip>
-                <MenuList>
-                  <MenuItem
+          <Popover isOpen={isOpenPop} onClose={close} placement="left">
+            <PopoverTrigger>
+              {image ? (
+                <Flex>
+                  <Image
+                    src={image}
+                    alt="company logo"
+                    className="company-logo"
+                    style={{
+                      borderRadius: '10px',
+                      marginBottom: '10px',
+                    }}
+                    w={imageSize}
+                    h={imageSize}
                     onClick={() => {
                       document.getElementById('uploadFile').click();
                     }}
-                    icon={<RiIcons.RiUpload2Fill />}
-                  >
-                    Upload Image
-                  </MenuItem>
-                  <MenuItem
-                    icon={<MdIcons.MdPhotoSizeSelectLarge />}
-                    onClick={handleImageSize}
-                  >
-                    Resize Logo
-                  </MenuItem>{' '}
-                  <MenuItem
-                    icon={<RiIcons.RiDeleteBin3Line />}
-                    onClick={() => {
-                      localStorage.removeItem('image');
-                      setImage('');
+                  />{' '}
+                  <Menu>
+                    <Tooltip label="Edit Image">
+                      <MenuButton
+                        m={2}
+                        as={IconButton}
+                        aria-label="Options"
+                        icon={<RiIcons.RiMenu3Fill />}
+                        variant="outline"
+                      />
+                    </Tooltip>
+                    <MenuList>
+                      <MenuItem
+                        onClick={() => {
+                          document.getElementById('uploadFile').click();
+                        }}
+                        icon={<RiIcons.RiUpload2Fill />}
+                      >
+                        Upload Image
+                      </MenuItem>
+                      <MenuItem
+                        icon={<MdIcons.MdPhotoSizeSelectLarge />}
+                        onClick={open}
+                      >
+                        Resize Logo
+                      </MenuItem>{' '}
+                      <MenuItem
+                        icon={<RiIcons.RiDeleteBin3Line />}
+                        onClick={() => {
+                          localStorage.removeItem('image');
+                          setImage('');
+                        }}
+                      >
+                        Delete
+                      </MenuItem>
+                    </MenuList>
+                  </Menu>
+                </Flex>
+              ) : (
+                <Center
+                  w="200px"
+                  h="200px"
+                  style={{
+                    borderRadius: '10px',
+                    marginBottom: '10px',
+                    border: '4px dotted #eaeaea',
+                  }}
+                  onClick={() => {
+                    document.getElementById('uploadFile').click();
+                  }}
+                >
+                  Add Logo
+                </Center>
+              )}
+            </PopoverTrigger>
+            <PopoverContent>
+              <PopoverHeader fontWeight="semibold">Resize Logo</PopoverHeader>
+              <PopoverArrow />
+              <PopoverCloseButton />
+              <PopoverBody>
+                <Center>
+                  <Slider
+                    my={7}
+                    aria-label="slider-ex-3"
+                    defaultValue={localStorage.getItem('imageSize')}
+                    orientation="horizontal"
+                    colorScheme={'purple'}
+                    maxW="250"
+                    min={100}
+                    max={250}
+                    onChange={v => {
+                      setSliderValue(v);
+                      localStorage.setItem('imageSize', v);
+                      setImageSize(v);
+                    }}
+                    _hover={{
+                      cursor: 'grab',
                     }}
                   >
-                    Delete
-                  </MenuItem>
-                </MenuList>
-              </Menu>
-            </Flex>
-          ) : (
-            <Center
-              w="200px"
-              h="200px"
-              style={{
-                borderRadius: '10px',
-                marginBottom: '10px',
-                border: '4px dotted #eaeaea',
-              }}
-              onClick={() => {
-                document.getElementById('uploadFile').click();
-              }}
-            >
-              Add Logo
-            </Center>
-          )}
+                    <SliderMark value={100} mt="3" ml="-2.5" fontSize="sm">
+                      100px
+                    </SliderMark>{' '}
+                    <SliderMark value={150} mt="3" ml="-2.5" fontSize="sm">
+                      150px
+                    </SliderMark>{' '}
+                    <SliderMark value={200} mt="3" ml="-2.5" fontSize="sm">
+                      200px
+                    </SliderMark>{' '}
+                    <SliderMark value={250} mt="3" ml="-2.5" fontSize="sm">
+                      250px
+                    </SliderMark>
+                    <SliderTrack>
+                      <SliderFilledTrack />
+                    </SliderTrack>
+                    <SliderThumb
+                      boxSize={6}
+                      _hover={{
+                        cursor: 'grab',
+                      }}
+                    >
+                      <FaIcons.FaPaperPlane color="black" fontSize={10} />
+                    </SliderThumb>
+                  </Slider>
+                </Center>
+              </PopoverBody>
+            </PopoverContent>
+          </Popover>
+
+          {/* Image Size Slider  */}
 
           <input
             id="uploadFile"
