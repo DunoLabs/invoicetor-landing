@@ -46,7 +46,7 @@ import {
 } from '@chakra-ui/react';
 import './Editor.scss';
 
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { InvoiceContext } from '../../../core/InvoiceContext';
 import * as FaIcons from 'react-icons/fa';
 import * as RiIcons from 'react-icons/ri';
