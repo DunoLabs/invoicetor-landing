@@ -10,8 +10,9 @@ import {
   useColorModeValue,
   createIcon,
   Flex,
+  Link,
 } from '@chakra-ui/react';
-
+import { NavLink } from 'react-router-dom';
 export default function Home() {
   return (
     <>
@@ -20,7 +21,7 @@ export default function Home() {
         rel="stylesheet"
       />
 
-      <Container maxW={'6xl'} mt={10}>
+      <Container maxW={'5xl'} mt={10}>
         <Stack
           as={Box}
           textAlign={'center'}
@@ -51,18 +52,26 @@ export default function Home() {
             position={'relative'}
           >
             <Flex>
-              <Button
-                color={'white'}
-                rounded={'full'}
-                px={6}
-                mx={2}
-                bgGradient="linear(to-l,purple.400, yellow.400)"
-                _hover={{
-                  bg: 'linear(to-l,purple.400, yellow.400)',
+              <Link
+                as={NavLink}
+                to="/onetimeeditor"
+                style={{
+                  textDecoration: 'none',
                 }}
               >
-                Try One-Time Editor
-              </Button>{' '}
+                <Button
+                  color={'white'}
+                  rounded={'full'}
+                  px={6}
+                  mx={2}
+                  bgGradient="linear(to-l,purple.400, yellow.400)"
+                  _hover={{
+                    bg: 'linear(to-l,purple.400, yellow.400)',
+                  }}
+                >
+                  Try One-Time Editor
+                </Button>{' '}
+              </Link>
               <Button
                 color={'white'}
                 bg={'purple.400'}

@@ -8,8 +8,9 @@ import {
   Button,
   Text,
   Image,
+  Link,
 } from '@chakra-ui/react';
-
+import { NavLink } from 'react-router-dom';
 import { ArrowForwardIcon } from '@chakra-ui/icons';
 
 const Features = [
@@ -34,11 +35,18 @@ const Features = [
       'By using the easy toggle feature, you can hide and show content according to your needs!',
     visit: '#',
   },
+  {
+    imageUrl: 'http://via.placeholder.com/640x360',
+    Title: 'One Time Editor',
+    Description:
+      '   This is a one time free editor for invoicetor. You can use it to create invoices and download them as PDF.',
+    visit: '/onetimeeditor',
+  },
 ];
 
 export default function CallToActionWithVideo() {
   return (
-    <Container maxW={'6xl'} mt={1}>
+    <Container maxW={'5xl'} mt={1}>
       <Stack as={Box} textAlign={'center'} spacing={{ base: 3, md: 5 }}>
         <Heading fontWeight={700} fontSize="4xl" id="features">
           Here are some of the important features of invoicetor
@@ -106,15 +114,25 @@ export default function CallToActionWithVideo() {
               {feature.Description}
             </Text>
             <Stack direction="row" spacing={2} align="center">
-              <Button
-                rightIcon={<ArrowForwardIcon />}
-                colorScheme="purple"
-                variant="outline"
-                borderRadius={'lg'}
-                size="sm"
+              <Link
+                as={NavLink}
+                to={feature.visit}
+                style={{
+                  textDecoration: 'none',
+                }}
               >
-                Learn More
-              </Button>
+                <Button
+                  rightIcon={<ArrowForwardIcon />}
+                  colorScheme="purple"
+                  variant="outline"
+                  borderRadius={'lg'}
+                  size="sm"
+                  as={'NavLink'}
+                  to={feature.visit}
+                >
+                  Learn More
+                </Button>
+              </Link>
             </Stack>
           </Stack>
         </Stack>

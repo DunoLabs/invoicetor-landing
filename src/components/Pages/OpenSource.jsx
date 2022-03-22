@@ -1,10 +1,16 @@
 import { Box, Heading, Container, Text, Stack, Button } from '@chakra-ui/react';
+import Helmet from 'react-helmet';
 import * as FaIcons from 'react-icons/fa';
 
 export default function OpenSource() {
   return (
     <>
-      <Container maxW={'4xl'} mt={5}>
+      <Helmet>
+        <title>
+          Open Source | Build invoices for your business in no time.
+        </title>
+      </Helmet>
+      <Container maxW={'5xl'} mt={5}>
         <Stack
           as={Box}
           textAlign={'center'}

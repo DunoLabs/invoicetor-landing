@@ -18,7 +18,6 @@ import {
   useDisclosure,
   Center,
 } from '@chakra-ui/react';
-
 import { ColorModeSwitcher } from '../../../ColorModeSwitcher';
 import {
   HamburgerIcon,
@@ -120,12 +119,16 @@ export default function WithSubnavigation() {
             fontWeight={600}
           >
             <Link
-              href="/"
+              as={NavLink}
               _hover={{
                 textDecoration: 'none',
                 color: useColorModeValue('purple.400', 'purple.400'),
               }}
               className="navbar-brand"
+              style={{
+                textDecoration: 'none',
+              }}
+              to="/"
             >
               Invoicetor
             </Link>

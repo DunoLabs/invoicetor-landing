@@ -6,7 +6,7 @@ export default function Share() {
   return (
     <>
       <Stack>
-        <Text fontSize={'1.3rem'}>
+        <Text fontSize={'1.3rem'} align="center">
           Share your invoice with your friends and colleagues by downloading the
           PDF, you can also print the invoice.
         </Text>

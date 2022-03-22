@@ -196,7 +196,7 @@ export default function Editor() {
       {/* Upload Company Logo Starts */}
       <Stack spacing={4}>
         <Box>
-          <Popover isOpen={isOpenPop} onClose={close} placement="left">
+          <Popover isOpen={isOpenPop} onClose={close} placement="left-start">
             <PopoverTrigger>
               {image ? (
                 <Flex>
@@ -268,19 +268,19 @@ export default function Editor() {
                 </Center>
               )}
             </PopoverTrigger>
-            <PopoverContent>
+            <PopoverContent w={300}>
               <PopoverHeader fontWeight="semibold">Resize Logo</PopoverHeader>
               <PopoverArrow />
               <PopoverCloseButton />
               <PopoverBody>
                 <Center>
                   <Slider
-                    my={7}
+                    mb={7}
                     aria-label="slider-ex-3"
                     defaultValue={localStorage.getItem('imageSize')}
                     orientation="horizontal"
                     colorScheme={'purple'}
-                    maxW="250"
+                    maxW="200"
                     min={100}
                     max={250}
                     onChange={v => {

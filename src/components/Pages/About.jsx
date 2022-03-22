@@ -1,11 +1,14 @@
 import { Box, Heading, Container, Text, Stack } from '@chakra-ui/react';
-
+import Helmet from 'react-helmet';
 import Connect from '../Organism/Connect/Connect';
 
 export default function OpenSource() {
   return (
     <>
-      <Container maxW={'4xl'} mt={5}>
+      <Helmet>
+        <title>About Us | Build invoices for your business in no time.</title>
+      </Helmet>
+      <Container maxW={'5xl'} mt={5}>
         <Stack
           as={Box}
           textAlign={'center'}
@@ -55,7 +58,7 @@ export default function OpenSource() {
               md: 15,
             }}
           >
-            we're currently working on a new features, and we're soon going to
+            We're currently working on a new features, and we're soon going to
             release first public version, so stay tuned!
           </Text>
         </Stack>

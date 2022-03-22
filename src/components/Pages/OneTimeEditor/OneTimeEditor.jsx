@@ -1,4 +1,5 @@
 import Editor from '../../Organism/Editor/Editor';
+import Helmet from 'react-helmet';
 import {
   Box,
   Heading,
@@ -19,8 +20,13 @@ import InvoiceProvider from '../../../core/InvoiceContext';
 export default function OneTimeEditor() {
   return (
     <>
+      <Helmet>
+        <title>
+          One Time Editor | Build invoices for your business in no time.
+        </title>
+      </Helmet>
       <InvoiceProvider>
-        <Container maxW={'4xl'} mt={5}>
+        <Container maxW={'5xl'} mt={5}>
           <Stack
             as={Box}
             textAlign={'center'}
@@ -45,7 +51,7 @@ export default function OneTimeEditor() {
                 bgGradient="linear(to-l,purple.400, yellow.400)"
                 bgClip="text"
               >
-                One-Time Free Editor
+                One-Time Editor
               </Text>
             </Heading>
             <Text fontSize={'1.5rem'} align="start">
@@ -55,7 +61,7 @@ export default function OneTimeEditor() {
             </Text>{' '}
           </Stack>
         </Container>
-        <Container maxW={'4xl'} mt={5}>
+        <Container maxW={'5xl'} mt={5}>
           <Tabs isFitted variant="soft-rounded">
             <TabList mb="1em">
               <Tab

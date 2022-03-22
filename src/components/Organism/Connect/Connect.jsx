@@ -9,7 +9,7 @@ import {
   Flex,
   Center,
 } from '@chakra-ui/react';
-import { Helmet } from 'react-helmet';
+
 const Developers = [
   {
     name: 'Sumit Singh',
@@ -26,9 +26,6 @@ const Developers = [
 export default function Connect() {
   return (
     <>
-      <Helmet>
-        <title>Connect | Build invoices for your business in no time.</title>
-      </Helmet>
       <Container
         maxW={'6xl'}
         my={{
