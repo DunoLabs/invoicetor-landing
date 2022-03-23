@@ -4,7 +4,39 @@ export const InvoiceContext = createContext();
 export default function InvoiceProvider({ children }) {
   const invoiceData = JSON.parse(localStorage.getItem('invoice'))
     ? JSON.parse(localStorage.getItem('invoice'))
-    : {};
+    : {
+        yourCompany: '',
+        yourName: '',
+        yourAddress: '',
+        yourCity: '',
+        yourWebsite: '',
+        yourEmail: '',
+        yourPhone: '',
+        yourBank: '',
+        yourAccountNumber: '',
+        yourBankBranch: '',
+
+        clientName: '',
+        clientAddress: '',
+        clientCity: '',
+        clientWebsite: '',
+        clientEmail: '',
+        clientPhone: '',
+        clientCompany: '',
+
+        invoiceNumber: '',
+        invoiceDate: '',
+        dueDate: '',
+
+        notes: {
+          note: '',
+          noteToggle: false,
+        },
+        terms: {
+          term: '',
+          termToggle: false,
+        },
+      };
   const [items, setItems] = useState(
     JSON.parse(localStorage.getItem('items')) || []
   );
@@ -33,7 +65,14 @@ export default function InvoiceProvider({ children }) {
     invoiceDate: invoiceData.invoiceDate,
     dueDate: invoiceData.dueDate,
 
-    notes: invoiceData.notes,
+    notes: {
+      note: invoiceData.notes.note,
+      noteToggle: invoiceData.notes.noteToggle,
+    },
+    terms: {
+      term: invoiceData.terms.term,
+      termToggle: invoiceData.terms.termToggle,
+    },
   });
   const [invoiceItems, setInvoiceItems] = useState({
     itemName: items.itemName,

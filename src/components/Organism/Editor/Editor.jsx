@@ -196,7 +196,7 @@ export default function Editor() {
       {/* Upload Company Logo Starts */}
       <Stack spacing={4}>
         <Box>
-          <Popover isOpen={isOpenPop} onClose={close} placement="left-start">
+          <Popover isOpen={isOpenPop} onClose={close} placement="top-start">
             <PopoverTrigger>
               {image ? (
                 <Flex>
@@ -511,9 +511,7 @@ export default function Editor() {
         </Box>
       </Stack>
       {/* User Details End */}
-
       {/* Client Details Starts  */}
-
       <Stack direction={{ base: 'column', md: 'row' }} spacing={8} mt="20">
         <Box>
           <FormControl id="clientName">
@@ -638,9 +636,7 @@ export default function Editor() {
           </FormControl>
         </Box>
       </Stack>
-
       {/* Clinet Details End */}
-
       {/* Invoice Number And Dates Starts */}
       <Stack direction={{ base: 'column', md: 'row' }} spacing={8} my="20">
         <Box>
@@ -693,7 +689,6 @@ export default function Editor() {
         </Box>
       </Stack>
       {/* Invoice Number And Dates End */}
-
       {/* Invoice Items Starts */}
       <Stack direction={{ base: 'column', md: 'row' }} spacing={8} my="20">
         <Box>
@@ -768,7 +763,6 @@ export default function Editor() {
         </Box>
       </Stack>
       {/* Invoice Items End */}
-
       {/* Invoice Items List Starts */}
       <Stack direction={{ base: 'column', md: 'row' }} spacing={8} my="20">
         <Table variant="striped">
@@ -897,22 +891,44 @@ export default function Editor() {
         </ModalContent>
       </Modal>
       {/* Invoice Items List End */}
-
       {/* Invoice Total Starts */}
       <Stack>
         <Box>
           <Text mb="8px">Add a Note : </Text>
           <Textarea
             size={'lg'}
-            placeholder="Notes"
+            placeholder="It was great doing business with you."
             bg={useColorModeValue('gray.100', 'gray.700') || 'gray.200'}
             color={useColorModeValue('gray.800', 'gray.300') || 'gray.800'}
-            value={invoice.notes}
-            onChange={e => setInvoice({ ...invoice, notes: e.target.value })}
+            value={invoice.notes.note}
+            onChange={e =>
+              setInvoice({
+                ...invoice,
+                notes: { ...invoice.notes, note: e.target.value },
+              })
+            }
+          />
+        </Box>
+      </Stack>{' '}
+      {/* Invoice Total Starts */}
+      <Stack my={10}>
+        <Box>
+          <Text mb="8px">Terms & Condition : </Text>
+          <Textarea
+            size={'lg'}
+            placeholder="Please make the payment by the due date"
+            bg={useColorModeValue('gray.100', 'gray.700') || 'gray.200'}
+            color={useColorModeValue('gray.800', 'gray.300') || 'gray.800'}
+            value={invoice.terms.term}
+            onChange={e =>
+              setInvoice({
+                ...invoice,
+                terms: { ...invoice.terms, term: e.target.value },
+              })
+            }
           />
         </Box>
       </Stack>
-
       {/* Save Button */}
       <Box mt={8}>
         <Button

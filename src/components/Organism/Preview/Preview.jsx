@@ -60,12 +60,11 @@ export default function Preview() {
             </Box>
           </Flex>
         </Stack>
-
         {/* Client Data  */}
         <Stack my={15} spacing={10}>
           <Flex>
             <Box spacing={3} mt={20}>
-              <Text fontSize="2xl" fontWeight={'bold'} align="start">
+              <Text as="h3" fontWeight={'bold'} align="start">
                 Bill To :{' '}
               </Text>
               <Text fontSize="2xl">{invoice.clientName}</Text>
@@ -98,7 +97,6 @@ export default function Preview() {
             </Box>
           </Flex>
         </Stack>
-
         {/* Invoice Table */}
         <Stack>
           <Table mt={20}>
@@ -132,14 +130,22 @@ export default function Preview() {
             </Text>
           </Box>
         </Stack>
-        <Stack mt={20} spacing={3}>
-          <Box>
-            <Text as="h3" fontWeight={'bold'} align="start">
-              Notes :
-            </Text>
-            <Text>{invoice.notes}</Text>
-          </Box>
-        </Stack>
+      </Stack>
+      <Stack mt={10} spacing={3}>
+        <Box>
+          <Text as="h3" fontWeight={'bold'} align="start">
+            Notes :
+          </Text>
+          <Text>{invoice.notes.note}</Text>
+        </Box>
+      </Stack>{' '}
+      <Stack mt={10} spacing={3}>
+        <Box>
+          <Text as="h3" fontWeight={'bold'} align="start">
+            Terms & Condition
+          </Text>
+          <Text>{invoice.terms.term}</Text>
+        </Box>
       </Stack>
     </>
   );
