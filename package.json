@@ -18,6 +18,7 @@
     "react-router-dom": "^6.2.2",
     "react-scripts": "^5.0.0",
     "react-to-print": "^2.14.4",
+    "react-toastify": "^8.2.0",
     "sass": "^1.49.9",
     "web-vitals": "^0.2.4"
   },

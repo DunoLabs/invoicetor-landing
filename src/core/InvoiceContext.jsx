@@ -30,11 +30,11 @@ export default function InvoiceProvider({ children }) {
 
         notes: {
           note: '',
-          noteToggle: false,
+          noteToggle: true,
         },
         terms: {
           term: '',
-          termToggle: false,
+          termToggle: true,
         },
       };
   const [items, setItems] = useState(
@@ -73,16 +73,23 @@ export default function InvoiceProvider({ children }) {
       term: invoiceData.terms.term,
       termToggle: invoiceData.terms.termToggle,
     },
+    tax: invoiceData.tax,
   });
   const [invoiceItems, setInvoiceItems] = useState({
-    itemName: items.itemName,
-    itemQuantity: items.itemQuantity,
-    itemUnitPrice: items.itemUnitPrice,
-    itemTotal: items.itemTotal,
+    items: [
+      {
+        itemName: items.itemName,
+        itemQuantity: items.itemQuantity,
+        itemUnitPrice: items.itemUnitPrice,
+        itemTotal: items.itemTotal,
+      },
+    ],
   });
 
   const [image, setImage] = useState(localStorage.getItem('image'));
-  const [imageSize, setImageSize] = useState(localStorage.getItem('imageSize'));
+  const [imageSize, setImageSize] = useState(
+    localStorage.getItem('imageSize') || '150'
+  );
   return (
     <InvoiceContext.Provider
       value={{

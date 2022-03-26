@@ -22,6 +22,10 @@ import { InvoiceContext } from '../../../core/InvoiceContext';
 export default function Preview() {
   const { invoice, items, image, imageSize } = useContext(InvoiceContext);
 
+  const subTotal = items.reduce((acc, item) => acc + item.itemTotal, 0);
+
+  const tax = (subTotal * invoice.tax) / 100;
+  const total = subTotal + tax;
   return (
     <>
       <Stack
@@ -119,33 +123,50 @@ export default function Preview() {
               ))}
             </Tbody>
           </Table>
-          <Box align="end" pt={5} spacing={10}>
-            <Text
-              fontWeight={'bold'}
-              as="span"
-              p={3}
-              bg={useColorModeValue('gray.100', 'gray.700')}
-            >
-              Total : {items.reduce((acc, item) => acc + item.itemTotal, 0)}{' '}
-            </Text>
-          </Box>
+          <Flex>
+            <Spacer />
+            <Box align="end" pt={5} spacing={10}>
+              <Grid templateColumns="repeat(3, 1fr)" gap={4}>
+                <GridItem colSpan={2} h="10">
+                  <Text fontWeight={'bold'} align="start">
+                    Sub Total :{' '}
+                  </Text>{' '}
+                  <Text fontWeight={'bold'} align="start">
+                    Tax :{' '}
+                  </Text>{' '}
+                  <Text fontWeight={'bold'} align="start">
+                    Total :{' '}
+                  </Text>
+                </GridItem>
+                <GridItem colStart={4} colEnd={6} h="10">
+                  <Text align="end">{subTotal}</Text>
+                  <Text align="end">{tax}</Text>
+                  <Text align="end">{total}</Text>
+                </GridItem>
+              </Grid>
+            </Box>
+          </Flex>
         </Stack>
       </Stack>
       <Stack mt={10} spacing={3}>
-        <Box>
-          <Text as="h3" fontWeight={'bold'} align="start">
-            Notes :
-          </Text>
-          <Text>{invoice.notes.note}</Text>
-        </Box>
+        {invoice.notes.noteToggle ? null : (
+          <Box>
+            <Text as="h3" fontWeight={'bold'} align="start">
+              Notes :
+            </Text>
+            <Text>{invoice.notes.note}</Text>
+          </Box>
+        )}
       </Stack>{' '}
       <Stack mt={10} spacing={3}>
-        <Box>
-          <Text as="h3" fontWeight={'bold'} align="start">
-            Terms & Condition
-          </Text>
-          <Text>{invoice.terms.term}</Text>
-        </Box>
+        {invoice.terms.termToggle ? null : (
+          <Box>
+            <Text as="h3" fontWeight={'bold'} align="start">
+              Terms & Condition
+            </Text>
+            <Text>{invoice.terms.term}</Text>
+          </Box>
+        )}
       </Stack>
     </>
   );

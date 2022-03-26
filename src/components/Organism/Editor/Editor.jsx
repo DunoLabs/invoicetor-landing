@@ -43,14 +43,24 @@ import {
   PopoverBody,
   PopoverArrow,
   PopoverCloseButton,
+  Spacer,
+  Grid,
+  GridItem,
+  InputGroup,
+  InputRightAddon,
 } from '@chakra-ui/react';
 import './Editor.scss';
 
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { InvoiceContext } from '../../../core/InvoiceContext';
 import * as FaIcons from 'react-icons/fa';
 import * as RiIcons from 'react-icons/ri';
 import * as MdIcons from 'react-icons/md';
+import * as BiIcons from 'react-icons/bi';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 export default function Editor() {
   const {
     invoice,
@@ -76,11 +86,28 @@ export default function Editor() {
     editPrice: '',
   });
 
+  useEffect(() => {
+    localStorage.setItem('invoice', JSON.stringify(invoice));
+    localStorage.setItem('items', JSON.stringify(items));
+    localStorage.setItem('image', image);
+    localStorage.setItem('imageSize', imageSize);
+  }, [invoice, items, image, imageSize]);
+
   // add invoice function is used to add invoice to local storage
+
   const addInvoice = e => {
     e.preventDefault();
     console.log(invoice);
     localStorage.setItem('invoice', JSON.stringify(invoice));
+    toast('✅ Your data is saved', {
+      position: 'bottom-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   };
 
   // add invoice items
@@ -129,6 +156,15 @@ export default function Editor() {
       console.debug('file stored', base64);
       setImage(base64);
       localStorage.setItem('image', base64);
+    });
+    toast('😎 Comapny Logo Uploaded', {
+      position: 'bottom-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
     });
   };
   const getBase64 = file => {
@@ -190,6 +226,66 @@ export default function Editor() {
   const open = () => setIsOpenPop(!isOpen);
   const close = () => setIsOpenPop(false);
   console.log(sliderValue);
+
+  /* Clear ALL Data Starts */
+  const clearAllData = () => {
+    localStorage.removeItem('invoice');
+    localStorage.removeItem('items');
+    localStorage.removeItem('image');
+    localStorage.removeItem('imageSize');
+    localStorage.removeItem('fileBase64');
+    setInvoice({
+      yourCompany: '',
+      yourName: '',
+      yourAddress: '',
+      yourCity: '',
+      yourWebsite: '',
+      yourEmail: '',
+      yourPhone: '',
+      yourBank: '',
+      yourAccountNumber: '',
+      yourBankBranch: '',
+
+      clientName: '',
+      clientAddress: '',
+      clientCity: '',
+      clientWebsite: '',
+      clientEmail: '',
+      clientPhone: '',
+      clientCompany: '',
+
+      invoiceNumber: '',
+      invoiceDate: '',
+      dueDate: '',
+
+      notes: {
+        note: '',
+        noteToggle: true,
+      },
+      terms: {
+        term: '',
+        termToggle: true,
+      },
+    });
+    setItems([]);
+    setImage('');
+    setImageSize('150');
+    toast('😈 All cleared', {
+      position: 'bottom-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  // Styles for the editor
+  const backgroundColor =
+    useColorModeValue('gray.100', 'gray.700') || 'gray.200';
+
+  const textColor = useColorModeValue('gray.800', 'gray.200') || 'gray.800';
 
   return (
     <>
@@ -890,63 +986,187 @@ export default function Editor() {
           </ModalFooter>
         </ModalContent>
       </Modal>
+      {items.length > 0 && (
+        <Stack my={10}>
+          <Flex>
+            <Spacer />
+            <Box align="end">
+              <Grid gap={4}>
+                <GridItem colSpan={2} h="10">
+                  <FormControl id="invoiceTotal">
+                    <FormLabel>Tax %</FormLabel>
+                    <InputGroup>
+                      <Input
+                        type="number"
+                        width="100%"
+                        placeholder="Tax %"
+                        value={invoice.tax}
+                        bg={backgroundColor}
+                        color={textColor}
+                        onChange={e =>
+                          setInvoice({ ...invoice, tax: e.target.value })
+                        }
+                      />
+                      <InputRightAddon
+                        bg={'purple.100'}
+                        color={'gray.700'}
+                        children={<RiIcons.RiPercentLine color="green.500" />}
+                      />
+                    </InputGroup>
+                  </FormControl>
+                </GridItem>
+              </Grid>
+            </Box>
+          </Flex>
+        </Stack>
+      )}
       {/* Invoice Items List End */}
       {/* Invoice Total Starts */}
       <Stack>
         <Box>
           <Text mb="8px">Add a Note : </Text>
-          <Textarea
-            size={'lg'}
-            placeholder="It was great doing business with you."
-            bg={useColorModeValue('gray.100', 'gray.700') || 'gray.200'}
-            color={useColorModeValue('gray.800', 'gray.300') || 'gray.800'}
-            value={invoice.notes.note}
-            onChange={e =>
-              setInvoice({
-                ...invoice,
-                notes: { ...invoice.notes, note: e.target.value },
-              })
+          <Flex>
+            <Textarea
+              isDisabled={invoice.notes.noteToggle ? true : false}
+              size={'lg'}
+              placeholder="It was great doing business with you."
+              bg={useColorModeValue('gray.100', 'gray.700') || 'gray.200'}
+              color={useColorModeValue('gray.800', 'gray.300') || 'gray.800'}
+              value={invoice.notes.note}
+              onChange={e =>
+                setInvoice({
+                  ...invoice,
+                  notes: { ...invoice.notes, note: e.target.value },
+                })
+              }
+            />
+
+            {
+              // TOGGLE Icon button
+
+              <IconButton
+                variant="outline"
+                aria-label="Options"
+                mx={2}
+                icon={
+                  invoice.notes.noteToggle ? (
+                    <BiIcons.BiHide />
+                  ) : (
+                    <BiIcons.BiShow />
+                  )
+                }
+                onClick={() => {
+                  setInvoice({
+                    ...invoice,
+                    notes: {
+                      ...invoice.notes,
+                      noteToggle: !invoice.notes.noteToggle,
+                    },
+                  });
+
+                  console.log(invoice.notes.noteToggle);
+                }}
+              />
             }
-          />
+          </Flex>
         </Box>
       </Stack>{' '}
       {/* Invoice Total Starts */}
       <Stack my={10}>
         <Box>
           <Text mb="8px">Terms & Condition : </Text>
-          <Textarea
-            size={'lg'}
-            placeholder="Please make the payment by the due date"
-            bg={useColorModeValue('gray.100', 'gray.700') || 'gray.200'}
-            color={useColorModeValue('gray.800', 'gray.300') || 'gray.800'}
-            value={invoice.terms.term}
-            onChange={e =>
-              setInvoice({
-                ...invoice,
-                terms: { ...invoice.terms, term: e.target.value },
-              })
+          <Flex>
+            <Textarea
+              isDisabled={invoice.terms.termToggle ? true : false}
+              size={'lg'}
+              placeholder="Please make the payment by the due date"
+              bg={useColorModeValue('gray.100', 'gray.700') || 'gray.200'}
+              color={useColorModeValue('gray.800', 'gray.300') || 'gray.800'}
+              value={invoice.terms.term}
+              onChange={e =>
+                setInvoice({
+                  ...invoice,
+                  terms: { ...invoice.terms, term: e.target.value },
+                })
+              }
+            />
+            {
+              // TOGGLE Icon button
+
+              <IconButton
+                variant="outline"
+                aria-label="Options"
+                mx={2}
+                icon={
+                  invoice.terms.termToggle ? (
+                    <BiIcons.BiHide />
+                  ) : (
+                    <BiIcons.BiShow />
+                  )
+                }
+                onClick={() => {
+                  setInvoice({
+                    ...invoice,
+                    terms: {
+                      ...invoice.terms,
+                      termToggle: !invoice.terms.termToggle,
+                    },
+                  });
+
+                  console.log(invoice.terms.termToggle);
+                }}
+              />
             }
-          />
+          </Flex>
         </Box>
       </Stack>
       {/* Save Button */}
-      <Box mt={8}>
-        <Button
-          display={{ base: 'none', md: 'inline-flex' }}
-          fontWeight={600}
-          color={'white'}
-          bg={'purple.400'}
-          borderRadius={'lg'}
-          href={'#'}
-          _hover={{
-            bg: 'purple.700',
-          }}
-          onClick={addInvoice}
-          rightIcon={<RiIcons.RiSaveLine />}
-        >
-          Save
-        </Button>
-      </Box>
+      <Flex>
+        <Box mt={8}>
+          <Button
+            fontWeight={600}
+            color={'white'}
+            bg={'purple.400'}
+            borderRadius={'lg'}
+            href={'#'}
+            _hover={{
+              bg: 'purple.700',
+            }}
+            onClick={addInvoice}
+            rightIcon={<RiIcons.RiSaveLine />}
+          >
+            Save
+          </Button>
+        </Box>
+        <Spacer />
+        <Box mt={8}>
+          <Button
+            fontWeight={600}
+            color={'black'}
+            bg={'white'}
+            borderRadius={'lg'}
+            href={'#'}
+            _hover={{
+              bg: 'whiteAlpha.800',
+            }}
+            onClick={clearAllData}
+            rightIcon={<RiIcons.RiDeleteBin2Line />}
+          >
+            Clear All
+          </Button>
+        </Box>
+      </Flex>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </>
   );
 }
