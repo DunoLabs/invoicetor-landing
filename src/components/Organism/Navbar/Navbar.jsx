@@ -27,22 +27,22 @@ import {
 } from '@chakra-ui/icons';
 
 const NAV_ITEMS = [
-  {
-    label: 'Work',
-    to: '/work',
-    children: [
-      {
-        label: 'Explore Design Work',
-        subLabel: 'Trending Design to inspire you',
-        href: '#',
-      },
-      {
-        label: 'New Templates and features',
-        subLabel: "some of the best invoice designs we've seen",
-        href: '#',
-      },
-    ],
-  },
+  // {
+  //   label: 'Work',
+  //   to: '/work',
+  //   children: [
+  //     {
+  //       label: 'Explore Design Work',
+  //       subLabel: 'Trending Design to inspire you',
+  //       href: '#',
+  //     },
+  //     {
+  //       label: 'New Templates and features',
+  //       subLabel: "some of the best invoice designs we've seen",
+  //       href: '#',
+  //     },
+  //   ],
+  // },
   {
     to: '/opensource',
     label: 'Open Source',

@@ -56,8 +56,12 @@ export default function Footer() {
               <Link as={NavLink} to="features">
                 Features
               </Link>
-              <Link href={'releases'}>Releases</Link>
-              <Link href={'sponsor'}>Sponsor</Link>
+              <Link as={NavLink} to={'releases'}>
+                Releases
+              </Link>
+              <Link as={NavLink} to={'sponsor'}>
+                Sponsor
+              </Link>
             </Stack>
 
             <Stack

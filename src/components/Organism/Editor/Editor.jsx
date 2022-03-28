@@ -1043,30 +1043,31 @@ export default function Editor() {
 
             {
               // TOGGLE Icon button
+              <Tooltip label={invoice.notes.noteToggle ? 'Show' : 'Hide'}>
+                <IconButton
+                  variant="outline"
+                  aria-label="Options"
+                  mx={2}
+                  icon={
+                    invoice.notes.noteToggle ? (
+                      <BiIcons.BiHide />
+                    ) : (
+                      <BiIcons.BiShow />
+                    )
+                  }
+                  onClick={() => {
+                    setInvoice({
+                      ...invoice,
+                      notes: {
+                        ...invoice.notes,
+                        noteToggle: !invoice.notes.noteToggle,
+                      },
+                    });
 
-              <IconButton
-                variant="outline"
-                aria-label="Options"
-                mx={2}
-                icon={
-                  invoice.notes.noteToggle ? (
-                    <BiIcons.BiHide />
-                  ) : (
-                    <BiIcons.BiShow />
-                  )
-                }
-                onClick={() => {
-                  setInvoice({
-                    ...invoice,
-                    notes: {
-                      ...invoice.notes,
-                      noteToggle: !invoice.notes.noteToggle,
-                    },
-                  });
-
-                  console.log(invoice.notes.noteToggle);
-                }}
-              />
+                    console.log(invoice.notes.noteToggle);
+                  }}
+                />
+              </Tooltip>
             }
           </Flex>
         </Box>
@@ -1092,30 +1093,31 @@ export default function Editor() {
             />
             {
               // TOGGLE Icon button
+              <Tooltip label={invoice.terms.termToggle ? 'Show' : 'Hide'}>
+                <IconButton
+                  variant="outline"
+                  aria-label="Options"
+                  mx={2}
+                  icon={
+                    invoice.terms.termToggle ? (
+                      <BiIcons.BiHide />
+                    ) : (
+                      <BiIcons.BiShow />
+                    )
+                  }
+                  onClick={() => {
+                    setInvoice({
+                      ...invoice,
+                      terms: {
+                        ...invoice.terms,
+                        termToggle: !invoice.terms.termToggle,
+                      },
+                    });
 
-              <IconButton
-                variant="outline"
-                aria-label="Options"
-                mx={2}
-                icon={
-                  invoice.terms.termToggle ? (
-                    <BiIcons.BiHide />
-                  ) : (
-                    <BiIcons.BiShow />
-                  )
-                }
-                onClick={() => {
-                  setInvoice({
-                    ...invoice,
-                    terms: {
-                      ...invoice.terms,
-                      termToggle: !invoice.terms.termToggle,
-                    },
-                  });
-
-                  console.log(invoice.terms.termToggle);
-                }}
-              />
+                    console.log(invoice.terms.termToggle);
+                  }}
+                />
+              </Tooltip>
             }
           </Flex>
         </Box>
