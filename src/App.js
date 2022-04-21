@@ -12,6 +12,7 @@ import About from './components/Pages/About';
 import Features from './components/Pages/Features';
 import Sponsor from './components/Pages/Sponsor';
 import Releases from './components/Pages/Release/Release';
+import Help from './components/Pages/Help';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="features" element={<Features />} />
         <Route path="sponsor" element={<Sponsor />} />
         <Route path="releases" element={<Releases />} />
+        <Route path="help-center" element={<Help />} />
       </Routes>
 
       <Footer />

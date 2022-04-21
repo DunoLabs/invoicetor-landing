@@ -17,11 +17,7 @@ export default function Download() {
         }}
         bg={useColorModeValue('gray.100', '#1A202C')}
       >
-        <Box
-          ref={componentRef}
-          p={5}
-          bg={useColorModeValue('gray.100', '#1A202C')}
-        >
+        <Box ref={componentRef} p={5} bg={useColorModeValue('#fff', '#1A202C')}>
           <Preview />
         </Box>
       </Stack>

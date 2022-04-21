@@ -2,11 +2,13 @@ import { Box, Heading, Container, Text, Stack } from '@chakra-ui/react';
 import Helmet from 'react-helmet';
 // import Connect from '../Organism/Connect/Connect';
 
-export default function About() {
+export default function Help() {
   return (
     <>
       <Helmet>
-        <title>About Us | Build invoices for your business in no time.</title>
+        <title>
+          Help-Center | Build invoices for your business in no time.
+        </title>
       </Helmet>
       <Container maxW={'5xl'} mt={5}>
         <Stack
@@ -29,14 +31,13 @@ export default function About() {
               bgGradient="linear(to-l,purple.400, yellow.400)"
               bgClip="text"
             >
-              About Us
+              Help & Support
             </Text>
           </Heading>
           <Text fontSize={'1.5rem'} align="start">
-            Invoicetor is a platform that helps businesses to digitize their
-            finances in an easy manner and create invoices in a simple way. Aim
-            of this website is to avail a service that helps them to simplify
-            their finances.
+            Invoicetor is proudly a community-driven web app, we created this to
+            help small business owners and entrepreneurs alike, manage their
+            invoices and keep track of their business.
           </Text>{' '}
           <Text
             fontSize={'1.5rem'}
@@ -46,21 +47,25 @@ export default function About() {
               md: 15,
             }}
           >
-            So, this is the idea behind Invoicetor, we are here to help you in
-            your business. We're a team of developers who are passionate about
-            creating software that helps businesses to do more with less effort.
+            Currently we haven't created any kind of chat and call support, but
+            we are working on it. But But But... we have a classic support
+            system, you can email us at{' '}
+            <Text
+              as={'span'}
+              bgGradient="linear(to-l,purple.400, yellow.400)"
+              bgClip="text"
+            >
+              <a
+                href="mailto:
+                    sumikumar1608@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                sumikumar1608@gmail.com{' '}
+              </a>
+            </Text>{' '}
+            and we plan on adding more channels in the future.
           </Text>{' '}
-          <Text
-            fontSize={'1.5rem'}
-            align="start"
-            mb={{
-              base: 0,
-              md: 15,
-            }}
-          >
-            We're currently working on a new features, and we're soon going to
-            release first public version, so stay tuned!
-          </Text>
         </Stack>
         {/* <Connect /> */}
       </Container>

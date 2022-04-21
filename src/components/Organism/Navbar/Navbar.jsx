@@ -129,6 +129,9 @@ export default function WithSubnavigation() {
                 textDecoration: 'none',
               }}
               to="/"
+              _focus={{
+                outline: 'none',
+              }}
             >
               Invoicetor
             </Link>
@@ -154,6 +157,9 @@ export default function WithSubnavigation() {
           <ColorModeSwitcher
             justifySelf="flex-end"
             display={{ base: 'none', md: 'inline-flex' }}
+            _focus={{
+              outline: 'none',
+            }}
           />
           <Button
             as={'a'}
@@ -161,6 +167,9 @@ export default function WithSubnavigation() {
             fontWeight={400}
             variant={'link'}
             href={'#'}
+            _focus={{
+              outline: 'none',
+            }}
           >
             Sign In
           </Button>
@@ -175,6 +184,9 @@ export default function WithSubnavigation() {
             href={'#'}
             _hover={{
               bg: 'purple.700',
+            }}
+            _focus={{
+              outline: 'none',
             }}
           >
             Sign Up
@@ -193,7 +205,7 @@ export default function WithSubnavigation() {
 
 const DesktopNav = () => {
   const linkHoverColor = useColorModeValue('gray.800', 'white');
-  const ActiveLinkColor = useColorModeValue('purple.700', 'purple.100');
+  const ActiveLinkColor = useColorModeValue('purple.600', 'purple.100');
 
   return (
     <Stack direction={'row'} spacing={4}>
@@ -209,6 +221,7 @@ const DesktopNav = () => {
                   end
                   style={{
                     padding: '0.5rem',
+                    fontWeight: 500,
                   }}
                   to={navItem.to}
                   _activeLink={{
@@ -218,6 +231,9 @@ const DesktopNav = () => {
                   _hover={{
                     color: linkHoverColor,
                     textDecoration: 'none',
+                  }}
+                  _focus={{
+                    outline: 'none',
                   }}
                 >
                   {navItem.label}

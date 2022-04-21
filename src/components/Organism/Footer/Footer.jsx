@@ -50,16 +50,40 @@ export default function Footer() {
               }}
             >
               <ListHeader align={'start'}>Product</ListHeader>
-              <Link as={NavLink} to="about">
+              <Link
+                as={NavLink}
+                to="about"
+                _focus={{
+                  outline: 'none',
+                }}
+              >
                 About Us
               </Link>
-              <Link as={NavLink} to="features">
+              <Link
+                as={NavLink}
+                to="features"
+                _focus={{
+                  outline: 'none',
+                }}
+              >
                 Features
               </Link>
-              <Link as={NavLink} to={'releases'}>
+              <Link
+                as={NavLink}
+                to={'releases'}
+                _focus={{
+                  outline: 'none',
+                }}
+              >
                 Releases
               </Link>
-              <Link as={NavLink} to={'sponsor'}>
+              <Link
+                as={NavLink}
+                to={'sponsor'}
+                _focus={{
+                  outline: 'none',
+                }}
+              >
                 Sponsor
               </Link>
             </Stack>
@@ -71,11 +95,47 @@ export default function Footer() {
               }}
             >
               <ListHeader>Support</ListHeader>
-              <Link href={'#'}>Help Center</Link>
-              <Link href={'#'}>Terms of Service</Link>
-              <Link href={'#'}>Legal</Link>
-              <Link href={'#'}>Privacy Policy</Link>
-              <Link href={'#'}>Status</Link>
+              <Link
+                as={NavLink}
+                to={'help-center'}
+                _focus={{
+                  outline: 'none',
+                }}
+              >
+                Help Center
+              </Link>
+              {/* <Link
+                href={'#'}
+                _focus={{
+                  outline: 'none',
+                }}
+              >
+                Terms of Service
+              </Link>
+              <Link
+                href={'#'}
+                _focus={{
+                  outline: 'none',
+                }}
+              >
+                Legal
+              </Link>
+              <Link
+                href={'#'}
+                _focus={{
+                  outline: 'none',
+                }}
+              >
+                Privacy Policy
+              </Link>
+              <Link
+                href={'#'}
+                _focus={{
+                  outline: 'none',
+                }}
+              >
+                Status
+              </Link> */}
             </Stack>
 
             <Stack
@@ -100,8 +160,9 @@ export default function Footer() {
                   _hover={{ bg: 'purple.500' }}
                   variant="solid"
                   size="sm"
-                  href="
-              #"
+                  as={'a'}
+                  target="_blank"
+                  href="https://github.com/dunolabs/invoicetor-landing"
                   rightIcon={<FaIcons.FaGithub />}
                 >
                   Contribute
@@ -111,8 +172,9 @@ export default function Footer() {
                   colorScheme="purple"
                   variant="outline"
                   size="sm"
-                  href="
-              #"
+                  as={'a'}
+                  target="_blank"
+                  href="https://github.com/dunolabs/invoicetor-landing"
                   rightIcon={<FaIcons.FaStar />}
                 >
                   Star us on GitHub

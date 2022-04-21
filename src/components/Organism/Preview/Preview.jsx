@@ -29,8 +29,8 @@ export default function Preview() {
   return (
     <>
       <Stack
-        bg={useColorModeValue('#fff', '#1A202C')}
-        color={useColorModeValue('gray.800', 'gray.200')}
+      // bg={useColorModeValue('#fff', '#1A202C')}
+      // color={useColorModeValue('gray.800', 'gray.200')}
       >
         <Stack spacing={10}>
           <Flex>

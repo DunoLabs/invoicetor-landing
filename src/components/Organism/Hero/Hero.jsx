@@ -85,7 +85,14 @@ export default function Home() {
                 Create Invoice
               </Button>
             </Flex>
-            <Button variant={'link'} colorScheme={'blue'} size={'sm'}>
+            <Button
+              variant={'link'}
+              colorScheme={'blue'}
+              size={'sm'}
+              _focus={{
+                outline: 'none',
+              }}
+            >
               It's completely free and open source.
             </Button>
             <Box

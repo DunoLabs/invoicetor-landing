@@ -6,7 +6,7 @@ export default function SideButton() {
     <Text
       as={'a'}
       size={'sm'}
-      href="!#"
+      href="https://github.com/DunoLabs"
       title="This product is powered by DunoLabs"
       rel="noopener"
       target="_blank"

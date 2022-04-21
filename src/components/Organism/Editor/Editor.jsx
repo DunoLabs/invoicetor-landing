@@ -89,8 +89,10 @@ export default function Editor() {
   useEffect(() => {
     localStorage.setItem('invoice', JSON.stringify(invoice));
     localStorage.setItem('items', JSON.stringify(items));
-    localStorage.setItem('image', image);
-    localStorage.setItem('imageSize', imageSize);
+    if (image !== null) {
+      localStorage.setItem('image', image);
+      localStorage.setItem('imageSize', imageSize);
+    }
   }, [invoice, items, image, imageSize]);
 
   // add invoice function is used to add invoice to local storage
@@ -119,19 +121,39 @@ export default function Editor() {
         invoiceItems.itemPrice &&
         invoiceItems.itemQuantity !== ''
       ) {
-        const item = [
-          ...items, // spread operator
-          {
-            itemName: invoiceItems.itemName,
-            itemQuantity: invoiceItems.itemQuantity,
-            itemPrice: invoiceItems.itemPrice,
-            itemTotal: invoiceItems.itemPrice * invoiceItems.itemQuantity,
-          },
-        ];
-        localStorage.setItem('items', JSON.stringify(item));
-        setItems(item);
+        if (invoiceItems.itemPrice >= 0 && invoiceItems.itemQuantity >= 0) {
+          const item = [
+            ...items, // spread operator
+            {
+              itemName: invoiceItems.itemName,
+              itemQuantity: invoiceItems.itemQuantity,
+              itemPrice: invoiceItems.itemPrice,
+              itemTotal: invoiceItems.itemPrice * invoiceItems.itemQuantity,
+            },
+          ];
+          localStorage.setItem('items', JSON.stringify(item));
+          setItems(item);
+        } else {
+          toast('Please enter values greater than zero.', {
+            position: 'bottom-right',
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        }
       } else {
-        alert('Please fill all fields');
+        toast('Please add input ', {
+          position: 'bottom-right',
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       }
     } else {
       const item = [
@@ -861,7 +883,7 @@ export default function Editor() {
       {/* Invoice Items End */}
       {/* Invoice Items List Starts */}
       <Stack direction={{ base: 'column', md: 'row' }} spacing={8} my="20">
-        <Table variant="striped">
+        <Table variant="striped" responsive>
           <Thead>
             <Tr>
               <Th>Item Name</Th>
