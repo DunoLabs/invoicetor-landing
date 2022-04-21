@@ -58,6 +58,19 @@ export default function OpenSource() {
             documenting the details of every transaction and make tax filing
             easier.
           </Text>
+          <Text fontSize={'1.9rem'} fontWeight={600} align="start">
+            Branding invoices with logo
+          </Text>{' '}
+          <Text
+            fontSize={'1.5rem'}
+            align="start"
+            mb={{
+              base: 0,
+              md: 15,
+            }}
+          >
+            While creating invoice, companies can add their business logo, client information and items as they wish such as products with fixed prices.
+          </Text>
         </Stack>
       </Container>
     </>
