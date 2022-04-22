@@ -13,7 +13,6 @@ import {
   Tr,
   Th,
   Td,
-  useColorModeValue,
 } from '@chakra-ui/react';
 import { useContext } from 'react';
 
@@ -117,8 +116,8 @@ export default function Preview() {
                 <Tr key={index}>
                   <Td>{item.itemName}</Td>
                   <Td>{item.itemQuantity}</Td>
-                  <Td>{item.itemPrice}</Td>
-                  <Td isNumeric>{item.itemTotal}</Td>
+                  <Td>₹ {item.itemPrice}</Td>
+                  <Td isNumeric> ₹ {item.itemTotal}</Td>
                 </Tr>
               ))}
             </Tbody>
@@ -139,9 +138,9 @@ export default function Preview() {
                   </Text>
                 </GridItem>
                 <GridItem colStart={4} colEnd={6} h="10">
-                  <Text align="end">{subTotal}</Text>
-                  <Text align="end">{tax}</Text>
-                  <Text align="end">{total}</Text>
+                  <Text align="end">{subTotal ? `₹ ${subTotal}` : '-'}</Text>
+                  <Text align="end">{tax ? tax + '%' : 0}</Text>
+                  <Text align="end">{total ? `₹ ${total}` : '-'}</Text>
                 </GridItem>
               </Grid>
             </Box>

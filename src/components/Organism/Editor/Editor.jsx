@@ -897,8 +897,8 @@ export default function Editor() {
               <Tr key={index}>
                 <Td>{item.itemName}</Td>
                 <Td>{item.itemQuantity} </Td>
-                <Td>{item.itemPrice}</Td>
-                <Td>{item.itemTotal}</Td>
+                <Td>₹ {item.itemPrice}</Td>
+                <Td>₹ {item.itemTotal}</Td>
                 <Menu>
                   <Tooltip label="Edit Item">
                     <MenuButton
