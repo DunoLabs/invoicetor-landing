@@ -10,13 +10,18 @@ import {
   Collapse,
   Link,
   Icon,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
   useColorModeValue,
   useBreakpointValue,
   useDisclosure,
   Center,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverFooter,
+  PopoverArrow,
+  PopoverCloseButton,
 } from '@chakra-ui/react';
 import { ColorModeSwitcher } from '../../../ColorModeSwitcher';
 import {
@@ -154,14 +159,7 @@ export default function WithSubnavigation() {
             md: 12,
           }}
         >
-          <ColorModeSwitcher
-            justifySelf="flex-end"
-            display={{ base: 'none', md: 'inline-flex' }}
-            _focus={{
-              outline: 'none',
-            }}
-          />
-          <Button
+          {/* <Button
             as={'a'}
             fontSize={'sm'}
             fontWeight={400}
@@ -190,7 +188,71 @@ export default function WithSubnavigation() {
             }}
           >
             Sign Up
-          </Button>
+          </Button> */}
+          <Flex
+            justify={'start'}
+            display={{
+              base: 'none',
+              md: 'flex',
+            }}
+          >
+            <Popover>
+              <PopoverTrigger>
+                <Button
+                  bg={useColorModeValue('gray.100', 'white') || 'gray.200'}
+                  color={useColorModeValue('gray.800', 'gray.800')}
+                  _hover={{
+                    bg: 'gray.100',
+                  }}
+                >
+                  Sponsor 💜
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent
+                bg={useColorModeValue('white', 'gray.900')}
+                borderColor={useColorModeValue('gray.200', 'gray.700')}
+                shadow="sm"
+              >
+                <PopoverHeader fontWeight="semibold">
+                  {' '}
+                  Sponsor this project 🤝🏻
+                </PopoverHeader>
+                <PopoverArrow />
+                <PopoverCloseButton />
+                <PopoverBody>
+                  Invoicetor should remain free. Forever. Unfortunately, this
+                  isn't possible without your support. If Invoicetor has made
+                  your life easier, you can support our team.
+                </PopoverBody>
+                <PopoverFooter
+                  border="0"
+                  d="flex"
+                  alignItems="center"
+                  justifyContent="end"
+                  pb={4}
+                >
+                  <Button
+                    variant="outline"
+                    color={useColorModeValue('gray.100', 'gray.800')}
+                    bg={useColorModeValue('purple.400', 'white') || 'gray.200'}
+                    _hover={{
+                      bg:
+                        useColorModeValue('purple.500', 'white') || 'gray.200',
+                    }}
+                  >
+                    Buy us a coffee ☕
+                  </Button>
+                </PopoverFooter>
+              </PopoverContent>
+            </Popover>
+          </Flex>
+          <ColorModeSwitcher
+            justifySelf="flex-end"
+            display={{ base: 'none', md: 'inline-flex' }}
+            _focus={{
+              outline: 'none',
+            }}
+          />
         </Stack>
       </Flex>
 

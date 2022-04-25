@@ -21,7 +21,7 @@ export default function Home() {
         rel="stylesheet"
       />
 
-      <Container maxW={'5xl'} mt={10}>
+      <Container maxW={'6xl'} mt={10}>
         <Stack
           as={Box}
           textAlign={'center'}
@@ -39,7 +39,11 @@ export default function Home() {
             </Text>
           </Heading>
           <Center>
-            <Text maxW={'lg'}>
+            <Text
+              maxW={'lg'}
+              fontSize={{ base: '16px', sm: '18px', lg: '20px' }}
+              color={'gray.400'}
+            >
               Invoicetor is a no-code platform where business owners can create
               invoices for their business in no time.
             </Text>
@@ -72,29 +76,45 @@ export default function Home() {
                   Try One-Time Editor
                 </Button>{' '}
               </Link>
-              <Button
-                color={'white'}
-                bg={'purple.400'}
-                rounded={'full'}
-                px={6}
-                mx={2}
-                _hover={{
-                  bg: 'purple.500',
+              <Link
+                as={NavLink}
+                to="/onetimeeditor"
+                style={{
+                  textDecoration: 'none',
                 }}
               >
-                Create Invoice
-              </Button>
+                <Button
+                  color={'white'}
+                  bg={'purple.400'}
+                  rounded={'full'}
+                  px={6}
+                  mx={2}
+                  _hover={{
+                    bg: 'purple.500',
+                  }}
+                >
+                  Create Invoice
+                </Button>
+              </Link>
             </Flex>
-            <Button
-              variant={'link'}
-              colorScheme={'blue'}
-              size={'sm'}
-              _focus={{
-                outline: 'none',
+            <Link
+              as={NavLink}
+              to="/opensource"
+              style={{
+                textDecoration: 'none',
               }}
             >
-              It's completely free and open source.
-            </Button>
+              <Button
+                variant={'link'}
+                colorScheme={'blue'}
+                size={'sm'}
+                _focus={{
+                  outline: 'none',
+                }}
+              >
+                It's completely free and open source.
+              </Button>
+            </Link>
             <Box
               display={{
                 base: 'none',
