@@ -1,6 +1,5 @@
 import Helmet from 'react-helmet';
 import { Box, Heading, Container, Text, Stack } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
 
 export default function Sponsor() {
   return (
@@ -68,7 +67,11 @@ export default function Sponsor() {
               </a>
             </Text>
           </Text>
-          <a href="https://www.buymeacoffee.com/wh0sumit" target="_blank">
+          <a
+            href="https://www.buymeacoffee.com/wh0sumit"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <img
               src="https://cdn.buymeacoffee.com/buttons/v2/default-violet.png"
               alt="Buy Me A Coffee"

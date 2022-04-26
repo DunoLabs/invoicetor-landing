@@ -238,6 +238,7 @@ export default function WithSubnavigation() {
                   <a
                     href="https://www.buymeacoffee.com/wh0sumit"
                     target={'_blank'}
+                    rel="noopener noreferrer"
                   >
                     <Button
                       variant="outline"
