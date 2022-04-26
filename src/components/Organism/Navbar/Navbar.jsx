@@ -55,12 +55,10 @@ const NAV_ITEMS = [
   {
     to: '/about',
     label: 'About Us',
-    href: '#',
   },
   {
     to: '/onetimeeditor',
     label: 'One-Time Editor',
-    href: '#',
   },
 ];
 
@@ -390,7 +388,7 @@ const MobileNav = () => {
 };
 
 //Mobile Navbar Item
-const MobileNavItem = ({ label, children, href }) => {
+const MobileNavItem = ({ label, children, to }) => {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
@@ -398,18 +396,19 @@ const MobileNavItem = ({ label, children, href }) => {
       <Flex
         py={2}
         as={Link}
-        href={href ?? '#'}
+        href={to ?? '#'}
         justify={'space-between'}
         align={'center'}
         _hover={{
           textDecoration: 'none',
         }}
+        height={'100%'}
       >
         <Text
           fontWeight={600}
           color={useColorModeValue('gray.600', 'gray.200')}
         >
-          {label}
+          <NavLink to={to}>{label}</NavLink>
         </Text>
         {children && (
           <Icon

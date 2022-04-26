@@ -28,7 +28,13 @@ export default function Home() {
           spacing={{ base: 3, md: 12 }}
           py={{ base: 20, md: 36 }}
         >
-          <Heading fontWeight={700} fontSize="6xl">
+          <Heading
+            fontWeight={700}
+            fontSize={{
+              base: '2.5rem',
+              md: '3.5rem',
+            }}
+          >
             Quickly and easily create beautiful invoices for your{' '}
             <Text
               as={'span'}

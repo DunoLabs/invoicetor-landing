@@ -34,6 +34,10 @@ export default function Help() {
               as={'span'}
               bgGradient="linear(to-l,purple.400, yellow.400)"
               bgClip="text"
+              fontSize={{
+                base: '2.5rem',
+                md: '3.5rem',
+              }}
             >
               Help & Support
             </Text>

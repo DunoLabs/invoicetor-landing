@@ -13,6 +13,7 @@ import {
   Tr,
   Th,
   Td,
+  TableContainer,
 } from '@chakra-ui/react';
 import { useContext } from 'react';
 
@@ -101,7 +102,8 @@ export default function Preview() {
           </Flex>
         </Stack>
         {/* Invoice Table */}
-        <Stack>
+
+        <TableContainer>
           <Table mt={20}>
             <Thead>
               <Tr>
@@ -122,30 +124,30 @@ export default function Preview() {
               ))}
             </Tbody>
           </Table>
-          <Flex>
-            <Spacer />
-            <Box align="end" pt={5} spacing={10}>
-              <Grid templateColumns="repeat(3, 1fr)" gap={4}>
-                <GridItem colSpan={2} h="10">
-                  <Text fontWeight={'bold'} align="start">
-                    Sub Total :{' '}
-                  </Text>{' '}
-                  <Text fontWeight={'bold'} align="start">
-                    Tax :{' '}
-                  </Text>{' '}
-                  <Text fontWeight={'bold'} align="start">
-                    Total :{' '}
-                  </Text>
-                </GridItem>
-                <GridItem colStart={4} colEnd={6} h="10">
-                  <Text align="end">{subTotal ? `₹ ${subTotal}` : '-'}</Text>
-                  <Text align="end">{tax ? tax + '%' : 0}</Text>
-                  <Text align="end">{total ? `₹ ${total}` : '-'}</Text>
-                </GridItem>
-              </Grid>
-            </Box>
-          </Flex>
-        </Stack>
+        </TableContainer>
+        <Flex>
+          <Spacer />
+          <Box align="end" pt={5} spacing={10}>
+            <Grid templateColumns="repeat(3, 1fr)" gap={4}>
+              <GridItem colSpan={2} h="10">
+                <Text fontWeight={'bold'} align="start">
+                  Sub Total :{' '}
+                </Text>{' '}
+                <Text fontWeight={'bold'} align="start">
+                  Tax :{' '}
+                </Text>{' '}
+                <Text fontWeight={'bold'} align="start">
+                  Total :{' '}
+                </Text>
+              </GridItem>
+              <GridItem colStart={4} colEnd={6} h="10">
+                <Text align="end">{subTotal ? `₹ ${subTotal}` : '-'}</Text>
+                <Text align="end">{tax ? tax + '%' : 0}</Text>
+                <Text align="end">{total ? `₹ ${total}` : '-'}</Text>
+              </GridItem>
+            </Grid>
+          </Box>
+        </Flex>
       </Stack>
       <Stack mt={10} spacing={3}>
         {invoice.notes.noteToggle ? null : (

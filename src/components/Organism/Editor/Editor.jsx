@@ -48,6 +48,7 @@ import {
   GridItem,
   InputGroup,
   InputRightAddon,
+  TableContainer,
 } from '@chakra-ui/react';
 import './Editor.scss';
 
@@ -882,8 +883,8 @@ export default function Editor() {
       </Stack>
       {/* Invoice Items End */}
       {/* Invoice Items List Starts */}
-      <Stack direction={{ base: 'column', md: 'row' }} spacing={8} my="20">
-        <Table variant="striped" responsive>
+      <TableContainer mt="20" spacing={8}>
+        <Table variant="striped">
           <Thead>
             <Tr>
               <Th>Item Name</Th>
@@ -928,7 +929,7 @@ export default function Editor() {
             ))}
           </Tbody>
         </Table>
-      </Stack>
+      </TableContainer>
       <Modal onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />
         <ModalContent>
@@ -1015,7 +1016,7 @@ export default function Editor() {
             <Box align="end">
               <Grid gap={4}>
                 <GridItem colSpan={2} h="10">
-                  <FormControl id="invoiceTotal">
+                  <FormControl id="invoiceTotal" mb={'20'}>
                     <FormLabel>Tax %</FormLabel>
                     <InputGroup>
                       <Input

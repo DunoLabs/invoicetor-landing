@@ -50,6 +50,10 @@ export default function OneTimeEditor() {
                 as={'span'}
                 bgGradient="linear(to-l,purple.400, yellow.400)"
                 bgClip="text"
+                fontSize={{
+                  base: '2.5rem',
+                  md: '3.5rem',
+                }}
               >
                 One-Time Editor
               </Text>
@@ -66,10 +70,10 @@ export default function OneTimeEditor() {
             <TabList mb="1em">
               <Tab
                 p={{
-                  base: 0,
+                  base: 1,
                   md: 3,
                 }}
-                mx={{ base: 'auto', md: 3 }}
+                mx={{ base: 1, md: 3 }}
                 fontSize={'lg'}
                 bg={useColorModeValue('gray.100', 'gray.700')}
                 color={useColorModeValue('gray.800', 'gray.200')}
@@ -89,10 +93,10 @@ export default function OneTimeEditor() {
 
               <Tab
                 p={{
-                  base: 0,
+                  base: 1,
                   md: 3,
                 }}
-                mx={{ base: 'auto', md: 3 }}
+                mx={{ base: 1, md: 3 }}
                 fontSize={'lg'}
                 bg={useColorModeValue('gray.100', 'gray.700')}
                 color={useColorModeValue('gray.800', 'gray.200')}
@@ -111,10 +115,10 @@ export default function OneTimeEditor() {
               </Tab>
               <Tab
                 p={{
-                  base: 0,
+                  base: 1,
                   md: 3,
                 }}
-                mx={{ base: 'auto', md: 3 }}
+                mx={{ base: 1, md: 3 }}
                 fontSize={'lg'}
                 bg={useColorModeValue('gray.100', 'gray.700')}
                 color={useColorModeValue('gray.800', 'gray.200')}
