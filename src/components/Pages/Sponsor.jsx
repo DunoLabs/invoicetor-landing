@@ -1,11 +1,16 @@
 import Helmet from 'react-helmet';
 import { Box, Heading, Container, Text, Stack } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 
 export default function Sponsor() {
   return (
     <>
       <Helmet>
         <title>Sponsor | Build invoices for your business in no time.</title>
+        <meta
+          name="description"
+          content="Invoicetor is a free invoicing app for small businesses. Build invoices for your business in no time."
+        />
       </Helmet>
       <Container maxW={'5xl'} mt={5}>
         <Stack
@@ -63,6 +68,13 @@ export default function Sponsor() {
               </a>
             </Text>
           </Text>
+          <a href="https://www.buymeacoffee.com/wh0sumit" target="_blank">
+            <img
+              src="https://cdn.buymeacoffee.com/buttons/v2/default-violet.png"
+              alt="Buy Me A Coffee"
+              style={{ height: '60px', width: '217px', borderRadius: '15px' }}
+            />
+          </a>
         </Stack>
       </Container>
     </>

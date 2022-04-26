@@ -11,6 +11,10 @@ export default function Home() {
     <>
       <Helmet>
         <title>Invoicetor | Build invoices for your business in no time.</title>
+        <meta
+          name="description"
+          content="Invoicetor is a free invoicing app for small businesses. Build invoices for your business in no time."
+        />
       </Helmet>
       <Box textAlign="center">
         <Grid minH="100vh">

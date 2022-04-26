@@ -211,7 +211,11 @@ export default function WithSubnavigation() {
               <PopoverContent
                 bg={useColorModeValue('white', 'gray.900')}
                 borderColor={useColorModeValue('gray.200', 'gray.700')}
-                shadow="sm"
+                boxShadow={'lg'}
+                borderRadius={'lg'}
+                _focus={{
+                  outline: 'none',
+                }}
               >
                 <PopoverHeader fontWeight="semibold">
                   {' '}
@@ -231,17 +235,26 @@ export default function WithSubnavigation() {
                   justifyContent="end"
                   pb={4}
                 >
-                  <Button
-                    variant="outline"
-                    color={useColorModeValue('gray.100', 'gray.800')}
-                    bg={useColorModeValue('purple.400', 'white') || 'gray.200'}
-                    _hover={{
-                      bg:
-                        useColorModeValue('purple.500', 'white') || 'gray.200',
-                    }}
+                  <a
+                    href="https://www.buymeacoffee.com/wh0sumit"
+                    target={'_blank'}
                   >
-                    Buy us a coffee ☕
-                  </Button>
+                    <Button
+                      variant="outline"
+                      color={useColorModeValue('gray.100', 'gray.800')}
+                      bg={
+                        useColorModeValue('purple.400', 'white') || 'gray.200'
+                      }
+                      _hover={{
+                        bg:
+                          useColorModeValue('purple.500', 'white') ||
+                          'gray.200',
+                      }}
+                      href="https://www.buymeacoffee.com/wh0sumit"
+                    >
+                      Buy us a coffee ☕
+                    </Button>
+                  </a>
                 </PopoverFooter>
               </PopoverContent>
             </Popover>

@@ -9,6 +9,10 @@ export default function OpenSource() {
         <title>
           Open Source | Build invoices for your business in no time.
         </title>
+        <meta
+          name="description"
+          content="Invoicetor is a free invoicing app for small businesses. Build invoices for your business in no time."
+        />
       </Helmet>
       <Container maxW={'5xl'} mt={5}>
         <Stack
