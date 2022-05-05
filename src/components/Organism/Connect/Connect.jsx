@@ -8,6 +8,7 @@ import {
   Image,
   Flex,
   Center,
+  Link,
 } from '@chakra-ui/react';
 
 const Developers = [
@@ -28,9 +29,8 @@ export default function Connect() {
     <>
       <Container
         maxW={'6xl'}
-        my={{
-          base: '10',
-          md: '10',
+        style={{
+          marginTop: '2rem',
         }}
         p={{ base: '1rem', md: '2rem' }}
         border={'1px solid'}
@@ -42,7 +42,7 @@ export default function Connect() {
           <Heading fontWeight={700} fontSize="4xl" id="connect">
             Team Behind Invoicetor ✨
           </Heading>
-          <Text>Meet the team behind Invoicetor and get in touch with us.</Text>
+          <Text fontSize={'1.3rem'}>Sumit & Riya</Text>
         </Stack>
         <Center>
           <Stack as={Box} textAlign={'center'} spacing={{ base: 3, md: 10 }}>
@@ -60,35 +60,24 @@ export default function Connect() {
                     base: '1rem',
                     md: '2rem',
                   }}
-                  borderWidth={'2px'}
-                  style={{
-                    borderRadius: '100px 40px 40px 100px',
-                  }}
                 >
-                  <Image
-                    border="4px solid"
-                    borderColor={'gray.200'}
-                    boxSize="70px"
-                    borderRadius="full"
-                    objectFit="cover"
-                    src={developers.image}
-                  />
-
-                  <Text
-                    fontWeight={600}
-                    alignSelf="center"
-                    align="start"
-                    mx={5}
+                  <Link
+                    href="https://www.linkedin.com/in/wh0sumit"
+                    target="_blank"
+                    _focus={{
+                      outline: 'none',
+                    }}
                   >
-                    {developers.name}
-                    <br />
-                    <Text fontSize="sm" color="gray.500" align="start">
-                      {developers.post}
-                    </Text>
-                    {/* <Text align="start" my="1">
-                  <FaIcons.FaTwitter size={'1.2rem'} />
-                </Text> */}
-                  </Text>
+                    <Image
+                      border="4px solid"
+                      borderColor="gray.200"
+                      boxShadow={'lg'}
+                      boxSize={'18rem'}
+                      objectFit="cover"
+                      src={developers.image}
+                      borderRadius={'3xl'}
+                    />
+                  </Link>
                 </Flex>
               ))}
             </SimpleGrid>

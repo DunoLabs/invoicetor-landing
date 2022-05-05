@@ -58,7 +58,7 @@ export default function OneTimeEditor() {
                 One-Time Editor
               </Text>
             </Heading>
-            <Text fontSize={'1.5rem'} align="start" color={'gray.400'}>
+            <Text fontSize={'1.5rem'} align="start">
               This is a one time free editor for invoicetor. You can use it to
               create invoices and send them to your customers, for more features
               like this you have to sign up.

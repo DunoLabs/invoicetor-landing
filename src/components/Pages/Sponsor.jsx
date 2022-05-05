@@ -1,5 +1,5 @@
 import Helmet from 'react-helmet';
-import { Box, Heading, Container, Text, Stack } from '@chakra-ui/react';
+import { Box, Heading, Container, Text, Stack, Link } from '@chakra-ui/react';
 
 export default function Sponsor() {
   return (
@@ -61,17 +61,17 @@ export default function Sponsor() {
               bgGradient="linear(to-l,purple.400, yellow.400)"
               bgClip="text"
             >
-              <a
+              <Link
                 href="mailto:
                     sumikumar1608@gmail.com"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 sumikumar1608@gmail.com{' '}
-              </a>
+              </Link>
             </Text>
           </Text>
-          <a
+          <Link
             href="https://www.buymeacoffee.com/wh0sumit"
             target="_blank"
             rel="noopener noreferrer"
@@ -81,7 +81,7 @@ export default function Sponsor() {
               alt="Buy Me A Coffee"
               style={{ height: '60px', width: '217px', borderRadius: '15px' }}
             />
-          </a>
+          </Link>
         </Stack>
       </Container>
     </>

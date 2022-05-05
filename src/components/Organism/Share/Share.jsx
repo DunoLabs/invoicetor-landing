@@ -1,18 +1,21 @@
-import { Center, Text } from '@chakra-ui/react';
 import React from 'react';
+import { Stack, Text } from '@chakra-ui/react';
+
 import Download from '../../Molecules/Download/Download';
 
-export default function Share() {
+export default function SimpleCookiePreference() {
   return (
     <>
-      <Text fontSize={'1.3rem'} align="center">
-        Share your invoice with your friends and colleagues by downloading the
-        PDF, you can also print the invoice.
-      </Text>
-
-      <Center>
-        <Download />
-      </Center>
+      <Stack p="4" m="4" borderRadius="sm">
+        <Text fontSize="3xl" fontWeight="bold" align={'center'}>
+          Your Invoice is Ready to Download
+        </Text>
+        <Text fontSize="md" align={'center'}>
+          Share your invoice with your friends and colleagues by downloading the
+          PDF/ printable version.
+        </Text>
+      </Stack>
+      <Download />
     </>
   );
 }

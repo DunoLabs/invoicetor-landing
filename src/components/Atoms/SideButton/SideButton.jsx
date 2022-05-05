@@ -10,10 +10,10 @@ export default function SideButton() {
       title="This product is powered by DunoLabs"
       rel="noopener"
       target="_blank"
-      class="powered-by"
+      className="powered-by"
     >
       DunoLabs{' '}
-      <Text as="span" class="powered-by-text" ms={2}>
+      <Text as="span" className="powered-by-text" ms={2}>
         🌷
       </Text>
     </Text>

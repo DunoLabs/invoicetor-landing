@@ -1,4 +1,4 @@
-import { Box, Heading, Container, Text, Stack } from '@chakra-ui/react';
+import { Box, Heading, Container, Text, Stack, Link } from '@chakra-ui/react';
 import Helmet from 'react-helmet';
 // import Connect from '../Organism/Connect/Connect';
 
@@ -63,14 +63,14 @@ export default function Help() {
               bgGradient="linear(to-l,purple.400, yellow.400)"
               bgClip="text"
             >
-              <a
+              <Link
                 href="mailto:
                     sumikumar1608@gmail.com"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 sumikumar1608@gmail.com{' '}
-              </a>
+              </Link>
             </Text>{' '}
             and we plan on adding more channels in the future.
           </Text>{' '}

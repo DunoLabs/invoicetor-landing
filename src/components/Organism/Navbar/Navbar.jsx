@@ -202,6 +202,9 @@ export default function WithSubnavigation() {
                   _hover={{
                     bg: 'gray.100',
                   }}
+                  _focus={{
+                    outline: 'none',
+                  }}
                 >
                   Sponsor 💜
                 </Button>
@@ -233,7 +236,7 @@ export default function WithSubnavigation() {
                   justifyContent="end"
                   pb={4}
                 >
-                  <a
+                  <Link
                     href="https://www.buymeacoffee.com/wh0sumit"
                     target={'_blank'}
                     rel="noopener noreferrer"
@@ -253,7 +256,7 @@ export default function WithSubnavigation() {
                     >
                       Buy us a coffee ☕
                     </Button>
-                  </a>
+                  </Link>
                 </PopoverFooter>
               </PopoverContent>
             </Popover>

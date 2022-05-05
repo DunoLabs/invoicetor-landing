@@ -446,7 +446,7 @@ export default function Editor() {
             id="uploadFile"
             type="file"
             name="image"
-            class="img"
+            className="img"
             onChange={e => imageUpload(e)}
           />
         </Box>

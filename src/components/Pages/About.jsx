@@ -1,5 +1,6 @@
-import { Box, Heading, Container, Text, Stack } from '@chakra-ui/react';
+import { Box, Heading, Container, Text, Stack, Link } from '@chakra-ui/react';
 import Helmet from 'react-helmet';
+import Connect from '../Organism/Connect/Connect';
 // import Connect from '../Organism/Connect/Connect';
 
 export default function About() {
@@ -36,6 +37,32 @@ export default function About() {
               About Us
             </Text>
           </Heading>
+          <Text
+            fontSize={'1.5rem'}
+            align={'start'}
+            mb={{
+              base: 0,
+              md: 15,
+            }}
+          >
+            We are Sumit & Riya, the co-founders of Invoicetor. We come from the
+            tech & creative backgrounds based in Indore. While software
+            companies are working hard to achieve product-led growth, our
+            pragmatic vision is to ensure that software products have great
+            product adoption. We believe that the best software products are
+            built by people who are passionate about what they do.
+          </Text>
+          <Connect />
+          <Heading
+            align="start"
+            fontWeight={700}
+            fontSize="3xl"
+            style={{
+              marginTop: '3rem',
+            }}
+          >
+            Why are we building Invoicetor ?
+          </Heading>
           <Text fontSize={'1.5rem'} align="start">
             Invoicetor is a platform that helps businesses to digitize their
             finances in an easy manner and create invoices in a simple way. Aim
@@ -51,19 +78,34 @@ export default function About() {
             }}
           >
             So, this is the idea behind Invoicetor, we are here to help you in
-            your business. We're a team of developers who are passionate about
-            creating software that helps businesses to do more with less effort.
+            your business. We're currently working on a new features, and we're
+            soon going to release first public version, so stay tuned!
           </Text>{' '}
-          <Text
-            fontSize={'1.5rem'}
+          <Heading
             align="start"
-            mb={{
-              base: 0,
-              md: 15,
+            fontWeight={700}
+            fontSize="3xl"
+            style={{
+              marginTop: '3rem',
             }}
           >
-            We're currently working on a new features, and we're soon going to
-            release first public version, so stay tuned!
+            Planning to get in touch with us?
+          </Heading>
+          <Text fontSize={'1.5rem'} align="start">
+            You can email us at{' '}
+            <Text
+              as={'span'}
+              bgGradient="linear(to-l,purple.400, yellow.400)"
+              bgClip="text"
+            >
+              <Link
+                href="mailto:sumikumar1608@gmail.com "
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                sumikumar1608@gmail.com
+              </Link>
+            </Text>
           </Text>
         </Stack>
         {/* <Connect /> */}

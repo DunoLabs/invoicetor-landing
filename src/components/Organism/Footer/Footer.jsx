@@ -40,7 +40,7 @@ export default function Footer() {
             >
               <Text fontSize={'4xl'}>Invoicetor</Text>
               <Text fontSize={'sm'}>
-                Create invoices for your business in no time.
+                Build invoices for your business in no time.
               </Text>
             </Stack>
             <Stack
