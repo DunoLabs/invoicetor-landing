@@ -242,7 +242,6 @@ export default function WithSubnavigation() {
                     rel="noopener noreferrer"
                   >
                     <Button
-                      variant="outline"
                       color={useColorModeValue('gray.100', 'gray.800')}
                       bg={
                         useColorModeValue('purple.400', 'white') || 'gray.200'
@@ -252,7 +251,12 @@ export default function WithSubnavigation() {
                           useColorModeValue('purple.500', 'white') ||
                           'gray.200',
                       }}
+                      as={'a'}
+                      target="_blank"
                       href="https://www.buymeacoffee.com/wh0sumit"
+                      _focus={{
+                        outline: 'none',
+                      }}
                     >
                       Buy us a coffee ☕
                     </Button>

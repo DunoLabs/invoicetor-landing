@@ -1,7 +1,18 @@
 import Helmet from 'react-helmet';
-import { Box, Heading, Container, Text, Stack, Link } from '@chakra-ui/react';
+import {
+  Box,
+  Heading,
+  Container,
+  Text,
+  Stack,
+  Link,
+  Button,
+  useColorModeValue,
+  Flex,
+  HStack,
+} from '@chakra-ui/react';
 
-export default function Sponsor() {
+function Sponsor() {
   return (
     <>
       <Helmet>
@@ -87,3 +98,98 @@ export default function Sponsor() {
     </>
   );
 }
+
+function SponsorCard() {
+  return (
+    <Flex p={20} align={'center'} justify={'center'}>
+      <Container
+        maxW={{
+          base: '6xl',
+          sm: '8xl',
+          lg: '6xl',
+        }}
+        bg={useColorModeValue('white', 'gray.50')}
+        boxShadow={'lg'}
+        rounded={'2xl'}
+        p={10}
+        direction={'column'}
+      >
+        <Heading
+          textAlign={'center'}
+          mb={{
+            base: 0,
+            lg: 18,
+          }}
+          color={'black'}
+        >
+          Sponsor Invoicetor 💜
+        </Heading>
+
+        <Flex
+          justifyContent={'center'}
+          flexDir={'column'}
+          alignItems={'center'}
+        >
+          <Text
+            maxW={'3xl'}
+            fontSize={{ base: '14px', sm: '16px', lg: '18px' }}
+            mb={{
+              base: 0,
+              md: 18,
+            }}
+            color={'black'}
+          >
+            Invoicetor helps every business holder to build their invoices in no
+            time with a simple and easy to use platform, it's also free and we
+            wish to keep it free, forever.
+          </Text>
+          <Text
+            maxW={'3xl'}
+            fontSize={{ base: '14px', sm: '16px', lg: '18px' }}
+            mb={{
+              base: 0,
+              md: 18,
+            }}
+            color={'black'}
+          >
+            So, It'll be not possible without your support, we need your help to
+            make Invoicetor a success. If you are a business owner or
+            individual, and Invoicetor makes your life easier and if you are
+            interested in sponsoring us, please contact us at{' '}
+            <Text as={'span'} textDecoration={'underline'}>
+              <Link
+                href="mailto:
+                    sumikumar1608@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                sumikumar1608@gmail.com{' '}
+              </Link>
+            </Text>
+          </Text>
+          <HStack>
+            <Button
+              as={'a'}
+              target="_blank"
+              href="https://www.buymeacoffee.com/wh0sumit"
+              rounded={'lg'}
+              size={'lg'}
+              bg={'purple.400'}
+              color={'white'}
+              _hover={{
+                bg: 'purple.500',
+              }}
+              _focus={{
+                outline: 'none',
+              }}
+            >
+              Buy us a coffee ☕
+            </Button>
+          </HStack>
+        </Flex>
+      </Container>
+    </Flex>
+  );
+}
+
+export { Sponsor, SponsorCard };

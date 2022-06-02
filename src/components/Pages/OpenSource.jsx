@@ -78,7 +78,9 @@ export default function OpenSource() {
               variant="solid"
               size="lg"
               href="
-              #"
+              https://github.com/DunoLabs/invoicetor-landing"
+              as="a"
+              target="_blank"
               rightIcon={<FaIcons.FaGithub />}
             >
               Contribute
@@ -89,7 +91,9 @@ export default function OpenSource() {
               variant="outline"
               size="lg"
               href="
-              #"
+              https://github.com/DunoLabs/invoicetor-landing"
+              as="a"
+              target="_blank"
               rightIcon={<FaIcons.FaStar />}
             >
               Star us on GitHub

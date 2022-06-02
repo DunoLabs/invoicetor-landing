@@ -4,7 +4,8 @@ import Hero from '../Organism/Hero/Hero';
 
 import Feature from '../Organism/Feature/Feature';
 import { Box, Grid } from '@chakra-ui/react';
-import Testimonials from '../Organism/Testimonials/Testimonials';
+import { SponsorCard } from './Sponsor';
+// import Testimonials from '../Organism/Testimonials/Testimonials';
 
 export default function Home() {
   return (
@@ -20,7 +21,8 @@ export default function Home() {
         <Grid minH="100vh">
           <Hero />
           <Feature />
-          <Testimonials />
+          {/* <Testimonials /> */}
+          <SponsorCard />
         </Grid>
       </Box>
     </>

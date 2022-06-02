@@ -10,7 +10,7 @@ import { Route, Routes } from 'react-router-dom';
 import OneTimeEditor from './components/Pages/OneTimeEditor/OneTimeEditor';
 import About from './components/Pages/About';
 import Features from './components/Pages/Features';
-import Sponsor from './components/Pages/Sponsor';
+import { Sponsor } from './components/Pages/Sponsor';
 import Releases from './components/Pages/Release/Release';
 import Help from './components/Pages/Help';
 
