@@ -1,5 +1,5 @@
 import './SideButton.scss';
-import { Text } from '@chakra-ui/react';
+import { Text, useColorModeValue } from '@chakra-ui/react';
 
 export default function SideButton() {
   return (
@@ -11,10 +11,12 @@ export default function SideButton() {
       rel="noopener"
       target="_blank"
       className="powered-by"
+      bg={useColorModeValue('gray.900', 'gray.100')}
+      color={useColorModeValue('white', 'gray.900')}
     >
       DunoLabs{' '}
       <Text as="span" className="powered-by-text" ms={2}>
-        🌷
+        📝
       </Text>
     </Text>
   );

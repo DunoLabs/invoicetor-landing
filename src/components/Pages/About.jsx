@@ -1,7 +1,5 @@
 import { Box, Heading, Container, Text, Stack, Link } from '@chakra-ui/react';
 import Helmet from 'react-helmet';
-import Connect from '../Organism/Connect/Connect';
-// import Connect from '../Organism/Connect/Connect';
 
 export default function About() {
   return (
@@ -52,7 +50,7 @@ export default function About() {
             product adoption. We believe that the best software products are
             built by people who are passionate about what they do.
           </Text>
-          <Connect />
+          {/* <Connect /> */}
           <Heading
             align="start"
             fontWeight={700}

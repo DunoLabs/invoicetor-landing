@@ -51,9 +51,9 @@ function Sponsor() {
             </Text>
           </Heading>
           <Text fontSize={'1.5rem'} align="start">
-            Invoicetor helps every business holder to build their invoices in no
-            time with a simple and easy to use platform, it's also free and we
-            wish to keep it free, forever.
+            Invoicetor helps business holder to build their invoices in no time
+            with a simple and easy to use platform, it's also free and we wish
+            to keep it free, forever.
           </Text>{' '}
           <Text
             fontSize={'1.5rem'}
@@ -101,7 +101,18 @@ function Sponsor() {
 
 function SponsorCard() {
   return (
-    <Flex p={20} align={'center'} justify={'center'}>
+    <Flex
+      p={{
+        base: 3,
+        md: 10,
+      }}
+      m={{
+        base: 3,
+        md: 0,
+      }}
+      align={'center'}
+      justify={'center'}
+    >
       <Container
         maxW={{
           base: '6xl',
@@ -117,7 +128,7 @@ function SponsorCard() {
         <Heading
           textAlign={'center'}
           mb={{
-            base: 0,
+            base: 3,
             lg: 18,
           }}
           color={'black'}
@@ -131,10 +142,10 @@ function SponsorCard() {
           alignItems={'center'}
         >
           <Text
-            maxW={'3xl'}
-            fontSize={{ base: '14px', sm: '16px', lg: '18px' }}
+            maxW={'4xl'}
+            fontSize={{ base: '16px', sm: '18px', lg: '20px' }}
             mb={{
-              base: 0,
+              base: 3,
               md: 18,
             }}
             color={'black'}
@@ -144,10 +155,10 @@ function SponsorCard() {
             wish to keep it free, forever.
           </Text>
           <Text
-            maxW={'3xl'}
-            fontSize={{ base: '14px', sm: '16px', lg: '18px' }}
+            maxW={'4xl'}
+            fontSize={{ base: '16px', sm: '18px', lg: '20px' }}
             mb={{
-              base: 0,
+              base: 5,
               md: 18,
             }}
             color={'black'}
@@ -166,6 +177,19 @@ function SponsorCard() {
                 sumikumar1608@gmail.com{' '}
               </Link>
             </Text>
+          </Text>
+          <Text
+            fontSize={'1.5rem'}
+            align="start"
+            bgGradient="linear(to-l,purple.400, yellow.400)"
+            bgClip="text"
+            fontWeight={'700'}
+            mb={{
+              base: 0,
+              md: 15,
+            }}
+          >
+            OR #
           </Text>
           <HStack>
             <Button

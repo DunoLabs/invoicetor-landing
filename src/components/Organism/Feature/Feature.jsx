@@ -24,21 +24,21 @@ const Features = [
     Title: 'Create Multiple Invoices',
     Description:
       'Invoices can be created multiple times, and account data can be used to create different invoices for different clients.',
-    visit: '#',
+    visit: '/features#multipleinvoice',
   },
   {
     imageUrl: `${oneTimePNG}`,
     Title: 'One Time Editor',
     Description:
       '   This is a one time free editor for invoicetor. You can use it to create invoices and download them as PDF.',
-    visit: '/onetimeeditor',
+    visit: '/features/one-time-editor',
   },
   {
     imageUrl: `${DesignPNG}`,
     Title: 'Better Design Control',
     Description:
       "Your invoices will be completely customizable using the design panel. Choose a color that matches your company's style. Modify the spacing to accommodate the amount of information you want.",
-    visit: '#',
+    visit: '/features#design',
   },
   {
     imageUrl: `${TogglePNG}`,
@@ -46,14 +46,14 @@ const Features = [
     Description:
       'Keep the data, but hide the content with a click. Easy toggle support allows you to put your best foot forward.',
 
-    visit: '#',
+    visit: '/features',
   },
   {
     imageUrl: `${ResizePNG}`,
     Title: 'Resize Control With Slider',
     Description:
       'You can upload your company logo and use it in the invoice. You can easily change the logo size using the slider.',
-    visit: '#',
+    visit: '/features',
   },
 ];
 
@@ -126,6 +126,9 @@ export default function CallToActionWithVideo() {
                 style={{
                   textDecoration: 'none',
                 }}
+                _focus={{
+                  outline: 'none',
+                }}
               >
                 <Button
                   rightIcon={<ArrowForwardIcon />}
@@ -135,6 +138,9 @@ export default function CallToActionWithVideo() {
                   size="sm"
                   as={'NavLink'}
                   to={feature.visit}
+                  _focus={{
+                    outline: 'none',
+                  }}
                 >
                   Learn More
                 </Button>

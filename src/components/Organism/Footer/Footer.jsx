@@ -61,7 +61,7 @@ export default function Footer() {
               </Link>
               <Link
                 as={NavLink}
-                to="features"
+                to="features#features"
                 _focus={{
                   outline: 'none',
                 }}

@@ -72,7 +72,7 @@ export default function Help() {
                 sumikumar1608@gmail.com{' '}
               </Link>
             </Text>{' '}
-            and we plan on adding more channels in the future.
+            and we plan on adding more support systems in the future.
           </Text>{' '}
         </Stack>
         {/* <Connect /> */}
