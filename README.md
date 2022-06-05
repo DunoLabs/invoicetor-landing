@@ -8,9 +8,11 @@ Invoicetor is a no-code platform where business owners can create invoices for t
 
 ## 📣 Announcements
 
-- Invoicetor is currenlty under development, so please be patient while we are working on it, soon you will be able to create invoices for your business.
+```Invoicetor is currenlty under development, so please be patient while we are working on it, soon you will be able to create invoices for your business.```
 
-## Reasons why you should try it out
+## Reasons why you should try Invoicetor
+
+```
 
 🚀 Create multiple invoices for your customers.
 
@@ -18,11 +20,13 @@ Invoicetor is a no-code platform where business owners can create invoices for t
 
 🚀 Multiple theme support.
 
-🚀 Customize fonts size, font color, and invoice colors.
+🚀 Customize fonts size, font color, and background colors.
 
 🚀 Dark Mode Support.
 
-🚀 All features completely FREE to use.
+🚀 Invoicetor is open-source and free to use. 
+
+```
 
 ## 🤝🏻 Support this project
 Invoicetor helps every business holder to build their invoices in no     time with a simple and easy to use platform, it's also free and we wish to keep it free, forever.
