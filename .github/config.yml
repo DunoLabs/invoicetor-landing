@@ -1,0 +1,14 @@
+newIssueWelcomeComment: |
+  Thanks for opening this issue 🙏. project maintainers will respond to your issue shortly.
+
+  ![Thankyou](https://media.giphy.com/media/26gsjCZpPolPr3sBy/giphy.giff)
+
+newPRWelcomeComment: |
+  Thanks for opening this PR 🥳 project maintainers will review your PR shortly.
+
+  ![congrats](https://media.giphy.com/media/fxsqOYnIMEefC/giphy.gif)
+
+firstPRMergeComment: |
+  Congrats on merging your first pull request 🎊. You've just added a valuable feature to the project, Thanks for your contribution!
+
+  ![congrats](https://media.giphy.com/media/3oz8xAFtqoOUUrsh7W/giphy.gif)
