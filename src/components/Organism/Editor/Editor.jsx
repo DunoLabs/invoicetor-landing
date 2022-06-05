@@ -1045,7 +1045,12 @@ export default function Editor() {
       )}
       {/* Invoice Items List End */}
       {/* Invoice Total Starts */}
-      <Stack>
+      <Stack
+        mt={{
+          base: '10',
+          md: '10',
+        }}
+      >
         <Box>
           <Text mb="8px">Add a Note : </Text>
           <Flex>
