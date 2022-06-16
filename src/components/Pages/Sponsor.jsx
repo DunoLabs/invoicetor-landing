@@ -74,11 +74,11 @@ function Sponsor() {
             >
               <Link
                 href="mailto:
-                    sumikumar1608@gmail.com"
+                   dunolabs@gmail.com"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                sumikumar1608@gmail.com{' '}
+               dunolabs@gmail.com{' '}
               </Link>
             </Text>
           </Text>
@@ -170,11 +170,11 @@ function SponsorCard() {
             <Text as={'span'} textDecoration={'underline'}>
               <Link
                 href="mailto:
-                    sumikumar1608@gmail.com"
+                   dunolabs@gmail.com"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                sumikumar1608@gmail.com{' '}
+               dunolabs@gmail.com{' '}
               </Link>
             </Text>
           </Text>

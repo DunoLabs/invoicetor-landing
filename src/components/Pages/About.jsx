@@ -43,12 +43,30 @@ export default function About() {
               md: 15,
             }}
           >
-            We are Sumit & Riya, the co-founders of Invoicetor. We come from the
-            tech & creative backgrounds based in Indore. While software
-            companies are working hard to achieve product-led growth, our
-            pragmatic vision is to ensure that software products have great
-            product adoption. We believe that the best software products are
-            built by people who are passionate about what they do.
+            Invoicetor is created by a team of developers from an awesome
+            organization called{' '}
+            <Link
+              as={'a'}
+              href="https://github.com/dunolabs"
+              target="_blank"
+              bgGradient="linear(to-l,purple.400, yellow.400)"
+              bgClip="text"
+              _focus={{
+                outline: 'none',
+              }}
+            >
+              DunoLabs
+            </Link>
+            . at DunoLabs we create awesome micro-saas products for both
+            businesses and individuals. We are a team of developers who love to
+            create products that helps everyone to build a better and more
+            efficient way to build their business.
+          </Text>
+          <Text fontSize={'1.5rem'} align={'start'}>
+            While software companies are working hard to achieve product-led
+            growth, our pragmatic vision is to ensure that software products
+            have great product adoption. We believe that the best software
+            products are built by people who are passionate about what they do.
           </Text>
           {/* <Connect /> */}
           <Heading
@@ -100,8 +118,11 @@ export default function About() {
                 href="mailto:sumikumar1608@gmail.com "
                 target="_blank"
                 rel="noopener noreferrer"
+                _focus={{
+                  outline: 'none',
+                }}
               >
-                sumikumar1608@gmail.com
+                dunolabs@gmail.com
               </Link>
             </Text>
           </Text>

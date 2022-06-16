@@ -105,7 +105,7 @@ export default function Download() {
             rounded={'3xl'}
             onClick={() => {
               window.open(
-                `https://twitter.com/intent/tweet?text=Hey there, I really liked using Invoicetor 💜%0AIt really makes my life easier. You can use Invoicetor to create invoices🧾 in no time.%0A&url=https://invoicetor.works`
+                `https://twitter.com/intent/tweet?text=Hey there, I really liked using Invoicetor 💜%0AIt really makes my life easier. You can use Invoicetor to create invoices🧾 in no time.%0Aurl=https://invoicetor.works`
               );
             }}
             _focus={{

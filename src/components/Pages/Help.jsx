@@ -65,11 +65,11 @@ export default function Help() {
             >
               <Link
                 href="mailto:
-                    sumikumar1608@gmail.com"
+                   dunolabs@gmail.com"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                sumikumar1608@gmail.com{' '}
+               dunolabs@gmail.com{' '}
               </Link>
             </Text>{' '}
             and we plan on adding more support systems in the future.
