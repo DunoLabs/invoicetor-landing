@@ -20,7 +20,10 @@ import { useContext } from 'react';
 import { InvoiceContext } from '../../../core/InvoiceContext';
 
 export default function Preview() {
-  const { invoice, items, image, imageSize } = useContext(InvoiceContext);
+  const { invoice, items, image, imageSize, signature, signatureSize } =
+    useContext(InvoiceContext);
+
+  console.log(signature);
 
   const subTotal = items.reduce((acc, item) => acc + item.itemTotal, 0);
 
@@ -169,6 +172,29 @@ export default function Preview() {
           </Box>
         )}
       </Stack>
+      {signature && (
+        <Stack
+          mt={{
+            base: '20px',
+            md: '20px',
+          }}
+          spacing={3}
+        >
+          <Flex justifyContent={'flex-end'}>
+            <Image
+              src={signature}
+              alt="signature"
+              className="signature"
+              width={signatureSize}
+              height={signatureSize}
+            />
+          </Flex>
+          <Box>
+            <Text align="end">{invoice.yourName}</Text>
+            <Text align="end">{invoice.invoiceDate}</Text>
+          </Box>
+        </Stack>
+      )}
     </>
   );
 }

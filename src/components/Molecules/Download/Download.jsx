@@ -105,7 +105,7 @@ export default function Download() {
             rounded={'3xl'}
             onClick={() => {
               window.open(
-                `https://twitter.com/intent/tweet?text=Hey there, I really liked using Invoicetor 💜%0AIt really makes my life easier. You can use Invoicetor to create invoices🧾 in no time.%0Aurl=https://invoicetor.works`
+                `https://twitter.com/intent/tweet?text=Hey there 👋🏻 %0a%0aInvoicetor is a great tool for creating invoices. I recently used it and found it very useful. You can use Invoicetor to create invoices🧾 in no time.%0a%0aTry 👇🏻%0ahttps://invoicetor.works %0a%0a&hashtags=invoicetor,dunolabs`
               );
             }}
             _focus={{
@@ -132,7 +132,7 @@ export default function Download() {
             rounded={'3xl'}
             onClick={() => {
               window.open(
-                `https://wa.me/?text=Hey there, I really liked using Invoicetor %0AIt really makes my life easier. You can use Invoicetor to create invoices in no time.%0A&url=https://invoicetor.works`
+                `https://wa.me/?text=Hey there,%0a%0aInvoicetor is a great tool for creating invoices. I recently used it and found it very useful. You can use Invoicetor to create invoices in no time.%0a%0aTry : %0ahttps://invoicetor.works`
               );
             }}
           >

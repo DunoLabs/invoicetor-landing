@@ -15,6 +15,7 @@ export default function InvoiceProvider({ children }) {
         yourBank: '',
         yourAccountNumber: '',
         yourBankBranch: '',
+        yourRegistrationNumber: '',
 
         clientName: '',
         clientAddress: '',
@@ -52,6 +53,7 @@ export default function InvoiceProvider({ children }) {
     yourAccountNumber: invoiceData.yourAccountNumber,
     yourBank: invoiceData.yourBank,
     yourBankBranch: invoiceData.yourBankBranch,
+    yourRegistrationNumber: invoiceData.yourRegistrationNumber,
 
     clientName: invoiceData.clientName,
     clientEmail: invoiceData.clientEmail,
@@ -86,10 +88,18 @@ export default function InvoiceProvider({ children }) {
     ],
   });
 
+  // logo image
   const [image, setImage] = useState(localStorage.getItem('image'));
   const [imageSize, setImageSize] = useState(
     localStorage.getItem('imageSize') || '150'
   );
+
+  // signature image
+  const [signature, setSignature] = useState(localStorage.getItem('signature'));
+  const [signatureSize, setSignatureSize] = useState(
+    localStorage.getItem('signatureSize') || '100'
+  );
+
   return (
     <InvoiceContext.Provider
       value={{
@@ -103,6 +113,10 @@ export default function InvoiceProvider({ children }) {
         setImage,
         imageSize,
         setImageSize,
+        signature,
+        setSignature,
+        signatureSize,
+        setSignatureSize,
       }}
     >
       {children}

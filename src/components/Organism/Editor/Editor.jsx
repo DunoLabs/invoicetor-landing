@@ -1,5 +1,6 @@
 import {
   Box,
+  Circle,
   FormControl,
   FormLabel,
   Input,
@@ -49,6 +50,7 @@ import {
   InputGroup,
   InputRightAddon,
   TableContainer,
+  SimpleGrid,
 } from '@chakra-ui/react';
 import './Editor.scss';
 
@@ -74,11 +76,20 @@ export default function Editor() {
     setImage,
     imageSize,
     setImageSize,
+    signature,
+    setSignature,
+    signatureSize,
+    setSignatureSize,
   } = useContext(InvoiceContext);
-  console.log(invoice);
+
   // getting invoice data from localstorage
 
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isOpen2,
+    onOpen: onOpen2,
+    onClose: onClose2,
+  } = useDisclosure();
 
   const [editItem, setEditItem] = useState({
     editIndex: null,
@@ -100,7 +111,7 @@ export default function Editor() {
 
   const addInvoice = e => {
     e.preventDefault();
-    console.log(invoice);
+
     localStorage.setItem('invoice', JSON.stringify(invoice));
     toast('✅ Your data is saved', {
       position: 'bottom-right',
@@ -200,6 +211,27 @@ export default function Editor() {
   };
   // Upload Image in localstorage ends
 
+  // upload signature in localstorage starts
+  const signatureUpload = e => {
+    const file = e.target.files[0];
+    getBase64(file).then(base64 => {
+      localStorage['signature'] = base64;
+      console.debug('file stored', base64);
+      setSignature(base64);
+      localStorage.setItem('signature', base64);
+    });
+    toast('😎 Signature Uploaded', {
+      position: 'bottom-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+  // upload signature in localstorage ends
+
   /* Edit Invoice Item Starts */
   const EditInvoiceItem = index => {
     onOpen();
@@ -248,7 +280,6 @@ export default function Editor() {
   const [isOpenPop, setIsOpenPop] = useState(false);
   const open = () => setIsOpenPop(!isOpen);
   const close = () => setIsOpenPop(false);
-  console.log(sliderValue);
 
   /* Clear ALL Data Starts */
   const clearAllData = () => {
@@ -257,6 +288,8 @@ export default function Editor() {
     localStorage.removeItem('image');
     localStorage.removeItem('imageSize');
     localStorage.removeItem('fileBase64');
+    localStorage.removeItem('signature');
+    setSignature(null);
     setInvoice({
       yourCompany: '',
       yourName: '',
@@ -396,7 +429,7 @@ export default function Editor() {
                   <Slider
                     mb={7}
                     aria-label="slider-ex-3"
-                    defaultValue={localStorage.getItem('imageSize')}
+                    defaultValue={imageSize}
                     orientation="horizontal"
                     colorScheme={'purple'}
                     maxW="200"
@@ -867,13 +900,17 @@ export default function Editor() {
         </Box>
         <Box pt={8}>
           <Button
-            size={'lg'}
             variant="outline"
-            bg={useColorModeValue('gray.100', 'gray.100')}
-            color={useColorModeValue('gray.800', 'gray.800')}
-            borderColor={useColorModeValue('gray.800', 'gray.800')}
+            _focus={{
+              outline: 'none',
+            }}
+            size={'lg'}
+            fontWeight={600}
+            color={'black'}
+            bg={'white'}
+            borderRadius={'lg'}
             _hover={{
-              bg: useColorModeValue('gray.100', 'gray.100'),
+              bg: 'whiteAlpha.800',
             }}
             onClick={addInvoiceItem}
           >
@@ -901,15 +938,14 @@ export default function Editor() {
                 <Td>₹ {item.itemPrice}</Td>
                 <Td>₹ {item.itemTotal}</Td>
                 <Menu>
-                  <Tooltip label="Edit Item">
-                    <MenuButton
-                      m={2}
-                      as={IconButton}
-                      aria-label="Options"
-                      icon={<RiIcons.RiMenu3Fill />}
-                      variant="outline"
-                    />
-                  </Tooltip>
+                  <MenuButton
+                    m={2}
+                    as={IconButton}
+                    aria-label="Options"
+                    icon={<RiIcons.RiMenu3Fill />}
+                    variant="outline"
+                  />
+
                   <MenuList>
                     <MenuItem
                       icon={<FaIcons.FaRegEdit />}
@@ -931,8 +967,14 @@ export default function Editor() {
         </Table>
       </TableContainer>
       <Modal onClose={onClose} isOpen={isOpen} isCentered>
-        <ModalOverlay />
-        <ModalContent>
+        <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px) " />
+        <ModalContent
+          p={4}
+          rounded={'3xl'}
+          border={2}
+          borderColor={useColorModeValue('gray.700', 'gray.100')}
+          borderStyle={'solid'}
+        >
           <ModalHeader>Edit Item #{editItem.editIndex} </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
@@ -997,6 +1039,9 @@ export default function Editor() {
           </ModalBody>
           <ModalFooter>
             <Button
+              _focus={{
+                outline: 'none',
+              }}
               colorScheme="primary"
               variant="outline"
               mr={3}
@@ -1005,7 +1050,14 @@ export default function Editor() {
               {' '}
               Save
             </Button>
-            <Button onClick={onClose}>Close</Button>
+            <Button
+              _focus={{
+                outline: 'none',
+              }}
+              onClick={onClose}
+            >
+              Close
+            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
@@ -1091,8 +1143,6 @@ export default function Editor() {
                         noteToggle: !invoice.notes.noteToggle,
                       },
                     });
-
-                    console.log(invoice.notes.noteToggle);
                   }}
                 />
               </Tooltip>
@@ -1141,8 +1191,6 @@ export default function Editor() {
                         termToggle: !invoice.terms.termToggle,
                       },
                     });
-
-                    console.log(invoice.terms.termToggle);
                   }}
                 />
               </Tooltip>
@@ -1150,10 +1198,216 @@ export default function Editor() {
           </Flex>
         </Box>
       </Stack>
+      {/* Invoice Digital Signature start */}
+      <Stack my={10}>
+        <Box>
+          <Button
+            onClick={onOpen2}
+            variant="outline"
+            _focus={{
+              outline: 'none',
+            }}
+            fontWeight={600}
+            color={'black'}
+            bg={'white'}
+            borderRadius={'lg'}
+            _hover={{
+              bg: 'whiteAlpha.800',
+            }}
+            rightIcon={<FaIcons.FaSignature />}
+          >
+            Add Signature
+          </Button>
+        </Box>
+      </Stack>
+      <Modal isOpen={isOpen2} onClose={onClose2} size={'3xl'}>
+        <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px) " />
+        <ModalContent
+          m={{
+            base: '2',
+            md: '10',
+          }}
+          p={{
+            base: '2',
+            md: '6',
+          }}
+          rounded={'3xl'}
+          border={2}
+          borderColor={useColorModeValue('gray.700', 'gray.100')}
+          borderStyle={'solid'}
+        >
+          <ModalHeader>
+            <Text fontSize={'3xl'}>Digital Signature</Text>
+            <Text fontSize={'16px'} fontWeight="normal">
+              Add your signature to the invoice.
+            </Text>
+          </ModalHeader>
+          <ModalCloseButton />
+          <ModalBody
+            p={{
+              base: '2',
+              md: '6',
+            }}
+          >
+            <SimpleGrid
+              columns={2}
+              spacingX="40px"
+              spacingY="20px"
+              minChildWidth={{
+                base: '400px',
+                md: '0',
+              }}
+            >
+              <Box p="4" alignSelf={'center'}>
+                <Input
+                  placeholder={'Enter Company Name'}
+                  value={invoice.yourCompany}
+                  onChange={e =>
+                    setInvoice({ ...invoice, yourCompany: e.target.value })
+                  }
+                  mb={'5'}
+                />
+
+                <Input
+                  placeholder={'Enter Business Reg. Number'}
+                  value={invoice.yourRegistrationNumber}
+                  type="number"
+                  onChange={e =>
+                    setInvoice({
+                      ...invoice,
+                      yourRegistrationNumber: e.target.value,
+                    })
+                  }
+                  mb={'5'}
+                />
+                <input
+                  id="signatureUpload"
+                  type="file"
+                  name="image"
+                  className="img"
+                  onChange={e => signatureUpload(e)}
+                />
+                <Flex>
+                  <Button
+                    _focus={{
+                      outline: 'none',
+                    }}
+                    bg={useColorModeValue('purple.400', 'purple.400')}
+                    color={'white'}
+                    _hover={{
+                      bg: useColorModeValue('purple.400', 'purple.400'),
+                    }}
+                    variant="outline"
+                    rightIcon={<RiIcons.RiUpload2Line />}
+                    onClick={() =>
+                      document.getElementById('signatureUpload').click()
+                    }
+                    mb={'5'}
+                  >
+                    Upload Signature
+                  </Button>
+                  <Spacer />
+                  {signature && (
+                    <IconButton
+                      variant="solid"
+                      color={'red.400'}
+                      bg={'white'}
+                      _hover={{
+                        bg: 'whiteAlpha.800',
+                      }}
+                      onClick={() => {
+                        localStorage.removeItem('signature');
+                        setSignature(null);
+                      }}
+                    >
+                      <RiIcons.RiDeleteBinLine />
+                    </IconButton>
+                  )}
+                </Flex>
+                <Input
+                  placeholder={'Enter Your Name'}
+                  value={invoice.yourName}
+                  onChange={e =>
+                    setInvoice({ ...invoice, yourName: e.target.value })
+                  }
+                  mb={'5'}
+                />
+                <Input
+                  type={'date'}
+                  placeholder={'Enter Date'}
+                  value={invoice.invoiceDate}
+                  onChange={e =>
+                    setInvoice({ ...invoice, invoiceDate: e.target.value })
+                  }
+                  mb={'5'}
+                />
+              </Box>
+              <Box
+                p={4}
+                rounded={'3xl'}
+                border={2}
+                borderColor={useColorModeValue('gray.700', 'gray.100')}
+                borderStyle={'solid'}
+              >
+                <Text
+                  fontSize={'2xl'}
+                  fontWeight="bold"
+                  mb={{
+                    base: '2',
+                    md: '4',
+                  }}
+                >
+                  Preview Signature
+                </Text>
+
+                <Stack
+                  mt={{
+                    base: '20px',
+                    md: '50px',
+                  }}
+                  spacing={3}
+                >
+                  {signature && (
+                    <Flex justifyContent={'flex-end'}>
+                      <Image
+                        src={signature}
+                        alt="signature"
+                        className="signature"
+                        width={signatureSize}
+                        height={signatureSize}
+                      />
+                    </Flex>
+                  )}
+                  <Box>
+                    <Text align="end">{invoice.yourName}</Text>
+                    <Text align="end">{invoice.invoiceDate}</Text>
+                  </Box>
+                </Stack>
+              </Box>{' '}
+            </SimpleGrid>
+          </ModalBody>
+
+          <ModalFooter>
+            <Button
+              _focus={{
+                outline: 'none',
+              }}
+              mr={3}
+              onClick={onClose2}
+            >
+              Close
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+      {/* Invoice Digital Signature End */}
       {/* Save Button */}
       <Flex>
         <Box mt={8}>
           <Button
+            _focus={{
+              outline: 'none',
+            }}
             fontWeight={600}
             color={'white'}
             bg={'purple.400'}
@@ -1171,6 +1425,9 @@ export default function Editor() {
         <Spacer />
         <Box mt={8}>
           <Button
+            _focus={{
+              outline: 'none',
+            }}
             fontWeight={600}
             color={'black'}
             bg={'white'}
@@ -1180,6 +1437,7 @@ export default function Editor() {
               bg: 'whiteAlpha.800',
             }}
             onClick={clearAllData}
+            variant="outline"
             rightIcon={<RiIcons.RiDeleteBin2Line />}
           >
             Clear All

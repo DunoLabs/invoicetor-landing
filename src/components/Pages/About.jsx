@@ -54,6 +54,7 @@ export default function About() {
               _focus={{
                 outline: 'none',
               }}
+              fontWeight={700}
             >
               DunoLabs
             </Link>
