@@ -1,5 +1,6 @@
 import {
   Box,
+  HStack,
   Circle,
   FormControl,
   FormLabel,
@@ -79,8 +80,23 @@ export default function Editor() {
     signature,
     setSignature,
     signatureSize,
-    setSignatureSize,
   } = useContext(InvoiceContext);
+
+  const [sealColor, setSealColor] = useState(invoice.sealColor || 'red.400');
+
+  // aleart message
+  const alertMessage = message => {
+    toast(message, {
+      position: 'bottom-right',
+      autoClose: 5000,
+      hideProgressBar: false, // default value
+      closeOnClick: true, // default value
+      pauseOnHover: true, // default value
+      draggable: true, // default value
+      progress: undefined,
+      className: 'alert-message',
+    });
+  };
 
   // getting invoice data from localstorage
 
@@ -111,17 +127,14 @@ export default function Editor() {
 
   const addInvoice = e => {
     e.preventDefault();
+    //set seal color manually
+    setInvoice({
+      ...invoice,
+      sealColor: sealColor,
+    });
 
     localStorage.setItem('invoice', JSON.stringify(invoice));
-    toast('✅ Your data is saved', {
-      position: 'bottom-right',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    alertMessage('✅ Your data is saved');
   };
 
   // add invoice items
@@ -146,26 +159,10 @@ export default function Editor() {
           localStorage.setItem('items', JSON.stringify(item));
           setItems(item);
         } else {
-          toast('Please enter values greater than zero.', {
-            position: 'bottom-right',
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
+          alertMessage('Please enter values greater than zero.');
         }
       } else {
-        toast('Please add input ', {
-          position: 'bottom-right',
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        alertMessage('Please enter input value');
       }
     } else {
       const item = [
@@ -191,15 +188,7 @@ export default function Editor() {
       setImage(base64);
       localStorage.setItem('image', base64);
     });
-    toast('😎 Comapny Logo Uploaded', {
-      position: 'bottom-right',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    alertMessage('😎 Comapny Logo Uploaded');
   };
   const getBase64 = file => {
     return new Promise((resolve, reject) => {
@@ -213,22 +202,21 @@ export default function Editor() {
 
   // upload signature in localstorage starts
   const signatureUpload = e => {
-    const file = e.target.files[0];
-    getBase64(file).then(base64 => {
-      localStorage['signature'] = base64;
-      console.debug('file stored', base64);
-      setSignature(base64);
-      localStorage.setItem('signature', base64);
-    });
-    toast('😎 Signature Uploaded', {
-      position: 'bottom-right',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    let file = e.target.files[0];
+    const fileType = file.type;
+
+    if (fileType === 'image/png' || fileType === 'image/jpeg') {
+      getBase64(file).then(base64 => {
+        localStorage['signatureBase64'] = base64;
+        console.debug('file stored', base64);
+        setSignature(base64);
+        localStorage.setItem('signature', base64);
+      });
+      alertMessage('😎 Signature Uploaded');
+    } else {
+      e.target.value = '';
+      alertMessage('❌ Please upload png or jpg file');
+    }
   };
   // upload signature in localstorage ends
 
@@ -322,19 +310,12 @@ export default function Editor() {
         term: '',
         termToggle: true,
       },
+      sealColor: sealColor,
     });
     setItems([]);
     setImage('');
     setImageSize('150');
-    toast('😈 All cleared', {
-      position: 'bottom-right',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    alertMessage('🗑️ All data is cleared');
   };
 
   // Styles for the editor
@@ -1223,131 +1204,187 @@ export default function Editor() {
       <Modal isOpen={isOpen2} onClose={onClose2} size={'3xl'}>
         <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px) " />
         <ModalContent
-          m={{
-            base: '2',
-            md: '10',
-          }}
           p={{
             base: '2',
-            md: '6',
+            md: '4',
           }}
           rounded={'3xl'}
           border={2}
           borderColor={useColorModeValue('gray.700', 'gray.100')}
           borderStyle={'solid'}
         >
-          <ModalHeader>
+          <ModalHeader p={'2'}>
             <Text fontSize={'3xl'}>Digital Signature</Text>
             <Text fontSize={'16px'} fontWeight="normal">
               Add your signature to the invoice.
             </Text>
           </ModalHeader>
           <ModalCloseButton />
-          <ModalBody
-            p={{
-              base: '2',
-              md: '6',
-            }}
-          >
-            <SimpleGrid
-              columns={2}
-              spacingX="40px"
-              spacingY="20px"
-              minChildWidth={{
-                base: '400px',
-                md: '0',
-              }}
-            >
-              <Box p="4" alignSelf={'center'}>
-                <Input
-                  placeholder={'Enter Company Name'}
-                  value={invoice.yourCompany}
-                  onChange={e =>
-                    setInvoice({ ...invoice, yourCompany: e.target.value })
-                  }
-                  mb={'5'}
-                />
-
-                <Input
-                  placeholder={'Enter Business Reg. Number'}
-                  value={invoice.yourRegistrationNumber}
-                  type="number"
-                  onChange={e =>
-                    setInvoice({
-                      ...invoice,
-                      yourRegistrationNumber: e.target.value,
-                    })
-                  }
-                  mb={'5'}
-                />
-                <input
-                  id="signatureUpload"
-                  type="file"
-                  name="image"
-                  className="img"
-                  onChange={e => signatureUpload(e)}
-                />
-                <Flex>
-                  <Button
-                    _focus={{
-                      outline: 'none',
-                    }}
-                    bg={useColorModeValue('purple.400', 'purple.400')}
-                    color={'white'}
-                    _hover={{
-                      bg: useColorModeValue('purple.400', 'purple.400'),
-                    }}
-                    variant="outline"
-                    rightIcon={<RiIcons.RiUpload2Line />}
-                    onClick={() =>
-                      document.getElementById('signatureUpload').click()
+          <ModalBody p={'2'}>
+            <Flex flexWrap={'wrap'} justifyContent="space-around">
+              <Box
+                p={{
+                  base: '2',
+                  md: '3',
+                }}
+                alignSelf={'center'}
+                width={{
+                  base: '100%',
+                  md: '50%',
+                }}
+              >
+                <HStack
+                  my={'4'}
+                  justifyContent="center"
+                  p={'4'}
+                  rounded={'3xl'}
+                  border={2}
+                  borderColor={useColorModeValue('gray.300', 'gray.200')}
+                  borderStyle={'solid'}
+                >
+                  <Circle
+                    size="40px"
+                    bg="red.400"
+                    color="white"
+                    as="button"
+                    onClick={() => setSealColor('red.400')}
+                  />{' '}
+                  <Circle
+                    size="40px"
+                    bg="blue.400"
+                    color="white"
+                    as="button"
+                    onClick={() => setSealColor('blue.400')}
+                  />{' '}
+                  <Circle
+                    size="40px"
+                    bg="purple.400"
+                    color="white"
+                    as="button"
+                    onClick={() => setSealColor('purple.400')}
+                  />{' '}
+                  <Circle
+                    size="40px"
+                    bg="yellow.400"
+                    color="white"
+                    as="button"
+                    onClick={() => setSealColor('yellow.400')}
+                  />{' '}
+                  <Circle
+                    size="40px"
+                    bg="green.400"
+                    color="white"
+                    as="button"
+                    onClick={() => setSealColor('green.400')}
+                  />
+                </HStack>
+                <FormControl>
+                  <Input
+                    placeholder={'Enter Company Name'}
+                    value={invoice.yourCompany}
+                    onChange={e =>
+                      setInvoice({ ...invoice, yourCompany: e.target.value })
                     }
                     mb={'5'}
-                  >
-                    Upload Signature
-                  </Button>
-                  <Spacer />
-                  {signature && (
-                    <IconButton
-                      variant="solid"
-                      color={'red.400'}
-                      bg={'white'}
+                  />
+                </FormControl>
+                <FormControl>
+                  <Input
+                    placeholder={'Enter Business Reg. Number'}
+                    value={invoice.yourRegistrationNumber}
+                    type="number"
+                    onChange={e =>
+                      setInvoice({
+                        ...invoice,
+                        yourRegistrationNumber: e.target.value,
+                      })
+                    }
+                    mb={'5'}
+                  />
+                </FormControl>
+
+                <Box mb={'5'}>
+                  <Flex>
+                    <input
+                      id="signatureUpload"
+                      type="file"
+                      name="image"
+                      className="img"
+                      onChange={e => signatureUpload(e)}
+                    />
+                    <Button
+                      _focus={{
+                        outline: 'none',
+                      }}
+                      bg={useColorModeValue('purple.400', 'purple.400')}
+                      color={'white'}
                       _hover={{
-                        bg: 'whiteAlpha.800',
+                        bg: useColorModeValue('purple.400', 'purple.400'),
                       }}
-                      onClick={() => {
-                        localStorage.removeItem('signature');
-                        setSignature(null);
-                      }}
+                      variant="outline"
+                      rightIcon={<RiIcons.RiUpload2Line />}
+                      onClick={() =>
+                        document.getElementById('signatureUpload').click()
+                      }
                     >
-                      <RiIcons.RiDeleteBinLine />
-                    </IconButton>
-                  )}
-                </Flex>
-                <Input
-                  placeholder={'Enter Your Name'}
-                  value={invoice.yourName}
-                  onChange={e =>
-                    setInvoice({ ...invoice, yourName: e.target.value })
-                  }
-                  mb={'5'}
-                />
-                <Input
-                  type={'date'}
-                  placeholder={'Enter Date'}
-                  value={invoice.invoiceDate}
-                  onChange={e =>
-                    setInvoice({ ...invoice, invoiceDate: e.target.value })
-                  }
-                  mb={'5'}
-                />
+                      Upload Signature
+                    </Button>
+                    <Spacer />
+                    {signature && (
+                      <IconButton
+                        variant="solid"
+                        color={'red.400'}
+                        bg={'white'}
+                        _hover={{
+                          bg: 'whiteAlpha.800',
+                        }}
+                        onClick={() => {
+                          localStorage.removeItem('signature');
+                          setSignature(null);
+                        }}
+                      >
+                        <RiIcons.RiDeleteBinLine />
+                      </IconButton>
+                    )}
+                  </Flex>
+                  <Text fontSize="xs">Upload image in png or jpg format.</Text>
+                </Box>
+                <FormControl>
+                  <Input
+                    placeholder={'Enter Your Name'}
+                    value={invoice.yourName}
+                    onChange={e =>
+                      setInvoice({ ...invoice, yourName: e.target.value })
+                    }
+                    mb={'5'}
+                  />
+                </FormControl>
+                <Box>
+                  <FormControl>
+                    <Input
+                      type={'date'}
+                      placeholder={'Enter Date'}
+                      value={invoice.invoiceDate}
+                      onChange={e =>
+                        setInvoice({ ...invoice, invoiceDate: e.target.value })
+                      }
+                      mb={'5'}
+                    />
+                  </FormControl>
+                </Box>
               </Box>
-              <Box
+              <Spacer />
+              <Stack
+                width={{
+                  base: '100%',
+                  md: '50%',
+                }}
                 p={4}
                 rounded={'3xl'}
                 border={2}
                 borderColor={useColorModeValue('gray.700', 'gray.100')}
                 borderStyle={'solid'}
+                alignSelf={'center'}
               >
                 <Text
                   fontSize={'2xl'}
@@ -1367,6 +1404,18 @@ export default function Editor() {
                   }}
                   spacing={3}
                 >
+                  <Box
+                    className="stamp is-nope"
+                    borderWidth="0.5rem"
+                    borderStyle="double"
+                    borderRadius="10px"
+                    color={sealColor}
+                    borderColor={sealColor}
+                  >
+                    {invoice.yourCompany} <br /> Reg. No :
+                    {invoice.yourRegistrationNumber}
+                  </Box>
+
                   {signature && (
                     <Flex justifyContent={'flex-end'}>
                       <Image
@@ -1379,15 +1428,36 @@ export default function Editor() {
                     </Flex>
                   )}
                   <Box>
-                    <Text align="end">{invoice.yourName}</Text>
-                    <Text align="end">{invoice.invoiceDate}</Text>
+                    <Text align="end" fontWeight={'500'}>
+                      {invoice.yourName}
+                    </Text>
+                    <Text align="end" fontWeight={'500'}>
+                      {invoice.invoiceDate}
+                    </Text>
                   </Box>
                 </Stack>
-              </Box>{' '}
-            </SimpleGrid>
+              </Stack>{' '}
+            </Flex>
           </ModalBody>
 
-          <ModalFooter>
+          <ModalFooter gap={'2'} p={'2'}>
+            <Button
+              _focus={{
+                outline: 'none',
+              }}
+              fontWeight={600}
+              color={'white'}
+              bg={'purple.400'}
+              borderRadius={'lg'}
+              href={'#'}
+              _hover={{
+                bg: 'purple.700',
+              }}
+              onClick={addInvoice}
+              rightIcon={<RiIcons.RiSaveLine />}
+            >
+              Save
+            </Button>
             <Button
               _focus={{
                 outline: 'none',

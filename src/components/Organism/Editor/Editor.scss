@@ -3,7 +3,7 @@
   height: 180px;
   background-position: center center;
   background-size: cover;
-  -webkit-box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.3);
   display: inline-block;
   content: 'click Here';
   color: black;
@@ -17,4 +17,35 @@ input[type='file'] {
   &:hover {
     cursor: pointer;
   }
+}
+
+.stamp {
+  transform: rotate(12deg);
+  // color: #555;
+  font-size: 1.2rem;
+  font-weight: 700;
+  // border: 0.25rem solid #555;
+  padding: 0.5rem 1rem;
+  text-transform: uppercase;
+  border-radius: 1rem;
+  font-family: 'Courier';
+  mask-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/8399/grunge.png');
+  mix-blend-mode: multiply;
+}
+
+@media screen and (max-width: 480px) {
+  .stamp {
+    font-size: 1rem;
+    width: 80%;
+  }
+  .signature {
+    height: 50%;
+    width: 50%;
+  }
+}
+
+.is-nope {
+  // color: #d23;
+  // border: 0.5rem double #d23;
+  transform: rotate(-4deg);
 }

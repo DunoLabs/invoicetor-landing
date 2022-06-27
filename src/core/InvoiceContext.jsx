@@ -37,6 +37,7 @@ export default function InvoiceProvider({ children }) {
           term: '',
           termToggle: true,
         },
+        sealColor: '',
       };
   const [items, setItems] = useState(
     JSON.parse(localStorage.getItem('items')) || []
@@ -76,6 +77,7 @@ export default function InvoiceProvider({ children }) {
       termToggle: invoiceData.terms.termToggle,
     },
     tax: invoiceData.tax,
+    sealColor: invoiceData.sealColor,
   });
   const [invoiceItems, setInvoiceItems] = useState({
     items: [

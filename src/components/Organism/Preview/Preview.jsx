@@ -23,8 +23,6 @@ export default function Preview() {
   const { invoice, items, image, imageSize, signature, signatureSize } =
     useContext(InvoiceContext);
 
-  console.log(signature);
-
   const subTotal = items.reduce((acc, item) => acc + item.itemTotal, 0);
 
   const tax = (subTotal * invoice.tax) / 100;
@@ -172,29 +170,46 @@ export default function Preview() {
           </Box>
         )}
       </Stack>
-      {signature && (
-        <Stack
-          mt={{
-            base: '20px',
-            md: '20px',
-          }}
-          spacing={3}
-        >
+      <Stack
+        mt={{
+          base: '20px',
+          md: '20px',
+        }}
+        spacing={3}
+      >
+        <Flex justifyContent={'flex-end'}>
+          <Box
+            className="stamp is-nope"
+            borderWidth="0.5rem"
+            borderStyle="double"
+            borderRadius="10px"
+            color={invoice.sealColor}
+            borderColor={invoice.sealColor}
+          >
+            {invoice.yourCompany} <br /> RN:
+            {invoice.yourRegistrationNumber}
+          </Box>
+        </Flex>
+        {signature && (
           <Flex justifyContent={'flex-end'}>
             <Image
+              className="signature"
               src={signature}
               alt="signature"
-              className="signature"
               width={signatureSize}
               height={signatureSize}
             />
           </Flex>
-          <Box>
-            <Text align="end">{invoice.yourName}</Text>
-            <Text align="end">{invoice.invoiceDate}</Text>
-          </Box>
-        </Stack>
-      )}
+        )}
+        <Box>
+          <Text align="end" fontWeight={'500'}>
+            {invoice.yourName}
+          </Text>
+          <Text align="end" fontWeight={'500'}>
+            {invoice.invoiceDate}
+          </Text>
+        </Box>
+      </Stack>
     </>
   );
 }
