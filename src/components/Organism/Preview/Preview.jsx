@@ -68,7 +68,7 @@ export default function Preview() {
         {/* Client Data  */}
         <Stack my={15} spacing={10}>
           <Flex>
-            <Box spacing={3} mt={20}>
+            <Box spacing={3} mt={10}>
               <Text as="h3" fontWeight={'bold'} align="start">
                 Bill To :{' '}
               </Text>
@@ -80,7 +80,7 @@ export default function Preview() {
 
             <Spacer />
 
-            <Box mt={20}>
+            <Box mt={10}>
               <Grid templateColumns="repeat(3, 1fr)" gap={4}>
                 <GridItem colSpan={2} h="10">
                   <Text fontWeight={'bold'} align="start">
@@ -105,7 +105,7 @@ export default function Preview() {
         {/* Invoice Table */}
 
         <TableContainer>
-          <Table mt={20}>
+          <Table mt={10}>
             <Thead>
               <Tr>
                 <Th>Item</Th>
@@ -150,7 +150,7 @@ export default function Preview() {
           </Box>
         </Flex>
       </Stack>
-      <Stack mt={10} spacing={3}>
+      <Stack mt={8} spacing={3}>
         {invoice.notes.noteToggle ? null : (
           <Box>
             <Text as="h3" fontWeight={'bold'} align="start">
@@ -160,7 +160,7 @@ export default function Preview() {
           </Box>
         )}
       </Stack>{' '}
-      <Stack mt={10} spacing={3}>
+      <Stack mt={8} spacing={3}>
         {invoice.terms.termToggle ? null : (
           <Box>
             <Text as="h3" fontWeight={'bold'} align="start">
@@ -178,17 +178,19 @@ export default function Preview() {
         spacing={3}
       >
         <Flex justifyContent={'flex-end'}>
-          <Box
-            className="stamp is-nope"
-            borderWidth="0.5rem"
-            borderStyle="double"
-            borderRadius="10px"
-            color={invoice.sealColor}
-            borderColor={invoice.sealColor}
-          >
-            {invoice.yourCompany} <br /> RN:
-            {invoice.yourRegistrationNumber}
-          </Box>
+          {invoice.yourCompany && (
+            <Box
+              className="stamp is-nope"
+              borderWidth="0.5rem"
+              borderStyle="double"
+              borderRadius="10px"
+              color={invoice.sealColor}
+              borderColor={invoice.sealColor}
+            >
+              {invoice.yourCompany} <br /> RN:
+              {invoice.yourRegistrationNumber}
+            </Box>
+          )}
         </Flex>
         {signature && (
           <Flex justifyContent={'flex-end'}>

@@ -98,9 +98,7 @@ export default function InvoiceProvider({ children }) {
 
   // signature image
   const [signature, setSignature] = useState(localStorage.getItem('signature'));
-  const [signatureSize, setSignatureSize] = useState(
-    localStorage.getItem('signatureSize') || '100'
-  );
+  const [signatureSize, setSignatureSize] = useState('100');
 
   return (
     <InvoiceContext.Provider

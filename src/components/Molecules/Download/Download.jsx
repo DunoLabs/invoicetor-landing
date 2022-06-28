@@ -31,9 +31,9 @@ export default function Download() {
         style={{
           display: 'none',
         }}
-        bg={useColorModeValue('gray.100', '#1A202C')}
+        bg={'white'}
       >
-        <Box ref={componentRef} p={5} bg={useColorModeValue('#fff', '#1A202C')}>
+        <Box ref={componentRef} p={5} bg={'white'} color={'gray.800'}>
           <Preview />
         </Box>
       </Stack>

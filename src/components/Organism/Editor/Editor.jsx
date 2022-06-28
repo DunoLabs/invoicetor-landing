@@ -51,7 +51,6 @@ import {
   InputGroup,
   InputRightAddon,
   TableContainer,
-  SimpleGrid,
 } from '@chakra-ui/react';
 import './Editor.scss';
 
@@ -348,15 +347,14 @@ export default function Editor() {
                     }}
                   />{' '}
                   <Menu>
-                    <Tooltip label="Edit Image">
-                      <MenuButton
-                        m={2}
-                        as={IconButton}
-                        aria-label="Options"
-                        icon={<RiIcons.RiMenu3Fill />}
-                        variant="outline"
-                      />
-                    </Tooltip>
+                    <MenuButton
+                      m={2}
+                      as={IconButton}
+                      aria-label="Options"
+                      icon={<RiIcons.RiMenu3Fill />}
+                      variant="outline"
+                    />
+
                     <MenuList>
                       <MenuItem
                         onClick={() => {
@@ -418,7 +416,7 @@ export default function Editor() {
                     max={250}
                     onChange={v => {
                       setSliderValue(v);
-                      localStorage.setItem('imageSize', v);
+                      localStorage.setItem('imageSize', sliderValue);
                       setImageSize(v);
                     }}
                     _hover={{
@@ -612,7 +610,7 @@ export default function Editor() {
           <FormControl id="yourBank">
             <FormLabel>Your Bank</FormLabel>
             <Input
-              type="text"
+              type="number"
               size={'lg'}
               htmlSize={30}
               placeholder="Your Bank"
@@ -1220,17 +1218,18 @@ export default function Editor() {
             </Text>
           </ModalHeader>
           <ModalCloseButton />
-          <ModalBody p={'2'}>
+          <ModalBody px={'4'}>
             <Flex flexWrap={'wrap'} justifyContent="space-around">
               <Box
                 p={{
                   base: '2',
                   md: '3',
                 }}
+                m={'2'}
                 alignSelf={'center'}
                 width={{
                   base: '100%',
-                  md: '50%',
+                  md: '45%',
                 }}
               >
                 <HStack
@@ -1278,17 +1277,11 @@ export default function Editor() {
                     onClick={() => setSealColor('green.400')}
                   />
                 </HStack>
+
                 <FormControl>
-                  <Input
-                    placeholder={'Enter Company Name'}
-                    value={invoice.yourCompany}
-                    onChange={e =>
-                      setInvoice({ ...invoice, yourCompany: e.target.value })
-                    }
-                    mb={'5'}
-                  />
-                </FormControl>
-                <FormControl>
+                  <FormLabel htmlFor="signature">
+                    Registration Number{' '}
+                  </FormLabel>
                   <Input
                     placeholder={'Enter Business Reg. Number'}
                     value={invoice.yourRegistrationNumber}
@@ -1316,12 +1309,13 @@ export default function Editor() {
                       _focus={{
                         outline: 'none',
                       }}
+                      borderRadius={'lg'}
                       bg={useColorModeValue('purple.400', 'purple.400')}
                       color={'white'}
                       _hover={{
-                        bg: useColorModeValue('purple.400', 'purple.400'),
+                        bg: useColorModeValue('purple.500', 'purple.500'),
                       }}
-                      variant="outline"
+                      variant="ghost"
                       rightIcon={<RiIcons.RiUpload2Line />}
                       onClick={() =>
                         document.getElementById('signatureUpload').click()
@@ -1333,11 +1327,13 @@ export default function Editor() {
                     {signature && (
                       <IconButton
                         variant="solid"
-                        color={'red.400'}
-                        bg={'white'}
+                        bg={'red.400'}
+                        color={'white'}
                         _hover={{
-                          bg: 'whiteAlpha.800',
+                          bg: 'red.500',
+                          color: 'white',
                         }}
+                        rounded={'lg'}
                         onClick={() => {
                           localStorage.removeItem('signature');
                           setSignature(null);
@@ -1347,30 +1343,14 @@ export default function Editor() {
                       </IconButton>
                     )}
                   </Flex>
-                  <Text fontSize="xs">Upload image in png or jpg format.</Text>
-                </Box>
-                <FormControl>
-                  <Input
-                    placeholder={'Enter Your Name'}
-                    value={invoice.yourName}
-                    onChange={e =>
-                      setInvoice({ ...invoice, yourName: e.target.value })
-                    }
-                    mb={'5'}
-                  />
-                </FormControl>
-                <Box>
-                  <FormControl>
-                    <Input
-                      type={'date'}
-                      placeholder={'Enter Date'}
-                      value={invoice.invoiceDate}
-                      onChange={e =>
-                        setInvoice({ ...invoice, invoiceDate: e.target.value })
-                      }
-                      mb={'5'}
-                    />
-                  </FormControl>
+                  <Text
+                    fontSize="xs"
+                    my={'2'}
+                    fontWeight={'600'}
+                    color={'gray.400'}
+                  >
+                    Upload image in png or jpg format.
+                  </Text>
                 </Box>
               </Box>
               <Spacer />
@@ -1383,15 +1363,17 @@ export default function Editor() {
                 rounded={'3xl'}
                 border={2}
                 borderColor={useColorModeValue('gray.700', 'gray.100')}
+                bg={'white'}
+                color={'gray.700'}
                 borderStyle={'solid'}
                 alignSelf={'center'}
               >
                 <Text
-                  fontSize={'2xl'}
-                  fontWeight="bold"
+                  fontSize={'lg'}
+                  fontWeight="600"
                   mb={{
                     base: '2',
-                    md: '4',
+                    md: '6',
                   }}
                 >
                   Preview Signature
@@ -1442,19 +1424,10 @@ export default function Editor() {
 
           <ModalFooter gap={'2'} p={'2'}>
             <Button
-              _focus={{
-                outline: 'none',
-              }}
+              variant={'outline'}
               fontWeight={600}
-              color={'white'}
-              bg={'purple.400'}
               borderRadius={'lg'}
-              href={'#'}
-              _hover={{
-                bg: 'purple.700',
-              }}
               onClick={addInvoice}
-              rightIcon={<RiIcons.RiSaveLine />}
             >
               Save
             </Button>

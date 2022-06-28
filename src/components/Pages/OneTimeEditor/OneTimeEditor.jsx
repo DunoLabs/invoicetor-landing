@@ -163,6 +163,8 @@ export default function OneTimeEditor() {
                   borderWidth={'4px'}
                   borderColor="gray.200"
                   borderRadius={'3xl'}
+                  bg={'white'}
+                  color={'gray.800'}
                 >
                   <Preview />
                 </Box>
