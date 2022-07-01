@@ -171,6 +171,7 @@ export default function Footer() {
                   borderRadius={'lg'}
                   colorScheme="purple"
                   variant="outline"
+                  ml={2}
                   size="sm"
                   as={'a'}
                   target="_blank"
