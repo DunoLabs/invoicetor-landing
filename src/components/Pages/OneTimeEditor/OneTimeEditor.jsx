@@ -33,7 +33,7 @@ export default function OneTimeEditor() {
             spacing={{ base: 3, md: 5 }}
             pt={{ base: 20, md: 36 }}
             pb={{
-              base: 20,
+              base: 10,
               md: 30,
             }}
           >
@@ -58,14 +58,23 @@ export default function OneTimeEditor() {
                 One-Time Editor
               </Text>
             </Heading>
-            <Text fontSize={'1.5rem'} align="start">
+            <Text
+              fontSize={{ base: '18px', sm: '18px', lg: '24px' }}
+              align="start"
+            >
               This is a one time free editor for invoicetor. You can use it to
               create invoices and send them to your customers, for more features
               like this you have to sign up.
             </Text>{' '}
           </Stack>
         </Container>
-        <Container maxW={'5xl'} mt={5}>
+        <Container
+          maxW={'5xl'}
+          mt={{
+            base: 2,
+            md: 5,
+          }}
+        >
           <Tabs isFitted variant="soft-rounded">
             <TabList mb="1em">
               <Tab
@@ -137,7 +146,7 @@ export default function OneTimeEditor() {
               </Tab>
             </TabList>
             <TabPanels>
-              <TabPanel>
+              <TabPanel padding={0}>
                 <Box
                   as={'div'}
                   p={{
@@ -152,7 +161,7 @@ export default function OneTimeEditor() {
                   <Editor />
                 </Box>
               </TabPanel>
-              <TabPanel>
+              <TabPanel padding={0}>
                 <Box
                   as={'div'}
                   p={{
@@ -169,7 +178,7 @@ export default function OneTimeEditor() {
                   <Preview />
                 </Box>
               </TabPanel>{' '}
-              <TabPanel>
+              <TabPanel padding={0}>
                 <Box
                   as={'div'}
                   p={{

@@ -31,25 +31,24 @@ export default function OpenSource() {
             }}
           >
             <Text
-              as={'span'}
               bgGradient="linear(to-l,purple.400, yellow.400)"
               bgClip="text"
-              fontSize={{
-                base: '2.5rem',
-                md: '3.5rem',
-              }}
+              fontSize={{ base: '3xl', sm: '4xl', lg: '4xl' }}
             >
               Open Source & Collaboration
             </Text>
           </Heading>
-          <Text fontSize={'1.5rem'} align="start">
+          <Text
+            fontSize={{ base: '18px', sm: '18px', lg: '24px' }}
+            align="start"
+          >
             We are open to collaboration and we are always looking for new ideas
             to improve our product, we share our code on Github, and if you have
             any suggestions, please feel free to reach out to us. we love open
             source and we know the value of collaboration.
           </Text>{' '}
           <Text
-            fontSize={'1.5rem'}
+            fontSize={{ base: '18px', sm: '18px', lg: '24px' }}
             align="start"
             mb={{
               base: 0,
@@ -67,6 +66,7 @@ export default function OpenSource() {
               sm: 'column',
               md: 'row',
             }}
+            gap={3}
             spacing={4}
           >
             {' '}
@@ -76,7 +76,6 @@ export default function OpenSource() {
               color={'white'}
               _hover={{ bg: 'purple.500' }}
               variant="solid"
-              size="lg"
               href="
               https://github.com/DunoLabs/invoicetor-landing"
               as="a"
@@ -89,7 +88,6 @@ export default function OpenSource() {
               borderRadius={'lg'}
               colorScheme="purple"
               variant="outline"
-              size="lg"
               href="
               https://github.com/DunoLabs/invoicetor-landing"
               as="a"

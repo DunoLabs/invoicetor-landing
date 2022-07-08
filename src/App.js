@@ -13,21 +13,25 @@ import Features from './components/Pages/Features';
 import { Sponsor } from './components/Pages/Sponsor';
 import Releases from './components/Pages/Release/Release';
 import Help from './components/Pages/Help';
+import JoinWaitlist from './components/Pages/JoinWaitlist';
+import GoTop from './components/Atoms/goTop/goTop';
 
 function App() {
   return (
     <ChakraProvider>
       <SideButton />
+      <GoTop />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="opensource" element={<OpenSource />} />
-        <Route path="onetimeeditor" element={<OneTimeEditor />} />
+        <Route path="one-time-editor" element={<OneTimeEditor />} />
         <Route path="about" element={<About />} />
         <Route path="features" element={<Features />} />
         <Route path="sponsor" element={<Sponsor />} />
         <Route path="releases" element={<Releases />} />
         <Route path="help-center" element={<Help />} />
+        <Route path="join-waitlist" element={<JoinWaitlist />} />
       </Routes>
 
       <Footer />

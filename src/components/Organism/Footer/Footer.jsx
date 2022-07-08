@@ -104,6 +104,7 @@ export default function Footer() {
               >
                 Help Center
               </Link>
+
               {/* <Link
                 href={'#'}
                 _focus={{
@@ -150,6 +151,7 @@ export default function Footer() {
                   sm: 'column',
                   md: 'row',
                 }}
+                gap={2}
                 spacing={2}
               >
                 {' '}

@@ -47,8 +47,9 @@ export default function Home() {
           <Center>
             <Text
               maxW={'lg'}
-              fontSize={{ base: '16px', sm: '18px', lg: '20px' }}
-              color={'gray.400'}
+              color={'gray.500'}
+              fontSize={{ base: '18px', sm: '18px', lg: '20px' }}
+              fontWeight={'normal'}
             >
               Invoicetor is a no-code platform where business owners can create
               invoices for their business in no time.
@@ -64,39 +65,40 @@ export default function Home() {
             <Flex>
               <Link
                 as={NavLink}
-                to="/onetimeeditor"
+                to="/join-waitlist"
+                style={{
+                  textDecoration: 'none',
+                }}
+              >
+                <Button
+                  color={useColorModeValue('gray.50', 'gray.700')}
+                  rounded={'full'}
+                  px={6}
+                  mx={2}
+                  bg={useColorModeValue('gray.800', 'gray.50')}
+                  _hover={{
+                    bg: useColorModeValue('gray.700', 'gray.100'),
+                  }}
+                >
+                  Join Waitlist
+                </Button>{' '}
+              </Link>
+              <Link
+                as={NavLink}
+                to="/one-time-editor"
                 style={{
                   textDecoration: 'none',
                 }}
               >
                 <Button
                   color={'white'}
+                  // bg={'purple.400'}
                   rounded={'full'}
                   px={6}
                   mx={2}
                   bgGradient="linear(to-l,purple.400, yellow.400)"
                   _hover={{
-                    bg: 'linear(to-l,purple.400, yellow.400)',
-                  }}
-                >
-                  Try One-Time Editor
-                </Button>{' '}
-              </Link>
-              <Link
-                as={NavLink}
-                to="/onetimeeditor"
-                style={{
-                  textDecoration: 'none',
-                }}
-              >
-                <Button
-                  color={'white'}
-                  bg={'purple.400'}
-                  rounded={'full'}
-                  px={6}
-                  mx={2}
-                  _hover={{
-                    bg: 'purple.500',
+                    bgGradient: 'linear(to-l,purple.400, yellow.400)',
                   }}
                 >
                   Create Invoice

@@ -42,21 +42,21 @@ function Sponsor() {
               as={'span'}
               bgGradient="linear(to-l,purple.400, yellow.400)"
               bgClip="text"
-              fontSize={{
-                base: '2.5rem',
-                md: '3.5rem',
-              }}
+              fontSize={{ base: '3xl', sm: '4xl', lg: '4xl' }}
             >
               Sponsor Us !
             </Text>
           </Heading>
-          <Text fontSize={'1.5rem'} align="start">
+          <Text
+            fontSize={{ base: '18px', sm: '18px', lg: '24px' }}
+            align="start"
+          >
             Invoicetor helps business holder to build their invoices in no time
             with a simple and easy to use platform, it's also free and we wish
             to keep it free, forever.
           </Text>{' '}
           <Text
-            fontSize={'1.5rem'}
+            fontSize={{ base: '18px', sm: '18px', lg: '24px' }}
             align="start"
             mb={{
               base: 0,
@@ -78,21 +78,29 @@ function Sponsor() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-               dunolabs@gmail.com{' '}
+                dunolabs@gmail.com{' '}
               </Link>
             </Text>
           </Text>
-          <Link
-            href="https://www.buymeacoffee.com/wh0sumit"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img
-              src="https://cdn.buymeacoffee.com/buttons/v2/default-violet.png"
-              alt="Buy Me A Coffee"
-              style={{ height: '60px', width: '217px', borderRadius: '15px' }}
-            />
-          </Link>
+          <HStack>
+            <Button
+              as={'a'}
+              target="_blank"
+              href="https://www.buymeacoffee.com/wh0sumit"
+              rounded={'lg'}
+              size={'lg'}
+              bg={'purple.400'}
+              color={'white'}
+              _hover={{
+                bg: 'purple.500',
+              }}
+              _focus={{
+                outline: 'none',
+              }}
+            >
+              Buy us a coffee ☕
+            </Button>
+          </HStack>
         </Stack>
       </Container>
     </>
@@ -143,7 +151,7 @@ function SponsorCard() {
         >
           <Text
             maxW={'4xl'}
-            fontSize={{ base: '16px', sm: '18px', lg: '20px' }}
+            fontSize={{ base: '18px', sm: '18px', lg: '24px' }}
             mb={{
               base: 3,
               md: 18,
@@ -156,7 +164,7 @@ function SponsorCard() {
           </Text>
           <Text
             maxW={'4xl'}
-            fontSize={{ base: '16px', sm: '18px', lg: '20px' }}
+            fontSize={{ base: '18px', sm: '18px', lg: '24px' }}
             mb={{
               base: 5,
               md: 18,
@@ -174,7 +182,7 @@ function SponsorCard() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-               dunolabs@gmail.com{' '}
+                dunolabs@gmail.com{' '}
               </Link>
             </Text>
           </Text>

@@ -27,16 +27,13 @@ export default function About() {
               as={'span'}
               bgGradient="linear(to-l,purple.400, yellow.400)"
               bgClip="text"
-              fontSize={{
-                base: '2.5rem',
-                md: '3.5rem',
-              }}
+              fontSize={{ base: '3xl', sm: '4xl', lg: '4xl' }}
             >
               About Us
             </Text>
           </Heading>
           <Text
-            fontSize={'1.5rem'}
+            fontSize={{ base: '18px', sm: '18px', lg: '24px' }}
             align={'start'}
             mb={{
               base: 0,
@@ -63,7 +60,10 @@ export default function About() {
             create products that helps everyone to build a better and more
             efficient way to build their business.
           </Text>
-          <Text fontSize={'1.5rem'} align={'start'}>
+          <Text
+            fontSize={{ base: '18px', sm: '18px', lg: '24px' }}
+            align={'start'}
+          >
             While software companies are working hard to achieve product-led
             growth, our pragmatic vision is to ensure that software products
             have great product adoption. We believe that the best software
@@ -73,21 +73,24 @@ export default function About() {
           <Heading
             align="start"
             fontWeight={700}
-            fontSize="3xl"
+            fontSize={{ base: '3xl', sm: '4xl', lg: '4xl' }}
             style={{
               marginTop: '3rem',
             }}
           >
             Why are we building Invoicetor ?
           </Heading>
-          <Text fontSize={'1.5rem'} align="start">
+          <Text
+            fontSize={{ base: '18px', sm: '18px', lg: '24px' }}
+            align="start"
+          >
             Invoicetor is a platform that helps businesses to digitize their
             finances in an easy manner and create invoices in a simple way. Aim
             of this website is to avail a service that helps them to simplify
             their finances.
           </Text>{' '}
           <Text
-            fontSize={'1.5rem'}
+            fontSize={{ base: '18px', sm: '18px', lg: '24px' }}
             align="start"
             mb={{
               base: 0,
@@ -108,7 +111,10 @@ export default function About() {
           >
             Planning to get in touch with us?
           </Heading>
-          <Text fontSize={'1.5rem'} align="start">
+          <Text
+            fontSize={{ base: '18px', sm: '18px', lg: '24px' }}
+            align="start"
+          >
             You can email us at{' '}
             <Text
               as={'span'}

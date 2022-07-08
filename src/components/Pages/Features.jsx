@@ -79,7 +79,7 @@ export default function OpenSource() {
             <Text
               align="start"
               color={'gray.400'}
-              fontSize={{ base: '16px', sm: '18px', lg: '20px' }}
+              fontSize={{ base: '18px', sm: '18px', lg: '24px' }}
               fontWeight={'normal'}
             >
               All the features of Invoicetor are available in the free version

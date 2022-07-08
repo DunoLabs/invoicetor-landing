@@ -57,7 +57,7 @@ const NAV_ITEMS = [
     label: 'About Us',
   },
   {
-    to: '/onetimeeditor',
+    to: '/one-time-editor',
     label: 'One-Time Editor',
   },
 ];
@@ -98,6 +98,13 @@ export default function WithSubnavigation() {
         borderStyle={'solid'}
         borderColor={useColorModeValue('gray.200', 'gray.900')}
         align={'center'}
+        css={{
+          backdropFilter: 'saturate(180%) blur(5px)',
+          backgroundColor: useColorModeValue(
+            'rgba(255, 255, 255, 0.8)',
+            'rgba(26, 32, 44, 0.8)'
+          ),
+        }}
       >
         <Flex
           flex={{ base: 1, md: 'auto' }}
@@ -106,6 +113,9 @@ export default function WithSubnavigation() {
         >
           <IconButton
             onClick={onToggle}
+            _focus={{
+              outline: 'none',
+            }}
             icon={
               isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
             }
@@ -210,7 +220,7 @@ export default function WithSubnavigation() {
                 </Button>
               </PopoverTrigger>
               <PopoverContent
-                bg={useColorModeValue('white', 'gray.900')}
+                bg={useColorModeValue('white', 'gray.700')}
                 borderColor={useColorModeValue('gray.200', 'gray.700')}
                 boxShadow={'lg'}
                 borderRadius={'lg'}
@@ -267,7 +277,7 @@ export default function WithSubnavigation() {
           </Flex>
           <ColorModeSwitcher
             justifySelf="flex-end"
-            display={{ base: 'none', md: 'inline-flex' }}
+            // display={{ base: 'none', md: 'inline-flex' }}
             _focus={{
               outline: 'none',
             }}
@@ -383,18 +393,19 @@ const DesktopSubNav = ({ label, href, subLabel }) => {
 const MobileNav = () => {
   return (
     <Stack
-      bg={useColorModeValue('white', 'gray.800')}
+      bg={useColorModeValue('gray.800', 'gray.50')}
+      m={2}
       p={4}
+      borderRadius={'lg'}
       display={{ md: 'none' }}
     >
-      {NAV_ITEMS.map(navItem => (
+      {MOBILE_NAV_ITEMS.map(navItem => (
         <MobileNavItem key={navItem.label} {...navItem} />
       ))}
     </Stack>
   );
 };
 
-//Mobile Navbar Item
 const MobileNavItem = ({ label, children, to }) => {
   const { isOpen, onToggle } = useDisclosure();
 
@@ -403,18 +414,17 @@ const MobileNavItem = ({ label, children, to }) => {
       <Flex
         py={2}
         as={Link}
-        href={to ?? '#'}
+        to={to ?? '#'}
         justify={'space-between'}
         align={'center'}
         _hover={{
           textDecoration: 'none',
         }}
-        height={'100%'}
+        _focus={{
+          outline: 'none',
+        }}
       >
-        <Text
-          fontWeight={600}
-          color={useColorModeValue('gray.600', 'gray.200')}
-        >
+        <Text fontWeight={600} color={useColorModeValue('gray.50', 'gray.800')}>
           <NavLink to={to}>{label}</NavLink>
         </Text>
         {children && (
@@ -436,10 +446,20 @@ const MobileNavItem = ({ label, children, to }) => {
           borderStyle={'solid'}
           borderColor={useColorModeValue('gray.200', 'gray.700')}
           align={'start'}
+          _focus={{
+            outline: 'none',
+          }}
         >
           {children &&
             children.map(child => (
-              <Link key={child.label} py={2} href={child.href}>
+              <Link
+                key={child.label}
+                py={2}
+                href={child.to}
+                _focus={{
+                  outline: 'none',
+                }}
+              >
                 {child.label}
               </Link>
             ))}
@@ -448,3 +468,18 @@ const MobileNavItem = ({ label, children, to }) => {
     </Stack>
   );
 };
+
+const MOBILE_NAV_ITEMS = [
+  {
+    to: '/opensource',
+    label: 'Open Source',
+  },
+  {
+    to: '/about',
+    label: 'About Us',
+  },
+  {
+    to: '/one-time-editor',
+    label: 'One-Time Editor',
+  },
+];
