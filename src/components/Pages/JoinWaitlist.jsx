@@ -1,31 +1,18 @@
 import {
   Box,
-  Button,
   Flex,
-  Input,
   Heading,
   Container,
   Text,
   Stack,
   Image,
-  useColorModeValue,
 } from '@chakra-ui/react';
 import Helmet from 'react-helmet';
 import JoinWaitlistImg from '../../assets/illustrations/join-waitlist.png';
-import { useState } from 'react';
+
+import WaitlistForm from '../Molecules/WaitlistForm';
 
 export default function JoinWaitlist() {
-  const [email, setEmail] = useState('');
-
-  const sendData = async () => {
-    // cehck if the email is valid and if it is not, show an error
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      console.log('Please enter a valid email address');
-      return;
-    } else {
-    }
-  };
-
   return (
     <>
       <Helmet>
@@ -138,38 +125,7 @@ export default function JoinWaitlist() {
               <br /> Get early access to the beta version and limited edition
               templates for your business.
             </Text>
-            <Stack
-              spacing={4}
-              direction={{ base: 'column', md: 'row' }}
-              w={'full'}
-            >
-              <Input
-                type={'text'}
-                placeholder={'johndoe@gamil.com'}
-                bg={useColorModeValue('gray.100', 'gray.700') || 'gray.200'}
-                color={useColorModeValue('gray.800', 'gray.300') || 'gray.800'}
-                rounded={'full'}
-                border={0}
-                _focus={{
-                  outline: 'none',
-                }}
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-              />
-
-              <Button
-                rounded={'full'}
-                flex={'3 0 auto'}
-                bg={useColorModeValue('gray.800', 'gray.50')}
-                _hover={{
-                  bg: useColorModeValue('gray.700', 'gray.100'),
-                }}
-                color={useColorModeValue('gray.50', 'gray.700')}
-                onClick={sendData}
-              >
-                Get Early Access
-              </Button>
-            </Stack>
+            <WaitlistForm />
           </Stack>
         </Stack>
         {/* <Connect /> */}
