@@ -86,7 +86,7 @@ function Sponsor() {
             <Button
               as={'a'}
               target="_blank"
-              href="https://www.buymeacoffee.com/wh0sumit"
+              href="https://github.com/sponsors/wh0sumit"
               rounded={'lg'}
               size={'lg'}
               bg={'purple.400'}
@@ -203,7 +203,7 @@ function SponsorCard() {
             <Button
               as={'a'}
               target="_blank"
-              href="https://www.buymeacoffee.com/wh0sumit"
+              href="https://github.com/sponsors/wh0sumit"
               rounded={'lg'}
               size={'lg'}
               bg={'purple.400'}

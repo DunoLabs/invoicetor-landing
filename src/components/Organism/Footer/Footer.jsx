@@ -182,6 +182,10 @@ export default function Footer() {
                   Star us on GitHub
                 </Button>
               </Stack>
+              <Text fontSize={'sm'} m={3}>
+                build with 💜 by{' '}
+                <Link href="github.com/dunolabs">dunolabs</Link>
+              </Text>
             </Stack>
           </SimpleGrid>
         </Container>

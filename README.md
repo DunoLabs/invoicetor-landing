@@ -1,4 +1,3 @@
-
 <h1 align="center"> Invoicetor 💜</h1>
 <div align="center">
 
@@ -8,7 +7,7 @@ Invoicetor is a no-code platform where business owners can create invoices for t
 
 ## 📣 Announcements
 
-```Invoicetor is currenlty under development, so please be patient while we are working on it, soon you will be able to create invoices for your business.```
+`Invoicetor is currenlty under development, so please be patient while we are working on it, soon you will be able to create invoices for your business.`
 
 ## Reasons why you should try Invoicetor
 
@@ -24,20 +23,20 @@ Invoicetor is a no-code platform where business owners can create invoices for t
 
 🚀 Dark Mode Support.
 
-🚀 Invoicetor is open-source and free to use. 
+🚀 Invoicetor is open-source and free to use.
 
 ```
 
 ## 🤝🏻 Support this project
-Invoicetor helps every business holder to build their invoices in no     time with a simple and easy to use platform, it's also free and we wish to keep it free, forever.
+
+Invoicetor helps every business holder to build their invoices in no time with a simple and easy to use platform, it's also free and we wish to keep it free, forever.
 
 So, It'll be not possible without your support, we need your help to
 make Invoicetor a success. If you are a business owner or
 individual, and Invoicetor makes your life easier and if you are
 interested in sponsoring us, please contact us at sumikumar1608@gmail.com .
 
-or you can buy us a coffee at https://www.buymeacoffee.com/wh0sumit ☕
-
+or you can buy us a coffee at https://github.com/sponsors/wh0sumit ☕
 
 ## 🙋🏻‍♂️ Contributing to Invoicetor
 
@@ -46,9 +45,10 @@ It's wonderful to see developers, designers, and product enthusiasts about contr
 There are a few ways you can contribute to Invoicetor, which you can find in our [Contribution Guide](CONTRIBUTING.md).
 
 ## 📔 Documentation
+
 You can find the documentation, wiki, and guides at [docs.invoicetor.vercel.app](https://docs.invoicetor.vercel.app)
 
-To contribute to the documentation see [invoicetor/docs](https://github.com/Dunolabs/invoicetor/docs) repo. 
+To contribute to the documentation see [invoicetor/docs](https://github.com/Dunolabs/invoicetor/docs) repo.
 
 ## 💬 Contact Us
 

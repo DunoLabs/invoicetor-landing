@@ -247,7 +247,7 @@ export default function WithSubnavigation() {
                   pb={4}
                 >
                   <Link
-                    href="https://www.buymeacoffee.com/wh0sumit"
+                    href="https://github.com/sponsors/wh0sumit"
                     target={'_blank'}
                     rel="noopener noreferrer"
                   >
@@ -263,7 +263,7 @@ export default function WithSubnavigation() {
                       }}
                       as={'a'}
                       target="_blank"
-                      href="https://www.buymeacoffee.com/wh0sumit"
+                      href="https://github.com/sponsors/wh0sumit"
                       _focus={{
                         outline: 'none',
                       }}
