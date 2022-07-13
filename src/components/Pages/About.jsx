@@ -33,7 +33,7 @@ export default function About() {
             </Text>
           </Heading>
           <Text
-            fontSize={{ base: '18px', sm: '18px', lg: '24px' }}
+               fontSize={'1.3rem'}
             align={'start'}
             mb={{
               base: 0,
@@ -61,7 +61,7 @@ export default function About() {
             efficient way to build their business.
           </Text>
           <Text
-            fontSize={{ base: '18px', sm: '18px', lg: '24px' }}
+               fontSize={'1.3rem'}
             align={'start'}
           >
             While software companies are working hard to achieve product-led
@@ -81,7 +81,7 @@ export default function About() {
             Why are we building Invoicetor ?
           </Heading>
           <Text
-            fontSize={{ base: '18px', sm: '18px', lg: '24px' }}
+               fontSize={'1.3rem'}
             align="start"
           >
             Invoicetor is a platform that helps businesses to digitize their
@@ -90,7 +90,7 @@ export default function About() {
             their finances.
           </Text>{' '}
           <Text
-            fontSize={{ base: '18px', sm: '18px', lg: '24px' }}
+               fontSize={'1.3rem'}
             align="start"
             mb={{
               base: 0,
@@ -112,7 +112,7 @@ export default function About() {
             Planning to get in touch with us?
           </Heading>
           <Text
-            fontSize={{ base: '18px', sm: '18px', lg: '24px' }}
+               fontSize={'1.3rem'}
             align="start"
           >
             You can email us at{' '}

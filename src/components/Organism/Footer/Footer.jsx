@@ -7,6 +7,7 @@ import {
   Stack,
   Text,
   useColorModeValue,
+  Circle,
 } from '@chakra-ui/react';
 import { NavLink } from 'react-router-dom';
 
@@ -19,12 +20,37 @@ const ListHeader = ({ children }) => {
   );
 };
 
+const SocialButton = ({ children, href }) => {
+  return (
+    <Circle
+      bg={useColorModeValue('gray.800', 'gray.200')}
+      color={useColorModeValue('gray.100', 'gray.700')}
+      w={8}
+      h={8}
+      cursor={'pointer'}
+      as={'a'}
+      href={href}
+      transition={'background 0.3s ease'}
+      _hover={{
+        bg: useColorModeValue('gray.700', 'gray.100'),
+      }}
+      target={'_blank'}
+    >
+      {children}
+    </Circle>
+  );
+};
+
 export default function Footer() {
   return (
     <>
       <Box
         bg={useColorModeValue('purple.50', 'gray.900')}
         color={useColorModeValue('gray.700', 'gray.200')}
+        mt={{
+          base: 4,
+          md: 10,
+        }}
       >
         <Container as={Stack} maxW={'6xl'} py={10}>
           <SimpleGrid
@@ -84,7 +110,16 @@ export default function Footer() {
                   outline: 'none',
                 }}
               >
-                Sponsor
+                Donate
+              </Link>{' '}
+              <Link
+                as={NavLink}
+                to={'thanks'}
+                _focus={{
+                  outline: 'none',
+                }}
+              >
+                Supporters
               </Link>
             </Stack>
 
@@ -156,7 +191,7 @@ export default function Footer() {
               >
                 {' '}
                 <Button
-                  borderRadius={'lg'}
+                  rounded={'xl'}
                   bg={'purple.400'}
                   color={'white'}
                   _hover={{ bg: 'purple.500' }}
@@ -170,7 +205,7 @@ export default function Footer() {
                   Contribute
                 </Button>{' '}
                 <Button
-                  borderRadius={'lg'}
+                  rounded={'xl'}
                   colorScheme="purple"
                   variant="outline"
                   size="sm"
@@ -182,13 +217,44 @@ export default function Footer() {
                   Star us on GitHub
                 </Button>
               </Stack>
-              <Text fontSize={'sm'} m={3}>
-                build with 💜 by{' '}
-                <Link href="github.com/dunolabs">dunolabs</Link>
-              </Text>
             </Stack>
           </SimpleGrid>
         </Container>
+        <Box
+          borderTopWidth={1}
+          borderStyle={'solid'}
+          borderColor={useColorModeValue('gray.200', 'gray.700')}
+        >
+          <Container
+            as={Stack}
+            maxW={'6xl'}
+            py={4}
+            direction={{ base: 'column', md: 'row' }}
+            spacing={4}
+            justify={{ md: 'space-between' }}
+            align={{ md: 'center' }}
+          >
+            <Text>
+              © 2022{' '}
+              <Link
+                target={'_blank'}
+                href="https://github.com/dunolabs"
+                fontWeight={'bold'}
+                _focus={{
+                  outline: 'none',
+                }}
+              >
+                @Dunolabs{' '}
+              </Link>
+              | open-source software.
+            </Text>
+            <Stack direction={'row'} spacing={6}>
+              <SocialButton href={'https://github.com/dunolabs'}>
+                <FaIcons.FaGithub />
+              </SocialButton>
+            </Stack>
+          </Container>
+        </Box>
       </Box>
     </>
   );

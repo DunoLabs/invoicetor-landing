@@ -72,14 +72,18 @@ export default function OpenSource() {
               as={'span'}
               bgGradient="linear(to-l,purple.400, yellow.400)"
               bgClip="text"
-              id="features"
+              fontSize={{ base: '3xl', sm: '4xl', lg: '4xl' }}
             >
               Features
             </Text>
+
             <Text
               align="start"
               color={'gray.400'}
-              fontSize={{ base: '18px', sm: '18px', lg: '24px' }}
+              fontSize={{
+                base: '1.2rem',
+                lg: '1.3rem',
+              }}
               fontWeight={'normal'}
             >
               All the features of Invoicetor are available in the free version
@@ -90,7 +94,7 @@ export default function OpenSource() {
             <>
               <Text
                 id="one-time-editor"
-                fontSize={'1.9rem'}
+                fontSize={'1.5rem'}
                 fontWeight={600}
                 align="start"
               >
@@ -105,7 +109,7 @@ export default function OpenSource() {
                 {feature.title}
               </Text>{' '}
               <Text
-                fontSize={'1.5rem'}
+                fontSize={'1.3rem'}
                 align="start"
                 mb={{
                   base: 0,

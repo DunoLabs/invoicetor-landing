@@ -44,19 +44,16 @@ function Sponsor() {
               bgClip="text"
               fontSize={{ base: '3xl', sm: '4xl', lg: '4xl' }}
             >
-              Sponsor Us !
+              Sponsor Invoicetor
             </Text>
           </Heading>
-          <Text
-            fontSize={{ base: '18px', sm: '18px', lg: '24px' }}
-            align="start"
-          >
+          <Text fontSize={'1.3rem'} align="start">
             Invoicetor helps business holder to build their invoices in no time
             with a simple and easy to use platform, it's also free and we wish
             to keep it free, forever.
           </Text>{' '}
           <Text
-            fontSize={{ base: '18px', sm: '18px', lg: '24px' }}
+            fontSize={'1.3rem'}
             align="start"
             mb={{
               base: 0,
@@ -87,7 +84,7 @@ function Sponsor() {
               as={'a'}
               target="_blank"
               href="https://github.com/sponsors/wh0sumit"
-              rounded={'lg'}
+              rounded={'xl'}
               size={'lg'}
               bg={'purple.400'}
               color={'white'}
@@ -151,7 +148,7 @@ function SponsorCard() {
         >
           <Text
             maxW={'4xl'}
-            fontSize={{ base: '18px', sm: '18px', lg: '24px' }}
+            fontSize={'1.3rem'}
             mb={{
               base: 3,
               md: 18,
@@ -164,7 +161,7 @@ function SponsorCard() {
           </Text>
           <Text
             maxW={'4xl'}
-            fontSize={{ base: '18px', sm: '18px', lg: '24px' }}
+            fontSize={'1.3rem'}
             mb={{
               base: 5,
               md: 18,
@@ -204,7 +201,7 @@ function SponsorCard() {
               as={'a'}
               target="_blank"
               href="https://github.com/sponsors/wh0sumit"
-              rounded={'lg'}
+              rounded={'xl'}
               size={'lg'}
               bg={'purple.400'}
               color={'white'}

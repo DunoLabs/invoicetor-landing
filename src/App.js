@@ -15,6 +15,7 @@ import Releases from './components/Pages/Release/Release';
 import Help from './components/Pages/Help';
 import JoinWaitlist from './components/Pages/JoinWaitlist';
 import GoTop from './components/Atoms/goTop/goTop';
+import Thanks from './components/Pages/Supporters/thanks';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path="about" element={<About />} />
         <Route path="features" element={<Features />} />
         <Route path="sponsor" element={<Sponsor />} />
+        <Route path="thanks" element={<Thanks />} />
         <Route path="releases" element={<Releases />} />
         <Route path="help-center" element={<Help />} />
         <Route path="join-waitlist" element={<JoinWaitlist />} />

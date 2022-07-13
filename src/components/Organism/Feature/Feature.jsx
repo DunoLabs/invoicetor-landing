@@ -134,7 +134,7 @@ export default function CallToActionWithVideo() {
                   rightIcon={<ArrowForwardIcon />}
                   colorScheme="purple"
                   variant="outline"
-                  borderRadius={'lg'}
+                  rounded={'lg'}
                   size="sm"
                   as={'NavLink'}
                   to={feature.visit}

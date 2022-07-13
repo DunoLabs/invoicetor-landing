@@ -50,16 +50,16 @@ export default function OneTimeEditor() {
                 as={'span'}
                 bgGradient="linear(to-l,purple.400, yellow.400)"
                 bgClip="text"
-                fontSize={{
-                  base: '2.5rem',
-                  md: '3.5rem',
-                }}
+                fontSize={{ base: '3xl', sm: '4xl', lg: '4xl' }}
               >
-                One-Time Editor
+                One Time Editor
               </Text>
             </Heading>
             <Text
-              fontSize={{ base: '18px', sm: '18px', lg: '24px' }}
+              fontSize={{
+                base: '1.2rem',
+                lg: '1.3rem',
+              }}
               align="start"
             >
               This is a one time free editor for invoicetor. You can use it to

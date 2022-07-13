@@ -38,17 +38,14 @@ export default function OpenSource() {
               Open Source & Collaboration
             </Text>
           </Heading>
-          <Text
-            fontSize={{ base: '18px', sm: '18px', lg: '24px' }}
-            align="start"
-          >
+          <Text fontSize={'1.3rem'} align="start">
             We are open to collaboration and we are always looking for new ideas
             to improve our product, we share our code on Github, and if you have
             any suggestions, please feel free to reach out to us. we love open
             source and we know the value of collaboration.
           </Text>{' '}
           <Text
-            fontSize={{ base: '18px', sm: '18px', lg: '24px' }}
+            fontSize={'1.3rem'}
             align="start"
             mb={{
               base: 0,
@@ -71,7 +68,7 @@ export default function OpenSource() {
           >
             {' '}
             <Button
-              borderRadius={'lg'}
+              rounded={'xl'}
               bg={'purple.400'}
               color={'white'}
               _hover={{ bg: 'purple.500' }}
@@ -85,7 +82,7 @@ export default function OpenSource() {
               Contribute
             </Button>{' '}
             <Button
-              borderRadius={'lg'}
+              rounded={'xl'}
               colorScheme="purple"
               variant="outline"
               href="
