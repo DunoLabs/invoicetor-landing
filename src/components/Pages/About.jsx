@@ -33,7 +33,7 @@ export default function About() {
             </Text>
           </Heading>
           <Text
-               fontSize={'1.3rem'}
+            fontSize={'1.3rem'}
             align={'start'}
             mb={{
               base: 0,
@@ -60,10 +60,7 @@ export default function About() {
             create products that helps everyone to build a better and more
             efficient way to build their business.
           </Text>
-          <Text
-               fontSize={'1.3rem'}
-            align={'start'}
-          >
+          <Text fontSize={'1.3rem'} align={'start'}>
             While software companies are working hard to achieve product-led
             growth, our pragmatic vision is to ensure that software products
             have great product adoption. We believe that the best software
@@ -80,17 +77,14 @@ export default function About() {
           >
             Why are we building Invoicetor ?
           </Heading>
-          <Text
-               fontSize={'1.3rem'}
-            align="start"
-          >
+          <Text fontSize={'1.3rem'} align="start">
             Invoicetor is a platform that helps businesses to digitize their
             finances in an easy manner and create invoices in a simple way. Aim
             of this website is to avail a service that helps them to simplify
             their finances.
           </Text>{' '}
           <Text
-               fontSize={'1.3rem'}
+            fontSize={'1.3rem'}
             align="start"
             mb={{
               base: 0,
@@ -111,10 +105,7 @@ export default function About() {
           >
             Planning to get in touch with us?
           </Heading>
-          <Text
-               fontSize={'1.3rem'}
-            align="start"
-          >
+          <Text fontSize={'1.3rem'} align="start">
             You can email us at{' '}
             <Text
               as={'span'}
@@ -128,6 +119,7 @@ export default function About() {
                 _focus={{
                   outline: 'none',
                 }}
+                fontWeight={'medium'}
               >
                 dunolabs@gmail.com
               </Link>

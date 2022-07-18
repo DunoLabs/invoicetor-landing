@@ -1,10 +1,22 @@
 import React, { useState } from 'react';
-import { Stack, Input, Button, useColorModeValue } from '@chakra-ui/react';
+import {
+  Stack,
+  Input,
+  Button,
+  useColorModeValue,
+  useDisclosure,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalBody,
+  ModalCloseButton,
+} from '@chakra-ui/react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useEffect } from 'react';
 export default function CustomForm({ status, message, onValidated }) {
   const [email, setEmail] = useState('');
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   // aleart message
   const alertMessage = message => {
@@ -35,7 +47,10 @@ export default function CustomForm({ status, message, onValidated }) {
   };
 
   useEffect(() => {
-    alertMessage(message);
+    if (status === 'success') {
+      onOpen();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status, message]);
 
   return (
@@ -73,6 +88,40 @@ export default function CustomForm({ status, message, onValidated }) {
           Join Waitlist
         </Button>
       </Stack>
+
+      <Modal isOpen={isOpen} onClose={onClose} isCentered>
+        <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px) " />
+        <ModalContent
+          m={2}
+          p={{
+            base: 2,
+            md: 4,
+          }}
+          rounded={'xl'}
+          border={2}
+          borderColor={useColorModeValue('gray.700', 'gray.100')}
+          bg={useColorModeValue('gray.100', 'gray.900')}
+          borderStyle={'solid'}
+        >
+          <ModalCloseButton
+            _focus={{
+              outline: 'none',
+            }}
+          />
+          <ModalBody p={5} m={5}>
+            {status === 'success' ? (
+              <>
+                <p>{message}</p>
+              </>
+            ) : (
+              <>
+                <p>We are sorry but we could not add you to the waitlist.</p>
+                <p>Please try again later.</p>
+              </>
+            )}
+          </ModalBody>
+        </ModalContent>
+      </Modal>
 
       <ToastContainer
         position="bottom-right"

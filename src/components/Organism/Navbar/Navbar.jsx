@@ -207,10 +207,11 @@ export default function WithSubnavigation() {
             <Popover>
               <PopoverTrigger>
                 <Button
-                  bg={useColorModeValue('gray.100', 'white') || 'gray.200'}
-                  color={useColorModeValue('gray.800', 'gray.800')}
+                  borderRadius={'xl'}
+                  bg={useColorModeValue('gray.900', 'white') || 'gray.200'}
+                  color={useColorModeValue('gray.100', 'gray.800')}
                   _hover={{
-                    bg: 'gray.100',
+                    bg: useColorModeValue('gray.800', 'gray.100'),
                   }}
                   _focus={{
                     outline: 'none',
@@ -481,5 +482,13 @@ const MOBILE_NAV_ITEMS = [
   {
     to: '/one-time-editor',
     label: 'One-Time Editor',
+  },
+  {
+    to: '/features',
+    label: 'Features',
+  },
+  {
+    to: '/sponsor',
+    label: 'Sponsor',
   },
 ];
