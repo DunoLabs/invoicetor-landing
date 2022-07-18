@@ -7,7 +7,6 @@ import {
   Stack,
   Text,
   useColorModeValue,
-  Circle,
 } from '@chakra-ui/react';
 import { NavLink } from 'react-router-dom';
 
@@ -17,27 +16,6 @@ const ListHeader = ({ children }) => {
     <Text fontWeight={'500'} fontSize={'lg'} mb={2}>
       {children}
     </Text>
-  );
-};
-
-const SocialButton = ({ children, href }) => {
-  return (
-    <Circle
-      bg={useColorModeValue('gray.800', 'gray.200')}
-      color={useColorModeValue('gray.100', 'gray.700')}
-      w={8}
-      h={8}
-      cursor={'pointer'}
-      as={'a'}
-      href={href}
-      transition={'background 0.3s ease'}
-      _hover={{
-        bg: useColorModeValue('gray.700', 'gray.100'),
-      }}
-      target={'_blank'}
-    >
-      {children}
-    </Circle>
   );
 };
 
@@ -60,18 +38,24 @@ export default function Footer() {
             <Stack
               spacing={2}
               align={{
-                sm: 'center',
+                base: 'center',
                 md: 'start',
               }}
             >
-              <Text fontSize={'4xl'}>Invoicetor</Text>
-              <Text fontSize={'sm'}>
-                Build invoices for your business in no time.
+              <Text
+                fontSize={'4xl'}
+                fontWeight={'medium'}
+                className="navbar-brand"
+              >
+                Invoicetor
+              </Text>
+              <Text fontSize={'sm'} fontWeight="medium">
+                Build invoices for your business in no time 📜
               </Text>
             </Stack>
             <Stack
               align={{
-                sm: 'center',
+                base: 'center',
                 md: 'start',
               }}
             >
@@ -125,7 +109,7 @@ export default function Footer() {
 
             <Stack
               align={{
-                sm: 'center',
+                base: 'center',
                 md: 'start',
               }}
             >
@@ -176,7 +160,7 @@ export default function Footer() {
 
             <Stack
               align={{
-                sm: 'center',
+                base: 'center',
                 md: 'start',
               }}
             >
@@ -220,20 +204,13 @@ export default function Footer() {
             </Stack>
           </SimpleGrid>
         </Container>
+
         <Box
           borderTopWidth={1}
           borderStyle={'solid'}
           borderColor={useColorModeValue('gray.200', 'gray.700')}
         >
-          <Container
-            as={Stack}
-            maxW={'6xl'}
-            py={4}
-            direction={{ base: 'column', md: 'row' }}
-            spacing={4}
-            justify={{ md: 'space-between' }}
-            align={{ md: 'center' }}
-          >
+          <Stack align={'center'} p="5">
             <Text>
               © 2022{' '}
               <Link
@@ -248,12 +225,7 @@ export default function Footer() {
               </Link>
               | open-source software.
             </Text>
-            <Stack direction={'row'} spacing={6}>
-              <SocialButton href={'https://github.com/dunolabs'}>
-                <FaIcons.FaGithub />
-              </SocialButton>
-            </Stack>
-          </Container>
+          </Stack>
         </Box>
       </Box>
     </>
