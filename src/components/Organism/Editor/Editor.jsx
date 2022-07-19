@@ -1217,7 +1217,11 @@ export default function Editor() {
               Add your signature to the invoice.
             </Text>
           </ModalHeader>
-          <ModalCloseButton />
+          <ModalCloseButton
+            _focus={{
+              outline: 'none',
+            }}
+          />
           <ModalBody px={'4'}>
             <Flex flexWrap={'wrap'} justifyContent="space-around">
               <Box
@@ -1428,6 +1432,11 @@ export default function Editor() {
               fontWeight={600}
               borderRadius={'lg'}
               onClick={addInvoice}
+              bg={useColorModeValue('gray.900', 'white') || 'gray.200'}
+              color={useColorModeValue('gray.100', 'gray.800')}
+              _hover={{
+                bg: useColorModeValue('gray.800', 'gray.100'),
+              }}
             >
               Save
             </Button>

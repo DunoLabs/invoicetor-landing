@@ -74,6 +74,7 @@ function Sponsor() {
                    dunolabs@gmail.com"
                 target="_blank"
                 rel="noopener noreferrer"
+                fontWeight={'medium'}
               >
                 dunolabs@gmail.com{' '}
               </Link>
@@ -178,6 +179,7 @@ function SponsorCard() {
                    dunolabs@gmail.com"
                 target="_blank"
                 rel="noopener noreferrer"
+                fontWeight={'medium'}
               >
                 dunolabs@gmail.com{' '}
               </Link>

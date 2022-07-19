@@ -128,6 +128,7 @@ export default function About() {
                 _focus={{
                   outline: 'none',
                 }}
+                fontWeight={'medium'}
               >
                 dunolabs@gmail.com
               </Link>
