@@ -5,26 +5,32 @@ export default function InvoiceProvider({ children }) {
   const invoiceData = JSON.parse(localStorage.getItem('invoice'))
     ? JSON.parse(localStorage.getItem('invoice'))
     : {
-        yourCompany: '',
-        yourName: '',
-        yourAddress: '',
-        yourCity: '',
-        yourWebsite: '',
-        yourEmail: '',
-        yourPhone: '',
-        yourBank: '',
-        yourAccountNumber: '',
-        yourBankBranch: '',
-        yourRegistrationNumber: '',
-
-        clientName: '',
-        clientAddress: '',
-        clientCity: '',
-        clientWebsite: '',
-        clientEmail: '',
-        clientPhone: '',
-        clientCompany: '',
-
+        yourLogo: {
+          image: '',
+          imageSize: '150',
+        },
+        yourDetails: {
+          yourCompany: '',
+          yourAddress: '',
+          yourName: '',
+          yourEmail: '',
+          yourPhone: '',
+          yourWebsite: '',
+          yourBank: '',
+          yourBankAccount: '',
+          yourBankBranch: '',
+          yourRegistrationNumber: '',
+        },
+        clientDetails: {
+          clientName: '',
+          clientAddress: '',
+          clientCity: '',
+          clientWebsite: '',
+          clientEmail: '',
+          clientPhone: '',
+          clientCompany: '',
+        },
+        items: [],
         invoiceNumber: '',
         invoiceDate: '',
         dueDate: '',
@@ -37,36 +43,46 @@ export default function InvoiceProvider({ children }) {
           term: '',
           termToggle: true,
         },
-        sealColor: '',
+        digitalSignature: {
+          sealColor: 'red.400',
+          signature: '',
+          signatureSize: '100',
+          signatureToggle: true,
+        },
       };
-  const [items, setItems] = useState(
-    JSON.parse(localStorage.getItem('items')) || []
-  );
 
   const [invoice, setInvoice] = useState({
-    yourName: invoiceData.yourName,
-    yourEmail: invoiceData.yourEmail,
-    yourPhone: invoiceData.yourPhone,
-    yourCompany: invoiceData.yourCompany,
-    yourAddress: invoiceData.yourAddress,
-    yourCity: invoiceData.yourCity,
-    yourWebsite: invoiceData.yourWebsite,
-    yourAccountNumber: invoiceData.yourAccountNumber,
-    yourBank: invoiceData.yourBank,
-    yourBankBranch: invoiceData.yourBankBranch,
-    yourRegistrationNumber: invoiceData.yourRegistrationNumber,
+    yourLogo: {
+      image: invoiceData.yourLogo.image,
+      imageSize: invoiceData.yourLogo.imageSize,
+    },
+    yourDetails: {
+      yourName: invoiceData.yourDetails.yourName,
+      yourEmail: invoiceData.yourDetails.yourEmail,
+      yourPhone: invoiceData.yourDetails.yourPhone,
+      yourCompany: invoiceData.yourDetails.yourCompany,
+      yourAddress: invoiceData.yourDetails.yourAddress,
+      yourCity: invoiceData.yourDetails.yourCity,
+      yourWebsite: invoiceData.yourDetails.yourWebsite,
+      yourAccountNumber: invoiceData.yourDetails.yourAccountNumber,
+      yourBank: invoiceData.yourDetails.yourBank,
+      yourBankBranch: invoiceData.yourDetails.yourBankBranch,
+      yourRegistrationNumber: invoiceData.yourDetails.yourRegistrationNumber,
+    },
 
-    clientName: invoiceData.clientName,
-    clientEmail: invoiceData.clientEmail,
-    clientPhone: invoiceData.clientPhone,
-    clientCompany: invoiceData.clientCompany,
-    clientAddress: invoiceData.clientAddress,
-    clientCity: invoiceData.clientCity,
-    clientWebsite: invoiceData.clientWebsite,
-
+    clientDetails: {
+      clientName: invoiceData.clientDetails.clientName,
+      clientEmail: invoiceData.clientDetails.clientEmail,
+      clientPhone: invoiceData.clientDetails.clientPhone,
+      clientCompany: invoiceData.clientDetails.clientCompany,
+      clientAddress: invoiceData.clientDetails.clientAddress,
+      clientCity: invoiceData.clientDetails.clientCity,
+      clientWebsite: invoiceData.clientDetails.clientWebsite,
+    },
     invoiceNumber: invoiceData.invoiceNumber,
     invoiceDate: invoiceData.invoiceDate,
     dueDate: invoiceData.dueDate,
+    items: [...invoiceData.items],
 
     notes: {
       note: invoiceData.notes.note,
@@ -77,46 +93,19 @@ export default function InvoiceProvider({ children }) {
       termToggle: invoiceData.terms.termToggle,
     },
     tax: invoiceData.tax,
-    sealColor: invoiceData.sealColor,
+    digitalSignature: {
+      sealColor: invoiceData.digitalSignature.sealColor,
+      signature: invoiceData.digitalSignature.signature,
+      signatureSize: invoiceData.digitalSignature.signatureSize,
+      signatureToggle: invoiceData.digitalSignature.signatureToggle,
+    },
   });
-  const [invoiceItems, setInvoiceItems] = useState({
-    items: [
-      {
-        itemName: items.itemName,
-        itemQuantity: items.itemQuantity,
-        itemUnitPrice: items.itemUnitPrice,
-        itemTotal: items.itemTotal,
-      },
-    ],
-  });
-
-  // logo image
-  const [image, setImage] = useState(localStorage.getItem('image'));
-  const [imageSize, setImageSize] = useState(
-    localStorage.getItem('imageSize') || '150'
-  );
-
-  // signature image
-  const [signature, setSignature] = useState(localStorage.getItem('signature'));
-  const [signatureSize, setSignatureSize] = useState('100');
 
   return (
     <InvoiceContext.Provider
       value={{
         invoice,
         setInvoice,
-        items,
-        setItems,
-        invoiceItems,
-        setInvoiceItems,
-        image,
-        setImage,
-        imageSize,
-        setImageSize,
-        signature,
-        setSignature,
-        signatureSize,
-        setSignatureSize,
       }}
     >
       {children}

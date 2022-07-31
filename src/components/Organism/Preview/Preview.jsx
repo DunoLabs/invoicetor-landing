@@ -20,10 +20,9 @@ import { useContext } from 'react';
 import { InvoiceContext } from '../../../core/InvoiceContext';
 
 export default function Preview() {
-  const { invoice, items, image, imageSize, signature, signatureSize } =
-    useContext(InvoiceContext);
+  const { invoice } = useContext(InvoiceContext);
 
-  const subTotal = items.reduce((acc, item) => acc + item.itemTotal, 0);
+  const subTotal = invoice.items.reduce((acc, item) => acc + item.itemTotal, 0);
 
   const tax = (subTotal * invoice.tax) / 100;
   const total = subTotal + tax;
@@ -36,17 +35,17 @@ export default function Preview() {
         <Stack spacing={10}>
           <Flex>
             <Box>
-              {image && (
+              {invoice.yourLogo.image && (
                 <Image
-                  src={image}
+                  src={invoice.yourLogo.image}
                   alt="company logo"
                   className="company-logo"
                   style={{
                     borderRadius: '10px',
                     marginBottom: '10px',
                   }}
-                  w={imageSize}
-                  h={imageSize}
+                  w={invoice.yourLogo.imageSize}
+                  h={invoice.yourLogo.imageSize}
                 />
               )}
             </Box>
@@ -56,12 +55,12 @@ export default function Preview() {
                 Invoice
               </Text>
               <Text fontSize="2xl" align="end">
-                {invoice.yourCompany}
+                {invoice.yourDetails.yourCompany}
               </Text>
-              <Text align="end">{invoice.yourName}</Text>
-              <Text align="end">{invoice.yourAddress}</Text>
-              <Text align="end">{invoice.yourCity}</Text>
-              <Text align="end">{invoice.yourWebsite}</Text>
+              <Text align="end">{invoice.yourDetails.yourName}</Text>
+              <Text align="end">{invoice.yourDetails.yourAddress}</Text>
+              <Text align="end">{invoice.yourDetails.yourCity}</Text>
+              <Text align="end">{invoice.yourDetails.yourWebsite}</Text>
             </Box>
           </Flex>
         </Stack>
@@ -72,10 +71,10 @@ export default function Preview() {
               <Text as="h3" fontWeight={'bold'} align="start">
                 Bill To :{' '}
               </Text>
-              <Text fontSize="2xl">{invoice.clientName}</Text>
-              <Text>{invoice.clientAddress}</Text>
-              <Text>{invoice.clientCity}</Text>
-              <Text>{invoice.clientWebsite}</Text>
+              <Text fontSize="2xl">{invoice.clientDetails.clientName}</Text>
+              <Text>{invoice.clientDetails.clientAddress}</Text>
+              <Text>{invoice.clientDetails.clientCity}</Text>
+              <Text>{invoice.clientDetails.clientWebsite}</Text>
             </Box>
 
             <Spacer />
@@ -115,12 +114,17 @@ export default function Preview() {
               </Tr>
             </Thead>
             <Tbody>
-              {items.map((item, index) => (
+              {invoice.items.map((item, index) => (
                 <Tr key={index}>
                   <Td>{item.itemName}</Td>
                   <Td>{item.itemQuantity}</Td>
-                  <Td>₹ {item.itemPrice}</Td>
-                  <Td isNumeric> ₹ {item.itemTotal}</Td>
+                  <Td>
+                    {item.itemCurrency} {item.itemPrice}
+                  </Td>
+                  <Td isNumeric>
+                    {' '}
+                    {item.itemCurrency} {item.itemTotal}
+                  </Td>
                 </Tr>
               ))}
             </Tbody>
@@ -142,9 +146,15 @@ export default function Preview() {
                 </Text>
               </GridItem>
               <GridItem colStart={4} colEnd={6} h="10">
-                <Text align="end">{subTotal ? `₹ ${subTotal}` : '-'}</Text>
+                <Text align="end">
+                  {subTotal
+                    ? invoice.items[0].itemCurrency + `${subTotal}`
+                    : '-'}
+                </Text>
                 <Text align="end">{tax ? tax + '%' : 0}</Text>
-                <Text align="end">{total ? `₹ ${total}` : '-'}</Text>
+                <Text align="end">
+                  {total ? invoice.items[0].itemCurrency + `${total}` : '-'}
+                </Text>
               </GridItem>
             </Grid>
           </Box>
@@ -170,48 +180,50 @@ export default function Preview() {
           </Box>
         )}
       </Stack>
-      <Stack
-        mt={{
-          base: '20px',
-          md: '20px',
-        }}
-        spacing={3}
-      >
-        <Flex justifyContent={'flex-end'}>
-          {invoice.yourCompany && (
-            <Box
-              className="stamp is-nope"
-              borderWidth="0.5rem"
-              borderStyle="double"
-              borderRadius="10px"
-              color={invoice.sealColor}
-              borderColor={invoice.sealColor}
-            >
-              {invoice.yourCompany} <br /> RN:
-              {invoice.yourRegistrationNumber}
-            </Box>
-          )}
-        </Flex>
-        {signature && (
+      {invoice.digitalSignature.signatureToggle && (
+        <Stack
+          mt={{
+            base: '20px',
+            md: '20px',
+          }}
+          spacing={3}
+        >
           <Flex justifyContent={'flex-end'}>
-            <Image
-              className="signature"
-              src={signature}
-              alt="signature"
-              width={signatureSize}
-              height={signatureSize}
-            />
+            {invoice.yourDetails.yourCompany && (
+              <Box
+                className="stamp is-nope"
+                borderWidth="0.5rem"
+                borderStyle="double"
+                borderRadius="10px"
+                color={invoice.digitalSignature.sealColor}
+                borderColor={invoice.digitalSignature.sealColor}
+              >
+                {invoice.yourDetails.yourCompany} <br /> RN:
+                {invoice.yourDetails.yourRegistrationNumber}
+              </Box>
+            )}
           </Flex>
-        )}
-        <Box>
-          <Text align="end" fontWeight={'500'}>
-            {invoice.yourName}
-          </Text>
-          <Text align="end" fontWeight={'500'}>
-            {invoice.invoiceDate}
-          </Text>
-        </Box>
-      </Stack>
+          {invoice.digitalSignature.signature && (
+            <Flex justifyContent={'flex-end'}>
+              <Image
+                className="signature"
+                src={invoice.digitalSignature.signature}
+                alt="signature"
+                width={invoice.digitalSignature.signatureSize}
+                height={invoice.digitalSignature.signatureSize}
+              />
+            </Flex>
+          )}
+          <Box>
+            <Text align="end" fontWeight={'500'}>
+              {invoice.yourDetails.yourName}
+            </Text>
+            <Text align="end" fontWeight={'500'}>
+              {invoice.invoiceDate}
+            </Text>
+          </Box>
+        </Stack>
+      )}
     </>
   );
 }
