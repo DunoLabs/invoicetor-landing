@@ -16,6 +16,7 @@ import Help from './components/Pages/Help';
 import JoinWaitlist from './components/Pages/JoinWaitlist';
 import GoTop from './components/Atoms/goTop/goTop';
 import Thanks from './components/Pages/Supporters/thanks';
+import { useEffect } from 'react';
 
 function App() {
   return (

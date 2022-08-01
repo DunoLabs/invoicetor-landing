@@ -109,13 +109,14 @@ export default function EditorForm() {
     initialValues: { invoice },
     onSubmit: values => {
       setInvoice(values.invoice);
-      localStorage.setItem('invoice', JSON.stringify(values.invoice));
+      localStorage.setItem('invoicetor', JSON.stringify(values.invoice));
       alertMessage('✅ Invoice saved successfully');
     },
   });
 
   useEffect(() => {
-    localStorage.setItem('invoice', JSON.stringify(invoice));
+    localStorage.removeItem('invoice');
+    localStorage.setItem('invoicetor', JSON.stringify(invoice));
   }, [invoice]);
 
   // current Itemstate
@@ -285,7 +286,7 @@ export default function EditorForm() {
         signatureToggle: formik.values.invoice.digitalSignature.signatureToggle,
       },
     });
-    localStorage.setItem('invoice', JSON.stringify(invoice));
+    localStorage.setItem('invoicetor', JSON.stringify(invoice));
 
     alertMessage('😎Digital Signature Saved');
   };
