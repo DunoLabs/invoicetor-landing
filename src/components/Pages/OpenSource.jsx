@@ -68,11 +68,14 @@ export default function OpenSource() {
           >
             {' '}
             <Button
-              rounded={'xl'}
+              rounded={'lg'}
               bg={'purple.400'}
               color={'white'}
               _hover={{ bg: 'purple.500' }}
               variant="solid"
+              _focus={{
+                outline: 'none',
+              }}
               href="
               https://github.com/DunoLabs/invoicetor-landing"
               as="a"
@@ -82,9 +85,12 @@ export default function OpenSource() {
               Contribute
             </Button>{' '}
             <Button
-              rounded={'xl'}
+              rounded={'lg'}
               colorScheme="purple"
               variant="outline"
+              _focus={{
+                outline: 'none',
+              }}
               href="
               https://github.com/DunoLabs/invoicetor-landing"
               as="a"

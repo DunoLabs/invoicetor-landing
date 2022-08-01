@@ -51,8 +51,8 @@ export default function Thanks() {
 
         <Stack flex={1} spacing={{ base: 5, md: 8 }}>
           <Text fontSize={'1.3rem'} align="start">
-            I’m truly grateful to all the wonderful humans and companies
-            supporting my open source work on {''}
+            We are truly grateful to all the wonderful humans and companies for
+            supporting our open source work on {''}
             <Link
               href="https://github.com/sponsors/wh0sumit"
               target={'_blank'}
@@ -62,6 +62,7 @@ export default function Thanks() {
               _focus={{
                 outline: 'none',
               }}
+              fontWeight={500}
             >
               Github Sponsors.
             </Link>{' '}

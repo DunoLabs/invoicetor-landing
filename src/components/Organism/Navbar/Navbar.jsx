@@ -207,7 +207,7 @@ export default function WithSubnavigation() {
             <Popover>
               <PopoverTrigger>
                 <Button
-                  borderRadius={'xl'}
+                  borderRadius={'lg'}
                   bg={useColorModeValue('gray.900', 'white') || 'gray.200'}
                   color={useColorModeValue('gray.100', 'gray.800')}
                   _hover={{

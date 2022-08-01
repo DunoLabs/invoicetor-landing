@@ -108,10 +108,9 @@ export default function EditorForm() {
   const formik = useFormik({
     initialValues: { invoice },
     onSubmit: values => {
-      console.log(values);
       setInvoice(values.invoice);
       localStorage.setItem('invoice', JSON.stringify(values.invoice));
-      alertMessage('Invoice saved successfully');
+      alertMessage('✅ Invoice saved successfully');
     },
   });
 
@@ -154,16 +153,16 @@ export default function EditorForm() {
       currentItem.itemQuantity === '' ||
       currentItem.itemPrice === ''
     ) {
-      alertMessage('Please fill all the fields');
+      alertMessage('❌ Please fill all the fields');
       return;
     } else if (currentItem.itemName === '') {
-      alertMessage('Please fill Item Name');
+      alertMessage('❌ Please fill Item Name');
       return;
     } else if (currentItem.itemQuantity === '') {
-      alertMessage('Please fill Item Quantity');
+      alertMessage('❌ Please fill Item Quantity');
       return;
     } else if (currentItem.itemPrice === '') {
-      alertMessage('Please fill Item Price');
+      alertMessage('❌ Please fill Item Price');
       return;
     }
 
@@ -191,6 +190,8 @@ export default function EditorForm() {
       itemCurrency: '₹',
       itemTotal: '',
     });
+
+    alertMessage('✅ Item added successfully');
   };
 
   /* Edit Invoice Item Starts */
@@ -223,7 +224,8 @@ export default function EditorForm() {
       ...invoice,
       items: newItems,
     });
-
+    formik.setFieldValue('invoice.items', newItems);
+    alertMessage('✅ Item updated successfully');
     onClose();
   };
 
@@ -239,6 +241,7 @@ export default function EditorForm() {
       items: item,
     });
     formik.setFieldValue('invoice.items', item);
+    alertMessage('✅ Item deleted successfully');
   };
 
   /* Delete invoice items from local storage ends */
@@ -259,6 +262,7 @@ export default function EditorForm() {
         });
         formik.setFieldValue('invoice.digitalSignature.signature', base64);
       });
+      e.target.value = '';
     } else {
       e.target.value = '';
       alertMessage('❌ Please upload png or jpg file');
@@ -311,6 +315,10 @@ export default function EditorForm() {
   const clearAllData = () => {
     localStorage.clear();
     setInvoice({
+      yourLogo: {
+        image: '',
+        imageSize: '',
+      },
       yourDetails: {
         yourCompany: '',
         yourName: '',
@@ -356,7 +364,6 @@ export default function EditorForm() {
     alertMessage('🗑️ All data cleared');
   };
 
-  console.log(invoice);
   // Styles for the editor
   const backgroundColor =
     useColorModeValue('gray.100', 'gray.700') || 'gray.200';
@@ -642,9 +649,13 @@ export default function EditorForm() {
             <FormControl id="yourAccount">
               <FormLabel>Your Account Number</FormLabel>
               <Input
-                type="text"
+                type="number"
+                min={0}
                 size={'lg'}
                 htmlSize={30}
+                onKeyDown={e =>
+                  ['e', 'E', '+', '-'].includes(e.key) && e.preventDefault()
+                }
                 placeholder="Your Account Number"
                 bg={useColorModeValue('gray.100', 'gray.700') || 'gray.200'}
                 color={useColorModeValue('gray.800', 'gray.300') || 'gray.800'}
@@ -812,7 +823,11 @@ export default function EditorForm() {
             <FormControl id="invoiceNumber">
               <FormLabel>Invoice Number</FormLabel>
               <Input
-                type="text"
+                type="number"
+                min={0}
+                onKeyDown={e =>
+                  ['e', 'E', '+', '-'].includes(e.key) && e.preventDefault()
+                }
                 size={'lg'}
                 htmlSize={30}
                 placeholder="Invoice Number"
@@ -884,6 +899,10 @@ export default function EditorForm() {
               <FormLabel>Item Quantity</FormLabel>
               <Input
                 type="number"
+                min={0}
+                onKeyDown={e =>
+                  ['e', 'E', '+', '-'].includes(e.key) && e.preventDefault()
+                }
                 size={'lg'}
                 width="100%"
                 placeholder="Item Quantity"
@@ -906,6 +925,10 @@ export default function EditorForm() {
               <InputGroup size={'lg'}>
                 <Input
                   type="number"
+                  min={0}
+                  onKeyDown={e =>
+                    ['e', 'E', '+', '-'].includes(e.key) && e.preventDefault()
+                  }
                   width="100%"
                   placeholder="Item Price"
                   bg={useColorModeValue('gray.100', 'gray.700') || 'gray.200'}
@@ -979,6 +1002,7 @@ export default function EditorForm() {
                   {Search && searchTerm.length > 0
                     ? Search.slice(0, 5).map((item, index) => (
                         <MenuItem
+                          my={'1'}
                           key={item.name}
                           command={item.symbol}
                           bg={item.symbol === currency && 'green.100'}
@@ -989,7 +1013,6 @@ export default function EditorForm() {
                               ...currentItem,
                               itemCurrency: item.symbol,
                             });
-
                             formik.setFieldValue(
                               'invoice.items.itemCurrency',
                               item.symbol
@@ -1030,7 +1053,6 @@ export default function EditorForm() {
                           _focus={{
                             outline: 'none',
                             boxShadow: 'none',
-                            bg: 'green.100',
                           }}
                         >
                           {item.name}
@@ -1063,7 +1085,7 @@ export default function EditorForm() {
         </Stack>
         {/* Invoice Items End */}
         {/* Invoice Items List Starts */}
-        <TableContainer mt="20" spacing={8}>
+        <TableContainer mt="20" spacing={8} scrollBehavior="smooth">
           <Table variant="striped">
             <Thead>
               <Tr>
@@ -1155,6 +1177,10 @@ export default function EditorForm() {
                   <FormLabel>Edit Item Quantity</FormLabel>
                   <Input
                     type="number"
+                    min={0}
+                    onKeyDown={e =>
+                      ['e', 'E', '+', '-'].includes(e.key) && e.preventDefault()
+                    }
                     size={'lg'}
                     htmlSize={30}
                     placeholder="Edit Item Quantity"
@@ -1174,6 +1200,10 @@ export default function EditorForm() {
                   <FormLabel>Edit Item Price</FormLabel>
                   <Input
                     type="number"
+                    min={0}
+                    onKeyDown={e =>
+                      ['e', 'E', '+', '-'].includes(e.key) && e.preventDefault()
+                    }
                     size={'lg'}
                     htmlSize={30}
                     placeholder="Edit Item Price"
@@ -1226,6 +1256,11 @@ export default function EditorForm() {
                       <InputGroup>
                         <Input
                           type="number"
+                          min={0}
+                          onKeyDown={e =>
+                            ['e', 'E', '+', '-'].includes(e.key) &&
+                            e.preventDefault()
+                          }
                           width="100%"
                           name="tax"
                           placeholder="Tax %"
@@ -1493,6 +1528,11 @@ export default function EditorForm() {
                         formik.values.invoice.yourDetails.yourRegistrationNumber
                       }
                       type="number"
+                      min={0}
+                      onKeyDown={e =>
+                        ['e', 'E', '+', '-'].includes(e.key) &&
+                        e.preventDefault()
+                      }
                       onChange={e =>
                         formik.setFieldValue(
                           'invoice.yourDetails.yourRegistrationNumber',
@@ -1605,9 +1645,9 @@ export default function EditorForm() {
                       icon={
                         formik.values.invoice.digitalSignature
                           .signatureToggle ? (
-                          <BiIcons.BiHide />
-                        ) : (
                           <BiIcons.BiShow />
+                        ) : (
+                          <BiIcons.BiHide />
                         )
                       }
                       onClick={() => {
@@ -1644,7 +1684,7 @@ export default function EditorForm() {
                           }
                         </Box>
                       )}
-                      {invoice.digitalSignature.signature && (
+                      {formik.values.invoice.digitalSignature.signature && (
                         <Flex justifyContent={'flex-end'}>
                           <Image
                             src={

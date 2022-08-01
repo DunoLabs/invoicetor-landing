@@ -6,7 +6,6 @@
 
 */
 
-
 #imagePreview {
   width: 180px;
   height: 180px;
@@ -37,7 +36,7 @@ input[type='file'] {
   border-radius: 1rem;
   font-family: 'Courier';
   mask-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/8399/grunge.png');
-  mix-blend-mode: multiply;
+  mask-size: cover;
 }
 
 @media screen and (max-width: 480px) {

@@ -19,7 +19,7 @@ import { InvoiceContext } from '../../../core/InvoiceContext';
 export default function Download() {
   const { invoice } = useContext(InvoiceContext);
   const componentRef = useRef();
-  const companyName = invoice.clientCompany;
+  const companyName = invoice.clientDetails?.clientCompany || 'Invoice ';
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
     documentTitle: companyName,

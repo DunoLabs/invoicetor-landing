@@ -35,9 +35,9 @@ export default function Preview() {
         <Stack spacing={10}>
           <Flex>
             <Box>
-              {invoice.yourLogo.image && (
+              {invoice.yourLogo?.image && (
                 <Image
-                  src={invoice.yourLogo.image}
+                  src={invoice.yourLogo?.image}
                   alt="company logo"
                   className="company-logo"
                   style={{

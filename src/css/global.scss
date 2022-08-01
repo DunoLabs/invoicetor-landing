@@ -9,3 +9,26 @@
     color: #9f7aea;
   }
 }
+
+/* scroll-bar styling */
+/* width */
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 4px !important;
+}
+
+/* Track */
+*::-webkit-scrollbar-track {
+  border-radius: 100px;
+}
+
+/* Handle */
+*::-webkit-scrollbar-thumb {
+  background: #9f7aea;
+  border-radius: 100px;
+}
+
+/* Handle on hover */
+*::-webkit-scrollbar-thumb:hover {
+  background-image: #9f7aea;
+}
