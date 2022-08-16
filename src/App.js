@@ -17,7 +17,6 @@ import JoinWaitlist from './components/Pages/JoinWaitlist';
 import GoTop from './components/Atoms/goTop/goTop';
 import Thanks from './components/Pages/Supporters/thanks';
 
-
 function App() {
   return (
     <ChakraProvider>
