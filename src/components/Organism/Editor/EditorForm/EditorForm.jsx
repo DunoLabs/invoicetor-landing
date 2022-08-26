@@ -565,7 +565,10 @@ export default function EditorForm() {
             <FormControl id="yourphone">
               <FormLabel>Your Phone</FormLabel>
               <Input
-                type="text"
+                type="number"
+                onKeyDown={e =>
+                  ['e', 'E', '+', '-'].includes(e.key) && e.preventDefault()
+                }
                 size={'lg'}
                 name="invoice.yourDetails.yourPhone"
                 htmlSize={30}
@@ -700,6 +703,7 @@ export default function EditorForm() {
           </Box>
         </Stack>
         {/* User Details End */}
+
         {/* Client Details Starts  */}
         <Stack direction={{ base: 'column', md: 'row' }} spacing={8} mt="20">
           <Box>
