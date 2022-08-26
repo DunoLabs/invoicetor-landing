@@ -175,7 +175,6 @@ export default function Footer() {
               >
                 {' '}
                 <Button
-                  rounded={'xl'}
                   bg={'purple.400'}
                   color={'white'}
                   _hover={{ bg: 'purple.500' }}
@@ -189,7 +188,6 @@ export default function Footer() {
                   Contribute
                 </Button>{' '}
                 <Button
-                  rounded={'xl'}
                   colorScheme="purple"
                   variant="outline"
                   size="sm"

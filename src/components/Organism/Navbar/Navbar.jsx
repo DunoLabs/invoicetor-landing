@@ -1,8 +1,25 @@
 import { NavLink } from 'react-router-dom';
+import { useRef, useState } from 'react';
+
+import { getFeaturedUpdates } from './featured-updates';
 
 import {
   Box,
+  Drawer,
+  DrawerBody,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
   Flex,
+  // Modal,
+  // ModalOverlay,
+  // ModalContent,
+  // ModalHeader,
+  // ModalFooter,
+  // ModalBody,
+  // ModalCloseButton,
   Text,
   IconButton,
   Button,
@@ -12,7 +29,6 @@ import {
   Icon,
   useColorModeValue,
   useBreakpointValue,
-  useDisclosure,
   Center,
   Popover,
   PopoverTrigger,
@@ -22,13 +38,17 @@ import {
   PopoverFooter,
   PopoverArrow,
   PopoverCloseButton,
+  useDisclosure,
+  Divider,
 } from '@chakra-ui/react';
 import { ColorModeSwitcher } from '../../../ColorModeSwitcher';
+
 import {
   HamburgerIcon,
   CloseIcon,
   ChevronDownIcon,
   ChevronRightIcon,
+  // ArrowForwardIcon,
 } from '@chakra-ui/icons';
 
 const NAV_ITEMS = [
@@ -298,61 +318,219 @@ export default function WithSubnavigation() {
 const DesktopNav = () => {
   const linkHoverColor = useColorModeValue('gray.800', 'white');
   const ActiveLinkColor = useColorModeValue('purple.600', 'purple.100');
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const btnRef = useRef();
 
+  const featuredUpdatesContentRef = useRef(getFeaturedUpdates());
+  // const [moreFeaturedContentPopup, setMoreFeaturedContentPopup] =
+  useState(false);
   return (
-    <Stack direction={'row'} spacing={4}>
-      {NAV_ITEMS.map((navItem, index) => (
-        <Box key={navItem.label}>
-          <Popover trigger={'hover'} placement={'bottom-start'}>
-            <PopoverTrigger>
-              {navItem.children ? (
-                <Link>{navItem.label}</Link>
-              ) : (
-                <Link
-                  as={NavLink}
-                  end
-                  style={{
-                    padding: '0.5rem',
-                    fontWeight: 500,
-                  }}
-                  to={navItem.to}
-                  _activeLink={{
-                    color: ActiveLinkColor,
-                    fontWeight: 600,
-                  }}
-                  _hover={{
-                    color: linkHoverColor,
-                    textDecoration: 'none',
-                  }}
-                  _focus={{
-                    outline: 'none',
-                  }}
-                >
-                  {navItem.label}
-                </Link>
-              )}
-            </PopoverTrigger>
+    <>
+      <Stack direction={'row'} spacing={4}>
+        {NAV_ITEMS.map((navItem, index) => (
+          <Box key={navItem.label}>
+            <Popover trigger={'hover'} placement={'bottom-start'}>
+              <PopoverTrigger>
+                {navItem.children ? (
+                  <Link>{navItem.label}</Link>
+                ) : (
+                  <Link
+                    as={NavLink}
+                    end
+                    style={{
+                      padding: '0.5rem',
+                      fontWeight: 500,
+                    }}
+                    to={navItem.to}
+                    _activeLink={{
+                      color: ActiveLinkColor,
+                      fontWeight: 600,
+                    }}
+                    _hover={{
+                      color: linkHoverColor,
+                      textDecoration: 'none',
+                    }}
+                    _focus={{
+                      outline: 'none',
+                    }}
+                  >
+                    {navItem.label}
+                  </Link>
+                )}
+              </PopoverTrigger>
 
-            {navItem.children && (
-              <PopoverContent
-                border={1}
-                borderColor="dark"
-                boxShadow={'xl'}
-                p={4}
-                rounded={'xl'}
-                minW={'sm'}
+              {navItem.children && (
+                <PopoverContent
+                  border={1}
+                  borderColor="dark"
+                  boxShadow={'xl'}
+                  p={4}
+                  rounded={'xl'}
+                  minW={'sm'}
+                >
+                  <Stack>
+                    {navItem.children.map(child => (
+                      <DesktopSubNav key={child.label} {...child} />
+                    ))}
+                  </Stack>
+                </PopoverContent>
+              )}
+            </Popover>
+          </Box>
+        ))}
+        {/* <Button >
+        Open
+      </Button> */}
+        <Link
+          ref={btnRef}
+          colorScheme="teal"
+          onClick={onOpen}
+          style={{
+            fontWeight: 500,
+          }}
+          _activeLink={{
+            color: ActiveLinkColor,
+            fontWeight: 600,
+          }}
+          _hover={{
+            color: linkHoverColor,
+            textDecoration: 'none',
+          }}
+          _focus={{
+            outline: 'none',
+          }}
+        >
+          What's New 💜
+        </Link>
+        <Drawer
+          isOpen={isOpen}
+          placement="right"
+          onClose={onClose}
+          finalFocusRef={btnRef}
+          size="md"
+        >
+          <DrawerOverlay bg="blackAlpha.300" />
+          <DrawerContent
+            my={'10'}
+            mx={'2'}
+            p={'3'}
+            rounded={'xl'}
+            bg={'purple.50'}
+            color={'gray.900'}
+          >
+            <DrawerCloseButton
+              _focus={{
+                outline: 'none',
+              }}
+            />
+            <DrawerHeader>
+              What's New? Featured Updates ✨
+              <Text fontSize="xs" my="2">
+                Latest <span>version {'(0.1.9)'}</span>
+              </Text>
+              <Divider />
+            </DrawerHeader>
+
+            <DrawerBody>
+              {featuredUpdatesContentRef.current?.map(
+                (featuredContent, featuredContentIndex) => {
+                  return (
+                    <FeaturedContentWrapper
+                      key={featuredContentIndex}
+                      content={featuredContent}
+                    />
+                  );
+                }
+              )}
+              {/* <Text
+                as={Link}
+                size={'sm'}
+                _hover={{
+                  textDecoration: 'none',
+                  color: useColorModeValue('purple.400', 'purple.100'),
+                }}
+                onClick={() =>
+                  setMoreFeaturedContentPopup(!moreFeaturedContentPopup)
+                }
               >
-                <Stack>
-                  {navItem.children.map(child => (
-                    <DesktopSubNav key={child.label} {...child} />
-                  ))}
-                </Stack>
-              </PopoverContent>
+                {'More Updates'} <ArrowForwardIcon />
+              </Text> */}
+            </DrawerBody>
+
+            <DrawerFooter>
+              <Button variant="outline" mr={3} onClick={onClose}>
+                Cancel
+              </Button>
+            </DrawerFooter>
+          </DrawerContent>
+        </Drawer>
+      </Stack>
+
+      {/* What's New Modal  */}
+      {/* 
+      <Modal
+        isOpen={moreFeaturedContentPopup}
+        onClose={() => setMoreFeaturedContentPopup(!moreFeaturedContentPopup)}
+        size={'2xl'}
+        isCentered
+        scrollBehavior="inside"
+      >
+        <ModalOverlay
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+
+            filter: 'blur(80%)',
+          }}
+        />
+        <ModalContent
+          bg={useColorModeValue('white', 'gray.800')}
+          style={{
+            borderColor: 'transparent',
+            width: '560px',
+            height: 'fit-content',
+            // centering content
+            marginRight: 'auto',
+            marginLeft: 'auto',
+            marginBottom: 'auto',
+            marginTop: 'auto',
+            // removing default padding from modal
+            padding: '16px 24px',
+          }}
+          p={{
+            base: '2',
+            md: '4',
+          }}
+          rounded="xl"
+          border={2}
+          borderColor={useColorModeValue('gray.700', 'gray.100')}
+          borderStyle={'solid'}
+        >
+          <ModalHeader>
+            What's New? Featured Updates ✨
+            <Text fontSize="xs" my="2">
+              Latest <span>version {'(0.1.9)'}</span>
+            </Text>
+          </ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            {featuredUpdatesContentRef.current?.map(
+              (featuredContent, featuredContentIndex) => {
+                return (
+                  <FeaturedContentWrapper
+                    key={featuredContentIndex}
+                    content={featuredContent}
+                  />
+                );
+              }
             )}
-          </Popover>
-        </Box>
-      ))}
-    </Stack>
+          </ModalBody>
+          <ModalFooter></ModalFooter>
+        </ModalContent>
+      </Modal> */}
+      {/* End of What's New Modal */}
+    </>
   );
 };
 
@@ -492,3 +670,57 @@ const MOBILE_NAV_ITEMS = [
     label: 'Sponsor',
   },
 ];
+
+const FeaturedContentWrapper = ({ content }) => {
+  return (
+    <>
+      <Box my={'5'}>
+        <Text fontSize={'md'} fontWeight="bold">
+          {content?.title}
+        </Text>
+        <Text fontSize={'sm'}>{content?.description}</Text>
+        {content?.hasAction && content?.action?.type === 'button' ? (
+          <Link
+            href={content?.action?.url}
+            style={{
+              textDecoration: 'none',
+            }}
+            _focus={{
+              outline: 'none',
+            }}
+            target={'_blank'}
+          >
+            <Button
+              as={'NavLink'}
+              mt={3}
+              to={content?.action?.url}
+              variant="outline"
+              colorScheme={'purple'}
+              color={'purple.500'}
+              size="sm"
+              _focus={{
+                outline: 'none',
+              }}
+            >
+              {content?.action?.label}
+            </Button>
+          </Link>
+        ) : (
+          <Link
+            href={content?.action?.url}
+            _focus={{
+              outline: 'none',
+            }}
+            target={'_blank'}
+            marginTop={'5rem'}
+            fontSize={'sm'}
+            color={'purple.400'}
+          >
+            {content?.action?.label}
+          </Link>
+        )}
+      </Box>
+      <Divider my={3} />
+    </>
+  );
+};

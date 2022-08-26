@@ -13,13 +13,14 @@
 /* scroll-bar styling */
 /* width */
 *::-webkit-scrollbar {
-  width: 6px;
+  width: 4px;
   height: 4px !important;
 }
 
 /* Track */
 *::-webkit-scrollbar-track {
   border-radius: 100px;
+  background: #ebe1ff;
 }
 
 /* Handle */

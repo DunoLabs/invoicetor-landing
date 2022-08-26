@@ -17,7 +17,7 @@ export default function SideButton() {
       >
         DunoLabs{' '}
         <Text as="span" className="powered-by-text" ms={2}>
-          📝
+          🦄
         </Text>
       </Text>
     </Show>
