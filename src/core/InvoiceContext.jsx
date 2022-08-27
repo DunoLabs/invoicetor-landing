@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 export const InvoiceContext = createContext();
 
 export default function InvoiceProvider({ children }) {
@@ -100,6 +100,10 @@ export default function InvoiceProvider({ children }) {
       signatureToggle: invoiceData.digitalSignature.signatureToggle,
     },
   });
+
+  useEffect(() => {
+    localStorage.setItem('invoicetor', JSON.stringify(invoice));
+  }, [invoice]);
 
   return (
     <InvoiceContext.Provider

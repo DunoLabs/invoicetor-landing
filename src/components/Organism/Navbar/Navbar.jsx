@@ -40,6 +40,7 @@ import {
   PopoverCloseButton,
   useDisclosure,
   Divider,
+  Tooltip,
 } from '@chakra-ui/react';
 import { ColorModeSwitcher } from '../../../ColorModeSwitcher';
 
@@ -381,27 +382,37 @@ const DesktopNav = () => {
         {/* <Button >
         Open
       </Button> */}
-        <Link
-          ref={btnRef}
-          colorScheme="teal"
-          onClick={onOpen}
-          style={{
-            fontWeight: 500,
-          }}
-          _activeLink={{
-            color: ActiveLinkColor,
-            fontWeight: 600,
-          }}
-          _hover={{
-            color: linkHoverColor,
-            textDecoration: 'none',
-          }}
-          _focus={{
-            outline: 'none',
-          }}
+        <Tooltip
+          hasArrow
+          placement="right-end"
+          label={
+            getFeaturedUpdates().length > 0
+              ? getFeaturedUpdates().length + ' New Updates'
+              : 'No Updates'
+          }
         >
-          What's New 💜
-        </Link>
+          <Link
+            ref={btnRef}
+            colorScheme="teal"
+            onClick={onOpen}
+            style={{
+              fontWeight: 500,
+            }}
+            _activeLink={{
+              color: ActiveLinkColor,
+              fontWeight: 600,
+            }}
+            _hover={{
+              color: linkHoverColor,
+              textDecoration: 'none',
+            }}
+            _focus={{
+              outline: 'none',
+            }}
+          >
+            What's New 💜
+          </Link>
+        </Tooltip>
         <Drawer
           isOpen={isOpen}
           placement="right"
@@ -415,7 +426,7 @@ const DesktopNav = () => {
             mx={'2'}
             p={'3'}
             rounded={'xl'}
-            bg={'purple.50'}
+            bg={'white'}
             color={'gray.900'}
           >
             <DrawerCloseButton
@@ -458,7 +469,14 @@ const DesktopNav = () => {
             </DrawerBody>
 
             <DrawerFooter>
-              <Button variant="outline" mr={3} onClick={onClose}>
+              <Button
+                variant="outline"
+                mr={3}
+                onClick={onClose}
+                size="sm"
+                bg="gray.900"
+                _hover={{ bg: 'gray.700' }}
+              >
                 Cancel
               </Button>
             </DrawerFooter>
@@ -720,7 +738,7 @@ const FeaturedContentWrapper = ({ content }) => {
           </Link>
         )}
       </Box>
-      <Divider my={3} />
+      <Divider my={'4'} bg={'gray.300'} />
     </>
   );
 };

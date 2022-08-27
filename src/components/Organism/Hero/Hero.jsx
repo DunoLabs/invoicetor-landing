@@ -51,7 +51,7 @@ export default function Home() {
               fontSize={{ base: '18px', sm: '18px', lg: '20px' }}
               fontWeight={'normal'}
             >
-              Invoicetor is a no-code platform where business owners can create
+              Invoicetor is a platform where business owners can create
               invoices for their business in no time.
             </Text>
           </Center>
