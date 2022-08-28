@@ -155,7 +155,7 @@ export default function OneTimeEditor() {
                   }}
                   border={'1px solid'}
                   borderWidth={'4px'}
-                  borderColor="gray.200"
+                  borderColor="purple.200"
                   borderRadius={'3xl'}
                 >
                   <Editor />
@@ -170,7 +170,7 @@ export default function OneTimeEditor() {
                   }}
                   border={'1px solid'}
                   borderWidth={'4px'}
-                  borderColor="gray.200"
+                  borderColor="purple.200"
                   borderRadius={'3xl'}
                   bg={'white'}
                   color={'gray.800'}
@@ -187,7 +187,7 @@ export default function OneTimeEditor() {
                   }}
                   border={'1px solid'}
                   borderWidth={'4px'}
-                  borderColor="gray.200"
+                  borderColor="purple.200"
                   borderRadius={'3xl'}
                 >
                   <Share />

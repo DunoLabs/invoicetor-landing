@@ -1,20 +1,6 @@
 import { useContext, useState, useEffect } from 'react';
 import { useFormik } from 'formik';
-import {
-  Box,
-  FormControl,
-  FormLabel,
-  Input,
-  Stack,
-  Flex,
-  Button,
-  useColorModeValue,
-  Grid,
-  GridItem,
-  InputGroup,
-  InputRightAddon,
-  Spacer,
-} from '@chakra-ui/react';
+import { Box, Flex, Button, Spacer } from '@chakra-ui/react';
 
 import { InvoiceContext } from '../../../../core/InvoiceContext';
 
@@ -53,7 +39,6 @@ export default function EditorForm() {
   const formik = useFormik({
     initialValues: { invoice },
     onSubmit: values => {
-      console.log(values);
       setInvoice(values.invoice);
       localStorage.setItem('invoicetor', JSON.stringify(values.invoice));
       alertMessage('✅ Invoice saved successfully');
@@ -126,15 +111,8 @@ export default function EditorForm() {
     alertMessage('🗑️ All data cleared');
   };
 
-  // Styles for the editor
-  const backgroundColor =
-    useColorModeValue('gray.100', 'gray.700') || 'gray.200';
-
-  const textColor = useColorModeValue('gray.800', 'gray.200') || 'gray.800';
-
   // getting data from UserDetails Component starts
   const getYourDetails = data => {
-    console.log(data);
     formik.setValues({
       ...formik.values,
       invoice: {
@@ -181,17 +159,19 @@ export default function EditorForm() {
 
   // getting data from InvoiceItems Component starts
   const getItems = data => {
-    console.log(data);
+    setInvoice({
+      ...invoice,
+      items: data.invoiceItems,
+      tax: data.tax,
+    });
+
     formik.setValues({
       ...formik.values,
       invoice: {
         ...formik.values.invoice,
-        items: data,
+        items: data.invoiceItems,
+        tax: data.tax,
       },
-    });
-    setInvoice({
-      ...invoice,
-      items: data,
     });
   };
   // getting data from Notes Component starts
@@ -266,11 +246,11 @@ export default function EditorForm() {
       invoice: {
         ...formik.values.invoice,
         digitalSignature: {
-          ...formik.values.invoice.digitalSignature,
-          signature: data.digitalSignature.signature,
-          signatureSize: data.digitalSignature.signatureSize,
-          signatureToggle: data.digitalSignature.signatureToggle,
-          sealColor: data.digitalSignature.sealColor,
+          ...formik.values.invoice?.digitalSignature,
+          signature: data.digitalSignature?.signature,
+          signatureSize: data.digitalSignature?.signatureSize || 200,
+          signatureToggle: data.digitalSignature?.signatureToggle,
+          sealColor: data.digitalSignature?.sealColor,
         },
         yourDetails: {
           ...formik.values.invoice.yourDetails,
@@ -328,50 +308,11 @@ export default function EditorForm() {
         {/* Invoice Number And Dates End */}
         <InvoiceItems
           invoiceItems={formik.values.invoice.items}
+          tax={formik.values.invoice.tax}
           getItems={data => getItems(data)}
           resetForm={reset}
           alertMessage={alertMessage}
         />
-        {invoice.items.length > 0 && (
-          <Stack my={10}>
-            <Flex>
-              <Spacer />
-              <Box align="end">
-                <Grid gap={4}>
-                  <GridItem colSpan={2} h="10">
-                    <FormControl id="invoiceTotal" mb={'20'}>
-                      <FormLabel>Tax %</FormLabel>
-                      <InputGroup>
-                        <Input
-                          type="number"
-                          min={0}
-                          onKeyDown={e =>
-                            ['e', 'E', '+', '-'].includes(e.key) &&
-                            e.preventDefault()
-                          }
-                          width="100%"
-                          name="tax"
-                          placeholder="Tax %"
-                          bg={backgroundColor}
-                          color={textColor}
-                          value={formik.values.invoice.tax}
-                          onChange={e => {
-                            formik.setFieldValue('invoice.tax', e.target.value);
-                          }}
-                        />
-                        <InputRightAddon
-                          bg={'purple.100'}
-                          color={'gray.700'}
-                          children={<RiIcons.RiPercentLine color="green.500" />}
-                        />
-                      </InputGroup>
-                    </FormControl>
-                  </GridItem>
-                </Grid>
-              </Box>
-            </Flex>
-          </Stack>
-        )}
 
         <InvoiceNotes
           notes={formik.values.invoice.notes}

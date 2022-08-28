@@ -12,7 +12,6 @@ import {
   Image,
 } from '@chakra-ui/react';
 import * as RiIcons from 'react-icons/ri';
-import DownloadImg from '../../../assets/illustrations/download-1.png';
 
 import { InvoiceContext } from '../../../core/InvoiceContext';
 
@@ -62,7 +61,9 @@ export default function Download() {
               height={230}
               width={282}
               objectFit={'cover'}
-              src={DownloadImg}
+              src={
+                'https://res.cloudinary.com/invoicetor/image/upload/v1661564364/download-1_wppnvr.png'
+              }
               onClick={handlePrint}
             />
           </Box>

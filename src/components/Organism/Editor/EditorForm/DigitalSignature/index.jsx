@@ -118,20 +118,21 @@ export default function DigitalSignature({
         isOpen={isOpenDigitalModal}
         onClose={onCloseDigitalModal}
         size={'3xl'}
+        isCentered
       >
-        <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px) " />
+        <ModalOverlay bg="blackAlpha.300" />
         <ModalContent
           p={{
             base: '2',
             md: '4',
           }}
-          rounded={'3xl'}
+          rounded={'xl'}
           border={2}
           borderColor={useColorModeValue('gray.700', 'gray.100')}
           borderStyle={'solid'}
         >
           <ModalHeader p={'2'}>
-            <Text fontSize={'3xl'}>Digital Signature</Text>
+            <Text fontSize={'2xl'}>Digital Signature</Text>
             <Text fontSize={'16px'} fontWeight="normal">
               Add your signature to the invoice.
             </Text>
@@ -234,13 +235,12 @@ export default function DigitalSignature({
                     placeholder={'Enter Business Reg. Number'}
                     value={formik.values.registrationNumber}
                     type="number"
+                    name="registrationNumber"
                     min={0}
                     onKeyDown={e =>
                       ['e', 'E', '+', '-'].includes(e.key) && e.preventDefault()
                     }
-                    onChange={e =>
-                      formik.setFieldValue('registrationNumber', e.target.value)
-                    }
+                    onChange={formik.handleChange}
                     mb={'5'}
                   />
                 </FormControl>
@@ -311,12 +311,10 @@ export default function DigitalSignature({
                   md: '50%',
                 }}
                 p={4}
-                rounded={'3xl'}
                 border={2}
                 borderColor={useColorModeValue('gray.700', 'gray.100')}
                 bg={'white'}
                 color={'gray.700'}
-                borderStyle={'solid'}
                 alignSelf={'center'}
               >
                 <Flex justifyContent={'space-between'}>
@@ -362,19 +360,20 @@ export default function DigitalSignature({
 
                 {formik.values.digitalSignature.signatureToggle && (
                   <Stack my={'3rem'}>
-                    {formik.values.registrationNumber && (
-                      <Box
-                        className="stamp is-nope"
-                        borderWidth="0.5rem"
-                        borderStyle="double"
-                        borderRadius="10px"
-                        color={formik.values.digitalSignature.sealColor}
-                        borderColor={formik.values.digitalSignature.sealColor}
-                      >
-                        {yourCompany} <br /> Reg. No :
-                        {formik.values.registrationNumber}
-                      </Box>
-                    )}
+                    <Box
+                      className="stamp is-nope"
+                      borderWidth="0.5rem"
+                      borderStyle="double"
+                      borderRadius="10px"
+                      color={
+                        formik.values.digitalSignature?.sealColor || 'red.400'
+                      }
+                      borderColor={formik.values.digitalSignature.sealColor}
+                    >
+                      {yourCompany} <br /> Reg. No :
+                      {formik.values.registrationNumber}
+                    </Box>
+
                     {formik.values.digitalSignature.signature && (
                       <Flex justifyContent={'flex-end'}>
                         <Image

@@ -34,6 +34,7 @@ export default function InvoiceProvider({ children }) {
         invoiceNumber: '',
         invoiceDate: '',
         dueDate: '',
+        tax: 0,
 
         notes: {
           note: '',

@@ -27,10 +27,7 @@ import {
 } from '@chakra-ui/react';
 import * as FaIcons from 'react-icons/fa';
 import * as RiIcons from 'react-icons/ri';
-
 import * as MdIcons from 'react-icons/md';
-
-import 'react-toastify/dist/ReactToastify.css';
 
 export default function InvoiceImage({
   yourLogo,
@@ -70,12 +67,17 @@ export default function InvoiceImage({
   // Upload Image in localstorage starts
   const imageUpload = e => {
     let file = e.target.files[0];
-    console.log(e);
     getBase64(file).then(base64 => {
       formik.setFieldValue('yourLogo.image', base64);
       formik.setFieldValue('yourLogo.imageSize', sliderValue);
     });
     alertMessage('😎 Comapny Logo Uploaded');
+  };
+
+  // change Image Size using slider
+  const changeImageSize = value => {
+    setSliderValue(value);
+    formik.setFieldValue('yourLogo.imageSize', value);
   };
 
   return (
@@ -170,10 +172,7 @@ export default function InvoiceImage({
                     maxW="200"
                     min={100}
                     max={250}
-                    onChange={v => {
-                      setSliderValue(v);
-                      formik.setFieldValue('yourLogo.imageSize', v);
-                    }}
+                    onChange={v => changeImageSize(v)}
                     _hover={{
                       cursor: 'grab',
                     }}

@@ -3,6 +3,11 @@ import { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import {
   Box,
+  Flex,
+  Spacer,
+  Grid,
+  GridItem,
+  InputRightAddon,
   Stack,
   FormControl,
   FormLabel,
@@ -38,11 +43,15 @@ import 'react-toastify/dist/ReactToastify.css';
 import * as FaIcons from 'react-icons/fa';
 import * as RiIcons from 'react-icons/ri';
 
-export default function InvoiceItems({ invoiceItems, getItems, resetForm }) {
-  console.log(invoiceItems);
+export default function InvoiceItems({
+  invoiceItems,
+  tax,
+  getItems,
+  resetForm,
+}) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const formik = useFormik({
-    initialValues: { invoiceItems },
+    initialValues: { invoiceItems, tax },
   });
 
   useEffect(() => {
@@ -52,9 +61,9 @@ export default function InvoiceItems({ invoiceItems, getItems, resetForm }) {
   }, [resetForm, formik]);
 
   useEffect(() => {
-    getItems(formik.values.invoiceItems);
+    getItems(formik.values);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [formik.values.invoiceItems]);
+  }, [formik.values.invoiceItems, formik.values.tax]);
 
   // aleart message
   const alertMessage = message => {
@@ -125,9 +134,11 @@ export default function InvoiceItems({ invoiceItems, getItems, resetForm }) {
       itemTotal: currentItem.itemQuantity * currentItem.itemPrice,
     };
     // adding new item to formik state
-    formik.setFieldValue('invoiceItems', [...formik.values.invoiceItems, newItem]);
+    formik.setFieldValue('invoiceItems', [
+      ...formik.values.invoiceItems,
+      newItem,
+    ]);
 
-    
     // resetting current item
     setCurrentItem({
       itemName: '',
@@ -182,6 +193,12 @@ export default function InvoiceItems({ invoiceItems, getItems, resetForm }) {
   };
 
   /* Delete invoiceItems items from local storage ends */
+
+  // Styles for the editor
+  const backgroundColor =
+    useColorModeValue('gray.100', 'gray.700') || 'gray.200';
+
+  const textColor = useColorModeValue('gray.800', 'gray.200') || 'gray.800';
 
   return (
     <>
@@ -448,7 +465,7 @@ export default function InvoiceItems({ invoiceItems, getItems, resetForm }) {
         </Table>
       </TableContainer>
       <Modal onClose={onClose} isOpen={isOpen} isCentered>
-        <ModalOverlay bg="blackAlpha.300" backdropFilter="blur(10px) " />
+        <ModalOverlay bg="blackAlpha.300" />
         <ModalContent
           p={4}
           rounded={'3xl'}
@@ -555,6 +572,46 @@ export default function InvoiceItems({ invoiceItems, getItems, resetForm }) {
         </ModalContent>
       </Modal>
       {/* invoiceItems Items List Ends */}
+      {formik.values.invoiceItems.length > 0 && (
+        <Stack my={10}>
+          <Flex>
+            <Spacer />
+            <Box align="end">
+              <Grid gap={4}>
+                <GridItem colSpan={2} h="10">
+                  <FormControl id="invoiceTotal" mb={'20'}>
+                    <FormLabel>Tax %</FormLabel>
+                    <InputGroup>
+                      <Input
+                        type="number"
+                        min={0}
+                        onKeyDown={e =>
+                          ['e', 'E', '+', '-'].includes(e.key) &&
+                          e.preventDefault()
+                        }
+                        width="100%"
+                        name="tax"
+                        placeholder="Tax %"
+                        bg={backgroundColor}
+                        color={textColor}
+                        value={formik.values.tax}
+                        onChange={e => {
+                          formik.setFieldValue('tax', e.target.value);
+                        }}
+                      />
+                      <InputRightAddon
+                        bg={'purple.100'}
+                        color={'gray.700'}
+                        children={<RiIcons.RiPercentLine color="green.500" />}
+                      />
+                    </InputGroup>
+                  </FormControl>
+                </GridItem>
+              </Grid>
+            </Box>
+          </Flex>
+        </Stack>
+      )}
 
       <ToastContainer
         position="bottom-right"

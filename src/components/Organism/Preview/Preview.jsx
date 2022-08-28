@@ -22,7 +22,9 @@ import { InvoiceContext } from '../../../core/InvoiceContext';
 export default function Preview() {
   const { invoice } = useContext(InvoiceContext);
 
-  const subTotal = invoice.items.reduce((acc, item) => acc + item.itemTotal, 0);
+  const subTotal = invoice?.items.reduce((acc, item) => {
+    return acc + item.quantity * item.price;
+  }, 0);
 
   const tax = (subTotal * invoice.tax) / 100;
   const total = subTotal + tax;

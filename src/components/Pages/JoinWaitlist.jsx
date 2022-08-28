@@ -8,7 +8,6 @@ import {
   Image,
 } from '@chakra-ui/react';
 import Helmet from 'react-helmet';
-import JoinWaitlistImg from '../../assets/illustrations/join-waitlist.png';
 
 import WaitlistForm from '../Molecules/WaitlistForm';
 
@@ -103,7 +102,10 @@ export default function JoinWaitlist() {
                 rounded={'2xl'}
                 w={'100%'}
                 h={'100%'}
-                src={JoinWaitlistImg}
+                src={
+                  'https://res.cloudinary.com/invoicetor/image/upload/v1661564364/join-waitlist_vgjgt6.png'
+                }
+                loading={'lazy'}
               />
             </Box>
           </Flex>

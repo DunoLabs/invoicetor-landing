@@ -25,6 +25,7 @@ export default function Home() {
         <Stack
           as={Box}
           textAlign={'center'}
+          alignItems={'center'}
           spacing={{ base: 3, md: 12 }}
           py={{ base: 20, md: 36 }}
         >
@@ -32,7 +33,7 @@ export default function Home() {
             fontWeight={700}
             fontSize={{
               base: '2.5rem',
-              md: '3.5rem',
+              md: '4rem',
             }}
           >
             Quickly and easily create beautiful invoices for your{' '}
@@ -46,18 +47,18 @@ export default function Home() {
           </Heading>
           <Center>
             <Text
-              maxW={'lg'}
-              color={'gray.500'}
-              fontSize={{ base: '18px', sm: '18px', lg: '20px' }}
-              fontWeight={'normal'}
+              maxW={'xl'}
+              fontSize={{ base: '16px', sm: '18px', lg: '24px' }}
+              color={'gray.400'}
             >
-              Invoicetor is a platform where business owners can create
-              invoices for their business in no time.
+              Invoicetor is a platform where business owners can create invoices
+              for their business in no time.
             </Text>
           </Center>
           <Stack
             direction={'column'}
             spacing={3}
+            my={'5'}
             align={'center'}
             alignSelf={'center'}
             position={'relative'}

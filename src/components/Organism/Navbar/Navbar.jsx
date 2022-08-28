@@ -13,6 +13,7 @@ import {
   DrawerContent,
   DrawerCloseButton,
   Flex,
+  // Badge,
   // Modal,
   // ModalOverlay,
   // ModalContent,
@@ -40,7 +41,7 @@ import {
   PopoverCloseButton,
   useDisclosure,
   Divider,
-  Tooltip,
+  // Tooltip,
 } from '@chakra-ui/react';
 import { ColorModeSwitcher } from '../../../ColorModeSwitcher';
 
@@ -49,7 +50,6 @@ import {
   CloseIcon,
   ChevronDownIcon,
   ChevronRightIcon,
-  // ArrowForwardIcon,
 } from '@chakra-ui/icons';
 
 const NAV_ITEMS = [
@@ -327,7 +327,7 @@ const DesktopNav = () => {
   useState(false);
   return (
     <>
-      <Stack direction={'row'} spacing={4}>
+      <Stack direction={'row'} spacing={4} alignItems="center">
         {NAV_ITEMS.map((navItem, index) => (
           <Box key={navItem.label}>
             <Popover trigger={'hover'} placement={'bottom-start'}>
@@ -382,37 +382,43 @@ const DesktopNav = () => {
         {/* <Button >
         Open
       </Button> */}
-        <Tooltip
-          hasArrow
-          placement="right-end"
-          label={
-            getFeaturedUpdates().length > 0
-              ? getFeaturedUpdates().length + ' New Updates'
-              : 'No Updates'
-          }
+
+        <Link
+          ref={btnRef}
+          colorScheme="teal"
+          onClick={onOpen}
+          style={{
+            fontWeight: 500,
+          }}
+          _activeLink={{
+            color: ActiveLinkColor,
+            fontWeight: 600,
+          }}
+          _hover={{
+            color: linkHoverColor,
+            textDecoration: 'none',
+          }}
+          _focus={{
+            outline: 'none',
+          }}
         >
-          <Link
-            ref={btnRef}
-            colorScheme="teal"
-            onClick={onOpen}
-            style={{
-              fontWeight: 500,
-            }}
-            _activeLink={{
-              color: ActiveLinkColor,
-              fontWeight: 600,
-            }}
-            _hover={{
-              color: linkHoverColor,
-              textDecoration: 'none',
-            }}
-            _focus={{
-              outline: 'none',
-            }}
+          <Text
+            color={'purple.400'}
+            fontWeight={600}
+            fontSize={'sm'}
+            bg={useColorModeValue('purple.50', 'purple.900')}
+            p={2}
+            rounded={'md'}
           >
-            What's New 💜
-          </Link>
-        </Tooltip>
+            What's New 🌱
+          </Text>
+          {/* <Badge colorScheme="teal" ml="1">
+            {getFeaturedUpdates().length > 0
+              ? getFeaturedUpdates().length
+              : 'No Updates'}
+          </Badge> */}
+        </Link>
+
         <Drawer
           isOpen={isOpen}
           placement="right"
@@ -435,15 +441,21 @@ const DesktopNav = () => {
               }}
             />
             <DrawerHeader>
-              What's New? Featured Updates ✨
-              <Text fontSize="xs" my="2">
-                Latest <span>version {'(0.1.9)'}</span>
-              </Text>
+              {featuredUpdatesContentRef.current.title}
+              <Link
+                href={featuredUpdatesContentRef.current.version?.link}
+                color="purple.400"
+              >
+                <Text fontSize="xs" my="2">
+                  Latest version{' '}
+                  {featuredUpdatesContentRef.current.version.name}
+                </Text>
+              </Link>
               <Divider />
             </DrawerHeader>
 
             <DrawerBody>
-              {featuredUpdatesContentRef.current?.map(
+              {featuredUpdatesContentRef.current.updates?.map(
                 (featuredContent, featuredContentIndex) => {
                   return (
                     <FeaturedContentWrapper
@@ -453,19 +465,6 @@ const DesktopNav = () => {
                   );
                 }
               )}
-              {/* <Text
-                as={Link}
-                size={'sm'}
-                _hover={{
-                  textDecoration: 'none',
-                  color: useColorModeValue('purple.400', 'purple.100'),
-                }}
-                onClick={() =>
-                  setMoreFeaturedContentPopup(!moreFeaturedContentPopup)
-                }
-              >
-                {'More Updates'} <ArrowForwardIcon />
-              </Text> */}
             </DrawerBody>
 
             <DrawerFooter>
@@ -475,6 +474,7 @@ const DesktopNav = () => {
                 onClick={onClose}
                 size="sm"
                 bg="gray.900"
+                color={'gray.100'}
                 _hover={{ bg: 'gray.700' }}
               >
                 Cancel
@@ -483,71 +483,6 @@ const DesktopNav = () => {
           </DrawerContent>
         </Drawer>
       </Stack>
-
-      {/* What's New Modal  */}
-      {/* 
-      <Modal
-        isOpen={moreFeaturedContentPopup}
-        onClose={() => setMoreFeaturedContentPopup(!moreFeaturedContentPopup)}
-        size={'2xl'}
-        isCentered
-        scrollBehavior="inside"
-      >
-        <ModalOverlay
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-
-            filter: 'blur(80%)',
-          }}
-        />
-        <ModalContent
-          bg={useColorModeValue('white', 'gray.800')}
-          style={{
-            borderColor: 'transparent',
-            width: '560px',
-            height: 'fit-content',
-            // centering content
-            marginRight: 'auto',
-            marginLeft: 'auto',
-            marginBottom: 'auto',
-            marginTop: 'auto',
-            // removing default padding from modal
-            padding: '16px 24px',
-          }}
-          p={{
-            base: '2',
-            md: '4',
-          }}
-          rounded="xl"
-          border={2}
-          borderColor={useColorModeValue('gray.700', 'gray.100')}
-          borderStyle={'solid'}
-        >
-          <ModalHeader>
-            What's New? Featured Updates ✨
-            <Text fontSize="xs" my="2">
-              Latest <span>version {'(0.1.9)'}</span>
-            </Text>
-          </ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            {featuredUpdatesContentRef.current?.map(
-              (featuredContent, featuredContentIndex) => {
-                return (
-                  <FeaturedContentWrapper
-                    key={featuredContentIndex}
-                    content={featuredContent}
-                  />
-                );
-              }
-            )}
-          </ModalBody>
-          <ModalFooter></ModalFooter>
-        </ModalContent>
-      </Modal> */}
-      {/* End of What's New Modal */}
     </>
   );
 };
@@ -696,7 +631,9 @@ const FeaturedContentWrapper = ({ content }) => {
         <Text fontSize={'md'} fontWeight="bold">
           {content?.title}
         </Text>
-        <Text fontSize={'sm'}>{content?.description}</Text>
+        <Text fontSize={'md'} color={'gray.600'}>
+          {content?.description}
+        </Text>
         {content?.hasAction && content?.action?.type === 'button' ? (
           <Link
             href={content?.action?.url}

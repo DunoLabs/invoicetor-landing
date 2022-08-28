@@ -1,154 +1,213 @@
+import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import {
   Container,
   Stack,
-  Center,
   Flex,
   Box,
   Heading,
-  Button,
-  Text,
   Image,
+  SimpleGrid,
+  Text,
+  useColorModeValue,
   Link,
 } from '@chakra-ui/react';
-import DesignPNG from '../../../assets/illustrations/design.png';
-import MultiplePNG from '../../../assets/illustrations/multiple.png';
-import TogglePNG from '../../../assets/illustrations/toggle.png';
-import oneTimePNG from '../../../assets/illustrations/one-time.png';
-import ResizePNG from '../../../assets/illustrations/resize.png';
-import { NavLink } from 'react-router-dom';
-import { ArrowForwardIcon } from '@chakra-ui/icons';
 
-const Features = [
+import * as RiIcons from 'react-icons/ri';
+
+const FeaturesDetails = [
   {
-    imageUrl: `${MultiplePNG}`,
+    imageUrl: `https://res.cloudinary.com/invoicetor/image/upload/v1661629813/Untitled_design__4_-removebg-preview_to1zkk.png`,
     Title: 'Create Multiple Invoices',
     Description:
       'Invoices can be created multiple times, and account data can be used to create different invoices for different clients.',
     visit: '/features#multipleinvoice',
+    icon: <RiIcons.RiLayoutGridFill />,
+    iconBg: 'yellow.100',
+    iconColor: 'yellow.500',
   },
   {
-    imageUrl: `${oneTimePNG}`,
-    Title: 'One Time Editor',
-    Description:
-      '   This is a one time free editor for invoicetor. You can use it to create invoices and download them as PDF.',
-    visit: '/features/one-time-editor',
-  },
-  {
-    imageUrl: `${DesignPNG}`,
-    Title: 'Better Design Control',
+    imageUrl: `https://res.cloudinary.com/invoicetor/image/upload/v1661629810/Untitled_design__5_-removebg-preview_vixx9e.png`,
+    Title: 'Better Designs & Templates',
     Description:
       "Your invoices will be completely customizable using the design panel. Choose a color that matches your company's style. Modify the spacing to accommodate the amount of information you want.",
     visit: '/features#design',
+    icon: <RiIcons.RiPaletteLine />,
+    iconBg: '#e5ecff',
+    iconColor: '#00aaff',
   },
   {
-    imageUrl: `${TogglePNG}`,
-    Title: 'Easy Toggle Control',
+    imageUrl: `https://res.cloudinary.com/invoicetor/image/upload/v1661629675/Untitled_design__3_-removebg-preview_c8olpn.png`,
+    Title: 'Easy Control',
     Description:
       'Keep the data, but hide the content with a click. Easy toggle support allows you to put your best foot forward.',
 
     visit: '/features',
-  },
-  {
-    imageUrl: `${ResizePNG}`,
-    Title: 'Resize Control With Slider',
-    Description:
-      'You can upload your company logo and use it in the invoice. You can easily change the logo size using the slider.',
-    visit: '/features',
+    icon: <RiIcons.RiShapeFill />,
+    iconBg: 'red.100',
+    iconColor: 'red.500',
   },
 ];
 
-export default function CallToActionWithVideo() {
+const FeatureCard = ({
+  text,
+  icon,
+  iconBg,
+  iconColor,
+  active,
+  setActive,
+  cardNo,
+}) => {
+  console.log(active);
+  const color1 = useColorModeValue('gray.900', 'gray.700');
+  const activeColor = active === cardNo ? color1 : 'gray.500';
   return (
-    <Container maxW={'6xl'} mt={1}>
-      <Stack as={Box} textAlign={'center'} spacing={{ base: 3, md: 5 }}>
-        <Heading fontWeight={700} fontSize="4xl" id="features">
-          Here are some of the important features of invoicetor
-        </Heading>
-        <Center>
-          <Text
-            maxW={'3xl'}
-            fontSize={{ base: '16px', sm: '18px', lg: '20px' }}
-            color={'gray.400'}
-          >
-            Invoicetor is a no-code platform where business owners can create
-            invoices for their business in no time.
-          </Text>
-        </Center>
-      </Stack>
-
-      {Features.map(feature => (
-        <Stack
+    <>
+      <Stack
+        direction={'row'}
+        align={'center'}
+        cursor={'pointer'}
+        bg={active === cardNo ? 'purple.50' : 'transparent'}
+        p={'5'}
+        rounded={'xl'}
+        onClick={() => {
+          setActive(cardNo);
+        }}
+      >
+        <Flex
+          w={10}
+          h={10}
           align={'center'}
-          spacing={{ base: 8, md: 10 }}
-          py={{ base: 20, md: 28 }}
-          direction={{ base: 'column', md: 'row' }}
+          justify={'center'}
+          rounded={'full'}
+          bg={iconBg}
+          color={iconColor}
+          fontSize={'1.2rem'}
+          me={2}
         >
-          <Flex flex={1} position={'relative'} w={'full'}>
-            <Box
-              position={'relative'}
-              rounded={'3xl'}
-              width={'full'}
-              p={10}
-              boxShadow={'lg'}
-              bg={'white'}
-            >
-              <Image
-                alt={'Hero Image'}
-                fit={'cover'}
-                align={'center'}
-                rounded={'2xl'}
-                w={'100%'}
-                h={'100%'}
-                src={feature.imageUrl}
-              />
-            </Box>
-          </Flex>
-          <Stack flex={1} spacing={{ base: 5, md: 8 }}>
-            <Heading
-              lineHeight={1.1}
-              fontWeight={700}
-              fontSize={{ base: '3xl', sm: '4xl', lg: '4xl' }}
+          {icon}
+        </Flex>
+        <Text
+          align="start"
+          fontWeight={600}
+          fontSize={{ base: '16px', sm: '18px', lg: '20px' }}
+          color={activeColor}
+        >
+          {text}
+        </Text>
+      </Stack>
+    </>
+  );
+};
+
+export default function Feature() {
+  const [active, setActive] = useState(0);
+  return (
+    <Container maxW={'6xl'} my={'7rem'}>
+      <SimpleGrid
+        columns={{ base: 1, md: 2 }}
+        spacing={10}
+        alignItems={'center'}
+      >
+        <Stack spacing={4}>
+          <Text
+            textTransform={'uppercase'}
+            color={'purple.400'}
+            fontWeight={600}
+            fontSize={'sm'}
+            bg={useColorModeValue('purple.50', 'purple.900')}
+            p={2}
+            alignSelf={'flex-start'}
+            rounded={'md'}
+          >
+            Features
+          </Text>
+          <Heading
+            align="start"
+            fontSize={{
+              base: '1.5rem',
+              md: '2.3rem',
+            }}
+          >
+            {' '}
+            Build Better, Faster & Beautiful Invoices in Minutes ⚡
+          </Heading>
+
+          <Text
+            align="start"
+            color={'gray.400'}
+            fontSize={{
+              base: '16px',
+              sm: '18px',
+            }}
+          >
+            Invoicetor helps you to create better, faster and beautiful invoices
+            in minutes.
+          </Text>
+
+          <Stack spacing={4} my={4}>
+            {FeaturesDetails.map((item, index) => {
+              return (
+                <>
+                  <FeatureCard
+                    key={index}
+                    text={item.Title}
+                    active={active}
+                    cardNo={index}
+                    setActive={setActive}
+                    icon={item.icon}
+                    iconBg={item.iconBg}
+                    iconColor={item.iconColor}
+                  />
+                </>
+              );
+            })}
+            <Link
+              as={NavLink}
+              to={'/features'}
               align="start"
+              mt={'2'}
+              fontSize={{
+                base: '16px',
+                sm: '18px',
+              }}
+              color={useColorModeValue('purple.500', 'purple.200')}
             >
-              <Text>{feature.Title}</Text>
-            </Heading>
-            <Text
-              align="start"
-              color={'gray.400'}
-              fontSize={{ base: '16px', sm: '18px', lg: '20px' }}
-            >
-              {feature.Description}
-            </Text>
-            <Stack direction="row" spacing={2} align="center">
-              <Link
-                as={NavLink}
-                to={feature.visit}
-                style={{
-                  textDecoration: 'none',
-                }}
-                _focus={{
-                  outline: 'none',
-                }}
-              >
-                <Button
-                  rightIcon={<ArrowForwardIcon />}
-                  colorScheme="purple"
-                  variant="outline"
-                  rounded={'lg'}
-                  size="sm"
-                  as={'NavLink'}
-                  to={feature.visit}
-                  _focus={{
-                    outline: 'none',
-                  }}
-                >
-                  Learn More
-                </Button>
-              </Link>
-            </Stack>
+              Learn More...
+            </Link>
           </Stack>
         </Stack>
-      ))}
+
+        {/* show active content image   */}
+        {FeaturesDetails.map((item, index) => {
+          return (
+            <Flex
+              display={active === index ? 'block' : 'none'}
+              alignItems={'center'}
+            >
+              <Box
+                rounded={'3xl'}
+                width={'full'}
+                boxShadow={'sm'}
+                bg={'white'}
+                border={'6px solid'}
+                borderColor={active === index && 'purple.100'}
+                transition={'all 0.3s ease-in-out'}
+              >
+                <Image
+                  alt={'feature image'}
+                  src={
+                    active === index
+                      ? item.imageUrl
+                      : 'https://via.placeholder.com/400'
+                  }
+                  objectFit={'cover'}
+                />
+              </Box>
+            </Flex>
+          );
+        })}
+      </SimpleGrid>
     </Container>
   );
 }

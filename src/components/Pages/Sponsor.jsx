@@ -10,6 +10,7 @@ import {
   useColorModeValue,
   Flex,
   HStack,
+  Highlight,
 } from '@chakra-ui/react';
 
 function Sponsor() {
@@ -48,9 +49,14 @@ function Sponsor() {
             </Text>
           </Heading>
           <Text fontSize={'1.3rem'} align="start">
-            Invoicetor helps business holder to build their invoices in no time
-            with a simple and easy to use platform, it's also free and we wish
-            to keep it free, forever.
+            <Highlight
+              query="free"
+              styles={{ px: '1', py: '1', bg: 'orange.100' }}
+            >
+              Invoicetor helps business holder to build their invoices in no
+              time with a simple and easy to use platform, it's also free and we
+              wish to keep it free, forever.
+            </Highlight>
           </Text>{' '}
           <Text
             fontSize={'1.3rem'}
@@ -107,46 +113,23 @@ function Sponsor() {
 
 function SponsorCard() {
   return (
-    <Flex
-      p={{
-        base: 3,
-        md: 10,
-      }}
-      m={{
-        base: 3,
-        md: 0,
-      }}
-      align={'center'}
-      justify={'center'}
-    >
-      <Container
-        maxW={{
-          base: '6xl',
-          sm: '8xl',
-          lg: '6xl',
-        }}
-        bg={useColorModeValue('white', 'gray.50')}
-        boxShadow={'lg'}
-        rounded={'2xl'}
+    <Container maxW={'6xl'} my={'7rem'} rounded={'2xl'}>
+      <Box
+        bg={useColorModeValue('gray.900', 'gray.50')}
         p={10}
-        direction={'column'}
+        borderRadius="20px"
       >
         <Heading
-          textAlign={'center'}
+          align="start"
           mb={{
-            base: 3,
-            lg: 18,
+            base: '10',
+            lg: '10',
           }}
-          color={'black'}
+          color={useColorModeValue('white', 'gray.900')}
         >
-          Sponsor Invoicetor 💜
+          Let’s do this together!
         </Heading>
-
-        <Flex
-          justifyContent={'center'}
-          flexDir={'column'}
-          alignItems={'center'}
-        >
+        <Flex justifyContent={'start'} flexDir={'column'} alignItems={'sstart'}>
           <Text
             maxW={'4xl'}
             fontSize={'1.3rem'}
@@ -154,20 +137,22 @@ function SponsorCard() {
               base: 3,
               md: 18,
             }}
-            color={'black'}
+            color={useColorModeValue('white', 'gray.900')}
+            align="start"
           >
-            Invoicetor helps every business holder to build their invoices in no
-            time with a simple and easy to use platform, it's also free and we
-            wish to keep it free, forever.
+            Invoicetor helps people to create invoices for their business in no
+            time, it's also <Highlight color={'purple.400'}>free</Highlight> and
+            we wish to keep it free, forever.
           </Text>
           <Text
             maxW={'4xl'}
+            align="start"
             fontSize={'1.3rem'}
             mb={{
               base: 5,
               md: 18,
             }}
-            color={'black'}
+            color={useColorModeValue('white', 'gray.900')}
           >
             So, It'll be not possible without your support, we need your help to
             make Invoicetor a success. If you are a business owner or
@@ -200,6 +185,7 @@ function SponsorCard() {
           </Text>
           <HStack>
             <Button
+              my={'2'}
               as={'a'}
               target="_blank"
               href="https://github.com/sponsors/wh0sumit"
@@ -218,8 +204,8 @@ function SponsorCard() {
             </Button>
           </HStack>
         </Flex>
-      </Container>
-    </Flex>
+      </Box>
+    </Container>
   );
 }
 
