@@ -10,7 +10,6 @@ import {
   useColorModeValue,
   Flex,
   HStack,
-  Highlight,
 } from '@chakra-ui/react';
 
 function Sponsor() {
@@ -49,14 +48,9 @@ function Sponsor() {
             </Text>
           </Heading>
           <Text fontSize={'1.3rem'} align="start">
-            <Highlight
-              query="free"
-              styles={{ px: '1', py: '1', bg: 'orange.100' }}
-            >
-              Invoicetor helps business holder to build their invoices in no
-              time with a simple and easy to use platform, it's also free and we
-              wish to keep it free, forever.
-            </Highlight>
+            Invoicetor helps business holder to build their invoices in no time
+            with a simple and easy to use platform, it's also free and we wish
+            to keep it free, forever.
           </Text>{' '}
           <Text
             fontSize={'1.3rem'}
@@ -141,8 +135,11 @@ function SponsorCard() {
             align="start"
           >
             Invoicetor helps people to create invoices for their business in no
-            time, it's also <Highlight color={'purple.400'}>free</Highlight> and
-            we wish to keep it free, forever.
+            time, it's also{' '}
+            <Text display={'inline'} color={'purple.400'}>
+              free
+            </Text>{' '}
+            and we wish to keep it free, forever.
           </Text>
           <Text
             maxW={'4xl'}
@@ -189,7 +186,7 @@ function SponsorCard() {
               as={'a'}
               target="_blank"
               href="https://github.com/sponsors/wh0sumit"
-              rounded={'xl'}
+              rounded={'lg'}
               size={'lg'}
               bg={'purple.400'}
               color={'white'}
