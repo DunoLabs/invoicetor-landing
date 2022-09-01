@@ -46,7 +46,7 @@ export default function InvoiceImage({
 
   useEffect(() => {
     if (resetForm) {
-      formik.resetForm();
+      formik.values.yourLogo = '';
     }
   }, [resetForm, formik]);
 
@@ -71,7 +71,7 @@ export default function InvoiceImage({
       formik.setFieldValue('yourLogo.image', base64);
       formik.setFieldValue('yourLogo.imageSize', sliderValue);
     });
-    alertMessage('😎 Comapny Logo Uploaded');
+    alertMessage('Image uploaded successfully', 'success');
   };
 
   // change Image Size using slider

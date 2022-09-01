@@ -93,7 +93,7 @@ export default function JoinWaitlist() {
               width={'full'}
               p={10}
               bg={'white'}
-              boxShadow={'lg'}
+              boxShadow={'md'}
             >
               <Image
                 alt={'Hero Image'}
@@ -103,7 +103,7 @@ export default function JoinWaitlist() {
                 w={'100%'}
                 h={'100%'}
                 src={
-                  'https://res.cloudinary.com/invoicetor/image/upload/v1661564364/join-waitlist_vgjgt6.png'
+                  'https://res.cloudinary.com/invoicetor/image/upload/v1661989745/bubble-gum-message-sent_fmwwxx.gif'
                 }
                 loading={'lazy'}
               />

@@ -14,6 +14,7 @@ import {
   Th,
   Td,
   TableContainer,
+  Divider,
 } from '@chakra-ui/react';
 import { useContext } from 'react';
 
@@ -21,18 +22,26 @@ import { InvoiceContext } from '../../../core/InvoiceContext';
 
 export default function Preview() {
   const { invoice } = useContext(InvoiceContext);
-
-  const subTotal = invoice?.items.reduce((acc, item) => {
-    return acc + item.quantity * item.price;
+  const invoiceItems = invoice.items;
+  const subTotal = invoiceItems.reduce((acc, item) => {
+    return acc + item.itemQuantity * item.itemPrice;
   }, 0);
 
-  const tax = (subTotal * invoice.tax) / 100;
+  const tax = invoice.tax;
   const total = subTotal + tax;
   return (
     <>
       <Stack
-      // bg={useColorModeValue('#fff', '#1A202C')}
-      // color={useColorModeValue('gray.800', 'gray.200')}
+        // bg={useColorModeValue('#fff', '#1A202C')}
+        // color={useColorModeValue('gray.800', 'gray.200')}
+        style={{
+          pageBreakAfter:
+            invoice.items.length > 3 &&
+            !invoice.notes.noteToggle &&
+            !invoice.terms.termsToggle
+              ? 'always'
+              : 'auto',
+        }}
       >
         <Stack spacing={10}>
           <Flex>
@@ -53,7 +62,11 @@ export default function Preview() {
             </Box>
             <Spacer />
             <Box spacing={3}>
-              <Text fontSize="6xl" align="end">
+              <Text
+                fontSize="6xl"
+                align="end"
+                color={invoice?.backgroundColor + '.400'}
+              >
                 Invoice
               </Text>
               <Text fontSize="2xl" align="end">
@@ -70,7 +83,12 @@ export default function Preview() {
         <Stack my={15} spacing={10}>
           <Flex>
             <Box spacing={3} mt={10}>
-              <Text as="h3" fontWeight={'bold'} align="start">
+              <Text
+                as="h3"
+                fontWeight={'bold'}
+                align="start"
+                color={invoice?.backgroundColor + '.400'}
+              >
                 Bill To :{' '}
               </Text>
               <Text fontSize="2xl">{invoice.clientDetails.clientName}</Text>
@@ -84,13 +102,25 @@ export default function Preview() {
             <Box mt={10}>
               <Grid templateColumns="repeat(3, 1fr)" gap={4}>
                 <GridItem colSpan={2} h="10">
-                  <Text fontWeight={'bold'} align="start">
+                  <Text
+                    fontWeight={'bold'}
+                    align="start"
+                    color={invoice?.backgroundColor + '.400'}
+                  >
                     Invoice No :{' '}
                   </Text>{' '}
-                  <Text fontWeight={'bold'} align="start">
+                  <Text
+                    fontWeight={'bold'}
+                    align="start"
+                    color={invoice?.backgroundColor + '.400'}
+                  >
                     Invoice Date :{' '}
                   </Text>{' '}
-                  <Text fontWeight={'bold'} align="start">
+                  <Text
+                    fontWeight={'bold'}
+                    align="start"
+                    color={invoice?.backgroundColor + '.400'}
+                  >
                     Invoice Due-Date :{' '}
                   </Text>
                 </GridItem>
@@ -108,16 +138,23 @@ export default function Preview() {
         <TableContainer>
           <Table mt={10}>
             <Thead>
-              <Tr>
-                <Th>Item</Th>
-                <Th>Quantity</Th>
-                <Th>Price</Th>
-                <Th isNumeric>Amount</Th>
+              <Tr bg={invoice?.backgroundColor + '.100'}>
+                <Th color={invoice?.backgroundColor + '.400'}>Item</Th>
+                <Th color={invoice?.backgroundColor + '.400'}>Quantity</Th>
+                <Th color={invoice?.backgroundColor + '.400'}>Price</Th>
+                <Th color={invoice?.backgroundColor + '.400'} isNumeric>
+                  Amount
+                </Th>
               </Tr>
             </Thead>
             <Tbody>
               {invoice.items.map((item, index) => (
-                <Tr key={index}>
+                <Tr
+                  key={index}
+                  bg={
+                    index % 2 !== 0 ? invoice?.backgroundColor + '.50' : 'white'
+                  }
+                >
                   <Td>{item.itemName}</Td>
                   <Td>{item.itemQuantity}</Td>
                   <Td>
@@ -137,13 +174,31 @@ export default function Preview() {
           <Box align="end" pt={5} spacing={10}>
             <Grid templateColumns="repeat(3, 1fr)" gap={4}>
               <GridItem colSpan={2} h="10">
-                <Text fontWeight={'bold'} align="start">
+                <Text
+                  fontWeight={'bold'}
+                  align="start"
+                  color={invoice?.backgroundColor + '.400'}
+                >
                   Sub Total :{' '}
                 </Text>{' '}
-                <Text fontWeight={'bold'} align="start">
+                <Text
+                  fontWeight={'bold'}
+                  align="start"
+                  color={invoice?.backgroundColor + '.400'}
+                >
                   Tax :{' '}
                 </Text>{' '}
-                <Text fontWeight={'bold'} align="start">
+                <Divider
+                  borderBottom={`4px solid ${
+                    invoice?.backgroundColor + '.400'
+                  }`}
+                  borderColor={invoice?.backgroundColor + '.400'}
+                />
+                <Text
+                  fontWeight={'bold'}
+                  align="start"
+                  color={invoice?.backgroundColor + '.400'}
+                >
                   Total :{' '}
                 </Text>
               </GridItem>
@@ -154,6 +209,12 @@ export default function Preview() {
                     : '-'}
                 </Text>
                 <Text align="end">{tax ? tax + '%' : 0}</Text>
+                <Divider
+                  borderBottom={`4px solid ${
+                    invoice?.backgroundColor + '.400'
+                  }`}
+                  borderColor={invoice?.backgroundColor + '.400'}
+                />
                 <Text align="end">
                   {total ? invoice.items[0].itemCurrency + `${total}` : '-'}
                 </Text>
@@ -165,7 +226,12 @@ export default function Preview() {
       <Stack mt={8} spacing={3}>
         {invoice.notes.noteToggle ? null : (
           <Box>
-            <Text as="h3" fontWeight={'bold'} align="start">
+            <Text
+              as="h3"
+              fontWeight={'bold'}
+              align="start"
+              color={invoice?.backgroundColor + '.400'}
+            >
               Notes :
             </Text>
             <Text>{invoice.notes.note}</Text>
@@ -175,7 +241,12 @@ export default function Preview() {
       <Stack mt={8} spacing={3}>
         {invoice.terms.termToggle ? null : (
           <Box>
-            <Text as="h3" fontWeight={'bold'} align="start">
+            <Text
+              as="h3"
+              fontWeight={'bold'}
+              align="start"
+              color={invoice?.backgroundColor + '.400'}
+            >
               Terms & Condition
             </Text>
             <Text>{invoice.terms.term}</Text>
@@ -217,10 +288,18 @@ export default function Preview() {
             </Flex>
           )}
           <Box>
-            <Text align="end" fontWeight={'500'}>
+            <Text
+              align="end"
+              fontWeight={'500'}
+              color={invoice?.backgroundColor + '.400'}
+            >
               {invoice.yourDetails.yourName}
             </Text>
-            <Text align="end" fontWeight={'500'}>
+            <Text
+              align="end"
+              fontWeight={'500'}
+              color={invoice?.backgroundColor + '.400'}
+            >
               {invoice.invoiceDate}
             </Text>
           </Box>

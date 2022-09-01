@@ -81,12 +81,12 @@ export default function DigitalSignature({
       e.target.value = '';
     } else {
       e.target.value = '';
-      alertMessage('❌ Please upload png or jpg file');
+      alertMessage('Please upload png or jpeg image', 'error');
     }
   };
   // save digital signature in localstorage
   const saveDigitalSignature = () => {
-    alertMessage('😎Digital Signature Saved');
+    alertMessage('Digital Signature Saved', 'success');
   };
   // upload signature in localstorage ends
 
@@ -160,7 +160,7 @@ export default function DigitalSignature({
                   my={'4'}
                   justifyContent="center"
                   p={'4'}
-                  rounded={'3xl'}
+                  rounded={'lg'}
                   border={2}
                   borderColor={useColorModeValue('gray.300', 'gray.200')}
                   borderStyle={'solid'}
@@ -310,10 +310,11 @@ export default function DigitalSignature({
                   base: '100%',
                   md: '50%',
                 }}
-                p={4}
                 border={2}
                 borderColor={useColorModeValue('gray.700', 'gray.100')}
                 bg={'white'}
+                rounded={'xl'}
+                p={'4'}
                 color={'gray.700'}
                 alignSelf={'center'}
               >
@@ -370,8 +371,8 @@ export default function DigitalSignature({
                       }
                       borderColor={formik.values.digitalSignature.sealColor}
                     >
-                      {yourCompany} <br /> Reg. No :
-                      {formik.values.registrationNumber}
+                      {yourCompany ? yourCompany : 'Your Company Name'} <br />{' '}
+                      Reg. No :{formik.values.registrationNumber}
                     </Box>
 
                     {formik.values.digitalSignature.signature && (
@@ -380,8 +381,8 @@ export default function DigitalSignature({
                           src={formik.values.digitalSignature.signature}
                           alt="signature"
                           className="signature"
-                          width={formik.values.digitalSignature.signatureSize}
-                          height={formik.values.digitalSignature.signatureSize}
+                          width="200px"
+                          height="100px"
                         />
                       </Flex>
                     )}

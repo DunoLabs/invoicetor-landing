@@ -12,11 +12,14 @@ import {
   Tab,
   TabPanel,
   useColorModeValue,
+  Flex,
 } from '@chakra-ui/react';
 import * as FaIcons from 'react-icons/fa';
 import Preview from '../../Organism/Preview/Preview';
 import Share from '../../Organism/Share/Share';
 import InvoiceProvider from '../../../core/InvoiceContext';
+import Background from '../../Molecules/Background/Background';
+import Shortcuts from '../../Molecules/Shortcuts';
 export default function OneTimeEditor() {
   return (
     <>
@@ -26,7 +29,7 @@ export default function OneTimeEditor() {
         </title>
       </Helmet>
       <InvoiceProvider>
-        <Container maxW={'5xl'} mt={5}>
+        <Container maxW={'5xl'} mt={2}>
           <Stack
             as={Box}
             textAlign={'center'}
@@ -67,6 +70,10 @@ export default function OneTimeEditor() {
               like this you have to sign up.
             </Text>{' '}
           </Stack>
+          <Flex justifyContent={'space-between'}>
+            <Background />
+            <Shortcuts />
+          </Flex>
         </Container>
         <Container
           maxW={'5xl'}
@@ -75,8 +82,8 @@ export default function OneTimeEditor() {
             md: 5,
           }}
         >
-          <Tabs isFitted variant="soft-rounded">
-            <TabList mb="1em">
+          <Tabs isFitted variant={'unstyled'}>
+            <TabList mb="1em" mx={'0'}>
               <Tab
                 p={{
                   base: 1,
@@ -90,6 +97,10 @@ export default function OneTimeEditor() {
                   bg: useColorModeValue('purple.100', 'purple.400'),
                   color: useColorModeValue('gray.800', 'gray.100'),
                 }}
+                _focus={{
+                  outline: 'none',
+                }}
+                rounded="lg"
               >
                 Editor
                 <FaIcons.FaEdit
@@ -113,6 +124,10 @@ export default function OneTimeEditor() {
                   bg: useColorModeValue('purple.100', 'purple.400'),
                   color: useColorModeValue('gray.800', 'gray.100'),
                 }}
+                _focus={{
+                  outline: 'none',
+                }}
+                rounded="lg"
               >
                 Preview
                 <FaIcons.FaEye
@@ -135,6 +150,10 @@ export default function OneTimeEditor() {
                   bg: useColorModeValue('purple.100', 'purple.400'),
                   color: useColorModeValue('gray.800', 'gray.100'),
                 }}
+                _focus={{
+                  outline: 'none',
+                }}
+                rounded="lg"
               >
                 Share
                 <FaIcons.FaShare
@@ -145,7 +164,7 @@ export default function OneTimeEditor() {
                 />
               </Tab>
             </TabList>
-            <TabPanels>
+            <TabPanels p="2">
               <TabPanel padding={0}>
                 <Box
                   as={'div'}
@@ -155,7 +174,7 @@ export default function OneTimeEditor() {
                   }}
                   border={'1px solid'}
                   borderWidth={'4px'}
-                  borderColor="purple.200"
+                  borderColor="gray.100"
                   borderRadius={'3xl'}
                 >
                   <Editor />
@@ -170,7 +189,7 @@ export default function OneTimeEditor() {
                   }}
                   border={'1px solid'}
                   borderWidth={'4px'}
-                  borderColor="purple.200"
+                  borderColor="gray.100"
                   borderRadius={'3xl'}
                   bg={'white'}
                   color={'gray.800'}
@@ -187,7 +206,7 @@ export default function OneTimeEditor() {
                   }}
                   border={'1px solid'}
                   borderWidth={'4px'}
-                  borderColor="purple.200"
+                  borderColor="gray.100"
                   borderRadius={'3xl'}
                 >
                   <Share />

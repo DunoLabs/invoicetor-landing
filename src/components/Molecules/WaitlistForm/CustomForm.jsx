@@ -10,25 +10,25 @@ import {
   ModalContent,
   ModalBody,
   ModalCloseButton,
+  useToast,
+  Text,
 } from '@chakra-ui/react';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
 import { useEffect } from 'react';
 export default function CustomForm({ status, message, onValidated }) {
   const [email, setEmail] = useState('');
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const toast = useToast();
+  const statuses = ['success', 'error', 'warning', 'info'];
 
   // aleart message
-  const alertMessage = message => {
-    toast(message, {
+  const alertMessage = (message, status) => {
+    toast({
+      status: statuses.includes(status) ? status : 'info',
+      title: message,
+      duration: 2000,
+      isClosable: true,
       position: 'bottom-right',
-      autoClose: 5000,
-      hideProgressBar: false, // default value
-      closeOnClick: true, // default value
-      pauseOnHover: true, // default value
-      draggable: true, // default value
-      progress: undefined,
-      className: 'alert-message',
     });
   };
 
@@ -39,9 +39,9 @@ export default function CustomForm({ status, message, onValidated }) {
       setEmail('');
     } else {
       if (email === '') {
-        alertMessage('Please enter your email');
+        alertMessage('Please enter your email', 'error');
       } else {
-        alertMessage('Invalid email address provided');
+        alertMessage('Invalid email address provided', 'error');
       }
     }
   };
@@ -62,7 +62,7 @@ export default function CustomForm({ status, message, onValidated }) {
           placeholder="Enter your email"
           bg={useColorModeValue('gray.100', 'gray.700') || 'gray.200'}
           color={useColorModeValue('gray.800', 'gray.300') || 'gray.800'}
-          rounded={'full'}
+          rounded={'lg'}
           border={0}
           _focus={{
             bg: useColorModeValue('gray.100', 'gray.700') || 'gray.200',
@@ -73,7 +73,7 @@ export default function CustomForm({ status, message, onValidated }) {
         />
         <Button
           color={useColorModeValue('gray.50', 'gray.700')}
-          rounded={'full'}
+          rounded={'lg'}
           px={10}
           mx={2}
           bg={useColorModeValue('gray.800', 'gray.50')}
@@ -85,7 +85,7 @@ export default function CustomForm({ status, message, onValidated }) {
           }}
           onClick={submit}
         >
-          Join Waitlist
+          Join Waitlist 💌
         </Button>
       </Stack>
 
@@ -109,31 +109,21 @@ export default function CustomForm({ status, message, onValidated }) {
             }}
           />
           <ModalBody p={5} m={5}>
-            {status === 'success' ? (
-              <>
-                <p>{message}</p>
-              </>
-            ) : (
-              <>
-                <p>We are sorry but we could not add you to the waitlist.</p>
-                <p>Please try again later.</p>
-              </>
-            )}
+            <Text fontSize={{ base: 'sm', lg: 'md' }}>
+              {status === 'success' ? (
+                <>
+                  <p>{message}</p>
+                </>
+              ) : (
+                <>
+                  <p>We are sorry but we could not add you to the waitlist.</p>
+                  <p>Please try again later.</p>
+                </>
+              )}
+            </Text>
           </ModalBody>
         </ModalContent>
       </Modal>
-
-      <ToastContainer
-        position="bottom-right"
-        autoClose={10000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
     </>
   );
 }

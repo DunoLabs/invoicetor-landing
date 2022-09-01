@@ -17,7 +17,7 @@ import * as RiIcons from 'react-icons/ri';
 
 const FeaturesDetails = [
   {
-    imageUrl: `https://res.cloudinary.com/invoicetor/image/upload/v1661629813/Untitled_design__4_-removebg-preview_to1zkk.png`,
+    imageUrl: `https://res.cloudinary.com/invoicetor/image/upload/v1661990336/bubble-gum-workflow_wk6qyr.png`,
     Title: 'Create Multiple Invoices',
     Description:
       'Invoices can be created multiple times, and account data can be used to create different invoices for different clients.',
@@ -27,7 +27,7 @@ const FeaturesDetails = [
     iconColor: 'yellow.500',
   },
   {
-    imageUrl: `https://res.cloudinary.com/invoicetor/image/upload/v1661629810/Untitled_design__5_-removebg-preview_vixx9e.png`,
+    imageUrl: `https://res.cloudinary.com/invoicetor/image/upload/v1661990634/bubble-gum-female-designer-working-on-laptop_uyccpu.png`,
     Title: 'Better Designs & Templates',
     Description:
       "Your invoices will be completely customizable using the design panel. Choose a color that matches your company's style. Modify the spacing to accommodate the amount of information you want.",
@@ -37,7 +37,7 @@ const FeaturesDetails = [
     iconColor: '#00aaff',
   },
   {
-    imageUrl: `https://res.cloudinary.com/invoicetor/image/upload/v1661629675/Untitled_design__3_-removebg-preview_c8olpn.png`,
+    imageUrl: `https://res.cloudinary.com/invoicetor/image/upload/v1661990547/bubble-gum-programming_be2e9x.png`,
     Title: 'Easy Control',
     Description:
       'Keep the data, but hide the content with a click. Easy toggle support allows you to put your best foot forward.',
@@ -90,7 +90,7 @@ const FeatureCard = ({
         <Text
           align="start"
           fontWeight={600}
-          fontSize={{ base: '16px', sm: '18px', lg: '20px' }}
+          fontSize={{ base: 'md', lg: 'lg' }}
           color={activeColor}
         >
           {text}
@@ -172,41 +172,36 @@ export default function Feature() {
                 sm: '18px',
               }}
               color={useColorModeValue('purple.500', 'purple.200')}
+              _focus={{
+                outline: 'none',
+              }}
             >
               Learn More...
             </Link>
           </Stack>
         </Stack>
-
-        {/* show active content image   */}
-        {FeaturesDetails.map((item, index) => {
-          return (
-            <Flex
-              display={active === index ? 'block' : 'none'}
-              alignItems={'center'}
-            >
-              <Box
-                rounded={'3xl'}
-                width={'full'}
-                boxShadow={'sm'}
-                bg={'white'}
-                border={'6px solid'}
-                borderColor={active === index && 'purple.100'}
-                transition={'all 0.3s ease-in-out'}
-              >
+        <Flex display={'block'} alignItems={'center'}>
+          <Box
+            rounded={'3xl'}
+            boxShadow={'sm'}
+            bg={'white'}
+            border={'6px solid'}
+            borderColor={'purple.200'}
+            transition={'all 0.3s ease-in-out'}
+          >
+            {/* show active content image   */}
+            {FeaturesDetails.map((item, index) => {
+              return (
                 <Image
                   alt={'feature image'}
-                  src={
-                    active === index
-                      ? item.imageUrl
-                      : 'https://via.placeholder.com/400'
-                  }
-                  objectFit={'cover'}
+                  src={active === index && item.imageUrl}
+                  display={active === index ? 'block' : 'none'}
+                  loading={'eager'}
                 />
-              </Box>
-            </Flex>
-          );
-        })}
+              );
+            })}
+          </Box>
+        </Flex>
       </SimpleGrid>
     </Container>
   );

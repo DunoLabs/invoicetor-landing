@@ -70,7 +70,10 @@ export default function ClientDetails({
           <FormControl id="clientPhone">
             <FormLabel>Client Phone</FormLabel>
             <Input
-              type="text"
+              type="number"
+              onKeyDown={e =>
+                ['e', 'E', '+', '-'].includes(e.key) && e.preventDefault()
+              }
               size={'lg'}
               htmlSize={30}
               placeholder="Client Phone"

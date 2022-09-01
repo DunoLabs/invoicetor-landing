@@ -16,6 +16,8 @@ import Help from './components/Pages/Help';
 import JoinWaitlist from './components/Pages/JoinWaitlist';
 import GoTop from './components/Atoms/goTop/goTop';
 import Thanks from './components/Pages/Supporters/thanks';
+import Blogs from './components/Pages/Blogs/Blogs';
+import NotFound from './components/Pages/404';
 
 function App() {
   return (
@@ -34,6 +36,8 @@ function App() {
         <Route path="releases" element={<Releases />} />
         <Route path="help-center" element={<Help />} />
         <Route path="join-waitlist" element={<JoinWaitlist />} />
+        <Route path="blogs" element={<Blogs />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
 
       <Footer />

@@ -53,22 +53,6 @@ import {
 } from '@chakra-ui/icons';
 
 const NAV_ITEMS = [
-  // {
-  //   label: 'Work',
-  //   to: '/work',
-  //   children: [
-  //     {
-  //       label: 'Explore Design Work',
-  //       subLabel: 'Trending Design to inspire you',
-  //       href: '#',
-  //     },
-  //     {
-  //       label: 'New Templates and features',
-  //       subLabel: "some of the best invoice designs we've seen",
-  //       href: '#',
-  //     },
-  //   ],
-  // },
   {
     to: '/opensource',
     label: 'Open Source',
@@ -78,9 +62,24 @@ const NAV_ITEMS = [
     label: 'About Us',
   },
   {
-    to: '/one-time-editor',
-    label: 'One-Time Editor',
+    label: 'Free Tools ✨',
+    children: [
+      {
+        label: 'One-Time Editor',
+        subLabel: 'Free Invoice Editor for one-time use',
+        to: '/one-time-editor',
+      },
+      {
+        label: 'Invoice Templates',
+        subLabel: 'coming soooon.....',
+        to: '#',
+      },
+    ],
   },
+  // {
+  //   to: '/blogs',
+  //   label: 'Blogs',
+  // },
 ];
 
 const afterElement = {
@@ -319,11 +318,12 @@ export default function WithSubnavigation() {
 const DesktopNav = () => {
   const linkHoverColor = useColorModeValue('gray.800', 'white');
   const ActiveLinkColor = useColorModeValue('purple.600', 'purple.100');
+  const PopoverBgColor = useColorModeValue('gray.900', 'white');
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef();
 
   const featuredUpdatesContentRef = useRef(getFeaturedUpdates());
-  // const [moreFeaturedContentPopup, setMoreFeaturedContentPopup] =
+
   useState(false);
   return (
     <>
@@ -333,7 +333,25 @@ const DesktopNav = () => {
             <Popover trigger={'hover'} placement={'bottom-start'}>
               <PopoverTrigger>
                 {navItem.children ? (
-                  <Link>{navItem.label}</Link>
+                  <Link
+                    style={{
+                      padding: '0.5rem',
+                      fontWeight: 500,
+                    }}
+                    _activeLink={{
+                      color: ActiveLinkColor,
+                      fontWeight: 600,
+                    }}
+                    _hover={{
+                      color: linkHoverColor,
+                      textDecoration: 'none',
+                    }}
+                    _focus={{
+                      outline: 'none',
+                    }}
+                  >
+                    {navItem.label}
+                  </Link>
                 ) : (
                   <Link
                     as={NavLink}
@@ -366,8 +384,12 @@ const DesktopNav = () => {
                   borderColor="dark"
                   boxShadow={'xl'}
                   p={4}
-                  rounded={'xl'}
+                  rounded={'20px'}
                   minW={'sm'}
+                  _focus={{
+                    outline: 'none',
+                  }}
+                  bg={PopoverBgColor}
                 >
                   <Stack>
                     {navItem.children.map(child => (
@@ -488,22 +510,48 @@ const DesktopNav = () => {
 };
 
 // Desktop Sub Nav Item
-const DesktopSubNav = ({ label, href, subLabel }) => {
+const DesktopSubNav = ({ label, to, subLabel }) => {
   return (
     <Link
-      href={href}
+      as={NavLink}
+      to={to}
       role={'group'}
       display={'block'}
+      color={useColorModeValue('white', 'gray.800')}
       p={2}
-      rounded={'md'}
-      _hover={{ textDecoration: 'none' }}
+      rounded={'xl'}
+      _hover={{
+        textDecoration: 'none',
+        bg: useColorModeValue('purple.50', 'purple.900'),
+        color: useColorModeValue('purple.600', 'purple.100'),
+      }}
+      _focus={{
+        outline: 'none',
+      }}
+      cursor={to !== '#' ? 'pointer' : 'not-allowed'}
     >
       <Stack direction={'row'} align={'center'}>
         <Box align={'start'}>
-          <Text transition={'all .3s ease'} fontWeight={500}>
+          <Text
+            fontWeight={500}
+            style={{
+              padding: '0.5rem',
+              fontWeight: 500,
+            }}
+            _activeLink={{
+              fontWeight: 600,
+            }}
+          >
             {label}
           </Text>
-          <Text fontSize={'sm'}>{subLabel}</Text>
+          <Text
+            fontSize={'sm'}
+            style={{
+              padding: '0 0.5rem',
+            }}
+          >
+            {subLabel}
+          </Text>
         </Box>
         <Flex
           transition={'all .3s ease'}

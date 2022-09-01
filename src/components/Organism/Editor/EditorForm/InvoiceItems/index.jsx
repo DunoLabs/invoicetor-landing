@@ -36,10 +36,10 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
+  useToast,
 } from '@chakra-ui/react';
 import CurrencyData from '../../CurrencyData/CurrencyData.json';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
 import * as FaIcons from 'react-icons/fa';
 import * as RiIcons from 'react-icons/ri';
 
@@ -49,6 +49,8 @@ export default function InvoiceItems({
   getItems,
   resetForm,
 }) {
+  const toast = useToast();
+  const statuses = ['success', 'error', 'warning', 'info'];
   const { isOpen, onOpen, onClose } = useDisclosure();
   const formik = useFormik({
     initialValues: { invoiceItems, tax },
@@ -66,18 +68,16 @@ export default function InvoiceItems({
   }, [formik.values.invoiceItems, formik.values.tax]);
 
   // aleart message
-  const alertMessage = message => {
-    toast(message, {
+  const alertMessage = (message, status) => {
+    toast({
+      status: statuses.includes(status) ? status : 'info',
+      title: message,
+      duration: 2000,
+      isClosable: true,
       position: 'bottom-right',
-      autoClose: 5000,
-      hideProgressBar: false, // default value
-      closeOnClick: true, // default value
-      pauseOnHover: true, // default value
-      draggable: true, // default value
-      progress: undefined,
-      className: 'alert-message',
     });
   };
+
   const customCurrency = ['US Dollar', 'Indian Rupee', 'Euro'];
   const [searchTerm, setSearchTerm] = useState('');
   const [currency, setCurrency] = useState('₹');
@@ -112,16 +112,16 @@ export default function InvoiceItems({
       currentItem.itemQuantity === '' ||
       currentItem.itemPrice === ''
     ) {
-      alertMessage('❌ Please fill all the fields');
+      alertMessage('Please fill all the fields', 'error');
       return;
     } else if (currentItem.itemName === '') {
-      alertMessage('❌ Please fill Item Name');
+      alertMessage('Please enter item name', 'error');
       return;
     } else if (currentItem.itemQuantity === '') {
-      alertMessage('❌ Please fill Item Quantity');
+      alertMessage('Please enter item quantity', 'error');
       return;
     } else if (currentItem.itemPrice === '') {
-      alertMessage('❌ Please fill Item Price');
+      alertMessage('Please enter item price', 'error');
       return;
     }
 
@@ -148,7 +148,7 @@ export default function InvoiceItems({
       itemTotal: '',
     });
 
-    alertMessage('✅ Item added successfully');
+    alertMessage('Item added successfully', 'success');
   };
 
   // save edit items to localstorage
@@ -167,7 +167,7 @@ export default function InvoiceItems({
     });
 
     formik.setFieldValue('invoiceItems', newItems);
-    alertMessage('✅ Item updated successfully');
+    alertMessage('Item updated successfully', 'success');
     onClose();
   };
   /* Edit invoiceItems Item Starts */
@@ -189,7 +189,7 @@ export default function InvoiceItems({
     const item = [...formik.values.invoiceItems];
     item.splice(index, 1);
     formik.setFieldValue('invoiceItems', item);
-    alertMessage('✅ Item deleted successfully');
+    alertMessage('Item deleted successfully', 'success');
   };
 
   /* Delete invoiceItems items from local storage ends */
@@ -612,18 +612,6 @@ export default function InvoiceItems({
           </Flex>
         </Stack>
       )}
-
-      <ToastContainer
-        position="bottom-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
     </>
   );
 }

@@ -50,6 +50,7 @@ export default function InvoiceProvider({ children }) {
           signatureSize: '100',
           signatureToggle: true,
         },
+        backgroundColor: 'gray',
       };
 
   const [invoice, setInvoice] = useState({
@@ -100,6 +101,7 @@ export default function InvoiceProvider({ children }) {
       signatureSize: invoiceData.digitalSignature.signatureSize,
       signatureToggle: invoiceData.digitalSignature.signatureToggle,
     },
+    backgroundColor: invoiceData.backgroundColor,
   });
 
   useEffect(() => {

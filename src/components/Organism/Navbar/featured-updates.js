@@ -21,6 +21,12 @@ function getFeaturedUpdates() {
         hasAction: false,
       },
       {
+        title: 'Change Invoice Colors 🎨',
+        description:
+          'Add background colors to your invoices to make them stand out from the rest.',
+        hasAction: false,
+      },
+      {
         title: 'Add Digital Signature 🔐',
         description:
           'Create invoices with digital signature. You can sign your invoices and send them to your clients, just like you would send a physical copy.',
@@ -31,17 +37,17 @@ function getFeaturedUpdates() {
           label: 'Create Invoices ⚡',
         },
       },
-      {
-        title: "Want's One-Time Editor 🤔",
-        description:
-          'One Time Editor is a free editor for invoicetor. You can use it to create invoices and download them as PDF. To get to know more about One-Time Editor read the blog post.',
-        hasAction: true,
-        action: {
-          type: 'link',
-          url: 'https://invoicetor.works',
-          label: 'Read Blog',
-        },
-      },
+      // {
+      //   title: "Want's One-Time Editor 🤔",
+      //   description:
+      //     'One Time Editor is a free editor for invoicetor. You can use it to create invoices and download them as PDF. To get to know more about One-Time Editor read the blog post.',
+      //   hasAction: true,
+      //   action: {
+      //     type: 'link',
+      //     url: 'https://invoicetor.works',
+      //     label: 'Read Blog',
+      //   },
+      // },
       {
         title: 'Learn About Previous Features/Releases 📖',
         description:

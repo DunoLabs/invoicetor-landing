@@ -1,13 +1,11 @@
 import { useContext, useState, useEffect } from 'react';
 import { useFormik } from 'formik';
-import { Box, Flex, Button, Spacer } from '@chakra-ui/react';
+import { Box, Flex, Button, Spacer, useToast } from '@chakra-ui/react';
 
 import { InvoiceContext } from '../../../../core/InvoiceContext';
 
 import * as RiIcons from 'react-icons/ri';
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import UserDetails from './UserDetails';
 import ClientDetails from './ClientDetails';
 import InvoiceItems from './InvoiceItems';
@@ -19,18 +17,17 @@ import DigitalSignature from './DigitalSignature';
 
 export default function EditorForm() {
   const [reset, setReset] = useState(false);
+  const toast = useToast();
+  const statuses = ['success', 'error', 'warning', 'info'];
 
   // aleart message
-  const alertMessage = message => {
-    toast(message, {
+  const alertMessage = (message, status) => {
+    toast({
+      status: statuses.includes(status) ? status : 'info',
+      title: message,
+      duration: 2000,
+      isClosable: true,
       position: 'bottom-right',
-      autoClose: 3000,
-      hideProgressBar: false, // default value
-      closeOnClick: true, // default value
-      pauseOnHover: true, // default value
-      draggable: true, // default value
-      progress: undefined,
-      className: 'alert-message',
     });
   };
 
@@ -41,22 +38,47 @@ export default function EditorForm() {
     onSubmit: values => {
       setInvoice(values.invoice);
       localStorage.setItem('invoicetor', JSON.stringify(values.invoice));
-      alertMessage('✅ Invoice saved successfully');
+      alertMessage('Invoice saved successfully', 'success');
     },
   });
 
   useEffect(() => {
     localStorage.setItem('invoicetor', JSON.stringify(invoice));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     setReset(false);
   }, [invoice]);
+
+  useEffect(() => {
+    const handler = e => {
+      if (e.ctrlKey && e.keyCode === 83) {
+        // check if the user is on the invoice page or not
+        if (window.location.pathname === '/one-time-editor') {
+          e.preventDefault();
+          formik.handleSubmit();
+        }
+      }
+
+      if (e.ctrlKey && e.keyCode === 82) {
+        // check if the user is on the invoice page or not
+        if (window.location.pathname === '/one-time-editor') {
+          e.preventDefault();
+          clearAllData();
+        }
+      }
+    };
+    document.addEventListener('keydown', handler);
+    return () => {
+      document.removeEventListener('keydown', handler);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [formik]);
 
   // Upload Image in localstorage ends
 
   // Clear All Data
   const clearAllData = () => {
     setReset(true);
-    formik.resetForm();
-    localStorage.clear();
+    localStorage.removeItem('invoicetor');
 
     setInvoice({
       yourLogo: {
@@ -100,25 +122,34 @@ export default function EditorForm() {
       },
       digitalSignature: {
         signature: '',
-        signatureSize: '',
+        signatureSize: '100',
         signatureToggle: true,
-        sealColor: '',
+        sealColor: 'red.400',
       },
     });
 
     // set formik initial values
     formik.setFieldValue('invoice.yourLogo.image', '');
-    alertMessage('🗑️ All data cleared');
+    alertMessage('Invoice cleared successfully', 'success');
+  };
+
+  // getting ImageData from InvoiceImage Component starts
+  const getLogo = data => {
+    setInvoice({
+      ...invoice,
+      yourLogo: {
+        image: data.image,
+        imageSize: data.imageSize,
+      },
+    });
   };
 
   // getting data from UserDetails Component starts
   const getYourDetails = data => {
     formik.setValues({
-      ...formik.values,
       invoice: {
-        ...formik.values.invoice,
+        ...invoice,
         yourDetails: {
-          ...formik.values.invoice.yourDetails,
           yourCompany: data.yourCompany,
           yourName: data.yourName,
           yourAddress: data.yourAddress,
@@ -131,6 +162,22 @@ export default function EditorForm() {
           yourBankBranch: data.yourBankBranch,
           yourRegistrationNumber: data.yourRegistrationNumber,
         },
+      },
+    });
+    setInvoice({
+      ...invoice,
+      yourDetails: {
+        yourCompany: data.yourCompany,
+        yourName: data.yourName,
+        yourAddress: data.yourAddress,
+        yourCity: data.yourCity,
+        yourWebsite: data.yourWebsite,
+        yourEmail: data.yourEmail,
+        yourPhone: data.yourPhone,
+        yourBank: data.yourBank,
+        yourAccountNumber: data.yourAccountNumber,
+        yourBankBranch: data.yourBankBranch,
+        yourRegistrationNumber: data.yourRegistrationNumber,
       },
     });
   };
@@ -217,47 +264,8 @@ export default function EditorForm() {
     });
   };
 
-  // getting ImageData from InvoiceImage Component starts
-  const getLogo = data => {
-    formik.setValues({
-      ...formik.values,
-      invoice: {
-        ...formik.values.invoice,
-        yourLogo: {
-          ...formik.values.invoice.yourLogo,
-          image: data.image,
-          imageSize: data.imageSize,
-        },
-      },
-    });
-    setInvoice({
-      ...invoice,
-      yourLogo: {
-        image: data.image,
-        imageSize: data.imageSize,
-      },
-    });
-  };
-
   // getting data from DigitalSignature Component starts
   const getDigitalSignature = data => {
-    formik.setValues({
-      ...formik.values,
-      invoice: {
-        ...formik.values.invoice,
-        digitalSignature: {
-          ...formik.values.invoice?.digitalSignature,
-          signature: data.digitalSignature?.signature,
-          signatureSize: data.digitalSignature?.signatureSize || 200,
-          signatureToggle: data.digitalSignature?.signatureToggle,
-          sealColor: data.digitalSignature?.sealColor,
-        },
-        yourDetails: {
-          ...formik.values.invoice.yourDetails,
-          yourRegistrationNumber: data.registrationNumber,
-        },
-      },
-    });
     setInvoice({
       ...invoice,
       digitalSignature: {
@@ -277,24 +285,21 @@ export default function EditorForm() {
     <>
       <form onSubmit={formik.handleSubmit} id="form">
         <InvoiceImage
-          yourLogo={invoice.yourLogo}
+          yourLogo={formik.values.invoice.yourLogo}
           getLogo={getLogo}
           resetForm={reset}
           alertMessage={alertMessage}
         />
-
         <UserDetails
           yourDetails={formik.values.invoice.yourDetails}
           getYourDetails={data => getYourDetails(data)}
           resetForm={reset}
         />
-
         <ClientDetails
           clientDetails={formik.values.invoice.clientDetails}
           getClientDetails={data => getClientDetails(data)}
           resetForm={reset}
         />
-
         <InvoiceDates
           invoiceDates={[
             formik.values.invoice.invoiceNumber,
@@ -304,7 +309,6 @@ export default function EditorForm() {
           getDates={data => getDates(data)}
           resetForm={reset}
         />
-
         {/* Invoice Number And Dates End */}
         <InvoiceItems
           invoiceItems={formik.values.invoice.items}
@@ -313,19 +317,16 @@ export default function EditorForm() {
           resetForm={reset}
           alertMessage={alertMessage}
         />
-
         <InvoiceNotes
           notes={formik.values.invoice.notes}
           getNotes={data => getNotes(data)}
           resetForm={reset}
         />
-
         <InvoiceTerms
           terms={formik.values.invoice.terms}
           getTerms={data => getTerms(data)}
           resetForm={reset}
         />
-
         <DigitalSignature
           digitalSignature={formik.values.invoice.digitalSignature}
           registrationNumber={
@@ -373,6 +374,7 @@ export default function EditorForm() {
               _hover={{
                 bg: 'whiteAlpha.800',
               }}
+              type="reset"
               onClick={clearAllData}
               variant="outline"
               rightIcon={<RiIcons.RiDeleteBin2Line />}
@@ -382,17 +384,6 @@ export default function EditorForm() {
           </Box>
         </Flex>
       </form>
-      <ToastContainer
-        position="bottom-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
     </>
   );
 }
