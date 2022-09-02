@@ -11,6 +11,7 @@ import {
   ModalCloseButton,
   Kbd,
   useDisclosure,
+  Divider,
 } from '@chakra-ui/react';
 import * as RiIcon from 'react-icons/ri';
 
@@ -62,6 +63,7 @@ export default function Shortcuts() {
                 <Text fontSize={'16px'} fontWeight="normal">
                   save - <Kbd>ctrl + s</Kbd>
                 </Text>
+                <Divider my="2" />
                 <Text fontSize={'16px'} fontWeight="normal">
                   clear all data - <Kbd>ctrl + r</Kbd>
                 </Text>
