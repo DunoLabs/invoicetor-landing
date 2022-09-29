@@ -319,6 +319,11 @@ export default function EditorForm() {
         />
         <InvoiceNotes
           notes={formik.values.invoice.notes}
+          clientName={formik.values.invoice.clientDetails.clientName}
+          userName = {formik.values.invoice.yourDetails.yourName}
+          
+          usersCompany={formik.values.invoice.yourDetails.yourCompany}
+          invoiceDate={formik.values.invoice.invoiceDate}
           getNotes={data => getNotes(data)}
           resetForm={reset}
         />

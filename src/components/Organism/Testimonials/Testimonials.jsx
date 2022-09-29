@@ -63,6 +63,7 @@ export default function Testimonials() {
               key={index}
               content={testimonial.content}
               name={testimonial.name}
+              platform={testimonial.platform}
               handle={testimonial.handle}
               date={testimonial.date}
               image={testimonial.image}

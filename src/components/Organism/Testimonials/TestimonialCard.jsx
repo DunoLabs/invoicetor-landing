@@ -13,7 +13,15 @@ import {
 // Assets
 import * as RiIcon from 'react-icons/ri';
 
-function TestimonialCard({ content, name, handle, date, image, url }) {
+function TestimonialCard({
+  content,
+  name,
+  handle,
+  date,
+  image,
+  url,
+  platform,
+}) {
   let secondaryBg = useColorModeValue('white', 'purple.900');
 
   return (
@@ -47,7 +55,11 @@ function TestimonialCard({ content, name, handle, date, image, url }) {
         <Box display="flex" alignItems="center" justifyContent="space-between">
           <Text>— {handle}</Text>
           <Icon
-            as={RiIcon.RiTwitterFill}
+            as={
+              platform === 'Twitter'
+                ? RiIcon.RiTwitterFill
+                : RiIcon.RiLinkedinFill
+            }
             w={5}
             h={5}
             mb="4"

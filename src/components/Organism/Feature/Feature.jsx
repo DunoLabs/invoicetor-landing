@@ -11,6 +11,7 @@ import {
   Text,
   useColorModeValue,
   Link,
+  Square,
 } from '@chakra-ui/react';
 
 import * as RiIcons from 'react-icons/ri';
@@ -58,7 +59,6 @@ const FeatureCard = ({
   setActive,
   cardNo,
 }) => {
-  console.log(active);
   const color1 = useColorModeValue('gray.900', 'gray.700');
   const activeColor = active === cardNo ? color1 : 'gray.500';
   return (
@@ -188,18 +188,21 @@ export default function Feature() {
             border={'6px solid'}
             borderColor={'purple.200'}
             transition={'all 0.3s ease-in-out'}
+            h="100%"
           >
-            {/* show active content image   */}
-            {FeaturesDetails.map((item, index) => {
-              return (
-                <Image
-                  alt={'feature image'}
-                  src={active === index && item.imageUrl}
-                  display={active === index ? 'block' : 'none'}
-                  loading={'eager'}
-                />
-              );
-            })}
+            <Square size={'lg'} color="white">
+              {/* show active content image   */}
+              {FeaturesDetails.map((item, index) => {
+                return (
+                  <Image
+                    alt={'feature image'}
+                    src={active === index && item.imageUrl}
+                    display={active === index ? 'block' : 'none'}
+                    loading={'eager'}
+                  />
+                );
+              })}
+            </Square>
           </Box>
         </Flex>
       </SimpleGrid>
