@@ -28,7 +28,9 @@ export default function Preview() {
   }, 0);
 
   const tax = invoice.tax;
-  const total = subTotal + tax;
+
+  // find total using tax
+  const total = subTotal + (subTotal * tax) / 100;
   return (
     <>
       <Stack

@@ -41,7 +41,7 @@ export default function InvoiceNotes({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formik.values]);
 
-  const customNotes = [
+  const randomNotes = [
     {
       id: 1,
       content: `Thank you for your support, ${clientName}. We truly appreciate your business and look forward to helping you again soon.`,
@@ -64,10 +64,10 @@ export default function InvoiceNotes({
     },
   ];
 
-  // randomly select a note from the customNotes array
+  // randomly select a note from the randomNotes array
   const suggestNotes = () => {
     const randomNote =
-      customNotes[Math.floor(Math.random() * customNotes.length)];
+      randomNotes[Math.floor(Math.random() * randomNotes.length)];
     formik.setFieldValue('notes.note', randomNote.content);
   };
 
@@ -121,7 +121,7 @@ export default function InvoiceNotes({
                   {formik.values.notes.noteToggle ? 'Show' : 'Hide'}
                 </MenuItem>
                 <MenuItem icon={<RiIcons.RiMagicFill />} onClick={suggestNotes}>
-                  Suggest Notes
+                  Random Notes
                 </MenuItem>{' '}
               </MenuList>
             </Menu>
