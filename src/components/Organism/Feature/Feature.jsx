@@ -190,7 +190,13 @@ export default function Feature() {
             transition={'all 0.3s ease-in-out'}
             h="100%"
           >
-            <Square size={'lg'} color="white">
+            <Square
+              size={{
+                base: '100%',
+                md: '100%',
+              }}
+              color="white"
+            >
               {/* show active content image   */}
               {FeaturesDetails.map((item, index) => {
                 return (

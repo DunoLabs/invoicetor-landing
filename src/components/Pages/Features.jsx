@@ -70,7 +70,7 @@ export default function OpenSource() {
           >
             <Text
               as={'span'}
-              bgGradient="linear(to-l,purple.400, yellow.400)"
+              bgGradient="linear(to-l, yellow.400, purple.400)"
               bgClip="text"
               fontSize={{ base: '3xl', sm: '4xl', lg: '4xl' }}
             >
@@ -101,7 +101,7 @@ export default function OpenSource() {
                 <Text
                   as="span"
                   fontWeight={'900'}
-                  bgGradient="linear(to-l,purple.400, yellow.400)"
+                  bgGradient="linear(to-l, yellow.400, purple.400)"
                   bgClip="text"
                 >
                   #

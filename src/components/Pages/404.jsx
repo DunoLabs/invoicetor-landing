@@ -4,10 +4,9 @@ import {
   Text,
   Box,
   Link,
-  Center,
   Button,
   Image,
-  VStack,
+  SimpleGrid,
 } from '@chakra-ui/react';
 import { SponsorCard } from './Sponsor';
 
@@ -15,14 +14,19 @@ import { FiArrowLeft } from 'react-icons/fi';
 export default function NotFound() {
   return (
     <Container maxW={'6xl'} mt={36}>
-      <Center py="8" flexWrap={{ base: 'wrap-reverse', lg: 'nowrap' }}>
-        <Box flexBasis="50%" alignItems="flex-start">
+      <SimpleGrid
+        columns={{ base: 1, md: 2 }}
+        spacing={10}
+        alignItems={'center'}
+      >
+        <Box alignItems="flex-start">
           <Text
             as="h1"
             fontSize={{ base: '4xl', lg: '6xl' }}
             fontWeight="bold"
             letterSpacing="tight"
             mb="2"
+            my={'4'}
           >
             Not Found :(
           </Text>
@@ -63,16 +67,14 @@ export default function NotFound() {
             .
           </Text>
         </Box>
-        <Center flexBasis={{ md: '50%' }}>
-          <VStack>
-            <Image
-              src="https://res.cloudinary.com/invoicetor/image/upload/v1661998439/search_pmblud.gif"
-              alt="404 Not Found"
-              boxSize={{ base: '183', md: '228', lg: '550' }}
-            />
-          </VStack>
-        </Center>
-      </Center>
+
+        <Box>
+          <Image
+            src="https://res.cloudinary.com/invoicetor/image/upload/v1661998439/search_pmblud.gif"
+            alt="404 Not Found"
+          />
+        </Box>
+      </SimpleGrid>
       <SponsorCard />
     </Container>
   );

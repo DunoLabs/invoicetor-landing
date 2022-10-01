@@ -18,6 +18,7 @@ import GoTop from './components/Atoms/goTop/goTop';
 import Thanks from './components/Pages/Supporters/thanks';
 import Blogs from './components/Pages/Blogs/Blogs';
 import NotFound from './components/Pages/404';
+import Hf from './components/Pages/Hacktoberfest/Hf';
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
         <Route path="help-center" element={<Help />} />
         <Route path="join-waitlist" element={<JoinWaitlist />} />
         <Route path="blogs" element={<Blogs />} />
+        <Route path="hacktoberfest" element={<Hf />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
 

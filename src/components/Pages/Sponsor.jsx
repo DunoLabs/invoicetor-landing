@@ -40,7 +40,7 @@ function Sponsor() {
           >
             <Text
               as={'span'}
-              bgGradient="linear(to-l,purple.400, yellow.400)"
+              bgGradient="linear(to-l, yellow.400, purple.400)"
               bgClip="text"
               fontSize={{ base: '3xl', sm: '4xl', lg: '4xl' }}
             >
@@ -66,7 +66,7 @@ function Sponsor() {
             interested in sponsoring us, please contact us at{' '}
             <Text
               as={'span'}
-              bgGradient="linear(to-l,purple.400, yellow.400)"
+              bgGradient="linear(to-l, yellow.400, purple.400)"
               bgClip="text"
             >
               <Link
@@ -170,7 +170,7 @@ function SponsorCard() {
           <Text
             fontSize={'1.5rem'}
             align="start"
-            bgGradient="linear(to-l,purple.400, yellow.400)"
+            bgGradient="linear(to-l, yellow.400, purple.400)"
             bgClip="text"
             fontWeight={'700'}
             mb={{

@@ -13,14 +13,6 @@ import {
   DrawerContent,
   DrawerCloseButton,
   Flex,
-  // Badge,
-  // Modal,
-  // ModalOverlay,
-  // ModalContent,
-  // ModalHeader,
-  // ModalFooter,
-  // ModalBody,
-  // ModalCloseButton,
   Text,
   IconButton,
   Button,
@@ -51,6 +43,7 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from '@chakra-ui/icons';
+import Announcements from '../../Molecules/Banners/Announcements';
 
 const NAV_ITEMS = [
   {
@@ -93,7 +86,7 @@ const afterElement = {
   right: 0,
 };
 
-export default function WithSubnavigation() {
+export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
@@ -105,6 +98,7 @@ export default function WithSubnavigation() {
       zIndex="4"
       _after={afterElement}
     >
+      <Announcements />
       <Flex
         style={{
           backdropFilter: 'blur( 7px )',

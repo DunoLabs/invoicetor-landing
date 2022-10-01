@@ -32,7 +32,7 @@ export default function Help() {
           >
             <Text
               as={'span'}
-              bgGradient="linear(to-l,purple.400, yellow.400)"
+              bgGradient="linear(to-l, yellow.400, purple.400)"
               bgClip="text"
               fontSize={{
                 base: '2.5rem',
@@ -60,7 +60,7 @@ export default function Help() {
             system, you can email us at{' '}
             <Text
               as={'span'}
-              bgGradient="linear(to-l,purple.400, yellow.400)"
+              bgGradient="linear(to-l, yellow.400, purple.400)"
               bgClip="text"
             >
               <Link
@@ -69,7 +69,7 @@ export default function Help() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-               dunolabs@gmail.com{' '}
+                dunolabs@gmail.com{' '}
               </Link>
             </Text>{' '}
             and we plan on adding more support systems in the future.

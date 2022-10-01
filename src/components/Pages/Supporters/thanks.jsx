@@ -40,7 +40,7 @@ export default function Thanks() {
           >
             <Text
               as={'span'}
-              bgGradient="linear(to-l,purple.400, yellow.400)"
+              bgGradient="linear(to-l, yellow.400, purple.400)"
               bgClip="text"
               fontSize={{ base: '3xl', sm: '4xl', lg: '4xl' }}
             >
@@ -57,7 +57,7 @@ export default function Thanks() {
               href="https://github.com/sponsors/wh0sumit"
               target={'_blank'}
               rel={'noopener noreferrer'}
-              bgGradient="linear(to-l,purple.400, yellow.400)"
+              bgGradient="linear(to-l, yellow.400, purple.400)"
               bgClip="text"
               _focus={{
                 outline: 'none',

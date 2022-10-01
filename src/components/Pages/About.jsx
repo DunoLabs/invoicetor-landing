@@ -1,4 +1,12 @@
-import { Box, Heading, Container, Text, Stack, Link } from '@chakra-ui/react';
+import {
+  Box,
+  Heading,
+  Container,
+  Text,
+  Stack,
+  Link,
+  Divider,
+} from '@chakra-ui/react';
 import Helmet from 'react-helmet';
 
 export default function About() {
@@ -25,7 +33,7 @@ export default function About() {
           >
             <Text
               as={'span'}
-              bgGradient="linear(to-l,purple.400, yellow.400)"
+              bgGradient="linear(to-l, yellow.400, purple.400)"
               bgClip="text"
               fontSize={{ base: '3xl', sm: '4xl', lg: '4xl' }}
             >
@@ -41,12 +49,12 @@ export default function About() {
             }}
           >
             Invoicetor is created by a team of developers from an awesome
-            organization called{' '}
+            organization :{' '}
             <Link
               as={'a'}
               href="https://github.com/dunolabs"
               target="_blank"
-              bgGradient="linear(to-l,purple.400, yellow.400)"
+              bgGradient="linear(to-l, yellow.400, purple.400)"
               bgClip="text"
               _focus={{
                 outline: 'none',
@@ -55,7 +63,8 @@ export default function About() {
             >
               DunoLabs
             </Link>
-            . at DunoLabs we create awesome micro-saas products for both
+            <br />
+            at DunoLabs we create awesome micro-saas products for both
             businesses and individuals. We are a team of developers who love to
             create products that helps everyone to build a better and more
             efficient way to build their business.
@@ -80,7 +89,7 @@ export default function About() {
           <Text fontSize={'1.3rem'} align="start">
             Invoicetor is a platform that helps businesses to digitize their
             finances in an easy manner and create invoices in a simple way. Aim
-            of this website is to avail a service that helps them to simplify
+            of this product is to avail a service that helps them to simplify
             their finances.
           </Text>{' '}
           <Text
@@ -95,6 +104,13 @@ export default function About() {
             your business. We're currently working on a new features, and we're
             soon going to release first public version, so stay tuned!
           </Text>{' '}
+          <Divider
+            style={{
+              marginTop: '3rem',
+            }}
+            bgGradient="linear(to-l, yellow.400, purple.400)"
+            h="0.7"
+          />
           <Heading
             align="start"
             fontWeight={700}
@@ -109,7 +125,7 @@ export default function About() {
             You can email us at{' '}
             <Text
               as={'span'}
-              bgGradient="linear(to-l,purple.400, yellow.400)"
+              bgGradient="linear(to-l, yellow.400, purple.400)"
               bgClip="text"
             >
               <Link

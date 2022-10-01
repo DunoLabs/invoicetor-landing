@@ -39,7 +39,7 @@ export default function Home() {
             Quickly and easily create beautiful invoices for your{' '}
             <Text
               as={'span'}
-              bgGradient="linear(to-l,purple.400, yellow.400)"
+              bgGradient="linear(to-l, yellow.400, purple.400)"
               bgClip="text"
             >
               business.
@@ -97,9 +97,9 @@ export default function Home() {
                   rounded={'full'}
                   px={6}
                   mx={2}
-                  bgGradient="linear(to-l,purple.400, yellow.400)"
+                  bgGradient="linear(to-l, yellow.400, purple.400)"
                   _hover={{
-                    bgGradient: 'linear(to-l,purple.400, yellow.400)',
+                    bgGradient: 'linear(to-l, yellow.400, purple.400)',
                   }}
                 >
                   Create Invoice
