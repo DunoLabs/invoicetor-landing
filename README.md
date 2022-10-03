@@ -7,7 +7,7 @@ Invoicetor is a no-code platform where business owners can create invoices for t
 
 ## 📣 Announcements
 
-`Invoicetor is currenlty under development, so please be patient while we are working on it, soon you will be able to create invoices for your business.`
+`Invoicetor is currently under development, so please be patient while we are working on it, soon you will be able to create invoices for your business.`
 
 ## Reasons why you should try Invoicetor
 
