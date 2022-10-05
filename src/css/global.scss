@@ -33,3 +33,6 @@
 *::-webkit-scrollbar-thumb:hover {
   background-image: #9f7aea;
 }
+html {
+  scroll-behavior: smooth;
+}
