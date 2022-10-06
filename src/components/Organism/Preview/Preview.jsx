@@ -15,10 +15,9 @@ import {
   Td,
   TableContainer,
   Divider,
+  SkeletonText,
 } from '@chakra-ui/react';
 import { useContext } from 'react';
-import Skeleton from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
 
 import { InvoiceContext } from '../../../core/InvoiceContext';
 import { checkEmpty } from './check-empty';
@@ -41,8 +40,8 @@ export default function Preview() {
   return (
     isEmpty 
     ? <Stack>
-      <span style={{textAlign: 'center'}}>Please enter details in the Editor tab to preview the invoice.</span>
-      <Skeleton count={5} />
+      <span style={{textAlign: 'center', marginBottom: '10px'}}>Please enter details in the Editor tab to preview the invoice.</span>
+      <SkeletonText mt='4' noOfLines={4} spacing='4' />
     </Stack>
     : <>
       <Stack
