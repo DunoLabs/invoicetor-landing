@@ -59,6 +59,7 @@ export default function InvoiceDates({ invoiceDates, getDates, resetForm }) {
               name="invoiceDates[1]"
               onChange={formik.handleChange}
               value={formik.values.invoiceDates[1]}
+              max={formik.values.invoiceDates[2] === '' ? null : formik.values.invoiceDates[2]}
             />
           </FormControl>
         </Box>
@@ -73,6 +74,7 @@ export default function InvoiceDates({ invoiceDates, getDates, resetForm }) {
               name="invoiceDates[2]"
               onChange={formik.handleChange}
               value={formik.values.invoiceDates[2]}
+              min={formik.values.invoiceDates[1] === '' ? null : formik.values.invoiceDates[1]}
             />
           </FormControl>
         </Box>
