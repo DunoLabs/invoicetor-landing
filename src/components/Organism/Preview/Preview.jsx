@@ -17,8 +17,11 @@ import {
   Divider,
 } from '@chakra-ui/react';
 import { useContext } from 'react';
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 import { InvoiceContext } from '../../../core/InvoiceContext';
+import { checkEmpty } from './check-empty';
 
 export default function Preview() {
   const { invoice } = useContext(InvoiceContext);
@@ -31,8 +34,17 @@ export default function Preview() {
 
   // find total using tax
   const total = subTotal + (subTotal * tax) / 100;
+
+  // check if invoice details are empty
+  const isEmpty = checkEmpty(invoice);
+
   return (
-    <>
+    isEmpty 
+    ? <Stack>
+      <span style={{textAlign: 'center'}}>Please enter details in the Editor tab to preview the invoice.</span>
+      <Skeleton count={5} />
+    </Stack>
+    : <>
       <Stack
         // bg={useColorModeValue('#fff', '#1A202C')}
         // color={useColorModeValue('gray.800', 'gray.200')}
