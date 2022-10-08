@@ -1,49 +1,42 @@
 import {
-  Stack,
-  Image,
-  Flex,
-  Text,
-  Box,
-  Spacer,
-  Grid,
-  GridItem,
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  TableContainer,
-  Divider,
-} from '@chakra-ui/react';
+    Alert,
+    AlertIcon,
+    Center,
+    Stack,
+    Flex,
+    Text,
+    Box,
+    Spacer,
+    Grid,
+    GridItem,
+    Table,
+    Thead,
+    Tbody,
+    Tr,
+    Th,
+    Td,
+    TableContainer,
+    Divider,
+    SkeletonText,
+    Skeleton,
+    SkeletonCircle,
+  } from '@chakra-ui/react';
+  
+import React from 'react'
 import { useContext } from 'react';
-
 import { InvoiceContext } from '../../../core/InvoiceContext';
-import { checkEmpty } from './check-empty';
-import SkeletonLoading from './SkeletonLoading';
 
-export default function Preview() {
-  const { invoice } = useContext(InvoiceContext);
-  const invoiceItems = invoice.items;
-  const subTotal = invoiceItems.reduce((acc, item) => {
-    return acc + item.itemQuantity * item.itemPrice;
-  }, 0);
-
-  const tax = invoice.tax;
-
-  // find total using tax
-  const total = subTotal + (subTotal * tax) / 100;
-
-  // check if invoice details are empty
-  const isEmpty = checkEmpty(invoice);
-
+function SkeletonLoading() {
+const { invoice } = useContext(InvoiceContext);
   return (
-    isEmpty 
-    ? <SkeletonLoading />
-    : <>
+    <>
+    <Center>
+        <Alert status='info' style={{width: 'fit-content'}} mb={8}>
+            <AlertIcon />
+            Please enter details in the Editor tab to preview the invoice.
+        </Alert>
+    </Center>
       <Stack
-        // bg={useColorModeValue('#fff', '#1A202C')}
-        // color={useColorModeValue('gray.800', 'gray.200')}
         style={{
           pageBreakAfter:
             invoice.items.length > 3 &&
@@ -56,19 +49,7 @@ export default function Preview() {
         <Stack spacing={10}>
           <Flex>
             <Box>
-              {invoice.yourLogo?.image && (
-                <Image
-                  src={invoice.yourLogo?.image}
-                  alt="company logo"
-                  className="company-logo"
-                  style={{
-                    borderRadius: '10px',
-                    marginBottom: '10px',
-                  }}
-                  w={invoice.yourLogo.imageSize}
-                  h={invoice.yourLogo.imageSize}
-                />
-              )}
+                <SkeletonCircle size='20' />
             </Box>
             <Spacer />
             <Box spacing={3}>
@@ -79,13 +60,7 @@ export default function Preview() {
               >
                 Invoice
               </Text>
-              <Text fontSize="2xl" align="end">
-                {invoice.yourDetails.yourCompany}
-              </Text>
-              <Text align="end">{invoice.yourDetails.yourName}</Text>
-              <Text align="end">{invoice.yourDetails.yourAddress}</Text>
-              <Text align="end">{invoice.yourDetails.yourCity}</Text>
-              <Text align="end">{invoice.yourDetails.yourWebsite}</Text>
+              <SkeletonText mt='4' noOfLines={4} spacing='4' />
             </Box>
           </Flex>
         </Stack>
@@ -101,10 +76,9 @@ export default function Preview() {
               >
                 Bill To :{' '}
               </Text>
-              <Text fontSize="2xl">{invoice.clientDetails.clientName}</Text>
-              <Text>{invoice.clientDetails.clientAddress}</Text>
-              <Text>{invoice.clientDetails.clientCity}</Text>
-              <Text>{invoice.clientDetails.clientWebsite}</Text>
+              <SkeletonText mt='4' noOfLines={4} spacing='4'>
+                <div>contents wrapped</div>
+              </SkeletonText>
             </Box>
 
             <Spacer />
@@ -135,9 +109,9 @@ export default function Preview() {
                   </Text>
                 </GridItem>
                 <GridItem colStart={4} colEnd={6} h="10">
-                  <Text align="end">{invoice.invoiceNumber}</Text>
-                  <Text align="end">{invoice.invoiceDate}</Text>
-                  <Text align="end">{invoice.dueDate}</Text>
+                  <SkeletonText mt='2' noOfLines={3} spacing='4'>
+                    <p>wrap text</p>
+                  </SkeletonText>
                 </GridItem>
               </Grid>
             </Box>
@@ -158,24 +132,21 @@ export default function Preview() {
               </Tr>
             </Thead>
             <Tbody>
-              {invoice.items.map((item, index) => (
-                <Tr
-                  key={index}
-                  bg={
-                    index % 2 !== 0 ? invoice?.backgroundColor + '.50' : 'white'
-                  }
-                >
-                  <Td>{item.itemName}</Td>
-                  <Td>{item.itemQuantity}</Td>
+                <Tr>
                   <Td>
-                    {item.itemCurrency} {item.itemPrice}
+                    <Skeleton height='10px'>Test item</Skeleton>
+                  </Td>
+                  <Td>
+                    <Skeleton height='10px'>Test</Skeleton>
+                  </Td>
+                  <Td>
+                    <Skeleton height='10px'>Test</Skeleton>
                   </Td>
                   <Td isNumeric>
                     {' '}
-                    {item.itemCurrency} {item.itemTotal}
+                    <Skeleton height='10px'>Test</Skeleton>
                   </Td>
                 </Tr>
-              ))}
             </Tbody>
           </Table>
         </TableContainer>
@@ -213,66 +184,28 @@ export default function Preview() {
                 </Text>
               </GridItem>
               <GridItem colStart={4} colEnd={6} h="10">
-                <Text align="end">
-                  {subTotal
-                    ? invoice.items[0].itemCurrency + `${subTotal}`
-                    : '-'}
-                </Text>
-                <Text align="end">{tax ? tax + '%' : 0}</Text>
+                <Skeleton height='10px' mt={2}>Wrap</Skeleton>
+                <Skeleton height='10px' mt={3} mb={2}>Wrap</Skeleton>
                 <Divider
                   borderBottom={`4px solid ${
-                    invoice?.backgroundColor + '.400'
-                  }`}
+                      invoice?.backgroundColor + '.400'
+                    }`}
                   borderColor={invoice?.backgroundColor + '.400'}
                 />
-                <Text align="end">
-                  {total ? invoice.items[0].itemCurrency + `${total}` : '-'}
-                </Text>
+                <Skeleton height='10px' mt={3}>Wrap</Skeleton>
               </GridItem>
             </Grid>
           </Box>
         </Flex>
       </Stack>
-      <Stack mt={8} spacing={3}>
-        {invoice.notes.noteToggle ? null : (
-          <Box>
-            <Text
-              as="h3"
-              fontWeight={'bold'}
-              align="start"
-              color={invoice?.backgroundColor + '.400'}
-            >
-              Notes :
-            </Text>
-            <Text>{invoice.notes.note}</Text>
-          </Box>
-        )}
-      </Stack>{' '}
-      <Stack mt={8} spacing={3}>
-        {invoice.terms.termToggle ? null : (
-          <Box>
-            <Text
-              as="h3"
-              fontWeight={'bold'}
-              align="start"
-              color={invoice?.backgroundColor + '.400'}
-            >
-              Terms & Condition
-            </Text>
-            <Text>{invoice.terms.term}</Text>
-          </Box>
-        )}
-      </Stack>
-      {invoice.digitalSignature.signatureToggle && (
         <Stack
           mt={{
-            base: '20px',
-            md: '20px',
+            base: '60px',
+            md: '60px',
           }}
           spacing={3}
         >
           <Flex justifyContent={'flex-end'}>
-            {invoice.yourDetails.yourCompany && (
               <Box
                 className="stamp is-nope"
                 borderWidth="0.5rem"
@@ -281,40 +214,24 @@ export default function Preview() {
                 color={invoice.digitalSignature.sealColor}
                 borderColor={invoice.digitalSignature.sealColor}
               >
-                {invoice.yourDetails.yourCompany} <br /> RN:
-                {invoice.yourDetails.yourRegistrationNumber}
+                <SkeletonText mt='2' noOfLines={2} spacing='4'>
+                    <p>Sample company name</p>
+                </SkeletonText>
               </Box>
-            )}
           </Flex>
-          {invoice.digitalSignature.signature && (
             <Flex justifyContent={'flex-end'}>
-              <Image
-                className="signature"
-                src={invoice.digitalSignature.signature}
-                alt="signature"
-                width={invoice.digitalSignature.signatureSize}
-                height={invoice.digitalSignature.signatureSize}
-              />
+                <SkeletonCircle size='20' />
             </Flex>
-          )}
           <Box>
-            <Text
-              align="end"
-              fontWeight={'500'}
-              color={invoice?.backgroundColor + '.400'}
-            >
-              {invoice.yourDetails.yourName}
-            </Text>
-            <Text
-              align="end"
-              fontWeight={'500'}
-              color={invoice?.backgroundColor + '.400'}
-            >
-              {invoice.invoiceDate}
-            </Text>
+          <Flex justifyContent={'flex-end'}>
+            <SkeletonText mt='2' noOfLines={2} spacing='4'>
+                    <span>wrap sample text</span>
+            </SkeletonText>
+            </Flex>
           </Box>
         </Stack>
-      )}
     </>
-  );
+  )
 }
+
+export default SkeletonLoading
