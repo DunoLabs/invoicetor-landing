@@ -18,7 +18,7 @@ import {
 } from '@chakra-ui/react';
 import { useContext } from 'react';
 
-import { InvoiceContext } from '../../../core/InvoiceContext';
+import { InvoiceContext } from 'core/InvoiceContext';
 import { checkEmpty } from './check-empty';
 import SkeletonLoading from './SkeletonLoading';
 
@@ -37,10 +37,10 @@ export default function Preview() {
   // check if invoice details are empty
   const isEmpty = checkEmpty(invoice);
 
-  return (
-    isEmpty 
-    ? <SkeletonLoading />
-    : <>
+  return isEmpty ? (
+    <SkeletonLoading />
+  ) : (
+    <>
       <Stack
         // bg={useColorModeValue('#fff', '#1A202C')}
         // color={useColorModeValue('gray.800', 'gray.200')}

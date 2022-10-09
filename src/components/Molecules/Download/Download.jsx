@@ -1,6 +1,6 @@
 import { useRef, useContext } from 'react';
 import { useReactToPrint } from 'react-to-print';
-import Preview from '../../Organism/Preview/Preview';
+import Preview from 'components/Organism/Preview/Preview';
 import {
   Box,
   Center,
@@ -13,7 +13,7 @@ import {
 } from '@chakra-ui/react';
 import * as RiIcons from 'react-icons/ri';
 
-import { InvoiceContext } from '../../../core/InvoiceContext';
+import { InvoiceContext } from 'core/InvoiceContext';
 
 export default function Download() {
   const { invoice } = useContext(InvoiceContext);

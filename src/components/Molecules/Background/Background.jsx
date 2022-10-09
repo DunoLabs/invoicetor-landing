@@ -18,7 +18,7 @@ import {
 } from '@chakra-ui/react';
 import * as RiIcon from 'react-icons/ri';
 import { useState, useContext } from 'react';
-import { InvoiceContext } from '../../../core/InvoiceContext';
+import { InvoiceContext } from 'core/InvoiceContext';
 
 export default function Background() {
   const toast = useToast();

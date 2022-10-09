@@ -1,4 +1,4 @@
-import '../../Editor.scss';
+import 'components/Organism/Editor/Editor.scss';
 import { useFormik } from 'formik';
 import {
   Box,
