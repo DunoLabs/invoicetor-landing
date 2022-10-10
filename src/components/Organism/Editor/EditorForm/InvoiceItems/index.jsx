@@ -108,13 +108,13 @@ export default function InvoiceItems({
 
     // check if item is empty
     if (
-      currentItem.itemName === '' ||
+      currentItem.itemName.trim() === '' ||
       currentItem.itemQuantity === '' ||
       currentItem.itemPrice === ''
     ) {
       alertMessage('Please fill all the fields', 'error');
       return;
-    } else if (currentItem.itemName === '') {
+    } else if (currentItem.itemName.trim() === '') {
       alertMessage('Please enter item name', 'error');
       return;
     } else if (currentItem.itemQuantity === '') {
