@@ -22,45 +22,42 @@ export default function Download() {
   const handlePrint = useReactToPrint({
     content: () => {
       const previewComponent = componentRef.current.cloneNode(true);
-      // const PrintElem = document.createElement('div');
-      // const header = `<div class="page-footer">This invoice is built using
-      //   <a class="link" href="https://invoicetor.works">Invoicetor</a>
-      //   </div>`;
-      // PrintElem.innerHTML = header;
-      // PrintElem.appendChild(previewComponent);
-      // return PrintElem;
-      return previewComponent;
+      const PrintElem = document.createElement('div');
+      const header = `<div class="page-footer"> Build with 
+        <a class="link" href="https://invoicetor.works">@Invoicetor</a>
+        </div>`;
+      PrintElem.innerHTML = header;
+      PrintElem.appendChild(previewComponent);
+      return PrintElem;
+
+      return previewComponent.append();
     },
     documentTitle: companyName,
 
-    // pageStyle: `
-    // @media print {
-    //   .watermark {
-    //     position: fixed;
-    //     top: 50vh;
-    //     z-index: 9;
-    //     width: 80vw;
-    //     page-break-after: always;
-    //     left: 50%;
-    //     transform: translate(-50%, -50%);
-    //     opacity: 0.5;
-    //   }
-    //   div.page-footer {
-    //     position: fixed;
-    //     z-index: 10;
-    //     bottom: 0;
-    //     width: 100%;
-    //     height: 50px;
-    //     font-size: 15px;
-    //     text-align: center;
-    //     margin-top: 50px;
-    //     display:block;
-    //   }
-    //   .link{
-    //     color: #9F7AEA;
-    //     font-weight: bold;
-    //   }
-    // }`,
+    pageStyle: `
+    @media print {
+    
+      div.page-footer {
+        position: fixed;
+        z-index: 10;
+        bottom: 0;
+        width: 100%;
+        height: 50px;
+        font-size: 15px;
+        text-align: center;
+        margin-top: 50px;
+        display:block;
+        opacity: 0.5;
+        page-break-after: always;
+      }
+      .link{
+        color: #9F7AEA;
+        font-weight: bold;
+      }
+
+    }`,
+
+      
   });
 
   return (
