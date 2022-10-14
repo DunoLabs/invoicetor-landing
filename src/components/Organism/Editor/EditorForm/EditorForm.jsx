@@ -2,7 +2,7 @@ import { useContext, useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import { Box, Flex, Button, Spacer, useToast } from '@chakra-ui/react';
 
-import { InvoiceContext } from '../../../../core/InvoiceContext';
+import { InvoiceContext } from 'core/InvoiceContext';
 
 import * as RiIcons from 'react-icons/ri';
 
@@ -320,8 +320,7 @@ export default function EditorForm() {
         <InvoiceNotes
           notes={formik.values.invoice.notes}
           clientName={formik.values.invoice.clientDetails.clientName}
-          userName = {formik.values.invoice.yourDetails.yourName}
-          
+          userName={formik.values.invoice.yourDetails.yourName}
           usersCompany={formik.values.invoice.yourDetails.yourCompany}
           invoiceDate={formik.values.invoice.invoiceDate}
           getNotes={data => getNotes(data)}

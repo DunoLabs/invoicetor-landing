@@ -1,11 +1,10 @@
-import '../../css/global.scss';
+import 'css/global.scss';
 import Helmet from 'react-helmet';
-import Hero from '../Organism/Hero/Hero';
-
-import Feature from '../Organism/Feature/Feature';
+import Hero from 'components/Organism/Hero/Hero';
+import Feature from 'components/Organism/Feature/Feature';
 import { Box, Grid } from '@chakra-ui/react';
 import { SponsorCard } from './Sponsor';
-import Testimonials from '../Organism/Testimonials/Testimonials';
+import Testimonials from 'components/Organism/Testimonials/Testimonials';
 
 export default function Home() {
   return (

@@ -9,7 +9,7 @@ import {
 } from '@chakra-ui/react';
 import Helmet from 'react-helmet';
 
-import WaitlistForm from '../Molecules/WaitlistForm';
+import WaitlistForm from 'components/Molecules/WaitlistForm';
 
 export default function JoinWaitlist() {
   return (

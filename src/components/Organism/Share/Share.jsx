@@ -1,7 +1,5 @@
-import React from 'react';
 import { Stack, Text } from '@chakra-ui/react';
-
-import Download from '../../Molecules/Download/Download';
+import Download from 'components/Molecules/Download/Download';
 
 export default function SimpleCookiePreference() {
   return (

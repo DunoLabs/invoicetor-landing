@@ -1,4 +1,4 @@
-import Editor from '../../Organism/Editor/Editor';
+import Editor from 'components/Organism/Editor/Editor';
 import Helmet from 'react-helmet';
 import {
   Box,
@@ -15,11 +15,11 @@ import {
   Flex,
 } from '@chakra-ui/react';
 import * as FaIcons from 'react-icons/fa';
-import Preview from '../../Organism/Preview/Preview';
-import Share from '../../Organism/Share/Share';
-import InvoiceProvider from '../../../core/InvoiceContext';
-import Background from '../../Molecules/Background/Background';
-import Shortcuts from '../../Molecules/Shortcuts';
+import Preview from 'components/Organism/Preview/Preview';
+import Share from 'components/Organism/Share/Share';
+import InvoiceProvider from 'core/InvoiceContext';
+import Background from 'components/Molecules/Background/Background';
+import Shortcuts from 'components/Molecules/Shortcuts';
 export default function OneTimeEditor() {
   return (
     <>

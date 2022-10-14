@@ -1,41 +1,41 @@
 import {
-    Alert,
-    AlertIcon,
-    Center,
-    Stack,
-    Flex,
-    Text,
-    Box,
-    Spacer,
-    Grid,
-    GridItem,
-    Table,
-    Thead,
-    Tbody,
-    Tr,
-    Th,
-    Td,
-    TableContainer,
-    Divider,
-    SkeletonText,
-    Skeleton,
-    SkeletonCircle,
-  } from '@chakra-ui/react';
-  
-import React from 'react'
+  Alert,
+  AlertIcon,
+  Center,
+  Stack,
+  Flex,
+  Text,
+  Box,
+  Spacer,
+  Grid,
+  GridItem,
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
+  TableContainer,
+  Divider,
+  SkeletonText,
+  Skeleton,
+  SkeletonCircle,
+} from '@chakra-ui/react';
+
+import React from 'react';
 import { useContext } from 'react';
-import { InvoiceContext } from '../../../core/InvoiceContext';
+import { InvoiceContext } from 'core/InvoiceContext';
 
 function SkeletonLoading() {
-const { invoice } = useContext(InvoiceContext);
+  const { invoice } = useContext(InvoiceContext);
   return (
     <>
-    <Center>
-        <Alert status='info' style={{width: 'fit-content'}} mb={8}>
-            <AlertIcon />
-            Please enter details in the Editor tab to preview the invoice.
+      <Center>
+        <Alert status="info" style={{ width: 'fit-content' }} mb={8}>
+          <AlertIcon />
+          Please enter details in the Editor tab to preview the invoice.
         </Alert>
-    </Center>
+      </Center>
       <Stack
         style={{
           pageBreakAfter:
@@ -49,7 +49,7 @@ const { invoice } = useContext(InvoiceContext);
         <Stack spacing={10}>
           <Flex>
             <Box>
-                <SkeletonCircle size='20' />
+              <SkeletonCircle size="20" />
             </Box>
             <Spacer />
             <Box spacing={3}>
@@ -60,7 +60,7 @@ const { invoice } = useContext(InvoiceContext);
               >
                 Invoice
               </Text>
-              <SkeletonText mt='4' noOfLines={4} spacing='4' />
+              <SkeletonText mt="4" noOfLines={4} spacing="4" />
             </Box>
           </Flex>
         </Stack>
@@ -76,7 +76,7 @@ const { invoice } = useContext(InvoiceContext);
               >
                 Bill To :{' '}
               </Text>
-              <SkeletonText mt='4' noOfLines={4} spacing='4'>
+              <SkeletonText mt="4" noOfLines={4} spacing="4">
                 <div>contents wrapped</div>
               </SkeletonText>
             </Box>
@@ -109,7 +109,7 @@ const { invoice } = useContext(InvoiceContext);
                   </Text>
                 </GridItem>
                 <GridItem colStart={4} colEnd={6} h="10">
-                  <SkeletonText mt='2' noOfLines={3} spacing='4'>
+                  <SkeletonText mt="2" noOfLines={3} spacing="4">
                     <p>wrap text</p>
                   </SkeletonText>
                 </GridItem>
@@ -132,21 +132,21 @@ const { invoice } = useContext(InvoiceContext);
               </Tr>
             </Thead>
             <Tbody>
-                <Tr>
-                  <Td>
-                    <Skeleton height='10px'>Test item</Skeleton>
-                  </Td>
-                  <Td>
-                    <Skeleton height='10px'>Test</Skeleton>
-                  </Td>
-                  <Td>
-                    <Skeleton height='10px'>Test</Skeleton>
-                  </Td>
-                  <Td isNumeric>
-                    {' '}
-                    <Skeleton height='10px'>Test</Skeleton>
-                  </Td>
-                </Tr>
+              <Tr>
+                <Td>
+                  <Skeleton height="10px">Test item</Skeleton>
+                </Td>
+                <Td>
+                  <Skeleton height="10px">Test</Skeleton>
+                </Td>
+                <Td>
+                  <Skeleton height="10px">Test</Skeleton>
+                </Td>
+                <Td isNumeric>
+                  {' '}
+                  <Skeleton height="10px">Test</Skeleton>
+                </Td>
+              </Tr>
             </Tbody>
           </Table>
         </TableContainer>
@@ -184,54 +184,60 @@ const { invoice } = useContext(InvoiceContext);
                 </Text>
               </GridItem>
               <GridItem colStart={4} colEnd={6} h="10">
-                <Skeleton height='10px' mt={2}>Wrap</Skeleton>
-                <Skeleton height='10px' mt={3} mb={2}>Wrap</Skeleton>
+                <Skeleton height="10px" mt={2}>
+                  Wrap
+                </Skeleton>
+                <Skeleton height="10px" mt={3} mb={2}>
+                  Wrap
+                </Skeleton>
                 <Divider
                   borderBottom={`4px solid ${
-                      invoice?.backgroundColor + '.400'
-                    }`}
+                    invoice?.backgroundColor + '.400'
+                  }`}
                   borderColor={invoice?.backgroundColor + '.400'}
                 />
-                <Skeleton height='10px' mt={3}>Wrap</Skeleton>
+                <Skeleton height="10px" mt={3}>
+                  Wrap
+                </Skeleton>
               </GridItem>
             </Grid>
           </Box>
         </Flex>
       </Stack>
-        <Stack
-          mt={{
-            base: '60px',
-            md: '60px',
-          }}
-          spacing={3}
-        >
-          <Flex justifyContent={'flex-end'}>
-              <Box
-                className="stamp is-nope"
-                borderWidth="0.5rem"
-                borderStyle="double"
-                borderRadius="10px"
-                color={invoice.digitalSignature.sealColor}
-                borderColor={invoice.digitalSignature.sealColor}
-              >
-                <SkeletonText mt='2' noOfLines={2} spacing='4'>
-                    <p>Sample company name</p>
-                </SkeletonText>
-              </Box>
-          </Flex>
-            <Flex justifyContent={'flex-end'}>
-                <SkeletonCircle size='20' />
-            </Flex>
-          <Box>
-          <Flex justifyContent={'flex-end'}>
-            <SkeletonText mt='2' noOfLines={2} spacing='4'>
-                    <span>wrap sample text</span>
+      <Stack
+        mt={{
+          base: '60px',
+          md: '60px',
+        }}
+        spacing={3}
+      >
+        <Flex justifyContent={'flex-end'}>
+          <Box
+            className="stamp is-nope"
+            borderWidth="0.5rem"
+            borderStyle="double"
+            borderRadius="10px"
+            color={invoice.digitalSignature.sealColor}
+            borderColor={invoice.digitalSignature.sealColor}
+          >
+            <SkeletonText mt="2" noOfLines={2} spacing="4">
+              <p>Sample company name</p>
             </SkeletonText>
-            </Flex>
           </Box>
-        </Stack>
+        </Flex>
+        <Flex justifyContent={'flex-end'}>
+          <SkeletonCircle size="20" />
+        </Flex>
+        <Box>
+          <Flex justifyContent={'flex-end'}>
+            <SkeletonText mt="2" noOfLines={2} spacing="4">
+              <span>wrap sample text</span>
+            </SkeletonText>
+          </Flex>
+        </Box>
+      </Stack>
     </>
-  )
+  );
 }
 
-export default SkeletonLoading
+export default SkeletonLoading;
