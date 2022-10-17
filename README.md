@@ -12,7 +12,7 @@ Invoicetor is taking part in [Hacktoberfest 2022](https://hacktoberfest.digitalo
 
 ## 📣 Announcements
 
-`Invoicetor is currently under development, so please be patient while we are working on it, soon you will be able to create invoices for your business.   
+`Invoicetor is currently under development, so please be patient while we are working on it, you will soon be able to create invoices for your business.   
 `
 
 
