@@ -1,31 +1,20 @@
-<h1 align="center"> Invoicetor 💜</h1>
 <div align="center">
-
-Invoicetor is a no-code platform where business owners can create invoices for their business in no time. Invoicetor is a platform that helps businesses to digitize their finances in an easy manner and create invoices in a simple way.
-
+    <img alt="Invoicetor" src="https://user-images.githubusercontent.com/76095902/196049346-d3ee4c0b-cf6e-4e79-9a69-ed550ce7421a.png" width=100% />
 </div>
+
+## Invoicetor 💜
+
+Invoicetor is a platform where business owners can create ```beautiful 🔮```
+invoices for their business in no time. 
+
+
+Invoicetor is taking part in [Hacktoberfest 2022](https://hacktoberfest.digitalocean.com/), so if you want to contribute to this project, please refer to this issue for more information: [Hacktoberfest with Invoicetor](https://github.com/DunoLabs/invoicetor-landing/issues/23) ✨
 
 ## 📣 Announcements
 
-`Invoicetor is currenlty under development, so please be patient while we are working on it, soon you will be able to create invoices for your business.`
+`Invoicetor is currenlty under development, so please be patient while we are working on it, soon you will be able to create invoices for your business.   
+`
 
-## Reasons why you should try Invoicetor
-
-```
-
-🚀 Create multiple invoices for your customers.
-
-🚀 More & better desgin control for your invoices.
-
-🚀 Multiple theme support.
-
-🚀 Customize fonts size, font color, and background colors.
-
-🚀 Dark Mode Support.
-
-🚀 Invoicetor is open-source and free to use.
-
-```
 
 ## 🤝🏻 Support this project
 
@@ -44,12 +33,10 @@ It's wonderful to see developers, designers, and product enthusiasts about contr
 
 There are a few ways you can contribute to Invoicetor, which you can find in our [Contribution Guide](CONTRIBUTING.md).
 
-## 📔 Documentation
-
-You can find the documentation, wiki, and guides at [docs.invoicetor.vercel.app](https://docs.invoicetor.vercel.app)
-
-To contribute to the documentation see [invoicetor/docs](https://github.com/Dunolabs/invoicetor/docs) repo.
 
 ## 💬 Contact Us
 
-If you have any queries for Invoicetor reach us out on our email ([sumikumar1608@gmail.com](mailto:sumikumar1608@gmail.com)) for further communication.
+If you have any queries for Invoicetor reach us out on our email ([dunolabs@gmail.com](mailto:dunolabs@gmail.com)) for further communication.
+
+
+![Twitter Follow](https://img.shields.io/twitter/follow/dunolabs?style=social)

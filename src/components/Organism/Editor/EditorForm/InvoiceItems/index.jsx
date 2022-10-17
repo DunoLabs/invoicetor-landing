@@ -1,4 +1,4 @@
-import '../../Editor.scss';
+import 'components/Organism/Editor/Editor.scss';
 import { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import {
