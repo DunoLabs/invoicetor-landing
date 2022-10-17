@@ -32,7 +32,7 @@ export default function Preview() {
   const tax = invoice.tax;
 
   // find total using tax
-  const total = subTotal + (subTotal * tax) / 100;
+  const total = (subTotal + (subTotal * tax) / 100).toFixed(2);
 
   // check if invoice details are empty
   const isEmpty = checkEmpty(invoice);
