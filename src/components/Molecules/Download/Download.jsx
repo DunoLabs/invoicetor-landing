@@ -44,7 +44,7 @@ export default function Download() {
         width: 100%;
         height: 50px;
         font-size: 15px;
-        text-align: center;
+        text-align: left;
         margin-top: 50px;
         display:block;
         opacity: 0.5;
