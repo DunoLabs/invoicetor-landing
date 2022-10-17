@@ -1,4 +1,4 @@
-//for the purpose of 2nd pull request
+//for the purpose of a 2nd pull request
 import { useRef, useContext } from 'react';
 import { useReactToPrint } from 'react-to-print';
 import Preview from 'components/Organism/Preview/Preview';
