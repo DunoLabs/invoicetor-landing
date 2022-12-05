@@ -1,14 +1,59 @@
+# Configuration for welcome - https://github.com/behaviorbot/welcome
+
+# Configuration for new-issue-welcome - https://github.com/behaviorbot/new-issue-welcome
+
+# Comment to be posted to on first time issues
 newIssueWelcomeComment: |
-  Thanks for opening this issue 🙏. project maintainers will respond to your issue shortly.
+  Hello there👋 Welcome to Dunolabs 💜
 
-  ![Thankyou](https://media.giphy.com/media/26gsjCZpPolPr3sBy/giphy.giff)
+  Thank you and congratulations 🎉 for opening your very first issue in this project.
+  Dunolabs fosters an open and welcoming environment for all our contributors.🌸 
 
+  If you would like to claim this issue, please comment below!
+  Please checkout if any of the already existing issue template fits for your isssue or you may open a blank issue as well ✨
+  We will try to get back to you as soon as we can.👀
+ 
+  You can follow us & feel free to DM us on [Dunolab's Twitter](https://twitter.com/dunolabs/). We are always interested in hearing about your interesting ideas 💗
+  Dunolabs is delighted to have you here 🤩
+
+# Configuration for new-pr-welcome - https://github.com/behaviorbot/new-pr-welcome
+
+# Comment to be posted to on PRs from first time contributors in your repository
 newPRWelcomeComment: |
-  Thanks for opening this PR 🥳 project maintainers will review your PR shortly.
+  Hello there👋 Welcome to Dunolabs 💜
 
-  ![congrats](https://media.giphy.com/media/fxsqOYnIMEefC/giphy.gif)
+  Thank you and congrats 🎉 for opening your first PR on this project.✨
+  We will review it soon! Till then you can checkout the `README.md` for more details on it.
+  
+  You can follow us & feel free to DM us on [Dunolab's Twitter](https://twitter.com/dunolabs/). We are always interested in hearing about your interesting ideas 💗
+  Dunolabs is delighted to have you here 🤩
+# Configuration for first-pr-merge - https://github.com/behaviorbot/first-pr-merge
 
+# Comment to be posted to on pull requests merged by a first time user
 firstPRMergeComment: |
-  Congrats on merging your first pull request 🎊. You've just added a valuable feature to the project, Thanks for your contribution!
+  Congratulations on merging your first contribution to this project!✨
+  Your code is officially a part of Dunolabs now!! 🎉 
+  
+  You can follow us & feel free to DM us on [Dunolab's Twitter](https://twitter.com/dunolabs/). We are always interested in hearing about your interesting ideas 💗
+  
+  <details>
+  <summary><b>Now that you've completed this, you can help someone else take their first step!</b></summary>
+  <p>You can help a newcomer with their first pull request by providing feedback! Be as encouraging as you can, since this is their first time as well!😄 </p>
+  <p>Help them set up this project and resolve their queries! 🌸 </p>
+  <p>Create a welcoming or beginner-friendly issue for someone else! 😄 🎉 </p>
+  </details>
 
-  ![congrats](https://media.giphy.com/media/3oz8xAFtqoOUUrsh7W/giphy.gif)
+# *Required* Comment to reply with
+requestInfoReplyComment: >
+  Hi,
+  Thanks for raising an issue/pull request! We at Dunolabs appreciate your concerns and views to
+  help us improve. We capitalize on fostering a welcoming environment for all our contributors.
+  However, we see that there is a lack of description in your issue/pull request. We would appreciate
+  it if you could provide us with more info about this issue/pull request. It would help our maintainers,
+  ambassadors, and coaches to better review your issue/pull request and provide actionable feedback!
+  We are looking forward to your contributions 🌱
+
+# *OPTIONAL* Label to be added to Issues and Pull Requests with insufficient information given
+requestInfoLabelToAdd: needs-more-info
+
+# It is recommended to include as many gifs and emojis as possible!
