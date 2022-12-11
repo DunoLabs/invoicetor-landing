@@ -43,7 +43,7 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from '@chakra-ui/icons';
-import Announcements from '../../Molecules/Banners/Announcements';
+// import Announcements from '../../Molecules/Banners/Announcements';
 
 const NAV_ITEMS = [
   {
@@ -98,7 +98,7 @@ export default function Navbar() {
       zIndex="4"
       _after={afterElement}
     >
-      <Announcements />
+      {/* <Announcements /> */}
       <Flex
         style={{
           backdropFilter: 'blur( 7px )',

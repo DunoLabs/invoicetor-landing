@@ -31,8 +31,9 @@ export default function Preview() {
 
   const tax = invoice.tax;
 
-  // find total using tax
-  const total = subTotal + (subTotal * tax) / 100;
+  // find total using tax with rounding off to 2 decimal places
+
+  const total = Math.round((subTotal + tax) * 100) / 100;
 
   // check if invoice details are empty
   const isEmpty = checkEmpty(invoice);

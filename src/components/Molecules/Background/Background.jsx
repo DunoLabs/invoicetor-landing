@@ -137,14 +137,12 @@ export default function Background() {
                 my={'4'}
                 variant="outline"
                 color={'gray.900'}
-                _hover={{
-                  bg: colors + '.100',
-                }}
+                borderColor={'gray.900'}
                 _focus={{
                   outline: 'none',
                 }}
                 onClick={() => {
-                  setColors('gray');
+                  setColors('black');
                 }}
                 rightIcon={<RiIcon.RiPaintFill />}
               >

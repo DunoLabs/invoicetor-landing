@@ -14,7 +14,7 @@ export const Content = ({ setShow }) => (
           outline: 'none',
         }}
       >
-        <Tag bg={'gray.900'} variant="solid" m="1" size="sm">
+        <Tag bg={'gray.900'} variant="solid" mx="1" mb="1" size="sm">
           Hacktoberfest 2022
         </Tag>
       </Link>

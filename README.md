@@ -15,7 +15,6 @@ Invoicetor is taking part in [Hacktoberfest 2022](https://hacktoberfest.digitalo
 `Invoicetor is currenlty under development, so please be patient while we are working on it, soon you will be able to create invoices for your business.   
 `
 
-
 ## 🤝🏻 Support this project
 
 Invoicetor helps every business holder to build their invoices in no time with a simple and easy to use platform, it's also free and we wish to keep it free, forever.
@@ -23,16 +22,15 @@ Invoicetor helps every business holder to build their invoices in no time with a
 So, It'll be not possible without your support, we need your help to
 make Invoicetor a success. If you are a business owner or
 individual, and Invoicetor makes your life easier and if you are
-interested in sponsoring us, please contact us at sumikumar1608@gmail.com .
+interested in sponsoring us, please contact us at dunolabs@gmail.com .
 
-or you can buy us a coffee at https://github.com/sponsors/wh0sumit ☕
+or you can buy us a [coffee ☕️](https://www.github.com/sponsors/wh0sumit) to keep us awake and working on Invoicetor. 
 
 ## 🙋🏻‍♂️ Contributing to Invoicetor
 
 It's wonderful to see developers, designers, and product enthusiasts about contributing to Invoicetor. we're soon going to open contributions to Invoicetor for everyone.
 
-There are a few ways you can contribute to Invoicetor, which you can find in our [Contribution Guide](CONTRIBUTING.md).
-
+There are a few ways you can contribute to Invoicetor, which you can find in our [Contribution Guide](CONTRIBUTING.md). 
 
 ## 💬 Contact Us
 

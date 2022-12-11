@@ -26,7 +26,7 @@ const TestimonialsData = [
     date: 'Sept 7, 2022',
     platform: 'Linkedin',
     image:
-      'https://media-exp1.licdn.com/dms/image/C4E03AQFnk_SdrWeR6w/profile-displayphoto-shrink_800_800/0/1649781677654?e=1669852800&v=beta&t=WgqFm8ApZ6PrFT1BuxZNFXcHxx9xeHLnLtAfaqZw8RI',
+      'https://avatars.githubusercontent.com/u/75212002?v=4',
     content:
       'Hey all, checkout Invoicetor an amazing open-source platform developed by Sumit Singh, they added a free one-time editor on their website, which helps me to create free and beautiful invoices in no time.',
     url: 'https://www.linkedin.com/feed/update/urn:li:activity:6973350897712029696?utm_source=share&utm_medium=member_desktop',

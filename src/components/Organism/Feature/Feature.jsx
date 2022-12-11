@@ -73,6 +73,9 @@ const FeatureCard = ({
         onClick={() => {
           setActive(cardNo);
         }}
+        _hover={{
+          bg: active === cardNo ? 'purple.50' : 'gray.700',
+        }}
       >
         <Flex
           w={10}
@@ -188,16 +191,12 @@ export default function Feature() {
             border={'6px solid'}
             borderColor={'purple.200'}
             transition={'all 0.3s ease-in-out'}
-            h="100%"
+            minH={{
+              base: '200px',
+              md: '550px',
+            }}
           >
-            <Square
-              size={{
-                base: '100%',
-                md: '100%',
-              }}
-              color="white"
-            >
-              {/* show active content image   */}
+            <Square>
               {FeaturesDetails.map((item, index) => {
                 return (
                   <Image

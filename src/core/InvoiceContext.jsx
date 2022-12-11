@@ -50,7 +50,7 @@ export default function InvoiceProvider({ children }) {
           signatureSize: '100',
           signatureToggle: true,
         },
-        backgroundColor: 'gray',
+        backgroundColor: 'black',
       };
 
   const [invoice, setInvoice] = useState({
