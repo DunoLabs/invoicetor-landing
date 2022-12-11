@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { IconButton } from '@chakra-ui/react';
+import { IconButton, useColorModeValue } from '@chakra-ui/react';
 import * as RiIcons from 'react-icons/ri';
 export default function GoTop() {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -20,7 +20,7 @@ export default function GoTop() {
       {/* <Show breakpoint="(min-width: 800px)"> */}
       {scrollPosition > 200 && (
         <IconButton
-          icon={<RiIcons.RiFlashlightFill />}
+          icon={<RiIcons.RiArrowUpLine />}
           size="sm"
           borderRadius={'lg'}
           fontSize={'1.2rem'}
@@ -34,16 +34,16 @@ export default function GoTop() {
             base: '10px',
             md: '40px',
           }}
-          zIndex={1}
-          color={'white'}
-          bgGradient="linear(purple.400, purple.900)"
+          bg={'purple.800'}
           _hover={{
-            bgGradient: 'linear(purple.400, purple.700)',
+            bg: 'purple.700',
+            outline: 'none',
           }}
           _focus={{
             outline: 'none',
-            bgGradient: 'linear(purple.400, purple.700)',
           }}
+          zIndex={1}
+          color={'white'}
           shadow="md"
           onClick={() => {
             window.scrollTo(0, 0);
