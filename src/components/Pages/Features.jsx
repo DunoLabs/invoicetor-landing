@@ -10,7 +10,7 @@ import {
 export default function OpenSource() {
   const featuresDetails = [
     {
-      title: 'One-Time-Editor',
+      title: 'free-invoicetor',
       description: `   Invoices plays an important part in the day to day operations of any
       business and is generally termed as bills. This feature can assist
       companies to create them in not only correct format but also with
@@ -93,7 +93,7 @@ export default function OpenSource() {
           {featuresDetails.map((feature, index) => (
             <>
               <Text
-                id="one-time-editor"
+                id="free-invoicetor"
                 fontSize={'1.5rem'}
                 fontWeight={600}
                 align="start"

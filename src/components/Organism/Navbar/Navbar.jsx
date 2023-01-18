@@ -33,7 +33,6 @@ import {
   PopoverCloseButton,
   useDisclosure,
   Divider,
-  // Tooltip,
 } from '@chakra-ui/react';
 import { ColorModeSwitcher } from '../../../ColorModeSwitcher';
 
@@ -43,7 +42,7 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from '@chakra-ui/icons';
-// import Announcements from '../../Molecules/Banners/Announcements';
+import Announcements from '../../Molecules/Banners/Announcements';
 
 const NAV_ITEMS = [
   {
@@ -60,7 +59,7 @@ const NAV_ITEMS = [
       {
         label: 'One-Time Editor',
         subLabel: 'Free Invoice Editor for one-time use',
-        to: '/one-time-editor',
+        to: '/free-invoicetor',
       },
       {
         label: 'Invoice Templates',
@@ -98,7 +97,7 @@ export default function Navbar() {
       zIndex="4"
       _after={afterElement}
     >
-      {/* <Announcements /> */}
+      <Announcements />
       <Flex
         style={{
           backdropFilter: 'blur( 7px )',
@@ -151,7 +150,7 @@ export default function Navbar() {
                 textDecoration: 'none',
                 color: useColorModeValue('purple.400', 'purple.400'),
               }}
-              className="navbar-brand"
+              className="gradient-animation"
               style={{
                 textDecoration: 'none',
               }}
@@ -653,7 +652,7 @@ const MOBILE_NAV_ITEMS = [
     label: 'About Us',
   },
   {
-    to: '/one-time-editor',
+    to: '/free-invoicetor',
     label: 'One-Time Editor',
   },
   {

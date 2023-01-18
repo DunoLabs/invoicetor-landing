@@ -20,12 +20,12 @@ import Share from 'components/Organism/Share/Share';
 import InvoiceProvider from 'core/InvoiceContext';
 import Background from 'components/Molecules/Background/Background';
 import Shortcuts from 'components/Molecules/Shortcuts';
-export default function OneTimeEditor() {
+export default function FreeInvoicetor() {
   return (
     <>
       <Helmet>
         <title>
-          One Time Editor | Build invoices for your business in no time.
+          Free Invoicetor | Build invoices for your business in no time.
         </title>
       </Helmet>
       <InvoiceProvider>
@@ -55,7 +55,7 @@ export default function OneTimeEditor() {
                 bgClip="text"
                 fontSize={{ base: '3xl', sm: '4xl', lg: '4xl' }}
               >
-                One Time Editor
+                Free Invoicetor
               </Text>
             </Heading>
             <Text

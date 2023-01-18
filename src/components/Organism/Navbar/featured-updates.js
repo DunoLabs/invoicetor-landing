@@ -33,14 +33,14 @@ function getFeaturedUpdates() {
         hasAction: true,
         action: {
           type: 'button',
-          url: 'https://invoicetor.works/one-time-editor',
+          url: 'https://invoicetor.works/free-invoicetor',
           label: 'Create Invoices ⚡',
         },
       },
       // {
       //   title: "Want's One-Time Editor 🤔",
       //   description:
-      //     'One Time Editor is a free editor for invoicetor. You can use it to create invoices and download them as PDF. To get to know more about One-Time Editor read the blog post.',
+      //     'Free Invoicetor  is a free editor for invoicetor. You can use it to create invoices and download them as PDF. To get to know more about One-Time Editor read the blog post.',
       //   hasAction: true,
       //   action: {
       //     type: 'link',

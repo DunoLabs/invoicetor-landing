@@ -6,8 +6,8 @@ const version = [
     versionDesc: 'hexa is a initial version of invoicetor',
     versionFeatures: [
       {
-        title: 'One-Time-Editor ',
-        desc: 'One-Time-Editor is a simple and free editor for invoice templates for users who are not loggedin to invoicetor with some small features.',
+        title: 'free-invoicetor ',
+        desc: 'free-invoicetor is a simple and free editor for invoice templates for users who are not loggedin to invoicetor with some small features.',
       },
       {
         title: 'Multiple Invoice Templates',

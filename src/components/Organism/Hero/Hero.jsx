@@ -86,7 +86,7 @@ export default function Home() {
               </Link>
               <Link
                 as={NavLink}
-                to="/one-time-editor"
+                to="/free-invoicetor"
                 style={{
                   textDecoration: 'none',
                 }}

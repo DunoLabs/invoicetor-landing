@@ -52,7 +52,7 @@ export default function EditorForm() {
     const handler = e => {
       if (e.ctrlKey && e.keyCode === 83) {
         // check if the user is on the invoice page or not
-        if (window.location.pathname === '/one-time-editor') {
+        if (window.location.pathname === '/free-invoicetor') {
           e.preventDefault();
           formik.handleSubmit();
         }
@@ -60,7 +60,7 @@ export default function EditorForm() {
 
       if (e.ctrlKey && e.keyCode === 82) {
         // check if the user is on the invoice page or not
-        if (window.location.pathname === '/one-time-editor') {
+        if (window.location.pathname === '/free-invoicetor') {
           e.preventDefault();
           clearAllData();
         }

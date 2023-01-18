@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { IconButton, useColorModeValue } from '@chakra-ui/react';
+import { IconButton } from '@chakra-ui/react';
 import * as RiIcons from 'react-icons/ri';
 export default function GoTop() {
   const [scrollPosition, setScrollPosition] = useState(0);

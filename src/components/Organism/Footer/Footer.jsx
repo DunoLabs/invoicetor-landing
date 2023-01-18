@@ -45,7 +45,7 @@ export default function Footer() {
               <Text
                 fontSize={'4xl'}
                 fontWeight={'medium'}
-                className="navbar-brand"
+                className="gradient-animation"
               >
                 Invoicetor
               </Text>
