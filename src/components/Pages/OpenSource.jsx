@@ -1,17 +1,7 @@
-import {
-  Box,
-  Heading,
-  Container,
-  Text,
-  Stack,
-  Button,
-  Link,
-  useColorModeValue,
-} from '@chakra-ui/react';
+import { Box, Heading, Container, Text, Stack, Button } from '@chakra-ui/react';
 import Helmet from 'react-helmet';
 import * as FaIcons from 'react-icons/fa';
-import { NavLink } from 'react-router-dom';
-export default function OpenSource() {
+export default function OpenSource({ title, description, ...props }) {
   return (
     <>
       <Helmet>

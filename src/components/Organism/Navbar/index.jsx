@@ -1,8 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { useRef, useState } from 'react';
 
-import { getFeaturedUpdates } from './featured-updates';
-
 import {
   Box,
   Drawer,
@@ -35,7 +33,7 @@ import {
   Divider,
 } from '@chakra-ui/react';
 import { ColorModeSwitcher } from '../../../ColorModeSwitcher';
-
+import { FeaturesUpdatesData } from 'data/FeaturesData';
 import {
   HamburgerIcon,
   CloseIcon,
@@ -55,7 +53,7 @@ const NAV_ITEMS = [
     label: 'Free Tools ✨',
     children: [
       {
-        label: 'One-Time Editor',
+        label: 'Free Invoicetor',
         subLabel: 'Free Invoice Editor for one-time use',
         to: '/free-invoicetor',
       },
@@ -309,9 +307,6 @@ const DesktopNav = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef();
 
-  const featuredUpdatesContentRef = useRef(getFeaturedUpdates());
-
-  useState(false);
   return (
     <>
       <Stack direction={'row'} spacing={4} alignItems="center">
@@ -450,21 +445,17 @@ const DesktopNav = () => {
               }}
             />
             <DrawerHeader>
-              {featuredUpdatesContentRef.current.title}
-              <Link
-                href={featuredUpdatesContentRef.current.version?.link}
-                color="purple.400"
-              >
+              {FeaturesUpdatesData.title}
+              <Link href={FeaturesUpdatesData.version?.link} color="purple.400">
                 <Text fontSize="xs" my="2">
-                  Latest version{' '}
-                  {featuredUpdatesContentRef.current.version.name}
+                  Latest version {FeaturesUpdatesData.version.name}
                 </Text>
               </Link>
               <Divider />
             </DrawerHeader>
 
             <DrawerBody>
-              {featuredUpdatesContentRef.current.updates?.map(
+              {FeaturesUpdatesData.updates?.map(
                 (featuredContent, featuredContentIndex) => {
                   return (
                     <FeaturedContentWrapper
@@ -647,7 +638,7 @@ const MOBILE_NAV_ITEMS = [
   },
   {
     to: '/free-invoicetor',
-    label: 'One-Time Editor',
+    label: 'Free Invoicetor',
   },
   {
     to: '/features',

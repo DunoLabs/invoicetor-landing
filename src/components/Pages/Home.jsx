@@ -6,11 +6,12 @@ import { Box, Grid } from '@chakra-ui/react';
 import { SponsorCard } from './Sponsor';
 import Testimonials from 'components/Organism/Testimonials/Testimonials';
 
-export default function Home() {
+export default function Home({ title, description }) {
+  console.log(title, description);
   return (
     <>
       <Helmet>
-        <title>Invoicetor | Build invoices for your business in no time.</title>
+        <title>{title}</title>
         <meta
           name="description"
           content="Invoicetor is a free invoicing app for small businesses. Build invoices for your business in no time."

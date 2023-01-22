@@ -106,7 +106,10 @@ function SponsorCard() {
       <Box
         bg={useColorModeValue('gray.900', 'gray.50')}
         p={10}
-        borderRadius="20px"
+        rounded={'3xl'}
+        boxShadow={'sm'}
+        border={'6px solid'}
+        borderColor={'purple.200'}
       >
         <Heading
           align="start"

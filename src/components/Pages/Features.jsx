@@ -7,49 +7,9 @@ import {
   Divider,
 } from '@chakra-ui/react';
 
-export default function OpenSource() {
-  const featuresDetails = [
-    {
-      title: 'free-invoicetor',
-      description: `   Invoices plays an important part in the day to day operations of any
-      business and is generally termed as bills. This feature can assist
-      companies to create them in not only correct format but also with
-      all the essential elements.`,
-    },
-    {
-      title: 'Invoice Format In PDF',
-      description: `  In form of pdf invoices can be generated which will help in
-      documenting the details of every transaction and make tax filing
-      easier.`,
-    },
-    {
-      title: ' Branding invoices with logo',
-      description: `   While creating invoice, companies can add their business logo,
-      client information and items as they wish such as products with
-      fixed prices.`,
-    },
-    {
-      title: ' Digital Signature',
-      description: `            Invoices can be digitally signed by companies and company can also
-      add seal of approval to the invoice. Digital Signature is important
-      in the day to day operations of any business and is generally termed
-      as bills. This feature can assist companies to create them in not
-      only correct format but also with all the essential elements.`,
-    },
-    {
-      title: 'Create Multiple Invoices',
-      description: `        Users can create multiple invoices for the same client and multiple
-      clients, which will help in creating a more efficient and efficient
-      way of dealing with the clients.`,
-    },
-    {
-      title: '    Mutiple Invoice Templates & Designs',
-      description: `      Users can create multiple invoice templates and designs and choose
-      from them while creating invoices. This will help in creating
-      different invoice designs for different clients.`,
-    },
-  ];
+import { FeaturesData } from 'data/FeaturesData';
 
+export default function OpenSource() {
   return (
     <>
       <Container maxW={'5xl'} mt={5}>
@@ -69,7 +29,7 @@ export default function OpenSource() {
             }}
           >
             <Text as={'span'} fontSize={{ base: '3xl', sm: '4xl', lg: '4xl' }}>
-              Features 🦾
+              Features
             </Text>
 
             <Text
@@ -85,7 +45,7 @@ export default function OpenSource() {
               ✨
             </Text>
           </Heading>
-          {featuresDetails.map((feature, index) => (
+          {FeaturesData.map((feature, index) => (
             <>
               <Text
                 id="free-invoicetor"

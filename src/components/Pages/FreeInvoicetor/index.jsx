@@ -1,4 +1,4 @@
-import Editor from 'components/Organism/Editor/Editor';
+import Editor from 'components/Organism/Editor';
 import Helmet from 'react-helmet';
 import {
   Box,
@@ -14,13 +14,35 @@ import {
   useColorModeValue,
   Flex,
 } from '@chakra-ui/react';
-import * as FaIcons from 'react-icons/fa';
 import Preview from 'components/Organism/Preview/Preview';
 import Share from 'components/Organism/Share/Share';
 import InvoiceProvider from 'core/InvoiceContext';
 import Background from 'components/Molecules/Background/Background';
 import Shortcuts from 'components/Molecules/Shortcuts';
 export default function FreeInvoicetor() {
+  const TabsComponent = [
+    {
+      name: 'Editor 📝',
+      component: <Editor />,
+    },
+    {
+      name: 'Preview 📄',
+      component: <Preview />,
+    },
+    {
+      name: 'Share 📤',
+      component: <Share />,
+    },
+  ];
+
+  const TabsTheme = {
+    bg: useColorModeValue('gray.100', 'gray.700'),
+    color: useColorModeValue('gray.700', 'gray.100'),
+    hover: useColorModeValue('gray.200', 'gray.600'),
+    _selectedBg: useColorModeValue('purple.200', 'purple.400'),
+    _selectedColor: useColorModeValue('gray.700', 'gray.100'),
+  };
+
   return (
     <>
       <Helmet>
@@ -81,135 +103,54 @@ export default function FreeInvoicetor() {
           }}
         >
           <Tabs isFitted variant={'unstyled'}>
-            <TabList mb="1em" mx={'0'}>
-              <Tab
-                p={{
-                  base: 1,
-                  md: 3,
-                }}
-                mx={{ base: 1, md: 3 }}
-                fontSize={'lg'}
-                bg={useColorModeValue('gray.100', 'gray.700')}
-                color={useColorModeValue('gray.800', 'gray.200')}
-                _selected={{
-                  bg: useColorModeValue('purple.100', 'purple.400'),
-                  color: useColorModeValue('gray.800', 'gray.100'),
-                }}
-                _focus={{
-                  outline: 'none',
-                }}
-                rounded="lg"
-              >
-                Editor
-                <FaIcons.FaEdit
-                  style={{
-                    fontSize: '1rem',
-                    marginLeft: '1em',
-                  }}
-                />
-              </Tab>
-
-              <Tab
-                p={{
-                  base: 1,
-                  md: 3,
-                }}
-                mx={{ base: 1, md: 3 }}
-                fontSize={'lg'}
-                bg={useColorModeValue('gray.100', 'gray.700')}
-                color={useColorModeValue('gray.800', 'gray.200')}
-                _selected={{
-                  bg: useColorModeValue('purple.100', 'purple.400'),
-                  color: useColorModeValue('gray.800', 'gray.100'),
-                }}
-                _focus={{
-                  outline: 'none',
-                }}
-                rounded="lg"
-              >
-                Preview
-                <FaIcons.FaEye
-                  style={{
-                    fontSize: '1.2rem',
-                    marginLeft: '1em',
-                  }}
-                />
-              </Tab>
-              <Tab
-                p={{
-                  base: 1,
-                  md: 3,
-                }}
-                mx={{ base: 1, md: 3 }}
-                fontSize={'lg'}
-                bg={useColorModeValue('gray.100', 'gray.700')}
-                color={useColorModeValue('gray.800', 'gray.200')}
-                _selected={{
-                  bg: useColorModeValue('purple.100', 'purple.400'),
-                  color: useColorModeValue('gray.800', 'gray.100'),
-                }}
-                _focus={{
-                  outline: 'none',
-                }}
-                rounded="lg"
-              >
-                Share
-                <FaIcons.FaShare
-                  style={{
-                    fontSize: '1.2rem',
-                    marginLeft: '1em',
-                  }}
-                />
-              </Tab>
+            <TabList mb="1em" mx={'0'} p={0} display={'flex'} flexWrap={'wrap'}>
+              {TabsComponent &&
+                TabsComponent.map((tab, index) => (
+                  <>
+                    <Tab
+                      key={index}
+                      p={{
+                        base: 1,
+                        md: 3,
+                      }}
+                      fontWeight={'medium'}
+                      mx={{ base: 1, md: 3 }}
+                      fontSize={'lg'}
+                      bg={TabsTheme.bg}
+                      color={TabsTheme.color}
+                      _selected={{
+                        bg: TabsTheme._selectedBg,
+                        color: TabsTheme._selectedColor,
+                      }}
+                      _focus={{
+                        outline: 'none',
+                      }}
+                      rounded="lg"
+                    >
+                      {tab?.name}
+                    </Tab>
+                  </>
+                ))}
             </TabList>
             <TabPanels p="2">
-              <TabPanel padding={0}>
-                <Box
-                  as={'div'}
-                  p={{
-                    base: 5,
-                    md: 10,
-                  }}
-                  border={'1px solid'}
-                  borderWidth={'4px'}
-                  borderColor="gray.100"
-                  borderRadius={'3xl'}
-                >
-                  <Editor />
-                </Box>
-              </TabPanel>
-              <TabPanel padding={0}>
-                <Box
-                  as={'div'}
-                  p={{
-                    base: 5,
-                    md: 10,
-                  }}
-                  border={'1px solid'}
-                  borderWidth={'4px'}
-                  borderColor="gray.100"
-                  borderRadius={'3xl'}
-                  bg={'white'}
-                  color={'gray.800'}
-                >
-                  <Preview />
-                </Box>
-              </TabPanel>{' '}
-              <TabPanel padding={0}>
-                <Box
-                  as={'div'}
-                  p={{
-                    base: 5,
-                    md: 10,
-                  }}
-                  border={'1px solid'}
-                  borderWidth={'4px'}
-                  borderColor="gray.100"
-                  borderRadius={'3xl'}
-                >
-                  <Share />
-                </Box>
-              </TabPanel>
+              {TabsComponent &&
+                TabsComponent.map((tab, index) => (
+                  <TabPanel padding={0} key={index}>
+                    <Box
+                      as={'div'}
+                      p={{
+                        base: 5,
+                        md: 10,
+                      }}
+                      border={'1px solid'}
+                      borderWidth={'4px'}
+                      borderColor="gray.100"
+                      borderRadius={'3xl'}
+                    >
+                      {tab?.component}
+                    </Box>
+                  </TabPanel>
+                ))}
             </TabPanels>
           </Tabs>
         </Container>
