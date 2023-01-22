@@ -40,13 +40,8 @@ export default function JoinWaitlist() {
               md: 5,
             }}
           >
-            <Text
-              as={'span'}
-              bgGradient="linear(to-l, yellow.400, purple.400)"
-              bgClip="text"
-              fontSize={{ base: '3xl', sm: '4xl', lg: '4xl' }}
-            >
-              Join the Waitlist
+            <Text as={'span'} fontSize={{ base: '3xl', sm: '4xl', lg: '4xl' }}>
+              Join the Waitlist 💌
             </Text>
             <Text
               align="start"

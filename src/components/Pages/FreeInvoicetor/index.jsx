@@ -51,11 +51,9 @@ export default function FreeInvoicetor() {
             >
               <Text
                 as={'span'}
-                bgGradient="linear(to-l, yellow.400, purple.400)"
-                bgClip="text"
                 fontSize={{ base: '3xl', sm: '4xl', lg: '4xl' }}
               >
-                Free Invoicetor
+                Free Invoicetor 📝
               </Text>
             </Heading>
             <Text

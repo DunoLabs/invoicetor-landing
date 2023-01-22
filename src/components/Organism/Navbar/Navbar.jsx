@@ -42,16 +42,14 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from '@chakra-ui/icons';
-import Announcements from '../../Molecules/Banners/Announcements';
-
 const NAV_ITEMS = [
   {
     to: '/opensource',
-    label: 'Open Source',
+    label: 'Open Source 💎',
   },
   {
     to: '/about',
-    label: 'About Us',
+    label: 'About Us 🦖',
   },
   {
     label: 'Free Tools ✨',
@@ -68,10 +66,6 @@ const NAV_ITEMS = [
       },
     ],
   },
-  // {
-  //   to: '/blogs',
-  //   label: 'Blogs',
-  // },
 ];
 
 const afterElement = {
@@ -97,7 +91,7 @@ export default function Navbar() {
       zIndex="4"
       _after={afterElement}
     >
-      <Announcements />
+      {/* <Announcements /> */}
       <Flex
         style={{
           backdropFilter: 'blur( 7px )',

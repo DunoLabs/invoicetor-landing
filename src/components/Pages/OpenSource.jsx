@@ -39,12 +39,8 @@ export default function OpenSource() {
               md: 5,
             }}
           >
-            <Text
-              bgGradient="linear(to-l, yellow.400, purple.400)"
-              bgClip="text"
-              fontSize={{ base: '3xl', sm: '4xl', lg: '4xl' }}
-            >
-              Open Source & Collaboration
+            <Text fontSize={{ base: '3xl', sm: '4xl', lg: '4xl' }}>
+              Open Source & Collaboration 🤝
             </Text>
           </Heading>
           <Text fontSize={'1.3rem'} align="start">

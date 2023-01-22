@@ -38,12 +38,7 @@ function Sponsor() {
               md: 5,
             }}
           >
-            <Text
-              as={'span'}
-              bgGradient="linear(to-l, yellow.400, purple.400)"
-              bgClip="text"
-              fontSize={{ base: '3xl', sm: '4xl', lg: '4xl' }}
-            >
+            <Text as={'span'} fontSize={{ base: '3xl', sm: '4xl', lg: '4xl' }}>
               Sponsor Invoicetor
             </Text>
           </Heading>
@@ -121,7 +116,7 @@ function SponsorCard() {
           }}
           color={useColorModeValue('white', 'gray.900')}
         >
-          Let’s do this together!
+          Let’s do this together 🤝
         </Heading>
         <Flex justifyContent={'start'} flexDir={'column'} alignItems={'sstart'}>
           <Text

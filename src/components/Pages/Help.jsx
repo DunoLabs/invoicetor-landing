@@ -30,25 +30,24 @@ export default function Help() {
               md: 5,
             }}
           >
-            <Text
-              as={'span'}
-              bgGradient="linear(to-l, yellow.400, purple.400)"
-              bgClip="text"
-              fontSize={{
-                base: '2.5rem',
-                md: '3.5rem',
-              }}
-            >
+            <Text as={'span'} fontSize={{ base: '3xl', sm: '4xl', lg: '4xl' }}>
               Help & Support
             </Text>
           </Heading>
-          <Text fontSize={'1.5rem'} align="start">
+          <Text
+            fontSize={'1.3rem'}
+            align="start"
+            mb={{
+              base: 0,
+              md: 15,
+            }}
+          >
             Invoicetor is proudly a community-driven web app, we created this to
             help small business owners and entrepreneurs alike, manage their
             invoices and keep track of their business.
           </Text>{' '}
           <Text
-            fontSize={'1.5rem'}
+            fontSize={'1.3rem'}
             align="start"
             mb={{
               base: 0,

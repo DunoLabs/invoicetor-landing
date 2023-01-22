@@ -12,6 +12,7 @@ import {
   Flex,
   Link,
 } from '@chakra-ui/react';
+import SectionAnnoucement from 'components/Molecules/Banners/SectionAnnoucement';
 import { NavLink } from 'react-router-dom';
 export default function Home() {
   return (
@@ -26,15 +27,23 @@ export default function Home() {
           as={Box}
           textAlign={'center'}
           alignItems={'center'}
-          spacing={{ base: 3, md: 12 }}
+          spacing={{ base: 2, md: 10 }}
           py={{ base: 20, md: 36 }}
         >
+          <SectionAnnoucement
+            title={
+              'we are planning to launch the free version of Invoicetor in 2023'
+            }
+            link={'/join-waitlist'}
+            icon={'💎'}
+          />
           <Heading
             fontWeight={700}
             fontSize={{
               base: '2.5rem',
               md: '4rem',
             }}
+            mt={[0, '2rem !important']}
           >
             Quickly and easily create beautiful invoices for your{' '}
             <Text
@@ -81,7 +90,7 @@ export default function Home() {
                     bg: useColorModeValue('gray.700', 'gray.100'),
                   }}
                 >
-                  Join Waitlist
+                  Join Waitlist 🙌
                 </Button>{' '}
               </Link>
               <Link
@@ -102,7 +111,7 @@ export default function Home() {
                     bgGradient: 'linear(to-l, yellow.400, purple.400)',
                   }}
                 >
-                  Create Invoice
+                  Create Invoice 📝
                 </Button>
               </Link>
             </Flex>
