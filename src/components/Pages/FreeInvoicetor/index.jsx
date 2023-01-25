@@ -26,7 +26,7 @@ export default function FreeInvoicetor() {
       component: <Editor />,
     },
     {
-      name: 'Preview 📄',
+      name: 'Preview 👀',
       component: <Preview />,
     },
     {

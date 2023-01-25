@@ -152,6 +152,7 @@ export default function InvoiceImage({
                   onClick={() => {
                     document.getElementById('uploadFile').click();
                   }}
+                  fontWeight="semibold"
                 >
                   Add Logo
                 </Center>

@@ -1,5 +1,5 @@
+import React from 'react';
 import { ChakraProvider, Box, CircularProgress } from '@chakra-ui/react';
-
 import 'css/global.scss';
 import SideButton from 'components/Atoms/SideButton/SideButton';
 
@@ -15,8 +15,10 @@ import JoinWaitlist from 'components/Pages/JoinWaitlist';
 import GoTop from 'components/Atoms/goTop/goTop';
 import Thanks from 'components/Pages/Supporters/thanks';
 import NotFound from 'components/Pages/404';
-import routes from 'routes';
-import React from 'react';
+
+import Home from 'components/Pages/Home';
+import OpenSource from 'components/Pages/OpenSource';
+import FreeInvoicetor from 'components/Pages/FreeInvoicetor';
 
 function App() {
   const Loading = () => (
@@ -32,9 +34,9 @@ function App() {
         <GoTop />
         <Navbar />
         <Routes>
-          {routes.map((route, index) => (
-            <Route key={index} path={route.path} element={route.element} />
-          ))}
+          <Route path="/" element={<Home />} />
+          <Route path={'opensource'} element={<OpenSource />} />
+          <Route path={'free-invoicetor'} element={<FreeInvoicetor />} />
           <Route path="about" element={<About />} />
           <Route path="features" element={<Features />} />
           <Route path="sponsor" element={<Sponsor />} />
@@ -42,7 +44,6 @@ function App() {
           <Route path="releases" element={<Releases />} />
           <Route path="help-center" element={<Help />} />
           <Route path="join-waitlist" element={<JoinWaitlist />} />
-
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />

@@ -31,7 +31,12 @@ function SkeletonLoading() {
   return (
     <>
       <Center>
-        <Alert status="info" style={{ width: 'fit-content' }} mb={8}>
+        <Alert
+          status="info"
+          style={{ width: 'fit-content' }}
+          mb={8}
+          rounded="lg"
+        >
           <AlertIcon />
           Please enter details in the Editor tab to preview the invoice.
         </Alert>
@@ -48,8 +53,13 @@ function SkeletonLoading() {
       >
         <Stack spacing={10}>
           <Flex>
-            <Box>
-              <SkeletonCircle size="20" />
+            <Box mt={6}>
+              <SkeletonCircle
+                rounded="2xl"
+                size="40"
+                startColor="purple.400"
+                endColor="yellow.400"
+              />
             </Box>
             <Spacer />
             <Box spacing={3}>
