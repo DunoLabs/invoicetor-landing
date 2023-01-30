@@ -448,7 +448,7 @@ const DesktopNav = () => {
               {FeaturesUpdatesData.title}
               <Link href={FeaturesUpdatesData.version?.link} color="purple.400">
                 <Text fontSize="xs" my="2">
-                  Latest version {FeaturesUpdatesData.version.name}
+                  Latest version
                 </Text>
               </Link>
               <Divider />
