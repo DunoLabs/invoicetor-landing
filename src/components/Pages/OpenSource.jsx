@@ -1,17 +1,7 @@
-import {
-  Box,
-  Heading,
-  Container,
-  Text,
-  Stack,
-  Button,
-  Link,
-  useColorModeValue,
-} from '@chakra-ui/react';
+import { Box, Heading, Container, Text, Stack, Button } from '@chakra-ui/react';
 import Helmet from 'react-helmet';
 import * as FaIcons from 'react-icons/fa';
-import { NavLink } from 'react-router-dom';
-export default function OpenSource() {
+export default function OpenSource({ title, description, ...props }) {
   return (
     <>
       <Helmet>
@@ -39,12 +29,8 @@ export default function OpenSource() {
               md: 5,
             }}
           >
-            <Text
-              bgGradient="linear(to-l, yellow.400, purple.400)"
-              bgClip="text"
-              fontSize={{ base: '3xl', sm: '4xl', lg: '4xl' }}
-            >
-              Open Source & Collaboration
+            <Text fontSize={{ base: '3xl', sm: '4xl', lg: '4xl' }}>
+              Open Source & Collaboration 🤝
             </Text>
           </Heading>
           <Text fontSize={'1.3rem'} align="start">
@@ -109,49 +95,6 @@ export default function OpenSource() {
               Star us on GitHub
             </Button>
           </Stack>
-          <Text
-            align="start"
-            bg={useColorModeValue('purple.50', 'purple.900')}
-            color={useColorModeValue('purple.400', 'purple.100')}
-            p="4"
-            rounded="xl"
-            my="5"
-            fontSize={'lg'}
-          >
-            we are participating in{' '}
-            <span>
-              <Link
-                target={'_blank'}
-                href="https://hacktoberfest.digitalocean.com/"
-                isExternal
-                _focus={{
-                  outline: 'none',
-                }}
-                color={useColorModeValue('yellow.400', 'yellow.200')}
-              >
-                Hacktoberfest 2022
-              </Link>
-            </span>{' '}
-            contribute to our codebases and help us build a better product for
-            everyone.
-            <br />
-            <Button
-              as={NavLink}
-              to="/hacktoberfest"
-              rounded={'lg'}
-              bg={useColorModeValue('gray.900', 'white') || 'gray.200'}
-              color={useColorModeValue('gray.100', 'gray.800')}
-              _hover={{
-                bg: useColorModeValue('gray.800', 'gray.100'),
-              }}
-              _focus={{
-                outline: 'none',
-              }}
-              mt="4"
-            >
-              Hacktoberfest 2022 💛
-            </Button>
-          </Text>{' '}
         </Stack>
       </Container>
     </>

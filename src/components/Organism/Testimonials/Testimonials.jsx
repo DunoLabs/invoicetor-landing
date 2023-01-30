@@ -9,7 +9,7 @@ import {
 } from '@chakra-ui/react';
 import TestimonialCard from './TestimonialCard';
 
-import TestimonialsData from './TestimonialsData';
+import TestimonialsData from 'data/TestimonialsData';
 
 export default function Testimonials() {
   return (

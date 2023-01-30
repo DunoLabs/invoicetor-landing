@@ -1,8 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { useRef, useState } from 'react';
 
-import { getFeaturedUpdates } from './featured-updates';
-
 import {
   Box,
   Drawer,
@@ -33,34 +31,31 @@ import {
   PopoverCloseButton,
   useDisclosure,
   Divider,
-  // Tooltip,
 } from '@chakra-ui/react';
 import { ColorModeSwitcher } from '../../../ColorModeSwitcher';
-
+import { FeaturesUpdatesData } from 'data/FeaturesData';
 import {
   HamburgerIcon,
   CloseIcon,
   ChevronDownIcon,
   ChevronRightIcon,
 } from '@chakra-ui/icons';
-// import Announcements from '../../Molecules/Banners/Announcements';
-
 const NAV_ITEMS = [
   {
     to: '/opensource',
-    label: 'Open Source',
+    label: 'Open Source 💎',
   },
   {
     to: '/about',
-    label: 'About Us',
+    label: 'About Us 🦖',
   },
   {
     label: 'Free Tools ✨',
     children: [
       {
-        label: 'One-Time Editor',
+        label: 'Free Invoicetor',
         subLabel: 'Free Invoice Editor for one-time use',
-        to: '/one-time-editor',
+        to: '/free-invoicetor',
       },
       {
         label: 'Invoice Templates',
@@ -69,10 +64,6 @@ const NAV_ITEMS = [
       },
     ],
   },
-  // {
-  //   to: '/blogs',
-  //   label: 'Blogs',
-  // },
 ];
 
 const afterElement = {
@@ -151,7 +142,7 @@ export default function Navbar() {
                 textDecoration: 'none',
                 color: useColorModeValue('purple.400', 'purple.400'),
               }}
-              className="navbar-brand"
+              className="gradient-animation"
               style={{
                 textDecoration: 'none',
               }}
@@ -316,9 +307,6 @@ const DesktopNav = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef();
 
-  const featuredUpdatesContentRef = useRef(getFeaturedUpdates());
-
-  useState(false);
   return (
     <>
       <Stack direction={'row'} spacing={4} alignItems="center">
@@ -457,21 +445,17 @@ const DesktopNav = () => {
               }}
             />
             <DrawerHeader>
-              {featuredUpdatesContentRef.current.title}
-              <Link
-                href={featuredUpdatesContentRef.current.version?.link}
-                color="purple.400"
-              >
+              {FeaturesUpdatesData.title}
+              <Link href={FeaturesUpdatesData.version?.link} color="purple.400">
                 <Text fontSize="xs" my="2">
-                  Latest version{' '}
-                  {featuredUpdatesContentRef.current.version.name}
+                  Latest version {FeaturesUpdatesData.version.name}
                 </Text>
               </Link>
               <Divider />
             </DrawerHeader>
 
             <DrawerBody>
-              {featuredUpdatesContentRef.current.updates?.map(
+              {FeaturesUpdatesData.updates?.map(
                 (featuredContent, featuredContentIndex) => {
                   return (
                     <FeaturedContentWrapper
@@ -653,8 +637,8 @@ const MOBILE_NAV_ITEMS = [
     label: 'About Us',
   },
   {
-    to: '/one-time-editor',
-    label: 'One-Time Editor',
+    to: '/free-invoicetor',
+    label: 'Free Invoicetor',
   },
   {
     to: '/features',

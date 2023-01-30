@@ -1,41 +1,32 @@
-import { NavLink } from 'react-router-dom';
 import { Tag, Link, Box, IconButton } from '@chakra-ui/react';
 import * as RiIcon from 'react-icons/ri';
 import { useState } from 'react';
 
 export const Content = ({ setShow }) => (
   <>
-    <Box alignSelf="center">
-      We are participating in{' '}
-      <Link
-        href="https://hacktoberfest.digitalocean.com/"
-        isExternal
-        _focus={{
-          outline: 'none',
-        }}
+    <Box alignSelf="center" fontWeight={'500'}>
+      We are planning to release the{' '}
+      <Tag
+        bg={'gray.900'}
+        variant="solid"
+        mx="1"
+        mb="1"
+        size="sm"
+        className="gradient-animation"
       >
-        <Tag bg={'gray.900'} variant="solid" mx="1" mb="1" size="sm">
-          Hacktoberfest 2022
-        </Tag>
-      </Link>
-      contribute to our codebases and help us build a better product for
-      everyone.
-      <Link
-        as={NavLink}
-        to="/hacktoberfest"
-        textDecoration="underline"
-        _focus={{ outline: 'none' }}
-        ms="2"
-      >
-        {' '}
-        Learn more
-      </Link>
+        Free-Invoicetor
+      </Tag>
+      soon, and we need your help (feedback){' '}
+      <Link isExternal textDecor="underline">
+        Learn More
+      </Link>{' '}
+      about it !
     </Box>
     <IconButton
       aria-label="Close"
       alignItems={'center'}
       bg="gray.800"
-      _hover={{ bg: 'gray.700' }}
+      _hover={{ bg: 'gray.900' }}
       rounded={'md'}
       color="white"
       icon={<RiIcon.RiCloseFill />}
