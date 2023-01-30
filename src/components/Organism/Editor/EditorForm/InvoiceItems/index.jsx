@@ -1,6 +1,7 @@
 import 'components/Organism/Editor/Editor.scss';
 import { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
+import React from 'react';
 import {
   Box,
   Flex,
@@ -37,6 +38,7 @@ import {
   ModalBody,
   ModalCloseButton,
   useToast,
+ 
 } from '@chakra-ui/react';
 import CurrencyData from '../../CurrencyData/CurrencyData.json';
 
@@ -201,417 +203,427 @@ export default function InvoiceItems({
   const textColor = useColorModeValue('gray.800', 'gray.200') || 'gray.800';
 
   return (
-    <>
-      {/* invoiceItems Items Starts */}
-      <Stack direction={{ base: 'column', md: 'row' }} spacing={8} my="20">
-        <Box>
-          <FormControl id="itemName">
-            <FormLabel>Item Name</FormLabel>
-            <Input
-              type="text"
-              size={'lg'}
-              htmlSize={30}
-              placeholder="Item Name"
-              bg={useColorModeValue('gray.100', 'gray.700') || 'gray.200'}
-              color={useColorModeValue('gray.800', 'gray.300') || 'gray.800'}
-              name="invoiceItems.itemName"
-              onChange={e => {
-                setCurrentItem({
-                  ...currentItem,
-                  itemName: e.target.value,
-                });
-              }}
-              value={currentItem.itemName}
-            />
-          </FormControl>
-        </Box>
+    <React.Fragment>
+      <Box
+        className="userDetails"
+        p={{
+          base: '4',
+          md: '8',
+        }}
+        bg={useColorModeValue('gray.50', 'gray.700')}
+        rounded="3xl"
+        mt="4"
+        shadow={'lg'}
+      >
+        {/* invoiceItems Items Starts */}
+        <Stack direction={{ base: 'column', md: 'row' }} spacing={8}>
+          <Box>
+            <FormControl id="itemName">
+              <FormLabel>Item Name</FormLabel>
+              <Input
+                type="text"
+                size={'lg'}
+                htmlSize={30}
+                placeholder="Item Name"
+                bg={useColorModeValue('gray.100', 'gray.800')}
+                color={useColorModeValue('gray.800', 'gray.300')}
+                name="invoiceItems.itemName"
+                onChange={e => {
+                  setCurrentItem({
+                    ...currentItem,
+                    itemName: e.target.value,
+                  });
+                }}
+                value={currentItem.itemName}
+              />
+            </FormControl>
+          </Box>
 
-        <Box>
-          <FormControl id="itemQuantity">
-            <FormLabel>Item Quantity</FormLabel>
-            <Input
-              type="number"
-              min={0}
-              onKeyDown={e =>
-                ['e', 'E', '+', '-'].includes(e.key) && e.preventDefault()
-              }
-              size={'lg'}
-              width="100%"
-              placeholder="Item Quantity"
-              bg={useColorModeValue('gray.100', 'gray.700') || 'gray.200'}
-              color={useColorModeValue('gray.800', 'gray.300') || 'gray.800'}
-              name="invoiceItems.itemQuantity"
-              value={currentItem.itemQuantity}
-              onChange={e => {
-                setCurrentItem({
-                  ...currentItem,
-                  itemQuantity: e.target.value,
-                });
-              }}
-            />
-          </FormControl>
-        </Box>
-        <Box>
-          <FormControl id="itemPrice" width="100%">
-            <FormLabel>Item Price</FormLabel>
-            <InputGroup size={'lg'}>
+          <Box>
+            <FormControl id="itemQuantity">
+              <FormLabel>Item Quantity</FormLabel>
               <Input
                 type="number"
                 min={0}
                 onKeyDown={e =>
                   ['e', 'E', '+', '-'].includes(e.key) && e.preventDefault()
                 }
+                size={'lg'}
                 width="100%"
-                placeholder="Item Price"
-                bg={useColorModeValue('gray.100', 'gray.700') || 'gray.200'}
-                color={useColorModeValue('gray.800', 'gray.300') || 'gray.800'}
-                name="invoiceItems.itemPrice"
-                value={currentItem.itemPrice}
+                placeholder="Item Quantity"
+                bg={useColorModeValue('gray.100', 'gray.800')}
+                color={useColorModeValue('gray.800', 'gray.300')}
+                name="invoiceItems.itemQuantity"
+                value={currentItem.itemQuantity}
                 onChange={e => {
                   setCurrentItem({
                     ...currentItem,
-                    itemPrice: e.target.value,
+                    itemQuantity: e.target.value,
                   });
                 }}
               />
-            </InputGroup>
-          </FormControl>
-        </Box>
-        <Box pt={8}>
-          <Menu size={'sm'} autoSelect={false}>
-            <MenuButton
-              mt={'1'}
-              bg={'green.100'}
-              color={'gray.900'}
-              as={Button}
-              rounded={'lg'}
+            </FormControl>
+          </Box>
+          <Box>
+            <FormControl id="itemPrice" width="100%">
+              <FormLabel>Item Price</FormLabel>
+              <InputGroup size={'lg'}>
+                <Input
+                  type="number"
+                  min={0}
+                  onKeyDown={e =>
+                    ['e', 'E', '+', '-'].includes(e.key) && e.preventDefault()
+                  }
+                  width="100%"
+                  placeholder="Item Price"
+                  bg={useColorModeValue('gray.100', 'gray.800')}
+                  color={useColorModeValue('gray.800', 'gray.300')}
+                  name="invoiceItems.itemPrice"
+                  value={currentItem.itemPrice}
+                  onChange={e => {
+                    setCurrentItem({
+                      ...currentItem,
+                      itemPrice: e.target.value,
+                    });
+                  }}
+                />
+              </InputGroup>
+            </FormControl>
+          </Box>
+          <Box pt={8}>
+            <Menu size={'sm'} autoSelect={false}>
+              <MenuButton
+                mt={'1'}
+                bg={'green.100'}
+                color={'gray.900'}
+                as={Button}
+                rounded={'lg'}
+                _focus={{
+                  outline: 'none',
+                  bg: 'green.100',
+                }}
+                _hover={{
+                  bg: 'green.200',
+                }}
+                _active={{
+                  bg: 'green.100',
+                }}
+              >
+                {' '}
+                {currency}
+              </MenuButton>
+              <MenuList p="2" rounded="xl">
+                {' '}
+                <Menu>
+                  <InputGroup>
+                    <Input
+                      onChange={e => setSearchTerm(e.target.value)}
+                      value={searchTerm}
+                      my={'2'}
+                      type="text"
+                      width="100%"
+                      placeholder="Search currency.."
+                      bg={useColorModeValue('gray.100', 'gray.800')}
+                      color={useColorModeValue('gray.800', 'gray.300')}
+                      _focus={{
+                        outline: 'none',
+                        boxShadow: 'none',
+                      }}
+                    />
+                    <InputRightElement
+                      children={<RiIcons.RiSearch2Line />}
+                      mt={'2'}
+                      color="green.500"
+                    />
+                  </InputGroup>
+                </Menu>
+                <Menu>
+                  {Search && searchTerm.length > 0
+                    ? Search.slice(0, 5).map((item, index) => (
+                        <MenuItem
+                          my={'1'}
+                          key={item.name}
+                          command={item.symbol}
+                          bg={item.symbol === currency && 'green.100'}
+                          color={item.symbol === currency && 'gray.900'}
+                          onClick={() => {
+                            setCurrency(item.symbol);
+                            setCurrentItem({
+                              ...currentItem,
+                              itemCurrency: item.symbol,
+                            });
+                            formik.setFieldValue(
+                              'invoiceItems.itemCurrency',
+                              item.symbol
+                            );
+                            setSearchTerm('');
+                          }}
+                          rounded="lg"
+                          _focus={{
+                            outline: 'none',
+                            boxShadow: 'none',
+                          }}
+                        >
+                          {item.name}
+                        </MenuItem>
+                      ))
+                    : CurrencyData.filter(item =>
+                        customCurrency.includes(item.name)
+                      ).map(item => (
+                        <MenuItem
+                          my={'1'}
+                          key={item.name}
+                          command={item.symbol}
+                          bg={item.symbol === currency && 'green.100'}
+                          color={item.symbol === currency && 'gray.900'}
+                          onClick={() => {
+                            setCurrency(item.symbol);
+                            setCurrentItem({
+                              ...currentItem,
+                              itemCurrency: item.symbol,
+                            });
+                            formik.setFieldValue(
+                              'invoiceItems.itemCurrency',
+                              item.symbol
+                            );
+                            setSearchTerm('');
+                          }}
+                          rounded="lg"
+                          _focus={{
+                            outline: 'none',
+                            boxShadow: 'none',
+                          }}
+                        >
+                          {item.name}
+                        </MenuItem>
+                      ))}
+                </Menu>
+              </MenuList>
+            </Menu>
+          </Box>
+          <Box pt={8}>
+            <Button
+              variant="outline"
               _focus={{
                 outline: 'none',
-                bg: 'green.100',
               }}
+              size={'lg'}
+              fontWeight={600}
+              color={'black'}
+              bg={'white'}
+              borderRadius={'lg'}
               _hover={{
-                bg: 'green.200',
+                bg: 'whiteAlpha.800',
               }}
-              _active={{
-                bg: 'green.100',
-              }}
+              onClick={addInvoiceItem}
             >
               {' '}
-              {currency}
-            </MenuButton>
-            <MenuList p="2" rounded="xl">
+              Add Item
+            </Button>
+          </Box>
+        </Stack>
+        {/* invoiceItems Items End */}
+        {/* invoiceItems Items List Starts */}
+        <TableContainer mt="20" spacing={8} scrollBehavior="smooth">
+          <Table variant="striped">
+            <Thead>
+              <Tr>
+                <Th>Item Name</Th>
+                <Th>Item Quantity</Th>
+                <Th>Item Price</Th>
+                <Th>Item Amount</Th>
+              </Tr>
+            </Thead>
+            <Tbody>
+              {formik.values.invoiceItems &&
+                formik.values.invoiceItems.map((item, index) => (
+                  <Tr key={index}>
+                    <Td width={'20%'}>{item.itemName}</Td>
+                    <Td>{item.itemQuantity} </Td>
+                    <Td>
+                      {item.itemCurrency} {item.itemPrice}
+                    </Td>
+                    <Td>
+                      {item.itemCurrency} {item.itemTotal}
+                    </Td>
+                    <Menu>
+                      <MenuButton
+                        m={2}
+                        as={IconButton}
+                        aria-label="Options"
+                        icon={<RiIcons.RiMenu3Fill />}
+                        variant="outline"
+                      />
+
+                      <MenuList>
+                        <MenuItem
+                          icon={<FaIcons.FaRegEdit />}
+                          onClick={() => EditInvoiceItem(index)}
+                        >
+                          Edit
+                        </MenuItem>{' '}
+                        <MenuItem
+                          icon={<RiIcons.RiDeleteBin3Line />}
+                          onClick={() => removeInvoiceItem(index)}
+                        >
+                          Delete
+                        </MenuItem>
+                      </MenuList>
+                    </Menu>
+                  </Tr>
+                ))}
+            </Tbody>
+          </Table>
+        </TableContainer>
+        <Modal onClose={onClose} isOpen={isOpen} isCentered>
+          <ModalOverlay bg="blackAlpha.300" />
+          <ModalContent
+            p={4}
+            rounded={'3xl'}
+            border={2}
+            borderColor={useColorModeValue('gray.700', 'gray.100')}
+            borderStyle={'solid'}
+          >
+            <ModalHeader>Edit Item #{editItem.editIndex} </ModalHeader>
+            <ModalCloseButton
+              _focus={{
+                outline: 'none',
+              }}
+            />
+            <ModalBody>
               {' '}
-              <Menu>
-                <InputGroup>
+              <Box>
+                <FormControl id="editName">
+                  <FormLabel>Edit Item Name</FormLabel>
                   <Input
-                    onChange={e => setSearchTerm(e.target.value)}
-                    value={searchTerm}
-                    my={'2'}
                     type="text"
-                    width="100%"
-                    placeholder="Search currency.."
+                    size={'lg'}
+                    htmlSize={30}
+                    placeholder="Edit Item Name"
                     bg={useColorModeValue('gray.100', 'gray.700') || 'gray.200'}
                     color={
                       useColorModeValue('gray.800', 'gray.300') || 'gray.800'
                     }
-                    _focus={{
-                      outline: 'none',
-                      boxShadow: 'none',
-                    }}
+                    value={editItem.editName}
+                    onChange={e =>
+                      setEditItem({ ...editItem, editName: e.target.value })
+                    }
                   />
-                  <InputRightElement
-                    children={<RiIcons.RiSearch2Line />}
-                    mt={'2'}
-                    color="green.500"
+                </FormControl>
+              </Box>{' '}
+              <Box>
+                <FormControl id="editQuantity">
+                  <FormLabel>Edit Item Quantity</FormLabel>
+                  <Input
+                    type="number"
+                    min={0}
+                    onKeyDown={e =>
+                      ['e', 'E', '+', '-'].includes(e.key) && e.preventDefault()
+                    }
+                    size={'lg'}
+                    htmlSize={30}
+                    placeholder="Edit Item Quantity"
+                    bg={useColorModeValue('gray.100', 'gray.700') || 'gray.200'}
+                    color={
+                      useColorModeValue('gray.800', 'gray.300') || 'gray.800'
+                    }
+                    value={editItem.editQuantity}
+                    onChange={e =>
+                      setEditItem({ ...editItem, editQuantity: e.target.value })
+                    }
                   />
-                </InputGroup>
-              </Menu>
-              <Menu>
-                {Search && searchTerm.length > 0
-                  ? Search.slice(0, 5).map((item, index) => (
-                      <MenuItem
-                        my={'1'}
-                        key={item.name}
-                        command={item.symbol}
-                        bg={item.symbol === currency && 'green.100'}
-                        color={item.symbol === currency && 'gray.900'}
-                        onClick={() => {
-                          setCurrency(item.symbol);
-                          setCurrentItem({
-                            ...currentItem,
-                            itemCurrency: item.symbol,
-                          });
-                          formik.setFieldValue(
-                            'invoiceItems.itemCurrency',
-                            item.symbol
-                          );
-                          setSearchTerm('');
-                        }}
-                        rounded="lg"
-                        _focus={{
-                          outline: 'none',
-                          boxShadow: 'none',
-                        }}
-                      >
-                        {item.name}
-                      </MenuItem>
-                    ))
-                  : CurrencyData.filter(item =>
-                      customCurrency.includes(item.name)
-                    ).map(item => (
-                      <MenuItem
-                        my={'1'}
-                        key={item.name}
-                        command={item.symbol}
-                        bg={item.symbol === currency && 'green.100'}
-                        color={item.symbol === currency && 'gray.900'}
-                        onClick={() => {
-                          setCurrency(item.symbol);
-                          setCurrentItem({
-                            ...currentItem,
-                            itemCurrency: item.symbol,
-                          });
-                          formik.setFieldValue(
-                            'invoiceItems.itemCurrency',
-                            item.symbol
-                          );
-                          setSearchTerm('');
-                        }}
-                        rounded="lg"
-                        _focus={{
-                          outline: 'none',
-                          boxShadow: 'none',
-                        }}
-                      >
-                        {item.name}
-                      </MenuItem>
-                    ))}
-              </Menu>
-            </MenuList>
-          </Menu>
-        </Box>
-        <Box pt={8}>
-          <Button
-            variant="outline"
-            _focus={{
-              outline: 'none',
-            }}
-            size={'lg'}
-            fontWeight={600}
-            color={'black'}
-            bg={'white'}
-            borderRadius={'lg'}
-            _hover={{
-              bg: 'whiteAlpha.800',
-            }}
-            onClick={addInvoiceItem}
-          >
-            {' '}
-            Add Item
-          </Button>
-        </Box>
-      </Stack>
-      {/* invoiceItems Items End */}
-      {/* invoiceItems Items List Starts */}
-      <TableContainer mt="20" spacing={8} scrollBehavior="smooth">
-        <Table variant="striped">
-          <Thead>
-            <Tr>
-              <Th>Item Name</Th>
-              <Th>Item Quantity</Th>
-              <Th>Item Price</Th>
-              <Th>Item Amount</Th>
-            </Tr>
-          </Thead>
-          <Tbody>
-            {formik.values.invoiceItems &&
-              formik.values.invoiceItems.map((item, index) => (
-                <Tr key={index}>
-                  <Td width={'20%'}>{item.itemName}</Td>
-                  <Td>{item.itemQuantity} </Td>
-                  <Td>
-                    {item.itemCurrency} {item.itemPrice}
-                  </Td>
-                  <Td>
-                    {item.itemCurrency} {item.itemTotal}
-                  </Td>
-                  <Menu>
-                    <MenuButton
-                      m={2}
-                      as={IconButton}
-                      aria-label="Options"
-                      icon={<RiIcons.RiMenu3Fill />}
-                      variant="outline"
-                    />
-
-                    <MenuList>
-                      <MenuItem
-                        icon={<FaIcons.FaRegEdit />}
-                        onClick={() => EditInvoiceItem(index)}
-                      >
-                        Edit
-                      </MenuItem>{' '}
-                      <MenuItem
-                        icon={<RiIcons.RiDeleteBin3Line />}
-                        onClick={() => removeInvoiceItem(index)}
-                      >
-                        Delete
-                      </MenuItem>
-                    </MenuList>
-                  </Menu>
-                </Tr>
-              ))}
-          </Tbody>
-        </Table>
-      </TableContainer>
-      <Modal onClose={onClose} isOpen={isOpen} isCentered>
-        <ModalOverlay bg="blackAlpha.300" />
-        <ModalContent
-          p={4}
-          rounded={'3xl'}
-          border={2}
-          borderColor={useColorModeValue('gray.700', 'gray.100')}
-          borderStyle={'solid'}
-        >
-          <ModalHeader>Edit Item #{editItem.editIndex} </ModalHeader>
-          <ModalCloseButton
-            _focus={{
-              outline: 'none',
-            }}
-          />
-          <ModalBody>
-            {' '}
-            <Box>
-              <FormControl id="editName">
-                <FormLabel>Edit Item Name</FormLabel>
-                <Input
-                  type="text"
-                  size={'lg'}
-                  htmlSize={30}
-                  placeholder="Edit Item Name"
-                  bg={useColorModeValue('gray.100', 'gray.700') || 'gray.200'}
-                  color={
-                    useColorModeValue('gray.800', 'gray.300') || 'gray.800'
-                  }
-                  value={editItem.editName}
-                  onChange={e =>
-                    setEditItem({ ...editItem, editName: e.target.value })
-                  }
-                />
-              </FormControl>
-            </Box>{' '}
-            <Box>
-              <FormControl id="editQuantity">
-                <FormLabel>Edit Item Quantity</FormLabel>
-                <Input
-                  type="number"
-                  min={0}
-                  onKeyDown={e =>
-                    ['e', 'E', '+', '-'].includes(e.key) && e.preventDefault()
-                  }
-                  size={'lg'}
-                  htmlSize={30}
-                  placeholder="Edit Item Quantity"
-                  bg={useColorModeValue('gray.100', 'gray.700') || 'gray.200'}
-                  color={
-                    useColorModeValue('gray.800', 'gray.300') || 'gray.800'
-                  }
-                  value={editItem.editQuantity}
-                  onChange={e =>
-                    setEditItem({ ...editItem, editQuantity: e.target.value })
-                  }
-                />
-              </FormControl>
-            </Box>{' '}
-            <Box>
-              <FormControl id="editPrice">
-                <FormLabel>Edit Item Price</FormLabel>
-                <Input
-                  type="number"
-                  min={0}
-                  onKeyDown={e =>
-                    ['e', 'E', '+', '-'].includes(e.key) && e.preventDefault()
-                  }
-                  size={'lg'}
-                  htmlSize={30}
-                  placeholder="Edit Item Price"
-                  bg={useColorModeValue('gray.100', 'gray.700') || 'gray.200'}
-                  color={
-                    useColorModeValue('gray.800', 'gray.300') || 'gray.800'
-                  }
-                  value={editItem.editPrice}
-                  onChange={e =>
-                    setEditItem({ ...editItem, editPrice: e.target.value })
-                  }
-                />
-              </FormControl>
-            </Box>
-          </ModalBody>
-          <ModalFooter>
-            <Button
-              _focus={{
-                outline: 'none',
-              }}
-              colorScheme="primary"
-              variant="outline"
-              mr={3}
-              onClick={saveEditItem}
-            >
-              {' '}
-              Save
-            </Button>
-            <Button
-              _focus={{
-                outline: 'none',
-              }}
-              onClick={onClose}
-            >
-              Close
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
-      {/* invoiceItems Items List Ends */}
-      {formik.values.invoiceItems.length > 0 && (
-        <Stack my={10}>
-          <Flex>
-            <Spacer />
-            <Box align="end">
-              <Grid gap={4}>
-                <GridItem colSpan={2} h="10">
-                  <FormControl id="invoiceTotal" mb={'20'}>
-                    <FormLabel>Tax %</FormLabel>
-                    <InputGroup>
-                      <Input
-                        type="number"
-                        min={0}
-                        onKeyDown={e =>
-                          ['e', 'E', '+', '-'].includes(e.key) &&
-                          e.preventDefault()
-                        }
-                        width="100%"
-                        name="tax"
-                        placeholder="Tax %"
-                        bg={backgroundColor}
-                        color={textColor}
-                        value={formik.values.tax}
-                        onChange={e => {
-                          formik.setFieldValue('tax', e.target.value);
-                        }}
-                      />
-                      <InputRightAddon
-                        bg={'purple.100'}
-                        color={'gray.700'}
-                        children={<RiIcons.RiPercentLine color="green.500" />}
-                      />
-                    </InputGroup>
-                  </FormControl>
-                </GridItem>
-              </Grid>
-            </Box>
-          </Flex>
-        </Stack>
-      )}
-    </>
+                </FormControl>
+              </Box>{' '}
+              <Box>
+                <FormControl id="editPrice">
+                  <FormLabel>Edit Item Price</FormLabel>
+                  <Input
+                    type="number"
+                    min={0}
+                    onKeyDown={e =>
+                      ['e', 'E', '+', '-'].includes(e.key) && e.preventDefault()
+                    }
+                    size={'lg'}
+                    htmlSize={30}
+                    placeholder="Edit Item Price"
+                    bg={useColorModeValue('gray.100', 'gray.700') || 'gray.200'}
+                    color={
+                      useColorModeValue('gray.800', 'gray.300') || 'gray.800'
+                    }
+                    value={editItem.editPrice}
+                    onChange={e =>
+                      setEditItem({ ...editItem, editPrice: e.target.value })
+                    }
+                  />
+                </FormControl>
+              </Box>
+            </ModalBody>
+            <ModalFooter>
+              <Button
+                _focus={{
+                  outline: 'none',
+                }}
+                colorScheme="primary"
+                variant="outline"
+                mr={3}
+                onClick={saveEditItem}
+              >
+                {' '}
+                Save
+              </Button>
+              <Button
+                _focus={{
+                  outline: 'none',
+                }}
+                onClick={onClose}
+              >
+                Close
+              </Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+        {/* invoiceItems Items List Ends */}
+        {formik.values.invoiceItems.length > 0 && (
+          <Stack my={10}>
+            <Flex>
+              <Spacer />
+              <Box align="end">
+                <Grid gap={4}>
+                  <GridItem colSpan={2} h="10">
+                    <FormControl id="invoiceTotal" mb={'20'}>
+                      <FormLabel>Tax %</FormLabel>
+                      <InputGroup>
+                        <Input
+                          type="number"
+                          min={0}
+                          onKeyDown={e =>
+                            ['e', 'E', '+', '-'].includes(e.key) &&
+                            e.preventDefault()
+                          }
+                          width="100%"
+                          name="tax"
+                          placeholder="Tax %"
+                          bg={backgroundColor}
+                          color={textColor}
+                          value={formik.values.tax}
+                          onChange={e => {
+                            formik.setFieldValue('tax', e.target.value);
+                          }}
+                        />
+                        <InputRightAddon
+                          bg={'purple.100'}
+                          color={'gray.700'}
+                          children={<RiIcons.RiPercentLine color="green.500" />}
+                        />
+                      </InputGroup>
+                    </FormControl>
+                  </GridItem>
+                </Grid>
+              </Box>
+            </Flex>
+          </Stack>
+        )}
+      </Box>
+    </React.Fragment>
   );
 }

@@ -284,24 +284,22 @@ export default function EditorForm() {
   return (
     <>
       <form onSubmit={formik.handleSubmit} id="form">
-        
-
         <InvoiceImage
           yourLogo={formik.values.invoice.yourLogo}
           getLogo={getLogo}
           resetForm={reset}
           alertMessage={alertMessage}
-          />
+        />
         <UserDetails
           yourDetails={formik.values.invoice.yourDetails}
           getYourDetails={data => getYourDetails(data)}
           resetForm={reset}
-          />
+        />
         <ClientDetails
           clientDetails={formik.values.invoice.clientDetails}
           getClientDetails={data => getClientDetails(data)}
           resetForm={reset}
-          />
+        />
         <InvoiceDates
           invoiceDates={[
             formik.values.invoice.invoiceNumber,
@@ -310,7 +308,7 @@ export default function EditorForm() {
           ]}
           getDates={data => getDates(data)}
           resetForm={reset}
-          />
+        />
         {/* Invoice Number And Dates End */}
         <InvoiceItems
           invoiceItems={formik.values.invoice.items}
@@ -318,7 +316,7 @@ export default function EditorForm() {
           getItems={data => getItems(data)}
           resetForm={reset}
           alertMessage={alertMessage}
-          />
+        />
         <InvoiceNotes
           notes={formik.values.invoice.notes}
           clientName={formik.values.invoice.clientDetails.clientName}
@@ -327,12 +325,12 @@ export default function EditorForm() {
           invoiceDate={formik.values.invoice.invoiceDate}
           getNotes={data => getNotes(data)}
           resetForm={reset}
-          />
+        />
         <InvoiceTerms
           terms={formik.values.invoice.terms}
           getTerms={data => getTerms(data)}
           resetForm={reset}
-          />
+        />
         <DigitalSignature
           digitalSignature={formik.values.invoice.digitalSignature}
           registrationNumber={
@@ -344,7 +342,7 @@ export default function EditorForm() {
           getDigitalSignature={data => getDigitalSignature(data)}
           resetForm={reset}
           alertMessage={alertMessage}
-          />
+        />
         {/* Save Button */}
         <Flex>
           <Box mt={8}>
@@ -362,7 +360,7 @@ export default function EditorForm() {
                 bg: 'purple.700',
               }}
               rightIcon={<RiIcons.RiSaveLine />}
-              >
+            >
               Save
             </Button>
           </Box>
@@ -384,13 +382,12 @@ export default function EditorForm() {
               onClick={clearAllData}
               variant="outline"
               rightIcon={<RiIcons.RiDeleteBin2Line />}
-              >
+            >
               Clear All
             </Button>
           </Box>
         </Flex>
       </form>
-              
     </>
   );
 }

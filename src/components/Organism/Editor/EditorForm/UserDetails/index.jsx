@@ -6,7 +6,6 @@ import {
   FormLabel,
   Input,
   Stack,
-  Text,
   useColorModeValue,
 } from '@chakra-ui/react';
 
@@ -43,17 +42,8 @@ export default function UserDetails({
         bg={useColorModeValue('gray.50', 'gray.700')}
         rounded="3xl"
         mt="4"
+        shadow={'sm'}
       >
-        <Text
-          fontSize="xl"
-          fontWeight="bold"
-          mb="8"
-          color={useColorModeValue('gray.800', 'gray.200')}
-          textDecor={'underline'}
-        >
-          Your Details
-        </Text>
-
         {/* User Details Start*/}
         <Stack direction={{ base: 'column', md: 'row' }} spacing={8} my="5">
           <Box>
