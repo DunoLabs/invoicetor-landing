@@ -70,7 +70,7 @@ export default function NotFound() {
 
         <Box>
           <Image
-            src="https://res.cloudinary.com/invoicetor/image/upload/v1661998439/search_pmblud.gif"
+            src="https://ik.imagekit.io/thebugcommunity/search_pmblud_Dj6OeL4SNT.gif?ik-sdk-version=javascript-1.4.3&updatedAt=1675100782298"
             alt="404 Not Found"
           />
         </Box>

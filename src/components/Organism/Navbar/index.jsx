@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 
 import {
   Box,
@@ -54,8 +54,8 @@ const NAV_ITEMS = [
     children: [
       {
         label: 'Free Invoicetor',
-        subLabel: 'Free Invoice Editor for one-time use',
-        to: '/free-invoicetor',
+        subLabel: 'coming soooon.....',
+        to: '#',
       },
       {
         label: 'Invoice Templates',
@@ -448,7 +448,7 @@ const DesktopNav = () => {
               {FeaturesUpdatesData.title}
               <Link href={FeaturesUpdatesData.version?.link} color="purple.400">
                 <Text fontSize="xs" my="2">
-                  Latest version {FeaturesUpdatesData.version.name}
+                  Latest version
                 </Text>
               </Link>
               <Divider />
@@ -637,7 +637,7 @@ const MOBILE_NAV_ITEMS = [
     label: 'About Us',
   },
   {
-    to: '/free-invoicetor',
+    to: '#',
     label: 'Free Invoicetor',
   },
   {

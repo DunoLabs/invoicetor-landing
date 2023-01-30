@@ -38,7 +38,6 @@ import {
   ModalBody,
   ModalCloseButton,
   useToast,
- 
 } from '@chakra-ui/react';
 import CurrencyData from '../../CurrencyData/CurrencyData.json';
 
@@ -213,7 +212,7 @@ export default function InvoiceItems({
         bg={useColorModeValue('gray.50', 'gray.700')}
         rounded="3xl"
         mt="4"
-        shadow={'lg'}
+        shadow={'sm'}
       >
         {/* invoiceItems Items Starts */}
         <Stack direction={{ base: 'column', md: 'row' }} spacing={8}>
@@ -425,7 +424,12 @@ export default function InvoiceItems({
         {/* invoiceItems Items End */}
         {/* invoiceItems Items List Starts */}
         <TableContainer mt="20" spacing={8} scrollBehavior="smooth">
-          <Table variant="striped">
+          <Table
+            variant="striped"
+            bg={useColorModeValue('gray.100', 'gray.800')}
+            color={useColorModeValue('gray.800', 'gray.300')}
+            rounded="lg"
+          >
             <Thead>
               <Tr>
                 <Th>Item Name</Th>
@@ -438,7 +442,7 @@ export default function InvoiceItems({
               {formik.values.invoiceItems &&
                 formik.values.invoiceItems.map((item, index) => (
                   <Tr key={index}>
-                    <Td width={'20%'}>{item.itemName}</Td>
+                    <Td>{item.itemName}</Td>
                     <Td>{item.itemQuantity} </Td>
                     <Td>
                       {item.itemCurrency} {item.itemPrice}
@@ -446,30 +450,31 @@ export default function InvoiceItems({
                     <Td>
                       {item.itemCurrency} {item.itemTotal}
                     </Td>
-                    <Menu>
-                      <MenuButton
-                        m={2}
-                        as={IconButton}
-                        aria-label="Options"
-                        icon={<RiIcons.RiMenu3Fill />}
-                        variant="outline"
-                      />
+                    <Td>
+                      <Menu>
+                        <MenuButton
+                          as={IconButton}
+                          aria-label="Options"
+                          icon={<RiIcons.RiMenu3Fill />}
+                          variant="outline"
+                        />
 
-                      <MenuList>
-                        <MenuItem
-                          icon={<FaIcons.FaRegEdit />}
-                          onClick={() => EditInvoiceItem(index)}
-                        >
-                          Edit
-                        </MenuItem>{' '}
-                        <MenuItem
-                          icon={<RiIcons.RiDeleteBin3Line />}
-                          onClick={() => removeInvoiceItem(index)}
-                        >
-                          Delete
-                        </MenuItem>
-                      </MenuList>
-                    </Menu>
+                        <MenuList>
+                          <MenuItem
+                            icon={<FaIcons.FaRegEdit />}
+                            onClick={() => EditInvoiceItem(index)}
+                          >
+                            Edit
+                          </MenuItem>{' '}
+                          <MenuItem
+                            icon={<RiIcons.RiDeleteBin3Line />}
+                            onClick={() => removeInvoiceItem(index)}
+                          >
+                            Delete
+                          </MenuItem>
+                        </MenuList>
+                      </Menu>
+                    </Td>
                   </Tr>
                 ))}
             </Tbody>

@@ -98,7 +98,7 @@ export default function JoinWaitlist() {
                 w={'100%'}
                 h={'100%'}
                 src={
-                  'https://res.cloudinary.com/invoicetor/image/upload/v1661989745/bubble-gum-message-sent_fmwwxx.gif'
+                  'https://ik.imagekit.io/thebugcommunity/bubble-gum-message-sent_fmwwxx_3AWrpV2WIj.gif?ik-sdk-version=javascript-1.4.3&updatedAt=1675101148152'
                 }
                 loading={'lazy'}
               />
