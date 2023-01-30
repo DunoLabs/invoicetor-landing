@@ -95,7 +95,7 @@ export default function Home() {
               </Link>
               <Link
                 as={NavLink}
-                to="/free-invoicetor"
+                to="#"
                 style={{
                   textDecoration: 'none',
                 }}
@@ -111,7 +111,7 @@ export default function Home() {
                     bgGradient: 'linear(to-l, yellow.400, purple.400)',
                   }}
                 >
-                  Create Invoice 📝
+                  Coming Soon 🚀
                 </Button>
               </Link>
             </Flex>

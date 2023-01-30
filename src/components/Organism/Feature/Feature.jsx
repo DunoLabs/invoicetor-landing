@@ -14,10 +14,9 @@ import {
   Square,
 } from '@chakra-ui/react';
 
-
 const FeaturesDetails = [
   {
-    imageUrl: `https://res.cloudinary.com/invoicetor/image/upload/v1661990336/bubble-gum-workflow_wk6qyr.png`,
+    imageUrl: `https://ik.imagekit.io/thebugcommunity/bubble-gum-workflow_wk6qyr_YGuNhrc2d.png?ik-sdk-version=javascript-1.4.3&updatedAt=1675100780986`,
     Title: 'Create Multiple Invoices',
     Description:
       'Invoices can be created multiple times, and account data can be used to create different invoices for different clients.',
@@ -27,7 +26,7 @@ const FeaturesDetails = [
     iconColor: 'yellow.200',
   },
   {
-    imageUrl: `https://res.cloudinary.com/invoicetor/image/upload/v1661990634/bubble-gum-female-designer-working-on-laptop_uyccpu.png`,
+    imageUrl: `https://ik.imagekit.io/thebugcommunity/bubble-gum-female-designer-working-on-laptop_uyccpu_0As2NTKh3U.png?ik-sdk-version=javascript-1.4.3&updatedAt=1675100781732`,
     Title: 'Better Designs & Templates',
     Description:
       "Your invoices will be completely customizable using the design panel. Choose a color that matches your company's style. Modify the spacing to accommodate the amount of information you want.",
@@ -36,7 +35,7 @@ const FeaturesDetails = [
     iconBg: '#DEDFFE',
   },
   {
-    imageUrl: `https://res.cloudinary.com/invoicetor/image/upload/v1661990547/bubble-gum-programming_be2e9x.png`,
+    imageUrl: `https://ik.imagekit.io/thebugcommunity/bubble-gum-programming_be2e9x_rcn_4xKOu_.png?ik-sdk-version=javascript-1.4.3&updatedAt=1675100781084`,
     Title: 'Easy to Use & Intuitive',
     Description:
       'Keep the data, but hide the content with a click. Easy toggle support allows you to put your best foot forward.',

@@ -101,7 +101,7 @@ export default function Download() {
               width={282}
               objectFit={'cover'}
               src={
-                'https://res.cloudinary.com/invoicetor/image/upload/v1661564364/download-1_wppnvr.png'
+                'https://ik.imagekit.io/thebugcommunity/download-1_wppnvr_zTKdOf8Hai.png?ik-sdk-version=javascript-1.4.3&updatedAt=1675100868327'
               }
               onClick={handlePrint}
             />
